@@ -194,19 +194,10 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body box-shadow-2">
                                         <div class="row">
-                                            <div class="col-md-8 mr-2">
+                                            <div class="col-md-11">
                                             </div>
                                             <div>
                                                 <button type="button" class="btn black form-control " style="background-color: #F0AD4E;" data-toggle="modal" data-target="#ConsolidationButtonModal" onclick="OpenConsolidationButtonModal()"><b>Load</b></button>
-                                            </div>
-                                            <div>
-                                                <button type="button" class="btn black form-control " style="background-color: #F0AD4E;"><b>Save</b></button>
-                                            </div>
-                                            <div>
-                                                <button type="button" class="btn black form-control " style="background-color: #F0AD4E;"><b>Submit</b></button>
-                                            </div>
-                                            <div>
-                                                <a class="btn bg-addbutton form-control black" data-caption="01/01/19" href="~/Resources/PDF/blank.pdf" target='_blank'><b>Preview</b></a>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -348,7 +339,18 @@
                                                                     <label class="mt-1">ALBERT S. GARCIA</label>
                                                                 </div>
                                                             </div>
-
+                                                            <div class="row">
+                                                                <div class="col-md-9"></div>
+                                                                <div>
+                                                                    <button type="button" class="btn black form-control " style="background-color: #F0AD4E;"><b>Save</b></button>
+                                                                </div>
+                                                                <div>
+                                                                    <button type="button" class="btn black form-control " style="background-color: #F0AD4E;"><b>Submit</b></button>
+                                                                </div>
+                                                                <div>
+                                                                    <a class="btn bg-addbutton form-control black" data-caption="01/01/19" href="~/Resources/PDF/blank.pdf" target='_blank'><b>Preview</b></a>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -409,9 +411,9 @@
     $(document).ready(function () {
         var popupElement =
             '<div class="row m-0"><button class="btn btn-icon bg-addbutton white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white" data-toggle="modal" data-target="#ConsolidationButtonModal" onclick="OpenConsolidationButtonModal()"><i class="la la-clipboard"></i>Load Consolidation</button></div>' +
-            '<div class="row m-0 mt-1"><button class="btn btn-icon bg-headerbc white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Return Status to Pending</button></div>' +
-            '<div class="row m-0 mt-1"><button class="btn btn-icon bg-headerbc white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Cancel Consolidation</button></div>' +
-            '<div class="row m-0 mt-1"><button class="btn btn-icon bg-addbutton white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white" data-toggle="modal" data-target="#ConsolidationButtonModal" onclick="OpenConsolidationButtonModal()"><i class="la la-clipboard"></i>View Consolidation Report</button></div>';
+            '<div class="row m-0 mt-1"><button class="btn btn-icon bg-addbutton white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white" data-toggle="modal" data-target="#ConsolidationButtonModal" onclick="OpenConsolidationButtonModal()"><i class="la la-clipboard"></i>View Consolidation Report</button></div>' +
+        '<div class="row m-0 mt-1"><button class="btn btn-icon bg-headerbc white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Return Status to Pending</button></div>'+
+            '<div class="row m-0 mt-1"><button class="btn btn-icon bg-headerbc white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Cancel Consolidation</button></div>';
         $('[data-toggle="popoverConsolidation"]').popover({
             animation: true,
             content: popupElement,
