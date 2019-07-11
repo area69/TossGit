@@ -1,0 +1,613 @@
+﻿@{
+    ViewBag.Title = "Cash Book";
+}
+<script>
+    $("#cashbook").addClass("active");
+</script>
+<div class="content-header row">
+    <div class="content-header-left col-md-6 mb-2">
+        <h3 class="content-header"><b>Cash Book</b></h3>
+    </div>
+</div>
+<div class="content-body">
+    <div class="row black">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="card card-sm" style="border: 1px solid; border-color: #EABEBB">
+                <div class="card-block">
+                    <div class="card-body">
+                        @* Cash Book *@
+                        <div class="row font-weight-bold">
+                            <div class="col-md-3 col-sm-3">
+                                <div class="form-group">
+                                    <label>Cashbook Type</label>
+                                    <select class="form-control" id="dp">
+                                        <option value="1">Cash in Bank</option>
+                                        <option value="2">Cash Advance</option>
+                                        <option value="3">Liquidation Officer</option>
+                                        <option value="4">Cash in Treasury</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <div class="form-group">
+                                    <label>Fund Type</label>
+                                    <select class="form-control">
+                                        <option>General Fund</option>
+                                        <option>Special Education Fund</option>
+                                        <option>Trust Fund</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row font-weight-bold">
+                            <div class="col-md-3 col-sm-3">
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <select class="form-control">
+                                        <option>All</option>
+                                        <option>Today</option>
+                                        <option>This-Week</option>
+                                        <option>This-Week-To-Date</option>
+                                        <option>This-Month</option>
+                                        <option>Custom</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <div class="form-group">
+                                    <label>From</label>
+                                    <input name="name" value="" class="form-control pickadate " />
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <div class="form-group">
+                                    <label>To</label>
+                                    <input type="datetime" value="" class="form-control pickadate" />
+                                </div>
+                            </div>
+                            <div class="col"></div>
+                            <div class="col-md-2 col-sm-2 text-right">
+                                <div class="form-group">
+                                    <label style="visibility:hidden">To</label>
+                                    <button type="button" class="form-control black bottom-right" style="background-color: #F0AD4E;"><b>View</b></button>
+                                </div>
+                            </div>
+                        </div>
+                        @* Cash Book *@
+                        <div id="DivCashBook">
+                            <div class="row font-weight-bold">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    <table class="table table-striped table-bordered  zero-configuration w-100">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th width="25%" class="text-center">Account No.</th>
+                                                <th>Bank Name</th>
+                                                <th width="20%" class="text-center">Balance</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            <tr>
+                                                <td>1004-102-411</td>
+                                                <td>Land Bank of the Philippines</td>
+                                                <td class="text-right">100,000,000,000.00</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot class=" text-white">
+                                            <tr class="footerbc">
+                                                <th class="text-right"></th>
+                                                <th class="text-right">Total:</th>
+                                                <th class="text-right">100,000,000,000.00</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card box-shadow-2 mt-1 font-weight-bold">
+                                <div class="card-header" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black" style="background-color: #FEDF82;"><b>Cash Book</b></h4>
+                                </div>
+                                <div class="card-content collapse show black">
+                                    <div class="card-body box-shadow-2">
+
+                                        <table class="table table-striped table-bordered zero-configuration">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th width="5%">Date</th>
+                                                    <th width="23%">Particular</th>
+                                                    <th width="23%">Reference</th>
+                                                    <th>Debit</th>
+                                                    <th>Credit</th>
+                                                    <th>Balance</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center">8/22/2017</td>
+                                                    <td class="text-center">Starting Balance</td>
+                                                    <td class="text-center">DCM-2017-8-0001</td>
+                                                    <td class="text-right">150,000,000.00</td>
+                                                    <td class="text-right">0.00</td>
+                                                    <td class="text-right">150,000,000.00</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot class=" text-white">
+                                                <tr class="footerbc">
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th class="text-right">Total:</th>
+                                                    <th class="text-right">150,000,000.00</th>
+                                                    <th class="text-right">0.00</th>
+                                                    <th class="text-right">150,000,000.00</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            @* Disbursement Details *@
+                            <div class="card box-shadow-2 mt-1 font-weight-bold">
+                                <div class="card-header bg-active" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black" style="background-color: #FEDF82;"><b>Disbursement Details</b></h4>
+                                </div>
+                                <div class="card-block">
+                                    <div class="card-body box-shadow-2">
+                                        <table class="table table-striped table-bordered zero-configuration w-100 text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>Disbursement Voucher No.</th>
+                                                    <th>Responsibility Center</th>
+                                                    <th>Nature of Payment</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                            <tfoot class=" text-white">
+                                                <tr class="footerbc">
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th class="text-right">Total:</th>
+                                                    <th></th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @* Cash Advance *@
+                        <div id="DivCashAdvance">
+                            <div class="row font-weight-bold">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <table class="table table-striped table-bordered zero-configuration w-100">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th class="text-center">Bank Account No.</th>
+                                                <th>Bank Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            <tr>
+                                                <td>1004-102-411</td>
+                                                <td>Land Bank of the Philippines</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card box-shadow-2 mt-1 font-weight-bold">
+                                <div class="card-header" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black" style="background-color: #FEDF82;"><b>Cash Book</b></h4>
+                                </div>
+                                <div class="card-content collapse show black">
+                                    <div class="card-body box-shadow-2">
+
+                                        <table class="table table-striped table-bordered zero-configuration">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th width="5%">Date</th>
+                                                    <th width="23%">Particular</th>
+                                                    <th width="23%">Reference</th>
+                                                    <th>Debit</th>
+                                                    <th>Credit</th>
+                                                    <th>Balance</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-right"></td>
+                                                    <td class="text-right"></td>
+                                                    <td class="text-right"></td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot class=" text-white">
+                                                <tr class="footerbc">
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th class="text-right">Total:</th>
+                                                    <th class="text-right">0.00</th>
+                                                    <th class="text-right">0.00</th>
+                                                    <th class="text-right">0.00</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            @* Details *@
+                            <div class="card box-shadow-2 mt-1 font-weight-bold">
+                                <div class="card-header bg-active" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black" style="background-color: #FEDF82;"><b>Details</b></h4>
+                                </div>
+                                <div class="card-block">
+                                    <div class="card-body box-shadow-2">
+                                        <table class="table table-striped table-bordered zero-configuration w-100 text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>Employee Name</th>
+                                                    <th>Responsibility Center</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-right">0.00</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot class=" text-white">
+                                                <tr class="footerbc">
+                                                    <th></th>
+                                                    <th class="text-right">Total:</th>
+                                                    <th></th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @* Liquidating Officer *@
+                        <div id="DivLiquidatingOfficer">
+                            <div class="row font-weight-bold">
+                                <div class="col-md-12">
+                                    <table class="table table-striped table-bordered  zero-configuration w-100">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th>Date Remitted</th>
+                                                <th>Date Deposited</th>
+                                                <th>Particulars</th>
+                                                <th>Reference</th>
+                                                <th>Debit</th>
+                                                <th>Credit</th>
+                                                <th>Balance</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            <tr>
+                                                <td>03/22/2019</td>
+                                                <td>04/25/2019</td>
+                                                <td>Collection as of 03/22/2019</td>
+                                                <td>RCD-101201904L0002</td>
+                                                <td>500.00</td>
+                                                <td>500.00</td>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>04/24/2019</td>
+                                                <td>04/25/2019</td>
+                                                <td>Collection as of 04/24/2019</td>
+                                                <td>RCD-101201904L0002</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>04/24/2019</td>
+                                                <td></td>
+                                                <td>Collection as of 04/24/2019</td>
+                                                <td>RCD-101201904L0003</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>04/24/2019</td>
+                                                <td></td>
+                                                <td>Collection as of 04/24/2019</td>
+                                                <td>RCD-101201904L0009</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>05/30/2019</td>
+                                                <td></td>
+                                                <td>Collection as of 05/30/2019</td>
+                                                <td>RCD-101201905L0020</td>
+                                                <td>170.00</td>
+                                                <td>0.00</td>
+                                                <td>170.00</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot class=" text-white">
+                                            <tr class="footerbc">
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th class="text-right">Total:</th>
+                                                <th class="text-right">22,737.10</th>
+                                                <th class="text-right">22,449.00</th>
+                                                <th class="text-right">288.10</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card box-shadow-2 mt-1 font-weight-bold">
+                                <div class="card-header" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black" style="background-color: #FEDF82;"><b>Collection Details</b></h4>
+                                </div>
+                                <div class="card-content collapse show black">
+                                    <div class="card-body box-shadow-2">
+
+                                        <table class="table table-striped table-bordered zero-configuration">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th width="5%">Collectors Name</th>
+                                                    <th width="23%">Official Receipt (OR) No.</th>
+                                                    <th width="23%">Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-right"></td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot class=" text-white">
+                                                <tr class="footerbc">
+                                                    <th></th>
+                                                    <th class="text-right">Total:</th>
+                                                    <th class="text-right">0.00</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            @* Deposit Details *@
+                            <div class="card box-shadow-2 mt-1 font-weight-bold">
+                                <div class="card-header bg-active" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black" style="background-color: #FEDF82;"><b>Deposit Details</b></h4>
+                                </div>
+                                <div class="card-block">
+                                    <div class="card-body box-shadow-2">
+                                        <table class="table table-striped table-bordered zero-configuration w-100 text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date Deposited</th>
+                                                    <th>Bank Name</th>
+                                                    <th>Bank Account</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-right">0.00</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot class=" text-white">
+                                                <tr class="footerbc">
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th class="text-right">Total:</th>
+                                                    <th></th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @* Liquidating Officer *@
+                        <div id="DivCashTreasury">
+                            <div class="row font-weight-bold">
+                                <div class="col-md-12">
+                                    <table class="table table-striped table-bordered  zero-configuration w-100">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th>Date Remitted</th>
+                                                <th>Date Deposited</th>
+                                                <th>Particulars</th>
+                                                <th>Reference</th>
+                                                <th>Debit</th>
+                                                <th>Credit</th>
+                                                <th>Balance</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            <tr>
+                                                <td>05/02/2019</td>
+                                                <td></td>
+                                                <td>Collection as of 05/02/2019</td>
+                                                <td>RCD-101201904T0001</td>
+                                                <td>10,000.00</td>
+                                                <td>0.00</td>
+                                                <td>10,000.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>05/02/2019</td>
+                                                <td></td>
+                                                <td>Collection as of 05/02/2019</td>
+                                                <td>RCD-101201904T0002</td>
+                                                <td>5,000.00</td>
+                                                <td>0.00</td>
+                                                <td>5,000.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>05/09/2019</td>
+                                                <td></td>
+                                                <td>Collection as of 05/09/2019</td>
+                                                <td>RCD-101201904T0006</td>
+                                                <td>2,000.00</td>
+                                                <td>0.00</td>
+                                                <td>2,000.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>05/14/2019</td>
+                                                <td></td>
+                                                <td>Collection as of 05/14/2019</td>
+                                                <td>RCD-101201904T0012</td>
+                                                <td>10,000.00</td>
+                                                <td>0.00</td>
+                                                <td>10,000.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>05/21/2019</td>
+                                                <td></td>
+                                                <td>Collection as of 05/21/2019</td>
+                                                <td>RCD-101201905T0021</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot class=" text-white">
+                                            <tr class="footerbc">
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th class="text-right">Total:</th>
+                                                <th class="text-right">22,737.10</th>
+                                                <th class="text-right">22,449.00</th>
+                                                <th class="text-right">288.10</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card box-shadow-2 mt-1 font-weight-bold">
+                                <div class="card-header" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black" style="background-color: #FEDF82;"><b>Collection Details</b></h4>
+                                </div>
+                                <div class="card-content collapse show black">
+                                    <div class="card-body box-shadow-2">
+
+                                        <table class="table table-striped table-bordered zero-configuration">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th width="5%">Payors Name</th>
+                                                    <th width="23%">Official Receipt (OR) No.</th>
+                                                    <th width="23%">Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-right"></td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot class=" text-white">
+                                                <tr class="footerbc">
+                                                    <th></th>
+                                                    <th class="text-right">Total:</th>
+                                                    <th class="text-right">0.00</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            @* Deposit Details *@
+                            <div class="card box-shadow-2 mt-1 font-weight-bold">
+                                <div class="card-header bg-active" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black" style="background-color: #FEDF82;"><b>Deposit Details</b></h4>
+                                </div>
+                                <div class="card-block">
+                                    <div class="card-body box-shadow-2">
+                                        <table class="table table-striped table-bordered zero-configuration w-100 text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date Deposited</th>
+                                                    <th>Bank Name</th>
+                                                    <th>Bank Account</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-right">0.00</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot class=" text-white">
+                                                <tr class="footerbc">
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th class="text-right">Total:</th>
+                                                    <th></th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    #DivCashAdvance, #DivCashTreasury, #DivLiquidatingOfficer {
+        display: none;
+    }
+</style>
+<script> 
+    $(document).ready(function () {
+        $('#dp').on('change', function () {
+            if (this.value == '1') {
+                $("#DivCashBook").show();
+                $("#DivCashAdvance").hide();
+                $("#DivLiquidatingOfficer").hide();
+                $("#DivCashTreasury").hide();
+            }
+            else if (this.value == '2') {
+                $("#DivCashAdvance").show();
+                $("#DivCashBook").hide();
+                $("#DivLiquidatingOfficer").hide();
+                $("#DivCashTreasury").hide();
+            }
+            else if (this.value == '3') {
+                $("#DivLiquidatingOfficer").show();
+                $("#DivCashAdvance").hide();
+                $("#DivCashBook").hide();
+                $("#DivCashTreasury").hide();
+            }
+            else
+            {
+                $("#DivCashTreasury").show();
+                $("#DivLiquidatingOfficer").hide();
+                $("#DivCashAdvance").hide();
+                $("#DivCashBook").hide();
+            }
+        });
+    });
+</script>

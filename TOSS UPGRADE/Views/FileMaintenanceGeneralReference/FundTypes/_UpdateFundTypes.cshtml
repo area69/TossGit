@@ -1,0 +1,35 @@
+﻿@model TOSS_UPGRADE.Models.FM_GeneralReference_FundTypes
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+
+@using (Ajax.BeginForm("UpdateFundTypes", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMGeneralReferenceController','Get_FundTypeTables','Fund Type Successfully Updated')", OnFailure = "OnFailure()", }))
+{
+<div class="row">
+    @Html.HiddenFor(m => m.ListFundTypeID, new { })
+    <div class="col-md-3 pr-0 form-group">
+        <label>Fund</label>
+        @Html.DropDownListFor(m => m.getFundColumns.FundID, Model.FundNameList, new { @class = "form-control select2", id = "FundNameListID2", onchange = "AngularGlobalFunctions('FMGeneralReferenceController','LoadDynamicDDFundType2','')" })
+    </div>
+    <div class="col-md-3 form-group" id="FundTypeDivID2">
+
+    </div>
+    <div class="col-md-3 mr-4 p-0 form-group">
+        <label>Particulars</label>
+        @Html.TextBoxFor(m => m.getFundColumns.FundParticulars, new { @class = "form-control", type = "text" })
+
+    </div>
+    <div class="col-md-1 mr-1 p-0">
+        <label style="visibility:hidden">Particulars</label>
+        <button type="submit" class="btn bg-addbutton black form-control"><b>Save</b></button>
+    </div>
+    <div class="col-md-1 p-0">
+        <label style="visibility:hidden">Particulars</label>
+        <button type="reset" class="btn bg-headerbc form-control black" onclick="AngularGlobalEdit('FMGeneralReferenceController','Get_AddFundTypes','')"><b>Cancel</b></button>
+    </div>
+</div>
+}
+
+

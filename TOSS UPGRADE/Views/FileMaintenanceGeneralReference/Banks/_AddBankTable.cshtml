@@ -1,0 +1,32 @@
+﻿@model TOSS_UPGRADE.Models.FM_GeneralReference_Bank
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+
+@using (Ajax.BeginForm("AddBank", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMGeneralReferenceController','Get_BankTables','Bank Name Successfully Added')", OnFailure = "OnFailure()", }))
+{
+<div class="row">
+    <div class="col-md-7 pr-0 form-group">
+        <label>Bank</label>
+        @Html.TextBoxFor(m => m.getBankColumns.BankName, new { @class = "form-control", type = "text" })
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-2 pr-0">
+        <label style="visibility:hidden">Particulars</label>
+        <button type="submit" class="btn bg-addbutton black form-control"><b>Save</b></button>
+    </div>
+    <div class="col-md-2">
+        <label style="visibility:hidden">Particulars</label>
+        <button type="reset" class="btn bg-headerbc form-control black"><b>Cancel</b></button>
+    </div>
+</div>
+}
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+</script>
+

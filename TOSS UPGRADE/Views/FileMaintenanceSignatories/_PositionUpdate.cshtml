@@ -1,0 +1,35 @@
+﻿@model TOSS_UPGRADE.Models.FM_SignatoriesModel
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+@using (Ajax.BeginForm("UpdatePosition", "FileMaintenanceSignatories", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithTripleFunc('FMSignatoriesController','Get_PositionTable','LoadDynamicDDPositionName','SuccessSave3')", OnFailure = "OnFailure()", }))
+{
+<div class="row">
+    @Html.HiddenFor(m => m.getPositionColumns.PositionID, new { })
+    <div class="col-md-2">
+        <label class="mt-1">Position</label>
+    </div>
+    <div class="col-md-5">
+        @Html.TextBoxFor(m => m.getPositionColumns.PositionName1, new { @class = "form-control", type = "text", ng_model = "PositionNameID" })
+        @Html.ValidationMessageFor(model => model.getPositionColumns.PositionName1)
+    </div>
+    <div class="col-md-2 p-0 mr-1">
+        <button type="submit" class="btn bg-addbutton form-control black"><b>Save</b></button>
+    </div>
+    <div class="col-md-2 p-0">
+        <button class="btn bg-headerbc form-control black" type="reset"  onclick="AngularGlobalEdit('FMSignatoriesController','Get_AddPosition','')" data-dismiss="modal"><b>Cancel</b></button>
+    </div>
+</div>
+
+}
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+</script>
+
+
+

@@ -1,0 +1,200 @@
+﻿@model TOSS_UPGRADE.Models.FM_SignatoriesModel
+@using System.Security.Claims;
+@using TOSS_UPGRADE.Models;
+@{
+    DB_TOSSEntities CEE = new DB_TOSSEntities();
+}
+@{
+    ViewBag.Title = "Signatories";
+}
+<script>
+    $("#fsignatories").addClass("active");
+</script>
+
+<div class="row font-weight-bold black" id="FMSignatoriesController" ng-controller="FMSignatoriesController" ng-init="InitAllFunction();">
+    <div class="col-12 col-xl-12 ">
+        <div class="card box-shadow-2">
+            <div class="card-content collapse show">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card box-shadow-2">
+                                <div class="card-header bg-carheadercolor">
+                                    <h4 class="card-title black"><b>Signatories</b></h4>
+                                </div>
+                                <div class="card-body box-shadow-2">
+                                    <div class="content-body" id="SignatoriesIDTemp">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card box-shadow-2">
+                                <div class="card-header bg-carheadercolor">
+                                    <h4 class="card-title black"><b>Signatories Details</b></h4>
+                                </div>
+                                <div class="card-body box-shadow-2" id="SignatoriesTableID">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @* Add Position Modal *@
+    <div class="col-lg-8 col-md-8 col-sm-12">
+        <div class="form-group">
+            <div class="modal animated zoomIn text-left" id="addPositionModal" role="dialog">
+                <div class="modal-dialog" style="max-width:600px" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-headerbc white">
+                            <h4 class="modal-title white"><i class="la la-plus"></i>Position</h4>
+                        </div>
+                        <div class="modal-body skin skin-square">
+                            <div class="row">
+                                <div class="col-md-12" id="PositionTempID">
+                                  
+                                </div>
+                            </div>
+                            <div class="row mt-1" id="PositionTableID">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+    <script>
+
+    @*View Adding of Position Modal*@
+    app.controller('FMSignatoriesController', function ($scope, $http, $sce) {
+        var F = $scope, P = $http, D = $sce.trustAsHtml;
+
+        F.InitAllFunction = function () {
+            F.GetListOfSignatories();
+            F.Get_PositionTable();
+            //F.Get_UpdateSignatories();
+        }
+
+        F.SuccessSave1 = function () {
+            var SuccessMess = F.P;
+            swalSuccess("Success", SuccessMess);
+        }
+
+        F.SuccessSave2 = function () {
+            var SuccessMess = F.PositionNameID;
+            swalSuccess("Success", SuccessMess);
+        }
+
+        F.SuccessSave3 = function () {
+            var SuccessMess = F.PositionNameID;
+            swalSuccess("Position Successfully Updated", SuccessMess);
+        }
+
+
+        F.Get_PositionTable = function () {
+            P({
+                url: '/FileMaintenanceSignatories/Get_PositionTable',
+            }).then(function (response) {
+                $("#PositionTableID").html(response.data);
+                });
+            F.Get_AddPosition();
+        }
+        F.Get_AddPosition = function () {
+            P({
+                url: '/FileMaintenanceSignatories/Get_AddPosition',
+            }).then(function (response) {
+                $("#PositionTempID").html(response.data);
+                });
+
+        }
+
+        F.Get_UpdatePosition = function (PositionID) {
+            P({
+                url: '/FileMaintenanceSignatories/Get_UpdatePosition',
+                params: { PositionID: PositionID }
+            }).then(function (response) {
+                $("#PositionTempID").html(response.data);
+                });
+        }
+
+        F.Get_DeletePosition = function (PositionID) {
+            P({
+                url: '/FileMaintenanceSignatories/DeletePosition',
+                params: { PositionID: PositionID }
+            }).then(function (response) {
+                F.Get_PositionTable();
+                F.LoadDynamicDDPositionName();
+            });
+        }
+
+        F.GetListOfSignatories = function () {
+            P({
+                url: '/FileMaintenanceSignatories/GetListOfSignatories',
+            }).then(function (response) {
+                $("#SignatoriesTableID").html(response.data);
+                });
+            F.Get_SignatoriesAdd();
+        }
+
+        F.Get_SignatoriesAdd = function () {
+            P({
+                url: '/FileMaintenanceSignatories/Get_SignatoriesAdd',
+            }).then(function (response) {
+                $("#SignatoriesIDTemp").html(response.data);
+            });
+            F.LoadDynamicDDPositionName();
+        }
+
+        F.LoadDynamicDDPositionName = function () {
+            P({
+                url: '/FileMaintenanceSignatories/GetDynamicSignatories',
+            }).then(function (response) {
+                $("#_DynamicDDPositionNameID").html(response.data);
+            });
+        }
+
+        F.LoadDynamicDDPositionName2 = function (SignatoriesID) {
+            P({
+                url: '/FileMaintenanceSignatories/GetDynamicSignatories2',
+                params: { SignatoriesID: SignatoriesID }
+            }).then(function (response) {
+                $("#_DynamicDDPositionNameID2").html(response.data);
+            });
+        }
+
+        F.Get_UpdateSignatories = function (SignatoriesID) {
+           
+            P({
+                url: '/FileMaintenanceSignatories/Get_UpdateSignatories',
+                params: { SignatoriesID: SignatoriesID }
+            }).then(function (response) {
+                $("#SignatoriesIDTemp").html(response.data);
+                F.LoadDynamicDDPositionName2(SignatoriesID);
+            });
+        }
+
+        F.Get_DeleteSignatories = function (SignatoriesID) {
+            P({
+                url: '/FileMaintenanceSignatories/DeleteSignature',
+                params: { SignatoriesID: SignatoriesID }
+            }).then(function (response) {
+                F.GetListOfSignatories();
+            });
+        }
+        });
+       </script>

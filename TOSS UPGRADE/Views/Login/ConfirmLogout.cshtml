@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "ConfirmLogout";
+    Layout = null;
+}
+@using (Html.BeginForm("Logout", "Login", FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+<script type="text/javascript">
+    window.onload = function () {
+        document.forms['__AjaxAntiForgeryForm'].submit()
+    }
+    history.pushState({ page: 1 }, "Logout", "#nbb");
+</script>
+

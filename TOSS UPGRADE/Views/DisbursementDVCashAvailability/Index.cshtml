@@ -1,0 +1,314 @@
+﻿
+@{
+    ViewBag.Title = "DV - Cash Availability";
+}
+
+<script>
+    $("#dvcashavailability").addClass("active");
+</script>
+<div class="content-header row">
+    <div class="content-header-left col-md-6 mb-2">
+        <h3 class="content-header"><b>DV - Cash Availability</b></h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card" style="border: 1px solid; border-color: #EABEBB">
+            <div class="card-block font-weight-bold black">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-md-3 form-group">
+                                    <label>Fund Type</label>
+                                    <select class="form-control">
+                                        <option>General Fund</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label>Search</label>
+                                    <select class="form-control">
+                                        <option>Requesting Dept</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label>Keyword</label>
+                                    <input type="text" class="form-control" value="Treasury Office" />
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label style="visibility:hidden">Keyword</label>
+                                    <button type="button" class="btn black bottom-right form-control" style="background-color: #F0AD4E;"><b>Search</b></button>
+                                </div>
+                                <div class="col-md-2 form-group">
+                                    <label style="visibility:hidden">Keyword</label>
+                                    <button type="button" class="btn black bottom-right form-control" style="background-color: #F0AD4E;"><b>Refresh</b></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col-12 col-xl-12 ">
+                            <div class="card box-shadow-2">
+                                <div class="card-header" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black"><b>Check Disbursement for Fund Availability</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered zero-configuration w-100 nowrap">
+                                                        <thead class="text-center">
+                                                            <tr>
+                                                                <th>PR No.</th>
+                                                                <th>Requesting Dept.</th>
+                                                                <th>OBR No.</th>
+                                                                <th>Supplier/Payee</th>
+                                                                <th>Project Name</th>
+                                                                <th>PO No.</th>
+                                                                <th>Date</th>
+                                                                <th>DV Amount</th>
+                                                                <th>DV No.</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="text-center">
+                                                            <tr>
+                                                                <td></td>
+                                                                <td>OFFICE of the Provincial Accountant</td>
+                                                                <td>25635656</td>
+                                                                <td>ADMINISTRATOR</td>
+                                                                <td>Payment for Salary</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td class="text-right">45,000.00</td>
+                                                                <td>DV - 100 - 2018 - 05 - 0</td>
+                                                                <td><button type="button" class="btn btn-icon bg-headerbc" data-toggle="popoverDisbursement" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot class=" text-white">
+                                                            <tr class="footerbc">
+                                                                <th>Total</th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th class="text-right">45,000.00</th>
+                                                                <th></th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-xl-12 ">
+                            <div class="card box-shadow-2">
+                                <div class="card-header" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black"><b>List of Disbursement</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered zero-configuration w-100 nowrap">
+                                                        <thead class="text-center">
+                                                            <tr>
+                                                                <th>PR No.</th>
+                                                                <th>Requesting Dept.</th>
+                                                                <th>OBR No.</th>
+                                                                <th>Supplier/Payee</th>
+                                                                <th>Project Name</th>
+                                                                <th>PO No.</th>
+                                                                <th>Date</th>
+                                                                <th>DV Amount</th>
+                                                                <th>DV No.</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="text-center">
+                                                            <tr>
+                                                                <td></td>
+                                                                <td>OFFICE of the Provincial Accountant</td>
+                                                                <td>25635656</td>
+                                                                <td>ADMINISTRATOR</td>
+                                                                <td>Payment for Salary</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td class="text-right">45,000.00</td>
+                                                                <td>DV - 100 - 2018 - 05 - 0</td>
+                                                                <td><button type="button" class="btn btn-icon bg-headerbc " data-toggle="popoverDisbursement1" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-xl-12 ">
+                            <div class="card box-shadow-2">
+                                <div class="card-header" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black"><b>Cash Availability</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p>Total Amount to be earmarked</p>
+                                                <input type="text" class="form-control text-right" value="19,450.00" />
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1">
+                                            <div class="col-md-12 mt-1">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered zero-configuration w-100 nowrap">
+                                                        <thead class="text-center">
+                                                            <tr>
+                                                                <th>Bank Name</th>
+                                                                <th>Fund</th>
+                                                                <th>Account No.</th>
+                                                                <th>Available Cash</th>
+                                                                <th class="center">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="text-center">
+                                                            <tr>
+                                                                <td>Land Bank of the Philippines</td>
+                                                                <td>Market - LBP</td>
+                                                                <td>1004-214-216</td>
+                                                                <td class="text-right">877,310.00</td>
+                                                                <td><button type="button" class="btn btn-icon center bg-headerbc" data-toggle="popoverCashAvailability" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-10">
+
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="button" class="btn black bottom-right form-control" style="background-color: #F0AD4E;"><b>Save</b></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var popupElement = '<div class="row m-0"><button class="btn btn-icon bg-addbutton white form-control target-desc" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Add Disbursement</button></div>';
+        $('[data-toggle="popoverDisbursement"]').popover({
+            animation: true,
+            content: popupElement,
+            html: true
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var popupElement = '<div class="row m-0"><button class="btn btn-icon bg-headerbc white form-control target-desc" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Remove Disbursement</button></div>';
+        $('[data-toggle="popoverDisbursement1"]').popover({
+            animation: true,
+            content: popupElement,
+            html: true
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var popupElement = '<div class="row m-0"><button class="btn btn-icon bg-addbutton white form-control target-desc" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>View Ledger</button></div>';
+        $('[data-toggle="popoverCashAvailability"]').popover({
+            animation: true,
+            content: popupElement,
+            html: true
+        });
+    });
+</script>

@@ -1,0 +1,144 @@
+﻿
+@{
+    ViewBag.Title = "Accounts Payable";
+}
+<script>
+    $("#payable").addClass("active");
+</script>
+<div class="content-header row">
+    <div class="content-header-left col-md-6 mb-2">
+        <h3 class="content-header"><b>Accounts Payable</b></h3>
+    </div>
+</div>
+
+<div class="content-body font-weight-bold black">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="card" style="border: 1px solid; border-color: #EABEBB">
+                <div class="card-block">
+                    <div class="card-body black">
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 form-group">
+                                                <label>Accounts</label>
+                                                <select class="form-control">
+                                                    <option>Accountable Forms Expenses</option>
+                                                    <option>Accountable Forms, Plates and Stickers</option>
+                                                    <option>Accounts Payable</option>
+                                                    <option>Advertising Expenses</option>
+                                                    <option>Agricultural And Forestry Equipment</option>
+                                                    <option>Agricultural And Marine Supplies Expense</option>
+                                                    <option>Agricultural And Marine Supplies for Distribution</option>
+                                                    <option>Agricultural And Marine Supplies Inventory</option>
+                                                    <option>Agricultural Produce for Distribution</option>
+                                                    <option>Aircrafts and Aircrafts Ground Equipment</option>
+                                                    <option>Airport Equipment</option>
+                                                    <option>Airport Systems</option>
+                                                    <option>Animal/Zoological Supplies Expenses</option>
+                                                    <option>Animal/Zoological Supplies Inventory</option>
+                                                    <option>Aquaculture</option>
+                                                    <option>Audition Services</option>
+                                                    <option>Awards and Rewards Payable</option>
+                                                    <option>Awards/Rewards Expenses</option>
+                                                    <option>Bank Charges</option>
+                                                    <option>Bonds Payable - Domestic</option>
+                                                    <option>Books</option>
+                                                    <option>Breeding Stocks</option>
+                                                    <option>Buildings</option>
+                                                    <option>Cable, Satellite, Telegraph and Radio Expenses</option>
+                                                    <option>Cash Gift</option>
+                                                    <option>Chemical and Filtering Supplies Expenses</option>
+                                                    <option>Chemical and Filtering Supplies Inventory</option>
+                                                </select>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-4 form-group">
+                                                <label>Search Account Name</label>
+                                                <input type="text" class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-2 text-center">
+                                            <div class="form-group">
+                                                <label style="visibility:hidden">Hide</label>
+                                                <button type="button" class="btn black bottom-right form-control"style="background-color: #F0AD4E;"><b>Search</b></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered zero-configuration w-100">
+                                <thead>
+                                    <tr>
+                                        <th>Account Name</th>
+                                        <th width="20%">Total Payable Amount</th>
+                                        <th width="20%">Total Payment</th>
+                                        <th width="20%">Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td class="text-right">100,000,000,000.00</td>
+                                        <td class="text-right">100,000,000,000.00</td>
+                                        <td class="text-right">100,000,000,000.00</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot class=" text-white">
+                                    <tr class="footerbc">
+                                        <th class="text-right">Total:</th>
+                                        <th class="text-right">100,000,000,000.00</th>
+                                        <th class="text-right">100,000,000,000.00</th>
+                                        <th class="text-right">100,000,000,000.00</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        <div class="card box-shadow-2">
+                            <div class="card-header"style="background-color: #FEDF82;">
+                                <h4 class="card-title black"><b>Details</b></h4>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body box-shadow-2">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered zero-configuration w-100 nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Reference No.</th>
+                                                    <th>Particulars</th>
+                                                    <th>Check No.</th>
+                                                    <th>Bank Account</th>
+                                                    <th>Debit</th>
+                                                    <th>Credit</th>
+                                                    <th>Balance</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                            <tfoot class=" text-white">
+                                                <tr class="footerbc">
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th class="text-right">Total:</th>
+                                                    <th class="text-right">0.00</th>
+                                                    <th class="text-right">0.00</th>
+                                                    <th class="text-right">0.00</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

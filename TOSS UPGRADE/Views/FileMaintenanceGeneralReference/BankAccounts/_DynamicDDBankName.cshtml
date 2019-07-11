@@ -1,0 +1,9 @@
+﻿@model TOSS_UPGRADE.Models.FM_GeneralReference_BankAccount
+@{
+    DB_TOSSEntities TOSSDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+
+<label>Bank Name</label>
+@Html.DropDownListFor(m => m.BankAccountBankID, Model.BankAccountBankList, new { @class = "form-control select2", id = "BankIDDD", onchange = "CurrentAccountConcate()"})

@@ -1,0 +1,339 @@
+﻿@{
+    ViewBag.Title = "General Reference";
+}
+<script>
+    $("#generalreference").addClass("active");
+</script>
+<div class="row font-weight-bold black" id="FMGeneralReferenceController" ng-controller="FMGeneralReferenceController" ng-init="InitAllFunction();">
+    <div class="col-12 col-xl-12 ">
+        <div class="card box-shadow-2">
+            <div class="card-content collapse show">
+                <div class="card-body">
+                    <ul class="nav nav-tabs ">
+                        <li class="nav-item bg-headerbc">
+                            <a class="nav-link active text-white" id="base-tab1" data-toggle="tab" aria-controls="tab1" href="#tab1" aria-expanded="true">Fund Type</a>
+                        </li>
+                        <li class="nav-item bg-headerbc">
+                            <a class="nav-link text-white" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" aria-expanded="false">Bank Accounts</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content px-1 pt-1" style="border:1px solid">
+                        @* Fund Type *@
+                        <div role="tabpanel" class="tab-pane active" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
+                            <div class="content-body">
+                                <div class="row mt-1">
+                                    <div class="col-md-12" id="FundTypeID">
+
+                                    </div>
+                                </div>
+
+                                <div class="row mt-1">
+                                    <div class="col-md-12">
+                                        <div class="card box-shadow-2">
+                                            <div class="card-header bg-carheadercolor">
+                                                <h4 class="card-title black"><b>List of Fund Types</b></h4>
+                                            </div>
+                                            <div class="card-body box-shadow-2" id="FundTypesTableID">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*Bank Account*@
+                        <div class="tab-pane" id="tab3" aria-labelledby="base-tab3">
+                            <div class="content-body">
+                                @* Bank Name *@
+                                <div class="row mt-1">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-8">
+                                        <div class="card box-shadow-2">
+                                            <div class="card-header bg-carheadercolor">
+                                                <h4 class="card-title black"><b>Bank</b></h4>
+                                            </div>
+                                            <div class="card-body box-shadow-2" id="BankID">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-md-12">
+                                        <div class="card box-shadow-2">
+                                            <div class="card-header bg-carheadercolor mt-1">
+                                                <h4 class="card-title black"><b>Bank Details</b></h4>
+                                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                                <div class="heading-elements">
+                                                    <ul class="list-inline mb-0">
+                                                        <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="card-content collapse">
+                                                <div class="card-body box-shadow-2" id="BankTableID">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @* Bank Account *@
+                                <div class="row mt-1">
+                                    <div class="col-md-12">
+                                        <div class="card-body box-shadow-2" id="BankAccountID">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-12 col-xl-12 ">
+                                        <div class="card box-shadow-2">
+                                            <div class="card-header bg-carheadercolor">
+                                                <h4 class="card-title black"><b>Bank Account Details</b></h4>
+                                            </div>
+                                            <div class="card-content collapse show">
+                                                <div class="card-body box-shadow-2">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-striped table-bordered zero-configuration w-100">
+                                                                    <thead class="text-center">
+                                                                        <tr>
+                                                                            <th>Account No</th>
+                                                                            <th>Bank Name</th>
+                                                                            <th>Fund</th>
+                                                                            <th>Account Code/Title</th>
+                                                                            <th>Current Account</th>
+                                                                            <th width="5px;">Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="text-center">
+                                                                        <tr>
+                                                                            <td>0515003999030</td>
+                                                                            <td>Development Bank of the Philippines</td>
+                                                                            <td>General Fund</td>
+                                                                            <td>10102010 - Cash in Bank - Local Currency, Current Account</td>
+                                                                            <td>General Fund - DBP</td>
+                                                                            <td><button type="button" class="btn btn-icon bg-headerbc text-white" data-toggle="popoverBankAccount" onfocusout="ClosePopOver3()" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td>0515003998030</td>
+                                                                            <td>Development Bank of the Philippines</td>
+                                                                            <td>General Fund</td>
+                                                                            <td>10102010 - Cash in Bank - Local Currency, Current Account</td>
+                                                                            <td>General Fund - DBP</td>
+                                                                            <td><button type="button" class="btn btn-icon bg-headerbc text-white" data-toggle="popoverBankAccount" onfocusout="ClosePopOver3()" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td>0515003997030</td>
+                                                                            <td>Development Bank of the Philippines</td>
+                                                                            <td>General Fund</td>
+                                                                            <td>10102010 - Cash in Bank - Local Currency, Current Account</td>
+                                                                            <td>Trust - DBP</td>
+                                                                            <td><button type="button" class="btn btn-icon bg-headerbc text-white" data-toggle="popoverBankAccount" onfocusout="ClosePopOver3()" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td>0515024405080</td>
+                                                                            <td>Development Bank of the Philippines</td>
+                                                                            <td>General Fund</td>
+                                                                            <td>10102010 - Cash in Bank - Local Currency, Current Account</td>
+                                                                            <td>Trust - DBP</td>
+                                                                            <td><button type="button" class="btn btn-icon bg-headerbc text-white" data-toggle="popoverBankAccount" onfocusout="ClosePopOver3()" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            @* Add New Bank Modal *@
+                            <div class="col-lg-8 col-md-8 col-sm-12">
+                                <div class="form-group">
+                                    <div class="modal animated zoomIn text-left" id="addNewBankModal" role="dialog">
+                                        <div class="modal-dialog" style="max-width:600px" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-headerbc white">
+                                                    <h4 class="modal-title white"><i class="la la-plus"></i>Bank</h4>
+                                                </div>
+                                                <div class="modal-body skin skin-square">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    @*Angular Function*@
+    app.controller('FMGeneralReferenceController', function ($scope, $http, $sce) {
+        var F = $scope, P = $http, D = $sce.trustAsHtml;
+
+        F.InitAllFunction = function () {
+            F.Get_FundTypeTables();
+            F.Get_BankTables();
+            F.Get_AddBankAccounts();
+            F.LoadDynamicDDBank();
+            F.LoadDynamicDDAccountCode();
+            F.LoadDynamicDDAccountType();
+        }
+        @* Fund Type *@
+
+        F.SuccessSave1 = function () {
+            var SuccessMess = F.P;
+            swalSuccess("Fund Type Successfully Added", SuccessMess);
+        }
+        F.Get_FundTypeTables = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_FundTypeTables',
+            }).then(function (response) {
+                $("#FundTypesTableID").html(response.data);
+                });
+            F.Get_AddFundTypes();
+        }
+        F.LoadDynamicDDFundType = function () {
+            var FundID = $("#FundNameListID").val();
+            P({
+                url: '/FileMaintenanceGeneralReference/GetDynamicFundType',
+                params: { FundID: FundID }
+            }).then(function (response) {
+                $("#FundTypeDivID").html(response.data);
+            });
+        }
+        F.LoadDynamicDDFundType2 = function (FundID) {
+            var FundID = $("#FundNameListID2").val();
+            P({
+                url: '/FileMaintenanceGeneralReference/GetDynamicFundType',
+                params: { FundID: FundID }
+            }).then(function (response) {
+                $("#FundTypeDivID2").html(response.data);
+            });
+        }
+        F.Get_AddFundTypes = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_AddFundTypes',
+            }).then(function (response) {
+                $("#FundTypeID").html(response.data);
+                F.LoadDynamicDDFundType();
+            });
+        }
+        F.Get_UpdateFundTypes = function (ListFundTypeID) {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_UpdateFundTypes',
+                params: { ListFundTypeID: ListFundTypeID }
+            }).then(function (response) {
+                $("#FundTypeID").html(response.data);
+                F.LoadDynamicDDFundType2();
+            });
+        }
+        F.Get_DeleteFundTypes = function (ListFundTypeID) {
+            P({
+                url: '/FileMaintenanceGeneralReference/DeleteFundTypes',
+                params: { ListFundTypeID: ListFundTypeID }
+            }).then(function (response) {
+                F.Get_FundTypeTables();
+            });
+        }
+
+        @*Bank*@
+
+        F.Get_BankTables = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_BankTables',
+            }).then(function (response) {
+                $("#BankTableID").html(response.data);
+                });
+            F.Get_AddBanks();
+        }
+        F.Get_AddBanks = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_AddBanks',
+            }).then(function (response) {
+                $("#BankID").html(response.data);
+                F.LoadDynamicDDBank();
+                CurrentAccountConcate();
+            });
+        }
+        F.Get_UpdateBanks = function (BankID) {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_UpdateBanks',
+                params: { BankID: BankID }
+            }).then(function (response) {
+                $("#BankID").html(response.data);
+                CurrentAccountConcate();
+            });
+        }
+        F.Get_DeleteBanks = function (BankID) {
+            P({
+                url: '/FileMaintenanceGeneralReference/DeleteBank',
+                params: { BankID: BankID }
+            }).then(function (response) {
+                F.Get_BankTables();
+            });
+        }
+
+        @*Bank Accounts*@
+
+        F.Get_AddBankAccounts = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_AddBankAccounts',
+            }).then(function (response) {
+                $("#BankAccountID").html(response.data);
+            });
+        }
+        F.LoadDynamicDDBank = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/GetDynamicBankName',
+            }).then(function (response) {
+                $("#BankDivID").html(response.data);
+                CurrentAccountConcate();
+            });
+        }
+        F.LoadDynamicDDAccountCode = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/GetDynamicAccountCode',
+            }).then(function (response) {
+                $("#AccountCodeDivID").html(response.data);
+            });
+        }
+        F.LoadDynamicDDAccountType = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/GetDynamicAccountType',
+            }).then(function (response) {
+                $("#AccountTypeDivID").html(response.data);
+            });
+        }
+
+       
+    });
+    function CurrentAccountConcate() {
+
+        var FundNameListIDTemp = document.getElementById("FundNameListID2");
+        var FundNameListIDData = FundNameListIDTemp.options[FundNameListIDTemp.selectedIndex].text;
+
+        var BankIDDDTemp = document.getElementById("BankIDDD");
+        var BankIDDData = BankIDDDTemp.options[BankIDDDTemp.selectedIndex].text;
+
+        var CurrentAccount = BankIDDData + " - " + FundNameListIDData;
+        $("#CurrentAccountID").val(CurrentAccount);
+    }
+</script>

@@ -1,0 +1,995 @@
+﻿@* Accountable Forms *@
+@{
+    ViewBag.Title = "Collection And Deposit";
+}
+<script>
+    $("#collectionanddeposit").addClass("active");
+</script>
+
+<div class="card" style="border: 1px solid; border-color: #EABEBB">
+    <ul class="nav nav-tabs font-small-3">
+        <li class="nav-item bg-headerbc">
+            <a class="nav-link active text-white" id="base-tab1" data-toggle="tab" aria-controls="tab1" href="#tab1" aria-expanded="true">Accountable Forms</a>
+        </li>
+        <li class="nav-item bg-headerbc">
+            <a class="nav-link text-white" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false">Inventory of Accountable Forms</a>
+        </li>
+        <li class="nav-item bg-headerbc">
+            <a class="nav-link text-white" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" aria-expanded="false">Accountable Forms Assignment</a>
+        </li>
+        <li class="nav-item bg-headerbc">
+            <a class="nav-link text-white" id="base-tab4" data-toggle="tab" aria-controls="tab4" href="#tab4" aria-expanded="false">Barangays</a>
+        </li>
+        <li class="nav-item bg-headerbc">
+            <a class="nav-link text-white" id="base-tab5" data-toggle="tab" aria-controls="tab5" href="#tab5" aria-expanded="false">Barangay Collectors</a>
+        </li>
+        <li class="nav-item bg-headerbc">
+            <a class="nav-link text-white" id="base-tab6" data-toggle="tab" aria-controls="tab6" href="#tab6" aria-expanded="false">Fees</a>
+        </li>
+        <li class="nav-item bg-headerbc">
+            <a class="nav-link text-white" id="base-tab7" data-toggle="tab" aria-controls="tab7" href="#tab7" aria-expanded="false">Collector Account Activation</a>
+        </li>
+    </ul>
+    <div class="tab-content px-1 pt-1 font-weight-bold black">
+        @* Accountable Form *@
+        <div role="tabpanel" class="tab-pane active" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
+            <div class="content-body">
+                        <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-3 form-group">
+                                        <label>Accountable Form</label>
+                                        <input type="text" class="form-control" value="" />
+                                    </div>
+                                    <div class="col-md-2 mt-3 form-group">
+                                        <fieldset class="checkboxsas">
+                                            <label>
+                                                <input type="checkbox" value="">
+                                                For CTC
+                                            </label>
+                                        </fieldset>
+
+                                    </div>
+                                    <div class="col-md-3 form-group">
+                                        <label>Description</label>
+                                        <input type="text" class="form-control" value="" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label style="visibility:hidden">Description</label>
+                                        <button class="btn bg-addbutton black form-control"><b>Save</b></button>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label style="visibility:hidden">Description</label>
+                                        <button class="btn bg-headerbc black form-control"><b>Cancel</b></button>
+                                    </div>
+                                </div>
+                        </div>
+
+                <div class="row mt-1">
+                    <div class="col-12 col-xl-12 ">
+                        <div class="card box-shadow-2">
+                            <div class="card-header bg-carheadercolor">
+                                <h4 class="card-title black"><b>Bank Account Details</b></h4>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body box-shadow-2">
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-8">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered zero-configuration w-100">
+                                                    <thead class="text-center">
+                                                        <tr>
+                                                            <th>Accountable Form</th>
+                                                            <th>Description</th>
+                                                            <th>For CTC</th>
+                                                            <th width="5px;">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="text-center">
+                                                        <tr>
+                                                            <td>AF-55C</td>
+                                                            <td>CASH TICKET</td>
+                                                            <td>Yes</td>
+                                                            <td><button type="button" class="btn btn-icon bg-headerbc text-white" data-toggle="popoverAccountableForms" onfocusout="ClosePopOver5()" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>AF-55D</td>
+                                                            <td>CASH TICKET</td>
+                                                            <td>No</td>
+                                                            <td><button type="button" class="btn btn-icon bg-headerbc text-white" data-toggle="popoverAccountableForms" onfocusout="ClosePopOver5()" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* Inventory of Accountable Forms *@
+        <div role="tabpanel" class="tab-pane" id="tab2" aria-expanded="true" aria-labelledby="base-tab2">
+            <div class="content-body">
+
+            </div>
+        </div>
+        @* Accountable Forms Assignment *@
+        <div role="tabpanel" class="tab-pane" id="tab3" aria-expanded="true" aria-labelledby="base-tab3">
+            <div class="content-body">
+
+            </div>
+        </div>
+        @* Barangays *@
+        <div role="tabpanel" class="tab-pane" id="tab4" aria-expanded="true" aria-labelledby="base-tab4">
+            <div class="content-body">
+
+            </div>
+        </div>
+        @* Barangay Collectors *@
+        <div role="tabpanel" class="tab-pane" id="tab5" aria-expanded="true" aria-labelledby="base-tab5">
+            <div class="content-body">
+
+            </div>
+        </div>
+        @* Fees  *@
+        <div role="tabpanel" class="tab-pane" id="tab6" aria-expanded="true" aria-labelledby="base-tab6">
+            <div class="content-body">
+                @* Particulars *@
+                <div class="card box-shadow-2">
+                    <div class="card-header bg-carheadercolor mt-1">
+                        <h4 class="card-title black"><b>Particulars</b></h4>
+                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content collapse">
+                        <div class="card-body box-shadow-2">
+                            <div class="content-body">
+                                <div class="row mt-1">
+                                    <div class="col-md-1">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="card-block">
+                                            <div class="card-header bg-carheadercolor">
+                                                <h4 class="card-title black"><b>Accountable Form</b></h4>
+                                            </div>
+                                            <div class="card-body box-shadow-2">
+                                                <div class="row">
+                                                    <div class="col-md-3 form-group">
+                                                        <label>Revision Year</label>
+                                                        <select class="form-control">
+                                                            <option value="value"></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-5 form-group">
+                                                        <label>Nature of Payments/Particular</label>
+                                                        <input type="text" class="form-control" value="" />
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Account Code/Title</label>
+                                                        <select class="form-control">
+                                                            <option value="value"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Sub Account Code</label>
+                                                        <input type="text" class="form-control" value="" />
+                                                    </div>
+                                                    <div class="col-md-4"></div>
+                                                    <div class="col-md-2">
+                                                        <label style="visibility:hidden">Description</label>
+                                                        <button class="btn bg-addbutton black form-control"><b>Save</b></button>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label style="visibility:hidden">Description</label>
+                                                        <button class="btn bg-headerbc black form-control"><b>Cancel</b></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                <div class="row mt-1">
+                                    <div class="col-12 col-xl-12 ">
+                                        <div class="card box-shadow-2">
+                                            <div class="card-header bg-carheadercolor">
+                                                <h4 class="card-title black"><b>List of Payments/ Particulars</b></h4>
+                                            </div>
+                                            <div class="card-content collapse show">
+                                                <div class="card-body box-shadow-2">
+                                                    <div class="row">
+                                                        <div class="col-md-2"></div>
+                                                        <div class="col-md-8">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-striped table-bordered zero-configuration w-100">
+                                                                    <thead class="text-center">
+                                                                        <tr>
+                                                                            <th>Description</th>
+                                                                            <th>Account Title</th>
+                                                                            <th width="5px;">Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="text-center">
+                                                                        <tr>
+                                                                            <td>Photocopy</td>
+                                                                            <td>40201040 - Clearance and Certificate Fees</td>
+                                                                            <td><button type="button" class="btn btn-icon bg-headerbc text-white" data-toggle="popoverParticularsFees" onfocusout="ClosePopOver4()" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Photocopy</td>
+                                                                            <td>40201040 - Clearance and Certificate Fees</td>
+                                                                            <td><button type="button" class="btn btn-icon bg-headerbc text-white" data-toggle="popoverParticularsFees" onfocusout="ClosePopOver4()" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @* Field Fees *@
+                <div class="card box-shadow-2">
+                    <div class="card-header bg-carheadercolor mt-1">
+                        <h4 class="card-title black"><b>Field Fees</b></h4>
+                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content collapse">
+                        <div class="content-body box-shadow-2">
+                            <div class="row mt-1">
+                                <div class="col-md-2">
+
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-block">
+                                        <div class="card-header bg-carheadercolor">
+                                            <h4 class="card-title black"><b>Accountable Form</b></h4>
+                                        </div>
+                                        <div class="card-body box-shadow-2">
+
+                                            <div class="row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Revision Year</label>
+                                                    <select class="form-control">
+                                                        <option value="value"></option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Fee Description</label>
+                                                    <input type="text" class="form-control" value="" />
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Fund Type</label>
+                                                    <select class="form-control">
+                                                        <option value="value"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Rate</label>
+                                                    <input type="text" class="form-control text-right" value="0.00" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>Account Code</label>
+                                                    <select class="form-control">
+                                                        <option value="value"></option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>Sub-Account Code</label>
+                                                    <input type="text" class="form-control" value="" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label>Fee Category</label>
+                                                    <select class="form-control">
+                                                        <option value="value"></option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="white">Sub-Account Code</label>
+                                                    <input type="text" class="form-control" value="" />
+                                                </div>
+                                                <div class="col-md-4 mt-3">
+                                                    <label>
+                                                        <input type="checkbox" value="">
+                                                        No OR Required
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8"></div>
+                                                <div class="col-md-2">
+                                                    <button class="btn bg-addbutton form-control black"><b>Save</b></button>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button class="btn bg-headerbc form-control black"><b>Cancel</b></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-1">
+                                <div class="col-12 col-xl-12 ">
+                                    <div class="card box-shadow-2">
+                                        <div class="card-header bg-carheadercolor">
+                                            <h4 class="card-title black"><b>List of Payments/ Particulars</b></h4>
+                                        </div>
+                                        <div class="card-content collapse show">
+                                            <div class="card-body box-shadow-2">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-striped table-bordered zero-configuration w-100">
+                                                                <thead class="text-center">
+                                                                    <tr>
+                                                                        <th>Fee Description</th>
+                                                                        <th>Account Code</th>
+                                                                        <th>Rate</th>
+                                                                        <th>Fee Category</th>
+                                                                        <th>OR Type</th>
+                                                                        <th width="5px;">Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody class="text-center">
+                                                                    <tr>
+                                                                        <td>Professional Tax</td>
+                                                                        <td>50211990 Other Professional Services</td>
+                                                                        <td>0.00</td>
+                                                                        <td>MARKET</td>
+                                                                        <td>GENERAL FUND</td>
+                                                                        <td><button type="button" class="btn btn-icon bg-headerbc text-white" data-toggle="popoverFieldFees" onfocusout="ClosePopOver3()" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Professional Tax</td>
+                                                                        <td>50211990 Other Professional Services</td>
+                                                                        <td>0.00</td>
+                                                                        <td>MARKET</td>
+                                                                        <td>GENERAL FUND</td>
+                                                                        <td><button type="button" class="btn btn-icon bg-headerbc text-white" data-toggle="popoverFieldFees" onfocusout="ClosePopOver3()" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        @* Collector Account Activation *@
+        <div role="tabpanel" class="tab-pane" id="tab7" aria-expanded="true" aria-labelledby="base-tab7">
+            @* Collector Account Activation *@
+            <div class="card box-shadow-2">
+                @*  *@
+                <div class="card-header bg-carheadercolor mt-1">
+                    <h4 class="card-title black"><b>Collector Account Activation</b></h4>
+                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                @*  *@
+                <div class="card-content collapse">
+                    <div class="content-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card-block">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="row">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-8">
+                                                <table class="table table-striped table-bordered zero-configuration w-100">
+                                                    <thead class="text-center">
+                                                        <tr>
+                                                            <th width="30%">User ID</th>
+                                                            <th width="30%">Collector's Name</th>
+                                                            <th width="30%">Username</th>
+                                                            <th width="10%">Is Active</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="text-center">
+                                                        <tr>
+                                                            <td>11002</td>
+                                                            <td>Alfonse F. Gomez</td>
+                                                            <td>afgomez</td>
+                                                            <td>
+                                                                <input type="checkbox" value="">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>11002</td>
+                                                            <td>Alfonse F. Gomez</td>
+                                                            <td>afgomez</td>
+                                                            <td>
+                                                                <input type="checkbox" value="">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* OR/Cash Ticket Assignment *@
+            <div class="card box-shadow-2">
+                @*  *@
+                <div class="card-header bg-carheadercolor mt-1">
+                    <h4 class="card-title black"><b>OR/Cash Ticket Assignment</b></h4>
+                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                @*  *@
+                <div class="card-content collapse">
+                    <div class="content-body">
+                        <div class="card-block">
+                            <div class="card-body box-shadow-2">
+                                <div class="card-header bg-carheadercolor">
+                                    <h4 class="card-title black">Official Receipt/Cash Ticket Assignment</h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-11">
+                                                <div class="row">
+                                                    <div class="col-md-3 form-group">
+                                                        <label><input type="radio" name="optradio">Treasurer's Collection</label>
+                                                    </div>
+                                                    <div class="col-md-2 form-group">
+                                                        <label><input type="radio" name="optradio">Field Collectors</label>
+                                                    </div>
+                                                    <div class="col-md-2 form-group">
+                                                        <label><input type="radio" name="optradio">Cash Tickets</label>
+                                                    </div>
+                                                    <div class="col-md-2 form-group">
+                                                        <label><input type="radio" name="optradio">CTC Collectors</label>
+                                                    </div>
+                                                    <div class="col-md-2 form-group">
+                                                        <label><input type="radio" name="optradio">PATAS</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-header bg-carheadercolor mt-1">
+                                    <h4 class="card-title black"><b>Treasurer's OR Details</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="row">
+                                            <div class="col-md-3 form-group">
+                                                <label>Collecting Officer</label>
+                                                <select class="form-control">
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <label>Fund Type</label>
+                                                <select class="form-control">
+                                                    <option>General Fund</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <label>Accountable Form</label>
+                                                <select class="form-control">
+                                                    <option>AF-51</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <label>Stub No.</label>
+                                                <select class="form-control">
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-3 form-group">
+                                                <label>Starting OR</label>
+                                                <select class="form-control">
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <label>Ending OR</label>
+                                                <input type="text" class="form-control" value="" />
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <label>Quantity</label>
+                                                <input type="text" class="form-control" value="" />
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <label>Date Issued</label>
+                                                <input name="name" value="" class="form-control pickadate ui-datepicker" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-9"></div>
+                                            <div class="col-md-3 text-right"><button class="btn black bg-addbutton"><b>Add</b></button></div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered zero-configuration w-100">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Stub No.</th>
+                                                                <th>Starting Account</th>
+                                                                <th>Ending Account</th>
+                                                                <th>Quantity</th>
+                                                                <th>OR Description</th>
+                                                                <th width="5px;">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><button type="button" class="btn btn-icon bg-headerbc text-white" data-toggle="popoverCashAssignment" onfocusout="ClosePopOver2()" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-9"></div>
+                                            <div class="col-md-3 text-right"><button class="btn black bg-addbutton"><b>Save</b></button></div>
+                                        </div>
+
+                                        <div class="row mt-2">
+                                            <div class="col-md-8"></div>
+                                            <div class="col-md-4 text-right"><button class="btn black bg-secondary"><b>Transfer/Return OR to Other Collector</b></button></div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="card-header bg-carheadercolor mt-1">
+                                        <h4 class="card-title black"><b>OR History</b></h4>
+                                    </div>
+                                    <div class="card-content collapse show">
+                                        <div class="card-body box-shadow-2">
+                                            <div class="row">
+                                                <div class="col-md-3 form-group">
+                                                    <label>Collector</label>
+                                                    <input type="text" class="form-control" value="" />
+                                                </div>
+                                                <div class="col-md-3 form-group">
+                                                    <label>Date Issued</label>
+                                                    <input name="name" value="" class="form-control pickadate ui-datepicker" />
+                                                </div>
+                                                <div class="col-md-2 form-group">
+                                                    <label class="white">Date Issued</label>
+                                                    <button class="btn bg-addbutton black form-control"><b>View</b></button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped table-bordered zero-configuration w-100">
+                                                            <thead class="text-center">
+                                                                <tr>
+                                                                    <th>OR Type</th>
+                                                                    <th>Stub No.</th>
+                                                                    <th>Starting OR</th>
+                                                                    <th>Ending OR</th>
+                                                                    <th>Quantity</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* OR/Cash Ticket Inventory *@
+            <div class="card box-shadow-2">
+                @*  *@
+                <div class="card-header bg-carheadercolor mt-1">
+                    <h4 class="card-title black"><b>OR/Cash Ticket Inventory</b></h4>
+                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                @*  *@
+                <div class="card-content collapse ">
+                    <div class="content-body">
+                        <div class="card-block">
+                            <div class="card-body box-shadow-2">
+                                <div class="card-header bg-carheadercolor">
+                                    <h4 class="card-title black"><b>Official Receipt/Cash Ticket Inventory</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10">
+                                                <div class="row">
+                                                    <div class="col-md-3 mt-1 form-group">
+                                                        <label><input type="radio" name="optradio">Official Receipt</label>
+                                                    </div>
+                                                    <div class="col-md-3 mt-1 form-group">
+                                                        <label><input type="radio" name="optradio">Cash Tickets</label>
+                                                    </div>
+                                                    <div class="col-md-4 mt-1 form-group">
+                                                        <label><input type="radio" name="optradio">Community Tax Certificate</label>
+                                                    </div>
+                                                    <div class="col-md-2 form-group">
+                                                        <button class="btn bg-addbutton black"><b>View AF Details</b></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-header bg-carheadercolor mt-1">
+                                    <h4 class="card-title black"><b>Official Receipt Details</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="row">
+                                            <div class="col-md-4 form-group">
+                                                <label>Accountable Form</label>
+                                                <select class="form-control">
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4 form-group">
+                                                <label>Starting Stub No.</label>
+                                                <input type="text" class="form-control" value="" />
+                                            </div>
+                                            <div class="col-md-4 form-group">
+                                                <label>Quantity</label>
+                                                <input type="text" class="form-control" value="" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 form-group">
+                                                <label>Starting OR</label>
+                                                <select class="form-control">
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4 form-group">
+                                                <label>Ending OR</label>
+                                                <input type="text" class="form-control" value="" />
+                                            </div>
+                                            <div class="col-md-4 form-group">
+                                                <label>OR Date</label>
+                                                <input name="name" value="" class="form-control pickadate ui-datepicker" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-9"></div>
+                                            <div class="col-md-3 text-right"><button class="btn black bg-addbutton"><b>Add</b></button></div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered zero-configuration w-100">
+                                                        <thead class="text-center">
+                                                            <tr>
+                                                                <th>Stub No.</th>
+                                                                <th>Quantity</th>
+                                                                <th>Starting OR</th>
+                                                                <th>Ending OR</th>
+                                                                <th>Form Type</th>
+                                                                <th>Date</th>
+                                                                <th width="5px;">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><button type="button" class="btn btn-icon bg-headerbc text-white" data-toggle="popoverCashInventory" onfocusout="ClosePopOver1()" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-9"></div>
+                                            <div class="col-md-3 text-right"><button class="btn black bg-addbutton"><b>Save</b></button></div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="card-header bg-carheadercolor mt-1">
+                                        <h4 class="card-title black"><b>List of Official Receipts</b></h4>
+                                    </div>
+                                    <div class="card-content collapse show">
+                                        <div class="card-body box-shadow-2">
+                                            <div class="row">
+                                                <div class="col-md-3 form-group">
+                                                    <label>OR Date</label>
+                                                    <input name="name" value="" class="form-control pickadate ui-datepicker" />
+                                                </div>
+                                                <div class="col-md-2 form-group">
+                                                    <label style="visibility:hidden">Date Issued</label>
+                                                    <button class="btn bg-addbutton black form-control"><b>View</b></button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped table-bordered zero-configuration w-100">
+                                                            <thead class="text-center">
+                                                                <tr>
+                                                                    <th>Accountable Form</th>
+                                                                    <th>Stub No.</th>
+                                                                    <th>Starting OR</th>
+                                                                    <th>Ending OR</th>
+                                                                    <th>Quantity</th>
+                                                                    <th>Date Issued</th>
+                                                                    <th>Is Issued</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* Cash Inventory *@
+<script>
+    $(document).ready(function () {
+        var popupElement =
+            '<div class="row m-0"><button class="btn btn-icon bg-addbutton white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Update</button></div>'
+            + '<div class="row m-0 mt-1"><button class="btn btn-icon bg-headerbc white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Delete</button></div>';
+        $('[data-toggle="popoverCashInventory"]').popover({
+            animation: true,
+            content: popupElement,
+            html: true
+        });
+    });
+    function ClosePopOver1() {
+        $('[data-toggle="popoverCashInventory"]').popover('hide');
+    }
+</script>
+@* Cash Assignment *@
+<script>
+    $(document).ready(function () {
+        var popupElement =
+            '<div class="row m-0"><button class="btn btn-icon bg-addbutton white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Update</button></div>'
+            + '<div class="row m-0 mt-1"><button class="btn btn-icon bg-headerbc white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Delete</button></div>';
+        $('[data-toggle="popoverCashAssignment"]').popover({
+            animation: true,
+            content: popupElement,
+            html: true
+        });
+    });
+    function ClosePopOver2() {
+        $('[data-toggle="popoverCashAssignment"]').popover('hide');
+    }
+</script>
+@* Fields Fees *@
+<script>
+    $(document).ready(function () {
+        var popupElement =
+            '<div class="row m-0"><button class="btn btn-icon bg-addbutton white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Update</button></div>'
+            + '<div class="row m-0 mt-1"><button class="btn btn-icon bg-headerbc white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Delete</button></div>';
+        $('[data-toggle="popoverFieldFees"]').popover({
+            animation: true,
+            content: popupElement,
+            html: true
+        });
+    });
+    function ClosePopOver3() {
+        $('[data-toggle="popoverFieldFees"]').popover('hide');
+    }
+</script>
+@* Particulars Fees *@
+<script>
+    $(document).ready(function () {
+        var popupElement =
+            '<div class="row m-0"><button class="btn btn-icon bg-addbutton white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Update</button></div>'
+            + '<div class="row m-0 mt-1"><button class="btn btn-icon bg-headerbc white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Delete</button></div>';
+        $('[data-toggle="popoverParticularsFees"]').popover({
+            animation: true,
+            content: popupElement,
+            html: true
+        });
+    });
+    function ClosePopOver4() {
+        $('[data-toggle="popoverParticularsFees"]').popover('hide');
+    }
+</script>
+@* Accountable Forms *@
+<script>
+    $(document).ready(function () {
+        var popupElement =
+            '<div class="row m-0"><button class="btn btn-icon bg-addbutton white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Update</button></div>'
+            + '<div class="row m-0 mt-1"><button class="btn btn-icon bg-headerbc white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i>Delete</button></div>';
+        $('[data-toggle="popoverAccountableForms"]').popover({
+            animation: true,
+            content: popupElement,
+            html: true
+        });
+    });
+    function ClosePopOver5() {
+        $('[data-toggle="popoverAccountableForms"]').popover('hide');
+    }
+</script>

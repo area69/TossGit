@@ -1,0 +1,35 @@
+﻿@model TOSS_UPGRADE.Models.FM_SignatoriesModel
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+@using (Ajax.BeginForm("AddSignatories", "FileMaintenanceSignatories", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc('FMSignatoriesController', 'GetListOfSignatories','SuccessSave1')", OnFailure = "OnFailure()", }))
+{
+
+    <div class="row">
+
+        <div class="col-md-3 form-group" >
+            <label>Signatory Name</label>
+            @Html.TextBoxFor(m => m.getSignatoriesColumns.SignatoriesName, new { @class = "form-control", type = "text", ng_model = "SignatoriesNameID" })
+            @Html.ValidationMessageFor(model => model.getSignatoriesColumns.SignatoriesName)
+
+        </div>
+        <div class="col-md-5 form-group" id="_DynamicDDPositionNameID">
+
+        </div>
+        <div class="col-md-1 p-0">
+            <label style="visibility:hidden">Position</label>
+            <button type="button" class="btn bg-headerbc black form-control" data-toggle="modal" data-target="#addPositionModal" ng-click="Get_PositionTable()"><b>Add</b></button>
+        </div>
+        <div class="ml-1 p-0 col-md-1 form-group">
+            <label style="visibility:hidden">Position</label>
+            <button type="submit" class="btn bg-addbutton  form-control black"><b>Save</b></button>
+        </div>
+        <div class="ml-1 p-0 col-md-1 form-group">
+            <label style="visibility:hidden">Position</label>
+            <button type="reset" onclick="AngularGlobalEdit('FMSignatoriesController','Get_SignatoriesAdd','')" class="btn bg-headerbc black form-control"><b>Cancel</b></button>
+        </div>
+
+    </div>
+}

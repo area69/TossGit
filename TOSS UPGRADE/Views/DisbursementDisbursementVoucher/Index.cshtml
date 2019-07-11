@@ -1,0 +1,679 @@
+﻿
+@{
+    ViewBag.Title = "Disbursement Voucher";
+}
+
+
+
+<script>
+    $("#disbursementvoucher").addClass("active");
+</script>
+<div class="content-header row">
+    <div class="content-header-left col-md-6 mb-2">
+        <h3 class="content-header"><b>Disbursement Voucher</b></h3>
+    </div>
+</div>
+
+<div class="row font-weight-bold black">
+    <div class="col-md-12 col-sm-12 col-12">
+        <div class="card" style="border: 1px solid; border-color: #EABEBB">
+            <div class="card-block">
+                <div class="card-body black">
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <p>Transaction Type</p>
+                            <select class="form-control" id="dp">
+                                <option value="1">Payroll</option>
+                                <option value="2">Travel</option>
+                                <option value="3">Supplies</option>
+                                <option value="4">Remittances</option>
+                                <option value="5">Retention Money</option>
+                                <option value="6">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-md-12 col-sm-12 col-12 black">
+                            <table BORDER="1" style="width:100%;">
+                                <tr>
+                                    <td ALIGN="CENTER" colspan="2" rowspan="2" width="250">Disbursement Voucher</td>
+                                    <td colspan="6">No.:</td>
+                                    <td colspan="4"><input type="text" name="name" value="DV-201-2016-07-413" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">Date:</td>
+                                    <td colspan="4"><input type="text" name="" value="05/05/18" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10">
+                                        <span>
+                                            <label for='name'>Mode of Payment: </label>
+                                            <label><input type="radio" name="optradio">Check</label>
+                                            <label><input type="radio" name="optradio">Cash</label>
+                                            <label><input type="radio" name="optradio">Others</label>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ALIGN="CENTER">Payee</td>
+                                    <td ALIGN="CENTER" colspan="1"><input type="text" name="name" value="LEONARDO A. RIVERA JR." class="form-control" /></td>
+                                    <td ALIGN="CENTER">TIN/Emp. No</td>
+                                    <td ALIGN="CENTER" colspan="5"><input type="text" name="name" value="465-235-254" class="form-control" /></td>
+                                    <td ALIGN="CENTER">OBR No.</td>
+                                    <td ALIGN="CENTER" colspan="2"><input type="text" name="name" value="OBR 101-2016-01" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <td ALIGN="CENTER" rowspan="2" colspan="1">Address</td>
+                                    <td rowspan="2" colspan="1"><textarea style="height:100px; text-align:left; vertical-align:text-top;" class="form-control">Metro Manila</textarea></td>
+                                    <td ALIGN="CENTER" colspan="9">Responsibility Center</td>
+                                </tr>
+                                <tr>
+                                    <td ALIGN="CENTER" colspan="6">
+                                        <p>Office / Unit / Project</p>
+                                        <select class="form-control">
+                                            <option></option>
+                                        </select>
+                                    </td>
+                                    <td ALIGN="CENTER" colspan="4"><p>Code</p><input type="text" class="form-control" value="" /></td>
+                                </tr>
+                                <tr>
+                                    <td ALIGN="CENTER" colspan="8">PARTICULARS</td>
+                                    <td ALIGN="CENTER" colspan="2">AMOUNT</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="vertical-align:top; text-align:left;"><textarea class="form-control" style="height:40px">REIMBURSEMENT OF TRAVEL</textarea></td>
+                                    <td colspan="2" style="vertical-align:top; text-align:left;"><input type="text" class="form-control text-right" value="0.00" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="vertical-align:top; border"></td>
+                                    <td colspan="6" style="vertical-align:top;">
+
+
+                                    <td colspan="2">
+                                        <input type="text" class="form-control text-right" value="0.00" style="height:105px" />
+                                        <input type="text" class="form-control text-right" value="0.00" />
+                                        <input type="text" class="form-control text-right" value="0.00" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ALIGN="right" colspan="8">NET AMOUNT&nbsp;&nbsp;</td>
+                                    <td ALIGN="right" colspan="2"><input type="text" class="form-control text-right" value="0.00" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label>Prepared By:</label>
+                                        <div class="text-center">
+                                            <select class="form-control" style="text-align-last: center;">
+                                                <option>Maria Rose G. Yadao</option>
+                                            </select>
+                                            <label>Local Chief Executive</label>
+                                        </div>
+                                    </td>
+                                    <td colspan="8">
+                                        <label>Detail:</label>
+                                        <input class="form-control" style="height:70px" value="" />
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ALIGN="right" colspan="8">AMOUNT DUE&nbsp;&nbsp;</td>
+
+                                    <td ALIGN="right" colspan="2">
+                                        <label class="mt-1 ml-2">₱</label>
+                                        <label class="mt-1 ml-2 mr-1">0.00</label>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table BORDER="1">
+                                <tr>
+                                    <td colspan="5">
+                                        &nbsp;&nbsp;A. CERTIFIED
+                                        <div>
+                                            <label class="ml-1">
+                                                <span><i class="la la-square-o"></i> Allotment obligated for the purpose as indicated above</span>
+                                            </label>
+
+                                            <label class="ml-1">
+                                                <span><i class="la la-square-o"></i> Supporting documents complete</span>
+                                            </label>
+                                        </div>
+                                    </td>
+
+                                    <td colspan="5">
+                                        &nbsp;&nbsp;B. CERTIFIED
+                                        <div class="text-center">
+                                            <label>
+                                                Funds Available
+                                            </label>
+
+                                            <label style="visibility:hidden">
+                                                <span><i class="la la-square-o"></i> Allotment obligated for the purpose as indicated above</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1" height="30px">
+                                        Signature
+                                    </td>
+                                    <td colspan="4"></td>
+                                    <td colspan="1">
+                                        Signature
+                                    </td>
+                                    <td colspan="5"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1" height="30px">
+                                        Printed Name
+                                    </td>
+                                    <td colspan="3">
+                                        <div class="text-center">
+                                            <select class="form-control" style="text-align-last: center;">
+                                                <option>LEONORA O. SIASAT</option>
+                                            </select>
+                                            <label>OIC - PROVINCIAL ACCOUNTANT</label>
+
+                                            <label style="font-size:10px;">HEAD, ACCOUNTING UNIT/ AUTHORIZED REPRESENTIVE</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        Date
+                                    </td>
+
+                                    <td colspan="1" height="30px">
+                                        Printed Name
+                                    </td>
+                                    <td colspan="1">
+                                        <div class="text-center">
+                                            <select class="form-control" style="text-align-last: center;">
+                                                <option>ALICIA R. MAGPANTAY</option>
+                                            </select>
+                                            <label>ACTING PROVINCIAL TREASURER</label>
+
+                                            <label style="font-size:10px;">TREASURER/AUTHORIZED REPRESENTATIVE</label>
+                                        </div>
+                                    </td>
+                                    <td colspan="3">
+                                        Date
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td colspan="5">
+                                        &nbsp;&nbsp;C. APPROVED FOR PAYMENT
+                                    </td>
+
+                                    <td colspan="5">
+                                        &nbsp;&nbsp;D. RECEIVED PAYMENT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1" height="30px">
+                                        Signature
+                                    </td>
+                                    <td colspan="4"></td>
+                                    <td>
+                                        <label>Check No.</label>
+                                    </td>
+
+                                    <td>
+                                        <label>Bank Name:</label>
+                                    </td>
+                                    <td>
+                                        <label>Date</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" colspan="1" height="30px">
+                                        Printed Name
+                                    </td>
+                                    <td rowspan="3" colspan="3">
+                                        <div class="text-center">
+                                            <select class="form-control" style="text-align-last: center;">
+                                                <option>ALBERT S. GARCIA</option>
+                                            </select>
+                                            <label>PROVINCIAL GOVERNOR</label><br />
+                                            <label style="font-size:10px;">AGENCY HEAD / AUTHORIZED REPRESENTIVE</label>
+                                        </div>
+                                    </td>
+                                    <td rowspan="3">
+                                        Date
+                                    </td>
+
+                                    <td colspan="1" height="30px">
+                                        Signature
+                                    </td>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1" height="30px">
+                                        Printed Name
+                                    </td>
+                                    <td colspan="1">
+                                        <div class="text-center">
+                                            <select class="form-control" style="text-align-last: center;">
+                                                <option>SHAIRA'S KITCHENETTE</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        Date
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1" height="30px">
+                                     OR/OTHER DOCUMENTS
+                                    </td>
+                                   <td>
+                                       <div class="text-center">JEV NO.</div>
+                                     
+                                   </td>
+                                    <td>
+                                        Date
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    @* Personal Deduction *@
+                    <div class="row mt-1" id="PDCardID">
+                        <div class="col-12 col-xl-12 col-sm-12 col-md-12">
+                            <div class="card box-shadow-2">
+                                <div class="card-header" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black"><b>Personal Deduction</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-2 mt-1 form-group">
+                                                <label class="text-right">Select Deduction</label>
+                                            </div>
+                                            <div class="col-md-3 p-0 form-group">
+                                                <select class="form-control">
+                                                    <option>--Select--</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-1 mt-1 form-group">
+                                                <label class="text-right">Amount</label>
+                                            </div>
+                                            <div class="col-md-2 p-0 form-group">
+                                                <input type="text" class="form-control text-right" value="0.00" />
+                                            </div>
+                                            <div class="col-md-2 text-left">
+                                                <button type="button" class="btn black form-control" style="background-color: #F0AD4E;"><b>Add</b></button>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10 col-sm-8 col-8">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered zero-configuration">
+                                                        <thead class="text-center">
+                                                            <tr>
+                                                                <th width="5%"></th>
+                                                                <th style="border:1px solid">Description</th>
+                                                                <th style="border:1px solid">Amount</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td style="border:1px solid">3% Withholding of Percentage Tax(VAT) (Materials)</td>
+                                                                <td class="text-right" style="border:1px solid">1,000,000,000.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td class="text-right" style="border:1px solid">0.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td class="text-right" style="border:1px solid">0.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>4</td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td class="text-right" style="border:1px solid">0.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>5</td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td class="text-right" style="border:1px solid">0.00</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th style="border:1px solid"></th>
+                                                                <th class="text-right" style="border:1px solid">Total</th>
+                                                                <th class="text-right" style="border:1px solid">0.00</th>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @* Other Deduction *@
+                    <div class="row mt-1" id="OTCardID">
+                        <div class="col-12 col-xl-12 col-sm-12 col-md-12">
+                            <div class="card box-shadow-2">
+                                <div class="card-header" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black"><b>Other Deduction</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-2">
+                                                <label>Retainer's Fee</label>
+                                                <input type="text" class="form-control" value="" />
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-2 mt-1 form-group">
+                                                <label class="text-right">Select Deduction</label>
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <select class="form-control">
+                                                    <option>--Select--</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-1 mt-1 form-group">
+                                                <label class="text-right">Amount</label>
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <input type="text" class="form-control text-right" value="0.00" />
+                                            </div>
+                                            <div class="col text-left">
+                                                <button type="button" class="btn black form-control" style="background-color: #F0AD4E;"><b>Add</b></button>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10 col-sm-8 col-8">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered zero-configuration">
+                                                        <thead class="text-center">
+                                                            <tr>
+                                                                <th width="5%"></th>
+                                                                <th style="border:1px solid">Description</th>
+                                                                <th style="border:1px solid">Amount</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td style="border:1px solid">3% Withholding of Percentage Tax(VAT) (Materials)</td>
+                                                                <td class="text-right" style="border:1px solid">1,000,000,000.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td class="text-right" style="border:1px solid">0.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td class="text-right" style="border:1px solid">0.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>4</td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td class="text-right" style="border:1px solid">0.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>5</td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td class="text-right" style="border:1px solid">0.00</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th style="border:1px solid"></th>
+                                                                <th class="text-right" style="border:1px solid">Total</th>
+                                                                <th class="text-right" style="border:1px solid">0.00</th>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @* Taxes *@
+                    <div class="row mt-1" id="TXCardID">
+                        <div class="col-12 col-xl-12 col-sm-12 col-md-12">
+                            <div class="card box-shadow-2">
+                                <div class="card-header" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black"><b>Taxes</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-3 mt-1">THIS BILLING-Accomplishment</div>
+                                            <div class="col-md-3 form-group">
+                                                <select class="form-control">
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 mt-1">
+                                                <label><input type="checkbox" />Retention</label>
+                                            </div>
+                                            <div class="col-md-2 pl-0">
+                                                <input type="text" class="text-right form-control" value="0.00" />
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-2 mt-1 form-group">
+                                                <label class="text-right">Select Tax:</label>
+                                            </div>
+                                            <div class="col-md-4 form-group">
+                                                <select class="form-control">
+                                                    <option>--Select--</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-3 ml-1">
+                                                <button type="button" class="btn white btn-info btn-min-width"><b>Add Tax</b></button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10 col-sm-10">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered zero-configuration w-100">
+                                                        <thead class="text-center">
+                                                            <tr>
+                                                                <th width="5%"></th>
+                                                                <th style="border:1px solid">TAX Description</th>
+                                                                <th style="border:1px solid">Amount</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td style="border:1px solid">10% Withholding of Percentage Tax(NON-VAT)</td>
+                                                                <td class="text-right" style="border:1px solid">1,000,000,000.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td class="text-right" style="border:1px solid">0.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td class="text-right" style="border:1px solid">0.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>4</td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td class="text-right" style="border:1px solid">0.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>5</td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td class="text-right" style="border:1px solid">0.00</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th style="border:1px solid"></th>
+                                                                <th class="text-right" style="border:1px solid">Total</th>
+                                                                <th class="text-right" style="border:1px solid">0.00</th>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @* Supporting Documents *@
+                    <div class="row mt-1" id="SDCardID">
+                        <div class="col-12 col-xl-12 col-sm-12 col-md-12">
+                            <div class="card box-shadow-2">
+                                <div class="card-header" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black"><b>Supporting Documents</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered zero-configuration w-100 text-center">
+                                                        <thead class="text-center">
+                                                            <tr>
+                                                                <th style="border:1px solid">Document No.</th>
+                                                                <th style="border:1px solid">Description</th>
+                                                                <th style="border:1px solid">Validated By</th>
+                                                                <th style="border:1px solid">Date Validated</th>
+                                                                <th style="border:1px solid">Action</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="text-center">
+                                                            <tr>
+                                                                <td style="border:1px solid">0001</td>
+                                                                <td style="border:1px solid">Approved DTR</td>
+                                                                <td style="border:1px solid">Susan Santos</td>
+                                                                <td style="border:1px solid">09/10/18</td>
+                                                                <td style="border:1px solid">   <b><a class="btn bg-addbutton form-control font-weight-bold black button" data-caption="01/01/19" href="~/Resources/PDF/blank.pdf" target='_blank'>View Document</a></b></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                                <td style="border:1px solid"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn black bottom-right btn-min-width form-control" style="background-color: #F0AD4E;" data-toggle="modal" data-target="#YesConfirmationbuttonModal" onclick="OpenYesConfirmationButtonModal()"><b>Submit Disbursement Voucher</b></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+ #TXCardID,#OTCardID {
+        display: none;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $('#dp').on('change', function () {
+            if (this.value == '1') {
+                $("#PDCardID").show();
+                $("#TXCardID").hide();
+                $("#SDCardID").show();
+                $("#OTCardID").hide();
+            }
+            else if (this.value == '2') {
+                $("#PDCardID").hide();
+                $("#SDCardID").show();
+            }
+            else if (this.value == '3') {
+                $("#PDCardID").hide();
+                $("#TXCardID").show();
+                $("#SDCardID").show();
+                $("#OTCardID").hide();
+            }
+            else if (this.value == '4') {
+                $("#PDCardID").hide();
+                $("#TXCardID").hide();
+                $("#SDCardID").show();
+                $("#OTCardID").hide();
+            }
+            else if (this.value == '5') {
+                $("#PDCardID").hide();
+                $("#TXCardID").hide();
+                $("#SDCardID").show();
+                $("#OTCardID").hide();
+            }
+            else {
+                $("#PDCardID").hide();
+                $("#TXCardID").show();
+                $("#SDCardID").show();
+                $("#OTCardID").show();
+            }
+        });
+    });
+</script>

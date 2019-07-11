@@ -1,0 +1,250 @@
+/*================================================================================
+	Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+	Version: 1.0
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+
+.card-sm .card-header {
+    padding: 7px;
+}
+table thead tr th{
+    white-space: normal;
+    vertical-align: middle;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: #1883AE;
+    color: white;
+}
+.card-header {
+    padding: 8px;
+    margin: 1px;
+}
+.nav-tabs .nav-topline .nav-item {
+    background-color: #E49B1F;
+    box-shadow: inset 0 3px 0 #388E3C;
+    color: white;
+    text-decoration-color: white;
+    border-radius: 0;
+    border-bottom: none;
+}
+
+.select2-container {
+    width: 100% !important;
+}
+
+.nav-link.active {
+    background-color: #E49B1F !important;
+    border-radius: 0.25rem 0.25rem 0 0;
+    color: white;
+}
+
+.bg-labelcolor {
+    text-decoration-color: black;
+    background-color: #F4F4F4 !important;
+}
+.header-navbar .navbar-header .navbar-brand {
+    padding: 7px 0px !important;
+    margin-right: 0;
+}
+
+.header-navbar .navbar-header .navbar-brand .brand-logo {
+    width: 50px !important;
+}
+
+.bg-info {
+    background-color: #1883AE !important;
+}
+
+.bg-headerbc {
+    background-color: #BD352F !important;
+    text-decoration-color: white;
+}
+
+.bg-addbutton {
+    background-color: #F0AD4E !important;
+    text-decoration-color: black;
+}
+
+.bg-carheadercolor {
+    background-color: #F0DF82 !important;
+}
+.footerbc {
+    background-color: #800000 !important;
+}
+
+.navbar-semi-light .navbar-header {
+    background-image: linear-gradient(to right, rgba(189, 53, 47,0), rgba(189, 53, 47,1));
+}
+
+.main-menu.menu-light .navigation > li ul .open > ul li > a {
+    padding: 8px 18px 8px 64px !important;
+    margin-left: 14px !important;
+}
+
+.bg-info.bg-lighten-1 {
+    background-color: #1883AE !important;
+}
+
+.page-item.active .page-link {
+    background-color:  #1883AE !important;
+    border-color:  #1883AE !important;
+}
+
+.dataTables_wrapper{
+    padding: 0 !important;
+}
+
+div.dataTables_wrapper div.dataTables_filter label {
+    margin-top: 1rem;
+    float: right;
+}
+
+.pagination .page-link {
+    color: #1883AE;
+    border: 1px solid #BABFC7;
+}
+
+.bordered-div
+{
+     border-color:  #B2CDE3 !important;
+     border-style: solid ;
+     border-width: 2px;
+     border-radius:5px;
+}
+
+.custom-div
+{
+    padding:5px;
+    margin:10px;
+}
+
+.RecordsFileUploadImageSmall
+{
+      height: 100px;
+    width: 85px;
+}
+
+.navbar-dark {
+    background: #1883AE !important;
+}
+footer.footer-dark {
+    background: #BD352F !important;
+}
+
+
+.btn-info {
+    border-color: #168DEE !important;
+    background-color: #1883AE !important;
+    color: #FFFFFF;
+}
+
+
+.custom-btn-blue{
+        font-size: 14px !important;
+    padding: 10px !important;
+      margin: 5px;
+}
+
+.custom-btn-blue-fixed{
+        font-size: 14px !important;
+    padding: 10px !important;
+      margin: 5px;
+      width:100px;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    font-size: 14px !important;
+    margin-top: 5px;
+}
+
+
+table.table {
+    border-color:#000;
+    color:black;
+}
+    table.table thead tr th,
+    table.table tbody tr td {
+        /*background: #1883AE;*/
+        /*color: #fff;*/
+        border-color: #000;
+        white-space: normal;
+    }
+
+table thead tr th {
+   white-space: normal;
+}
+
+/*table.table-ledger thead tr:nth-child(2) th:nth-child(1),
+table.table-ledger thead tr:nth-child(2) th:nth-child(2),
+table.table-ledger thead tr:nth-child(2) th:nth-child(3),
+table.table-ledger thead tr:nth-child(2) th:nth-child(4),
+table.table-ledger thead tr:nth-child(2) th:nth-child(5) {
+    border-right: 0px solid #1883AE;
+    border-left: 0px solid #1883AE;
+}
+
+table.table-ledger thead tr:nth-child(2) th:nth-child(7),
+table.table-ledger thead tr:nth-child(2) th:nth-child(9),
+table.table-ledger thead tr:nth-child(2) th:nth-child(11){
+    border-right: 0px solid #1883AE;
+    border-left: 0px solid #1883AE;
+}*/
+
+/*table.table-ledger thead tr:nth-child(2) th:nth-child(7),
+table.table-ledger thead tr:nth-child(2) th:nth-child(9),
+table.table-ledger thead tr:nth-child(2) th:nth-child(11) {
+    border-left: 2px solid #1883AE;
+}*/
+/*table.table-ledger thead tr:nth-child(2) th:nth-child(8) {
+    border-right: 2px solid #1883AE;
+}
+table.table-ledger thead tr:nth-child(2) th:nth-child(10) {
+    border-right: 2px solid #1883AE;
+}
+table.table-ledger thead tr:nth-child(2) th:nth-child(12) {
+    border-right: 2px solid #1883AE;
+}*/
+
+
+
+/*Form Styles*/
+.form-inline {
+    align-items: flex-start
+}
+.form-inline .form-group {
+    margin-bottom: 15px;
+}
+.form-inline .form-group label{
+    min-width: 100px;
+    justify-content: flex-start;
+    /*background: lightblue;*/
+    position: relative;
+}
+.form-group div {
+    font-weight: bold;
+    text-decoration-color:black;
+}
+
+.main-menu.menu-light .navigation > li.open > a {
+    border-right: 4px solid #BD352F !important;
+}
+.main-menu.menu-dark .navigation > li.open > a {
+    border-right: 4px solid #BD352F !important;
+    color: #f6f6f6;
+    font-weight: 700;
+}
+.main-menu.menu-dark .navigation > li .active > a {
+    background: #BD352F;
+}

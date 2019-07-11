@@ -1,0 +1,949 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_TOSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsLock" Type="bit" />
+          <Property Name="PersonalInfoID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="BankAccount_AccountCode">
+          <Key>
+            <PropertyRef Name="AccountCodeID" />
+          </Key>
+          <Property Name="AccountCodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountCode" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BankAccount_AccountType">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BankAccountTable">
+          <Key>
+            <PropertyRef Name="BankAccountID" />
+          </Key>
+          <Property Name="BankAccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankID" Type="int" Nullable="false" />
+          <Property Name="AccountName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AccountNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FundID" Type="int" Nullable="false" />
+          <Property Name="CurrentAccount" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AccountCodeID" Type="int" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BankTable">
+          <Key>
+            <PropertyRef Name="BankID" />
+          </Key>
+          <Property Name="BankID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FundType_FundName">
+          <Key>
+            <PropertyRef Name="FundID" />
+          </Key>
+          <Property Name="FundID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FundTitle" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="FundType_FundType">
+          <Key>
+            <PropertyRef Name="FundTypeID" />
+          </Key>
+          <Property Name="FundTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FundTypeTitle" Type="varchar" MaxLength="100" />
+          <Property Name="FundID" Type="int" />
+        </EntityType>
+        <EntityType Name="FundType_FundTypeTable">
+          <Key>
+            <PropertyRef Name="ListFundTypeID" />
+          </Key>
+          <Property Name="ListFundTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FundID" Type="int" Nullable="false" />
+          <Property Name="FundTypeID" Type="int" Nullable="false" />
+          <Property Name="FundParticulars" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Level1Modules">
+          <Key>
+            <PropertyRef Name="Level1ModuleID" />
+          </Key>
+          <Property Name="Level1ModuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Level1ModuleName" Type="varchar" MaxLength="50" />
+          <Property Name="ModuleParentID" Type="int" />
+          <Property Name="ControllerName" Type="varchar" MaxLength="50" />
+          <Property Name="ActionName" Type="varchar" MaxLength="50" />
+          <Property Name="JSID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Level2Modules">
+          <Key>
+            <PropertyRef Name="Level2ModuleID" />
+          </Key>
+          <Property Name="Level2ModuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Level2ModuleName" Type="varchar" MaxLength="50" />
+          <Property Name="Level1ModuleID" Type="int" />
+          <Property Name="ControllerName" Type="varchar" MaxLength="100" />
+          <Property Name="ActionName" Type="varchar" MaxLength="50" />
+          <Property Name="JSID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Level3Modules">
+          <Key>
+            <PropertyRef Name="Level3ModuleID" />
+          </Key>
+          <Property Name="Level3ModuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Level3ModuleName" Type="varchar" MaxLength="50" />
+          <Property Name="Level2ModuleID" Type="int" />
+          <Property Name="ControllerName" Type="varchar" MaxLength="50" />
+          <Property Name="ActionName" Type="varchar" MaxLength="50" />
+          <Property Name="JSID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ParentModules">
+          <Key>
+            <PropertyRef Name="ModuleParentID" />
+          </Key>
+          <Property Name="ModuleParentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="icon" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ControllerName" Type="varchar" MaxLength="50" />
+          <Property Name="ActionName" Type="varchar" MaxLength="50" />
+          <Property Name="JSID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PersonalInformation">
+          <Key>
+            <PropertyRef Name="PersonalInfoID" />
+          </Key>
+          <Property Name="PersonalInfoID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="FullName" Type="varchar" MaxLength="108" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="PositionName">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SignatoriesTable">
+          <Key>
+            <PropertyRef Name="SignatoriesID" />
+          </Key>
+          <Property Name="SignatoriesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SignatoriesName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PositionID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Accounts_PersonalInformation">
+          <End Role="PersonalInformation" Type="Self.PersonalInformation" Multiplicity="0..1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonalInformation">
+              <PropertyRef Name="PersonalInfoID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="PersonalInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankAccount_AccountCode_BankAccount_AccountCode">
+          <End Role="BankAccount_AccountCode" Type="Self.BankAccount_AccountCode" Multiplicity="1" />
+          <End Role="BankAccount_AccountCode1" Type="Self.BankAccount_AccountCode" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BankAccount_AccountCode">
+              <PropertyRef Name="AccountCodeID" />
+            </Principal>
+            <Dependent Role="BankAccount_AccountCode1">
+              <PropertyRef Name="AccountCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankAccountTable_BankAccount_AccountCode">
+          <End Role="BankAccount_AccountCode" Type="Self.BankAccount_AccountCode" Multiplicity="1" />
+          <End Role="BankAccountTable" Type="Self.BankAccountTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankAccount_AccountCode">
+              <PropertyRef Name="AccountCodeID" />
+            </Principal>
+            <Dependent Role="BankAccountTable">
+              <PropertyRef Name="AccountCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankAccountTable_BankAccountTable">
+          <End Role="BankAccount_AccountType" Type="Self.BankAccount_AccountType" Multiplicity="1" />
+          <End Role="BankAccountTable" Type="Self.BankAccountTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankAccount_AccountType">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="BankAccountTable">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankAccountTable_BankTable">
+          <End Role="BankTable" Type="Self.BankTable" Multiplicity="1" />
+          <End Role="BankAccountTable" Type="Self.BankAccountTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankTable">
+              <PropertyRef Name="BankID" />
+            </Principal>
+            <Dependent Role="BankAccountTable">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankAccountTable_FundType_FundName">
+          <End Role="FundType_FundName" Type="Self.FundType_FundName" Multiplicity="1" />
+          <End Role="BankAccountTable" Type="Self.BankAccountTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FundType_FundName">
+              <PropertyRef Name="FundID" />
+            </Principal>
+            <Dependent Role="BankAccountTable">
+              <PropertyRef Name="FundID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FundType_FundName">
+          <End Role="FundType_FundName" Type="Self.FundType_FundName" Multiplicity="0..1" />
+          <End Role="FundType_FundType" Type="Self.FundType_FundType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FundType_FundName">
+              <PropertyRef Name="FundID" />
+            </Principal>
+            <Dependent Role="FundType_FundType">
+              <PropertyRef Name="FundID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Level1Modules_ParentModules">
+          <End Role="ParentModules" Type="Self.ParentModules" Multiplicity="0..1" />
+          <End Role="Level1Modules" Type="Self.Level1Modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParentModules">
+              <PropertyRef Name="ModuleParentID" />
+            </Principal>
+            <Dependent Role="Level1Modules">
+              <PropertyRef Name="ModuleParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Level2Modules_Level1Modules">
+          <End Role="Level1Modules" Type="Self.Level1Modules" Multiplicity="0..1" />
+          <End Role="Level2Modules" Type="Self.Level2Modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Level1Modules">
+              <PropertyRef Name="Level1ModuleID" />
+            </Principal>
+            <Dependent Role="Level2Modules">
+              <PropertyRef Name="Level1ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Level3Modules_Level2Modules">
+          <End Role="Level2Modules" Type="Self.Level2Modules" Multiplicity="0..1" />
+          <End Role="Level3Modules" Type="Self.Level3Modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Level2Modules">
+              <PropertyRef Name="Level2ModuleID" />
+            </Principal>
+            <Dependent Role="Level3Modules">
+              <PropertyRef Name="Level2ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParentModules_ParentModules">
+          <End Role="ParentModules" Type="Self.ParentModules" Multiplicity="1" />
+          <End Role="ParentModules1" Type="Self.ParentModules" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ParentModules">
+              <PropertyRef Name="ModuleParentID" />
+            </Principal>
+            <Dependent Role="ParentModules1">
+              <PropertyRef Name="ModuleParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SignatoriesTable_PositionName">
+          <End Role="PositionName" Type="Self.PositionName" Multiplicity="1" />
+          <End Role="SignatoriesTable" Type="Self.SignatoriesTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PositionName">
+              <PropertyRef Name="PositionID" />
+            </Principal>
+            <Dependent Role="SignatoriesTable">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_listoffundtypes_tbl_listoffundtypes">
+          <End Role="FundType_FundType" Type="Self.FundType_FundType" Multiplicity="1" />
+          <End Role="FundType_FundTypeTable" Type="Self.FundType_FundTypeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FundType_FundType">
+              <PropertyRef Name="FundTypeID" />
+            </Principal>
+            <Dependent Role="FundType_FundTypeTable">
+              <PropertyRef Name="FundTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_TOSSModelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankAccount_AccountCode" EntityType="Self.BankAccount_AccountCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankAccount_AccountType" EntityType="Self.BankAccount_AccountType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankAccountTable" EntityType="Self.BankAccountTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankTable" EntityType="Self.BankTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FundType_FundName" EntityType="Self.FundType_FundName" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FundType_FundType" EntityType="Self.FundType_FundType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FundType_FundTypeTable" EntityType="Self.FundType_FundTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Level1Modules" EntityType="Self.Level1Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Level2Modules" EntityType="Self.Level2Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Level3Modules" EntityType="Self.Level3Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParentModules" EntityType="Self.ParentModules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalInformation" EntityType="Self.PersonalInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PositionName" EntityType="Self.PositionName" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SignatoriesTable" EntityType="Self.SignatoriesTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Accounts_PersonalInformation" Association="Self.FK_Accounts_PersonalInformation">
+            <End Role="PersonalInformation" EntitySet="PersonalInformation" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankAccount_AccountCode_BankAccount_AccountCode" Association="Self.FK_BankAccount_AccountCode_BankAccount_AccountCode">
+            <End Role="BankAccount_AccountCode" EntitySet="BankAccount_AccountCode" />
+            <End Role="BankAccount_AccountCode1" EntitySet="BankAccount_AccountCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankAccountTable_BankAccount_AccountCode" Association="Self.FK_BankAccountTable_BankAccount_AccountCode">
+            <End Role="BankAccount_AccountCode" EntitySet="BankAccount_AccountCode" />
+            <End Role="BankAccountTable" EntitySet="BankAccountTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankAccountTable_BankAccountTable" Association="Self.FK_BankAccountTable_BankAccountTable">
+            <End Role="BankAccount_AccountType" EntitySet="BankAccount_AccountType" />
+            <End Role="BankAccountTable" EntitySet="BankAccountTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankAccountTable_BankTable" Association="Self.FK_BankAccountTable_BankTable">
+            <End Role="BankTable" EntitySet="BankTable" />
+            <End Role="BankAccountTable" EntitySet="BankAccountTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankAccountTable_FundType_FundName" Association="Self.FK_BankAccountTable_FundType_FundName">
+            <End Role="FundType_FundName" EntitySet="FundType_FundName" />
+            <End Role="BankAccountTable" EntitySet="BankAccountTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FundType_FundName" Association="Self.FK_FundType_FundName">
+            <End Role="FundType_FundName" EntitySet="FundType_FundName" />
+            <End Role="FundType_FundType" EntitySet="FundType_FundType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Level1Modules_ParentModules" Association="Self.FK_Level1Modules_ParentModules">
+            <End Role="ParentModules" EntitySet="ParentModules" />
+            <End Role="Level1Modules" EntitySet="Level1Modules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Level2Modules_Level1Modules" Association="Self.FK_Level2Modules_Level1Modules">
+            <End Role="Level1Modules" EntitySet="Level1Modules" />
+            <End Role="Level2Modules" EntitySet="Level2Modules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Level3Modules_Level2Modules" Association="Self.FK_Level3Modules_Level2Modules">
+            <End Role="Level2Modules" EntitySet="Level2Modules" />
+            <End Role="Level3Modules" EntitySet="Level3Modules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParentModules_ParentModules" Association="Self.FK_ParentModules_ParentModules">
+            <End Role="ParentModules" EntitySet="ParentModules" />
+            <End Role="ParentModules1" EntitySet="ParentModules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SignatoriesTable_PositionName" Association="Self.FK_SignatoriesTable_PositionName">
+            <End Role="PositionName" EntitySet="PositionName" />
+            <End Role="SignatoriesTable" EntitySet="SignatoriesTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_listoffundtypes_tbl_listoffundtypes" Association="Self.FK_tbl_listoffundtypes_tbl_listoffundtypes">
+            <End Role="FundType_FundType" EntitySet="FundType_FundType" />
+            <End Role="FundType_FundTypeTable" EntitySet="FundType_FundTypeTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_TOSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DB_TOSSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="DB_TOSSModel.Account" />
+          <EntitySet Name="BankAccount_AccountCode" EntityType="DB_TOSSModel.BankAccount_AccountCode" />
+          <EntitySet Name="BankAccount_AccountType" EntityType="DB_TOSSModel.BankAccount_AccountType" />
+          <EntitySet Name="BankAccountTables" EntityType="DB_TOSSModel.BankAccountTable" />
+          <EntitySet Name="BankTables" EntityType="DB_TOSSModel.BankTable" />
+          <EntitySet Name="FundType_FundName" EntityType="DB_TOSSModel.FundType_FundName" />
+          <EntitySet Name="FundType_FundType" EntityType="DB_TOSSModel.FundType_FundType" />
+          <EntitySet Name="FundType_FundTypeTable" EntityType="DB_TOSSModel.FundType_FundTypeTable" />
+          <EntitySet Name="Level1Modules" EntityType="DB_TOSSModel.Level1Modules" />
+          <EntitySet Name="Level2Modules" EntityType="DB_TOSSModel.Level2Modules" />
+          <EntitySet Name="Level3Modules" EntityType="DB_TOSSModel.Level3Modules" />
+          <EntitySet Name="ParentModules" EntityType="DB_TOSSModel.ParentModule" />
+          <EntitySet Name="PersonalInformations" EntityType="DB_TOSSModel.PersonalInformation" />
+          <EntitySet Name="PositionNames" EntityType="DB_TOSSModel.PositionName" />
+          <EntitySet Name="SignatoriesTables" EntityType="DB_TOSSModel.SignatoriesTable" />
+          <AssociationSet Name="FK_Accounts_PersonalInformation" Association="DB_TOSSModel.FK_Accounts_PersonalInformation">
+            <End Role="PersonalInformation" EntitySet="PersonalInformations" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankAccount_AccountCode_BankAccount_AccountCode" Association="DB_TOSSModel.FK_BankAccount_AccountCode_BankAccount_AccountCode">
+            <End Role="BankAccount_AccountCode" EntitySet="BankAccount_AccountCode" />
+            <End Role="BankAccount_AccountCode1" EntitySet="BankAccount_AccountCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankAccountTable_BankAccount_AccountCode" Association="DB_TOSSModel.FK_BankAccountTable_BankAccount_AccountCode">
+            <End Role="BankAccount_AccountCode" EntitySet="BankAccount_AccountCode" />
+            <End Role="BankAccountTable" EntitySet="BankAccountTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankAccountTable_BankAccountTable" Association="DB_TOSSModel.FK_BankAccountTable_BankAccountTable">
+            <End Role="BankAccount_AccountType" EntitySet="BankAccount_AccountType" />
+            <End Role="BankAccountTable" EntitySet="BankAccountTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankAccountTable_BankTable" Association="DB_TOSSModel.FK_BankAccountTable_BankTable">
+            <End Role="BankTable" EntitySet="BankTables" />
+            <End Role="BankAccountTable" EntitySet="BankAccountTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankAccountTable_FundType_FundName" Association="DB_TOSSModel.FK_BankAccountTable_FundType_FundName">
+            <End Role="FundType_FundName" EntitySet="FundType_FundName" />
+            <End Role="BankAccountTable" EntitySet="BankAccountTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FundType_FundName" Association="DB_TOSSModel.FK_FundType_FundName">
+            <End Role="FundType_FundName" EntitySet="FundType_FundName" />
+            <End Role="FundType_FundType" EntitySet="FundType_FundType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_listoffundtypes_tbl_listoffundtypes" Association="DB_TOSSModel.FK_tbl_listoffundtypes_tbl_listoffundtypes">
+            <End Role="FundType_FundType" EntitySet="FundType_FundType" />
+            <End Role="FundType_FundTypeTable" EntitySet="FundType_FundTypeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Level1Modules_ParentModules" Association="DB_TOSSModel.FK_Level1Modules_ParentModules">
+            <End Role="ParentModule" EntitySet="ParentModules" />
+            <End Role="Level1Modules" EntitySet="Level1Modules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Level2Modules_Level1Modules" Association="DB_TOSSModel.FK_Level2Modules_Level1Modules">
+            <End Role="Level1Modules" EntitySet="Level1Modules" />
+            <End Role="Level2Modules" EntitySet="Level2Modules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Level3Modules_Level2Modules" Association="DB_TOSSModel.FK_Level3Modules_Level2Modules">
+            <End Role="Level2Modules" EntitySet="Level2Modules" />
+            <End Role="Level3Modules" EntitySet="Level3Modules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParentModules_ParentModules" Association="DB_TOSSModel.FK_ParentModules_ParentModules">
+            <End Role="ParentModule" EntitySet="ParentModules" />
+            <End Role="ParentModule1" EntitySet="ParentModules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SignatoriesTable_PositionName" Association="DB_TOSSModel.FK_SignatoriesTable_PositionName">
+            <End Role="PositionName" EntitySet="PositionNames" />
+            <End Role="SignatoriesTable" EntitySet="SignatoriesTables" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="Guid" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsLock" Type="Boolean" />
+          <Property Name="PersonalInfoID" Type="Guid" />
+          <NavigationProperty Name="PersonalInformation" Relationship="DB_TOSSModel.FK_Accounts_PersonalInformation" FromRole="Account" ToRole="PersonalInformation" />
+        </EntityType>
+        <EntityType Name="BankAccount_AccountCode">
+          <Key>
+            <PropertyRef Name="AccountCodeID" />
+          </Key>
+          <Property Name="AccountCodeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BankAccount_AccountCode1" Relationship="DB_TOSSModel.FK_BankAccount_AccountCode_BankAccount_AccountCode" FromRole="BankAccount_AccountCode" ToRole="BankAccount_AccountCode1" />
+          <NavigationProperty Name="BankAccount_AccountCode2" Relationship="DB_TOSSModel.FK_BankAccount_AccountCode_BankAccount_AccountCode" FromRole="BankAccount_AccountCode1" ToRole="BankAccount_AccountCode" />
+          <NavigationProperty Name="BankAccountTables" Relationship="DB_TOSSModel.FK_BankAccountTable_BankAccount_AccountCode" FromRole="BankAccount_AccountCode" ToRole="BankAccountTable" />
+        </EntityType>
+        <EntityType Name="BankAccount_AccountType">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BankAccountTables" Relationship="DB_TOSSModel.FK_BankAccountTable_BankAccountTable" FromRole="BankAccount_AccountType" ToRole="BankAccountTable" />
+        </EntityType>
+        <EntityType Name="BankAccountTable">
+          <Key>
+            <PropertyRef Name="BankAccountID" />
+          </Key>
+          <Property Name="BankAccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankID" Type="Int32" Nullable="false" />
+          <Property Name="AccountName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FundID" Type="Int32" Nullable="false" />
+          <Property Name="CurrentAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountCodeID" Type="Int32" Nullable="false" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BankAccount_AccountCode" Relationship="DB_TOSSModel.FK_BankAccountTable_BankAccount_AccountCode" FromRole="BankAccountTable" ToRole="BankAccount_AccountCode" />
+          <NavigationProperty Name="BankAccount_AccountType" Relationship="DB_TOSSModel.FK_BankAccountTable_BankAccountTable" FromRole="BankAccountTable" ToRole="BankAccount_AccountType" />
+          <NavigationProperty Name="BankTable" Relationship="DB_TOSSModel.FK_BankAccountTable_BankTable" FromRole="BankAccountTable" ToRole="BankTable" />
+          <NavigationProperty Name="FundType_FundName" Relationship="DB_TOSSModel.FK_BankAccountTable_FundType_FundName" FromRole="BankAccountTable" ToRole="FundType_FundName" />
+        </EntityType>
+        <EntityType Name="BankTable">
+          <Key>
+            <PropertyRef Name="BankID" />
+          </Key>
+          <Property Name="BankID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BankAccountTables" Relationship="DB_TOSSModel.FK_BankAccountTable_BankTable" FromRole="BankTable" ToRole="BankAccountTable" />
+        </EntityType>
+        <EntityType Name="FundType_FundName">
+          <Key>
+            <PropertyRef Name="FundID" />
+          </Key>
+          <Property Name="FundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FundTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BankAccountTables" Relationship="DB_TOSSModel.FK_BankAccountTable_FundType_FundName" FromRole="FundType_FundName" ToRole="BankAccountTable" />
+          <NavigationProperty Name="FundType_FundType" Relationship="DB_TOSSModel.FK_FundType_FundName" FromRole="FundType_FundName" ToRole="FundType_FundType" />
+        </EntityType>
+        <EntityType Name="FundType_FundType">
+          <Key>
+            <PropertyRef Name="FundTypeID" />
+          </Key>
+          <Property Name="FundTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FundTypeTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FundID" Type="Int32" />
+          <NavigationProperty Name="FundType_FundName" Relationship="DB_TOSSModel.FK_FundType_FundName" FromRole="FundType_FundType" ToRole="FundType_FundName" />
+          <NavigationProperty Name="FundType_FundTypeTable" Relationship="DB_TOSSModel.FK_tbl_listoffundtypes_tbl_listoffundtypes" FromRole="FundType_FundType" ToRole="FundType_FundTypeTable" />
+        </EntityType>
+        <EntityType Name="FundType_FundTypeTable">
+          <Key>
+            <PropertyRef Name="ListFundTypeID" />
+          </Key>
+          <Property Name="ListFundTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FundID" Type="Int32" Nullable="false" />
+          <Property Name="FundTypeID" Type="Int32" Nullable="false" />
+          <Property Name="FundParticulars" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FundType_FundType" Relationship="DB_TOSSModel.FK_tbl_listoffundtypes_tbl_listoffundtypes" FromRole="FundType_FundTypeTable" ToRole="FundType_FundType" />
+        </EntityType>
+        <EntityType Name="Level1Modules">
+          <Key>
+            <PropertyRef Name="Level1ModuleID" />
+          </Key>
+          <Property Name="Level1ModuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level1ModuleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModuleParentID" Type="Int32" />
+          <Property Name="ControllerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JSID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ParentModule" Relationship="DB_TOSSModel.FK_Level1Modules_ParentModules" FromRole="Level1Modules" ToRole="ParentModule" />
+          <NavigationProperty Name="Level2Modules" Relationship="DB_TOSSModel.FK_Level2Modules_Level1Modules" FromRole="Level1Modules" ToRole="Level2Modules" />
+        </EntityType>
+        <EntityType Name="Level2Modules">
+          <Key>
+            <PropertyRef Name="Level2ModuleID" />
+          </Key>
+          <Property Name="Level2ModuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level2ModuleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Level1ModuleID" Type="Int32" />
+          <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JSID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Level1Modules" Relationship="DB_TOSSModel.FK_Level2Modules_Level1Modules" FromRole="Level2Modules" ToRole="Level1Modules" />
+          <NavigationProperty Name="Level3Modules" Relationship="DB_TOSSModel.FK_Level3Modules_Level2Modules" FromRole="Level2Modules" ToRole="Level3Modules" />
+        </EntityType>
+        <EntityType Name="Level3Modules">
+          <Key>
+            <PropertyRef Name="Level3ModuleID" />
+          </Key>
+          <Property Name="Level3ModuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level3ModuleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Level2ModuleID" Type="Int32" />
+          <Property Name="ControllerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JSID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Level2Modules" Relationship="DB_TOSSModel.FK_Level3Modules_Level2Modules" FromRole="Level3Modules" ToRole="Level2Modules" />
+        </EntityType>
+        <EntityType Name="ParentModule">
+          <Key>
+            <PropertyRef Name="ModuleParentID" />
+          </Key>
+          <Property Name="ModuleParentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="icon" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ControllerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JSID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Level1Modules" Relationship="DB_TOSSModel.FK_Level1Modules_ParentModules" FromRole="ParentModule" ToRole="Level1Modules" />
+          <NavigationProperty Name="ParentModules1" Relationship="DB_TOSSModel.FK_ParentModules_ParentModules" FromRole="ParentModule" ToRole="ParentModule1" />
+          <NavigationProperty Name="ParentModule1" Relationship="DB_TOSSModel.FK_ParentModules_ParentModules" FromRole="ParentModule1" ToRole="ParentModule" />
+        </EntityType>
+        <EntityType Name="PersonalInformation">
+          <Key>
+            <PropertyRef Name="PersonalInfoID" />
+          </Key>
+          <Property Name="PersonalInfoID" Type="Guid" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="FullName" Type="String" MaxLength="108" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Accounts" Relationship="DB_TOSSModel.FK_Accounts_PersonalInformation" FromRole="PersonalInformation" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="PositionName">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionName1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SignatoriesTables" Relationship="DB_TOSSModel.FK_SignatoriesTable_PositionName" FromRole="PositionName" ToRole="SignatoriesTable" />
+        </EntityType>
+        <EntityType Name="SignatoriesTable">
+          <Key>
+            <PropertyRef Name="SignatoriesID" />
+          </Key>
+          <Property Name="SignatoriesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SignatoriesName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PositionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PositionName" Relationship="DB_TOSSModel.FK_SignatoriesTable_PositionName" FromRole="SignatoriesTable" ToRole="PositionName" />
+        </EntityType>
+        <Association Name="FK_Accounts_PersonalInformation">
+          <End Type="DB_TOSSModel.PersonalInformation" Role="PersonalInformation" Multiplicity="0..1" />
+          <End Type="DB_TOSSModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonalInformation">
+              <PropertyRef Name="PersonalInfoID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="PersonalInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankAccount_AccountCode_BankAccount_AccountCode">
+          <End Type="DB_TOSSModel.BankAccount_AccountCode" Role="BankAccount_AccountCode" Multiplicity="1" />
+          <End Type="DB_TOSSModel.BankAccount_AccountCode" Role="BankAccount_AccountCode1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BankAccount_AccountCode">
+              <PropertyRef Name="AccountCodeID" />
+            </Principal>
+            <Dependent Role="BankAccount_AccountCode1">
+              <PropertyRef Name="AccountCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankAccountTable_BankAccount_AccountCode">
+          <End Type="DB_TOSSModel.BankAccount_AccountCode" Role="BankAccount_AccountCode" Multiplicity="1" />
+          <End Type="DB_TOSSModel.BankAccountTable" Role="BankAccountTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankAccount_AccountCode">
+              <PropertyRef Name="AccountCodeID" />
+            </Principal>
+            <Dependent Role="BankAccountTable">
+              <PropertyRef Name="AccountCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankAccountTable_BankAccountTable">
+          <End Type="DB_TOSSModel.BankAccount_AccountType" Role="BankAccount_AccountType" Multiplicity="1" />
+          <End Type="DB_TOSSModel.BankAccountTable" Role="BankAccountTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankAccount_AccountType">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="BankAccountTable">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankAccountTable_BankTable">
+          <End Type="DB_TOSSModel.BankTable" Role="BankTable" Multiplicity="1" />
+          <End Type="DB_TOSSModel.BankAccountTable" Role="BankAccountTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankTable">
+              <PropertyRef Name="BankID" />
+            </Principal>
+            <Dependent Role="BankAccountTable">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankAccountTable_FundType_FundName">
+          <End Type="DB_TOSSModel.FundType_FundName" Role="FundType_FundName" Multiplicity="1" />
+          <End Type="DB_TOSSModel.BankAccountTable" Role="BankAccountTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FundType_FundName">
+              <PropertyRef Name="FundID" />
+            </Principal>
+            <Dependent Role="BankAccountTable">
+              <PropertyRef Name="FundID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FundType_FundName">
+          <End Type="DB_TOSSModel.FundType_FundName" Role="FundType_FundName" Multiplicity="0..1" />
+          <End Type="DB_TOSSModel.FundType_FundType" Role="FundType_FundType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FundType_FundName">
+              <PropertyRef Name="FundID" />
+            </Principal>
+            <Dependent Role="FundType_FundType">
+              <PropertyRef Name="FundID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_listoffundtypes_tbl_listoffundtypes">
+          <End Type="DB_TOSSModel.FundType_FundType" Role="FundType_FundType" Multiplicity="1" />
+          <End Type="DB_TOSSModel.FundType_FundTypeTable" Role="FundType_FundTypeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FundType_FundType">
+              <PropertyRef Name="FundTypeID" />
+            </Principal>
+            <Dependent Role="FundType_FundTypeTable">
+              <PropertyRef Name="FundTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Level1Modules_ParentModules">
+          <End Type="DB_TOSSModel.ParentModule" Role="ParentModule" Multiplicity="0..1" />
+          <End Type="DB_TOSSModel.Level1Modules" Role="Level1Modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParentModule">
+              <PropertyRef Name="ModuleParentID" />
+            </Principal>
+            <Dependent Role="Level1Modules">
+              <PropertyRef Name="ModuleParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Level2Modules_Level1Modules">
+          <End Type="DB_TOSSModel.Level1Modules" Role="Level1Modules" Multiplicity="0..1" />
+          <End Type="DB_TOSSModel.Level2Modules" Role="Level2Modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Level1Modules">
+              <PropertyRef Name="Level1ModuleID" />
+            </Principal>
+            <Dependent Role="Level2Modules">
+              <PropertyRef Name="Level1ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Level3Modules_Level2Modules">
+          <End Type="DB_TOSSModel.Level2Modules" Role="Level2Modules" Multiplicity="0..1" />
+          <End Type="DB_TOSSModel.Level3Modules" Role="Level3Modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Level2Modules">
+              <PropertyRef Name="Level2ModuleID" />
+            </Principal>
+            <Dependent Role="Level3Modules">
+              <PropertyRef Name="Level2ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParentModules_ParentModules">
+          <End Type="DB_TOSSModel.ParentModule" Role="ParentModule" Multiplicity="1" />
+          <End Type="DB_TOSSModel.ParentModule" Role="ParentModule1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ParentModule">
+              <PropertyRef Name="ModuleParentID" />
+            </Principal>
+            <Dependent Role="ParentModule1">
+              <PropertyRef Name="ModuleParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SignatoriesTable_PositionName">
+          <End Type="DB_TOSSModel.PositionName" Role="PositionName" Multiplicity="1" />
+          <End Type="DB_TOSSModel.SignatoriesTable" Role="SignatoriesTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PositionName">
+              <PropertyRef Name="PositionID" />
+            </Principal>
+            <Dependent Role="SignatoriesTable">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_TOSSModelStoreContainer" CdmEntityContainer="DB_TOSSEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="DB_TOSSModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="PersonalInfoID" ColumnName="PersonalInfoID" />
+                <ScalarProperty Name="IsLock" ColumnName="IsLock" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankAccount_AccountCode">
+            <EntityTypeMapping TypeName="DB_TOSSModel.BankAccount_AccountCode">
+              <MappingFragment StoreEntitySet="BankAccount_AccountCode">
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="AccountCodeID" ColumnName="AccountCodeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankAccount_AccountType">
+            <EntityTypeMapping TypeName="DB_TOSSModel.BankAccount_AccountType">
+              <MappingFragment StoreEntitySet="BankAccount_AccountType">
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankAccountTables">
+            <EntityTypeMapping TypeName="DB_TOSSModel.BankAccountTable">
+              <MappingFragment StoreEntitySet="BankAccountTable">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="AccountCodeID" ColumnName="AccountCodeID" />
+                <ScalarProperty Name="CurrentAccount" ColumnName="CurrentAccount" />
+                <ScalarProperty Name="FundID" ColumnName="FundID" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="BankAccountID" ColumnName="BankAccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankTables">
+            <EntityTypeMapping TypeName="DB_TOSSModel.BankTable">
+              <MappingFragment StoreEntitySet="BankTable">
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FundType_FundName">
+            <EntityTypeMapping TypeName="DB_TOSSModel.FundType_FundName">
+              <MappingFragment StoreEntitySet="FundType_FundName">
+                <ScalarProperty Name="FundTitle" ColumnName="FundTitle" />
+                <ScalarProperty Name="FundID" ColumnName="FundID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FundType_FundType">
+            <EntityTypeMapping TypeName="DB_TOSSModel.FundType_FundType">
+              <MappingFragment StoreEntitySet="FundType_FundType">
+                <ScalarProperty Name="FundID" ColumnName="FundID" />
+                <ScalarProperty Name="FundTypeTitle" ColumnName="FundTypeTitle" />
+                <ScalarProperty Name="FundTypeID" ColumnName="FundTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FundType_FundTypeTable">
+            <EntityTypeMapping TypeName="DB_TOSSModel.FundType_FundTypeTable">
+              <MappingFragment StoreEntitySet="FundType_FundTypeTable">
+                <ScalarProperty Name="FundParticulars" ColumnName="FundParticulars" />
+                <ScalarProperty Name="FundTypeID" ColumnName="FundTypeID" />
+                <ScalarProperty Name="FundID" ColumnName="FundID" />
+                <ScalarProperty Name="ListFundTypeID" ColumnName="ListFundTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Level1Modules">
+            <EntityTypeMapping TypeName="DB_TOSSModel.Level1Modules">
+              <MappingFragment StoreEntitySet="Level1Modules">
+                <ScalarProperty Name="JSID" ColumnName="JSID" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ModuleParentID" ColumnName="ModuleParentID" />
+                <ScalarProperty Name="Level1ModuleName" ColumnName="Level1ModuleName" />
+                <ScalarProperty Name="Level1ModuleID" ColumnName="Level1ModuleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Level2Modules">
+            <EntityTypeMapping TypeName="DB_TOSSModel.Level2Modules">
+              <MappingFragment StoreEntitySet="Level2Modules">
+                <ScalarProperty Name="JSID" ColumnName="JSID" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="Level1ModuleID" ColumnName="Level1ModuleID" />
+                <ScalarProperty Name="Level2ModuleName" ColumnName="Level2ModuleName" />
+                <ScalarProperty Name="Level2ModuleID" ColumnName="Level2ModuleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Level3Modules">
+            <EntityTypeMapping TypeName="DB_TOSSModel.Level3Modules">
+              <MappingFragment StoreEntitySet="Level3Modules">
+                <ScalarProperty Name="JSID" ColumnName="JSID" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="Level2ModuleID" ColumnName="Level2ModuleID" />
+                <ScalarProperty Name="Level3ModuleName" ColumnName="Level3ModuleName" />
+                <ScalarProperty Name="Level3ModuleID" ColumnName="Level3ModuleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParentModules">
+            <EntityTypeMapping TypeName="DB_TOSSModel.ParentModule">
+              <MappingFragment StoreEntitySet="ParentModules">
+                <ScalarProperty Name="JSID" ColumnName="JSID" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="ModuleParentID" ColumnName="ModuleParentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonalInformations">
+            <EntityTypeMapping TypeName="DB_TOSSModel.PersonalInformation">
+              <MappingFragment StoreEntitySet="PersonalInformation">
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="PersonalInfoID" ColumnName="PersonalInfoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PositionNames">
+            <EntityTypeMapping TypeName="DB_TOSSModel.PositionName">
+              <MappingFragment StoreEntitySet="PositionName">
+                <ScalarProperty Name="PositionName1" ColumnName="PositionName" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SignatoriesTables">
+            <EntityTypeMapping TypeName="DB_TOSSModel.SignatoriesTable">
+              <MappingFragment StoreEntitySet="SignatoriesTable">
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="SignatoriesName" ColumnName="SignatoriesName" />
+                <ScalarProperty Name="SignatoriesID" ColumnName="SignatoriesID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

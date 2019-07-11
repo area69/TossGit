@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TOSS_UPGRADE.Models.SignatoriesList>
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered zero-configuration w-100">
+                <thead class="text-center">
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th width="5px;">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    @{
+                        foreach (var Items in Model)
+                        {
+                            var DeleteConfirmationMess = "Are you sure do you want to delete this Signatories?";
+                            var DeleteSuccesMess = "Signatories Deleted";
+
+                            var ActionEdit = " <button class=\"btn btn-icon btn-block white bg-addbutton border-0\" type=\"button\" onclick=\"AngularGlobalEdit('FMSignatoriesController','Get_UpdateSignatories','" + @Items.SignatoriesID + "')\"><i class='ft-edit'></i> Edit</button>";
+                            var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.SignatoriesName + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.SignatoriesID + ",&quot;Get_DeleteSignatories&quot;,&quot;FMSignatoriesController&quot;)')\"> <i class='ft-delete'></i> Delete</button>";
+
+                            var ActionContentProgram = ActionEdit + ViewDelete;
+
+                            <tr>
+                                <td>@Items.SignatoriesName</td>
+                                <td>@Items.PositionNames</td>
+                                <td>
+                                    <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-m btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
+                                            data-original-title="" data-html="true" data-placement="right">
+                                        <i class="la la-bars"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+
+</script>

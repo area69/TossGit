@@ -1,0 +1,518 @@
+﻿@{
+    ViewBag.Title = "AF-54 Marriage License";
+}
+
+<script>
+    $("#af54").addClass("active");
+</script>
+<div class="content-header row">
+    <div class="content-header-left col-md-6 mb-2">
+        <h3 class="content-header"><b>AF-54 Marriage License</b></h3>
+    </div>
+</div>
+<div class="row black font-weight-bold">
+    <div class="col-md-12">
+        <div class="card" style="border: 2px solid; border-color: #EABEBB">
+            <div class="card-block">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <div class="card box-shadow-2">
+                                <div class="card-header" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black" style="background-color: #FEDF82;"><b>Fund Type</b></h4>
+                                </div>
+                                <div class="card-body box-shadow-2">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="row">
+                                                <select class="form-control">
+                                                    <option>General Fund</option>
+                                                    <option>Special Education Fund</option>
+                                                    <option>Trust Fund</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            @* Applicant *@
+                            <div class="card box-shadow-2">
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <a class="nav-item nav-link active text-white" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Applicant</a>
+                                    </div>
+                                </nav>
+                                <div class="tab-content w-100" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                        <div class="card-body rounded" style="border: 1px solid; border-color: #E5E5E5;">
+                                            <div class="row">
+                                                <label>Name</label>
+                                                <input type="text" class="form-control" placeholder="" value="">
+                                            </div>
+                                            <div class="row mt-1">
+                                                <label>Age</label>
+                                            </div>
+                                            <div class="row mt-1">
+                                                <div class="col-md-5 p-0 mr-1">
+                                                    <input type="text" class="form-control" placeholder="Years" value="">
+                                                </div>
+                                                <div class="col-md-6 p-0">
+                                                    <input type="text" class="form-control" placeholder="Months" value="">
+                                                </div>
+                                            </div>
+                                            <div class="row mt-1">
+                                                <label>Resident Address</label>
+                                                <textarea class="form-control" rows="1" id="comment"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @* Spouse *@
+                            <div class="card box-shadow-2">
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <a class="nav-item nav-link active text-white" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Spouse</a>
+                                    </div>
+                                </nav>
+                                <div class="tab-content w-100" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                        <div class="card-body rounded" style="border: 1px solid; border-color: #E5E5E5;">
+                                            <div class="row">
+                                                <label>Name</label>
+                                                <input type="text" class="form-control" placeholder="" value="">
+                                            </div>
+                                            <div class="row mt-1">
+                                                <label>Age</label>
+                                            </div>
+                                            <div class="row mt-1">
+                                                <div class="col-md-5 p-0 mr-1">
+                                                    <input type="text" class="form-control" placeholder="Years" value="">
+                                                </div>
+                                                <div class="col-md-6 p-0">
+                                                    <input type="text" class="form-control" placeholder="Months" value="">
+                                                </div>
+                                            </div>
+                                            <div class="row mt-1">
+                                                <label>Resident Address</label>
+                                                <textarea class="form-control" rows="1" id="comment"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card box-shadow-2">
+                                <div class="card-body rounded" style="border: 1px solid; border-color: #E5E5E5;">
+                                    <div class="row">
+                                        <label>Copies of :</label>
+                                        <input type="text" class="form-control" value="Pertinent papers hereto Attach" />
+                                    </div>
+                                    <div class="row mt-1">
+                                        <label>Register No</label>
+                                        <input type="text" class="form-control" placeholder="" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-9 col-sm-9">
+                            <div class="card box-shadow-2">
+                                <div class="card-header" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black"><b>Payment Information</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="row">
+                                            <div class="col-md-8 col-sm-12 col-12">
+                                                <ul class="nav nav-tabs ">
+                                                    <li class="nav-item bg-headerbc">
+                                                        <a class="nav-link text-white active" id="base-tab1" data-toggle="tab" aria-controls="tab1" href="#tab1" aria-expanded="true">Fee Information</a>
+                                                    </li>
+                                                    <li class="nav-item bg-headerbc">
+                                                        <a class="nav-link text-white" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false">Payment Information</a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div role="tabpanel" class="tab-pane active" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
+                                                        <div class="card-body rounded" style="border: 1px solid; border-color: #E5E5E5;">
+                                                            <div class="col-md-12 col-sm-12">
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-striped table-bordered">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Fee Description</th>
+                                                                                <th width="40%">Amount</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>Marriage Registration Fee</td>
+                                                                                <td><input type="text" class="form-control text-right" value="100.00" /></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td><input type="text" class="form-control text-right" value="" /></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-3 col-sm-3">
+                                                                    <p style="visibility:hidden">Hide</p>
+                                                                    <button type="button" class="btn black form-control" data-toggle="modal" data-target="#AddbuttonModal" onclick="OpenAddButtonModal()" style="background-color: #F0AD4E;" disabled><b>Add</b></button>
+                                                                </div>
+                                                                <div>
+                                                                    <p style="visibility:hidden">Hide</p>
+                                                                    <button type="button" class="btn black form-control bg-headerbc" disabled><b>Remove</b></button>
+                                                                </div>
+                                                                <div class="col"></div>
+                                                                <div class="col-md-5 col-sm-5">
+                                                                    <p>Total Payable</p>
+                                                                    <input type="text" class="form-control text-right" value="100.00">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div role="tabpanel" class="tab-pane" id="tab2" aria-expanded="true" aria-labelledby="base-tab2">
+                                                        <div class="card-body rounded" style="border: 1px solid; border-color: #E5E5E5;">
+                                                            <div class="row">
+                                                                <div class="col-md-6 col-sm-6 form-group">
+                                                                    <label>Payment Type</label>
+                                                                    <select class="form-control" id="dp">
+                                                                        <option value="1">Cash</option>
+                                                                        <option value="2">Check</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 form-group">
+                                                                    <label>Amount</label>
+                                                                    <input type="text" class="form-control text-right" value="0.00" />
+                                                                </div>
+                                                            </div>
+                                                            <div id="DivCashorCheck">
+                                                                <div class="row">
+                                                                    <div class="col-md-6 col-sm-6 form-group">
+                                                                        <label>Check No.</label>
+                                                                        <input type="text" class="form-control" value="" />
+                                                                    </div>
+                                                                    <div class="col-md-6 form-group">
+                                                                        <label>Check Date</label>
+                                                                        <input name="name" placeholder="12/31/2018" class=" form-control pickadate ui-datepicker" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12 col-sm-12 form-group">
+                                                                        <label>Bank Name</label>
+                                                                        <select class="form-control">
+                                                                            <option>Land Bank of the Philippines - Manila</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <button type="button" class="btn black form-control" style="background-color: #F0AD4E;"><b>Add</b></button>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <button type="button" class="btn bg-headerbc black form-control"><b>Remove</b></button>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <button type="button" class="btn black form-control" style="background-color: #F0AD4E;"><b>Post</b></button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-1">
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-striped table-bordered nowrap">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Type</th>
+                                                                                <th>Amount</th>
+                                                                                <th>Check No.</th>
+                                                                                <th>Check Date</th>
+                                                                                <th>Bank Name</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td class="text-right">00.00</td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="nav-item bg-carheadercolor ">
+                                                        <a class="nav-link black" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false">OR Details</a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content w-100" id="nav-tabContent">
+                                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                                        <div class="card-body rounded" style="border: 1px solid; border-color: #E5E5E5;">
+                                                            <div class="row">
+                                                                <label>OR Number</label>
+                                                                <div class="col">
+                                                                    <button><span class="la la-search font-medium-3"></span></button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-1">
+                                                                <input type="text" class="form-control" placeholder="" value="">
+                                                            </div>
+                                                            <div class="row mt-2">
+                                                                <p>Date Issued</p>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12 p-0">
+                                                                    <input name="name" placeholder="12/31/2018" class=" form-control pickadate ui-datepicker" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="nav nav-tabs mt-1 ">
+                                                    <li class="nav-item bg-carheadercolor">
+                                                        <a class="nav-link black" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false">Payment Details</a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content w-100" id="nav-tabContent">
+                                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                                        <div class="card-body rounded" style="border: 1px solid; border-color: #E5E5E5;">
+                                                            <div class="row">
+                                                                <p>Cash Amount</p>
+                                                                <input type="text" class="form-control text-right" value="0.00">
+                                                            </div>
+
+                                                            <div class="row mt-2">
+                                                                <p>Non Cash Amount</p>
+                                                                <input type="text" class="form-control text-right" value="0.00">
+                                                            </div>
+                                                            <div class="row">
+                                                                <p>Credit</p>
+                                                                <input type="text" class="form-control text-right" value="0.00">
+                                                            </div>
+
+                                                            <div class="row mt-2">
+                                                                <p>Tendered Amount</p>
+                                                                <input type="text" class="form-control text-right" value="0.00">
+                                                            </div>
+                                                            <div class="row">
+                                                                <p>Payable Amount</p>
+                                                                <input type="text" class="form-control text-right" value="0.00">
+                                                            </div>
+
+                                                            <div class="row mt-2">
+                                                                <p>Change</p>
+                                                                <input type="text" class="form-control text-right" value="0.00">
+                                                            </div>
+                                                            <div class="row mt-2">
+                                                                <fieldset class="checkboxsas">
+                                                                    <label>
+                                                                        <input type="checkbox" value="">
+                                                                        Partial Payment
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="checkbox" value="">
+                                                                        Over Payment
+                                                                    </label>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @* Remittance *@
+                    <div class="row mt-1">
+                        <div class="col-12 col-xl-12 col-md-12 col-lg-12 col-sm-12">
+                            <div class="card box-shadow-2">
+                                <div class="card-header" style="background-color: #FEDF82;">
+                                    <h4 class="card-title black"><b>Remittance</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+
+                                        <div class="row">
+                                            <div class="col-md-2"></div>
+                                            <div class=" mt-1 mr-1 form-group">
+                                                <label>Fund</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select class="form-control">
+                                                    <option>General Fund</option>
+                                                    <option>Two</option>
+                                                    <option>Three</option>
+                                                    <option>Four</option>
+                                                    <option>Five</option>
+                                                </select>
+                                            </div>
+                                            <div class=" mt-1 mr-1 ml-1 form-group">
+                                                <label>Remittance Date</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input name="name" value="" class="form-control pickadate ui-datepicker" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered zero-configuration nowrap">
+                                                        <thead class="text-center">
+                                                            <tr>
+                                                                <th>Payee Name</th>
+                                                                <th>Date</th>
+                                                                <th>Issue OR/CTC</th>
+                                                                <th>Check Amount</th>
+                                                                <th>Cash Amount</th>
+                                                                <th>Total Amount</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="text-center">
+                                                            <tr>
+                                                                <td>June Santiago</td>
+                                                                <td>6/7/2019</td>
+                                                                <td>3000078</td>
+                                                                <td class="text-right">0.00</td>
+                                                                <td class="text-right">2,500.00</td>
+                                                                <td class="text-right">2,500.00</td>
+                                                                <td><button class="btn bg-addbutton"><b>Cancel</b></button></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1">
+                                            <div class="col-md-5">
+                                            </div>
+                                            <div class="col-md-5 pull-right form-inline">
+                                                <label class="text-right mt-1 mr-1">Total Amount</label>
+                                                <input type="text" class="form-control" placeholder="0.00" value="" />
+                                            </div>
+                                            <div class="col-md-2 form-group">
+                                                <b><a class="btn bg-addbutton form-control font-weight-bold black button" data-caption="01/01/19" href="~/Resources/PDF/blank.pdf" target='_blank'>Generate RCD</a></b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    #DivCashorCheck {
+        display: none;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $('#dp').on('change', function () {
+            if (this.value == '1') {
+                $("#DivCashorCheck").hide();
+            } else {
+                $("#DivCashorCheck").show();
+            }
+        });
+    });
+</script>

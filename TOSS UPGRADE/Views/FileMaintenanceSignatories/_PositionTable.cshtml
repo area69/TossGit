@@ -1,0 +1,49 @@
+﻿@model IEnumerable<TOSS_UPGRADE.Models.PositionName>
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+<div class="col-md-12">
+    <div class="table-responsive">
+        <table id="PositionDT" class="table table-striped table-bordered zero-configuration">
+            <thead class="text-center">
+                <tr>
+                    <th>Position</th>
+                    <th width="5px">Action</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @{
+                    foreach (var Items in Model)
+                    {
+                        var DeleteConfirmationMess = "Are you sure do you want to delete this Position?";
+                        var DeleteSuccesMess = "Position Deleted";
+
+                        var ViewEdit = "<button class=\"btn btn-icon btn-block white bg-addbutton border-0\" type=\"button\" onclick=\"AngularGlobalEdit('FMSignatoriesController','Get_UpdatePosition','" + @Items.PositionID + "')\"><i class='la la-edit'></i> Edit </button>";
+                        var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.PositionName1 + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.PositionID + ",&quot;Get_DeletePosition&quot;,&quot;FMSignatoriesController&quot;)')\"> <i class='ft-delete'></i> Delete</button>";
+                        var ActionContentProgram = ViewEdit + ViewDelete;
+                        <tr>
+                            <td>@Items.PositionName1</td>
+                            <td>
+                                <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-m btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
+                                        data-original-title="" data-html="true" data-placement="right">
+                                    <i class="la la-bars"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <script>   
+            $(function () {
+                LoadDataTable();
+                LoadPopOver();
+            })
+        </script>
+    </div>
+</div>
+
+
+
