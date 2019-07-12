@@ -163,9 +163,11 @@
     <Compile Include="Controllers\AF53Controller.cs" />
     <Compile Include="Controllers\AF54Controller.cs" />
     <Compile Include="Controllers\AuthoritytoDebitCreditController.cs" />
+    <Compile Include="Controllers\BankTransactionADebitAgencyBankAccountController.cs" />
     <Compile Include="Controllers\BankTransactionAFTransferBrgyController.cs" />
     <Compile Include="Controllers\BankTransactionAFTransferController.cs" />
     <Compile Include="Controllers\BankTransactionDepositController.cs" />
+    <Compile Include="Controllers\BankTransactionInvestmentController.cs" />
     <Compile Include="Controllers\BankTransactionIRAController.cs" />
     <Compile Include="Controllers\BankTransactionMiscellaneousAdjustmentController.cs" />
     <Compile Include="Controllers\BarController.cs" />
@@ -8896,6 +8898,8 @@
     <Content Include="Views\BankTransactionAFTransfer\Index.cshtml" />
     <Content Include="Views\BankTransactionAFTransferBrgy\Index.cshtml" />
     <Content Include="Views\AuthoritytoDebitCredit\Index.cshtml" />
+    <Content Include="Views\BankTransactionInvestment\Index.cshtml" />
+    <Content Include="Views\BankTransactionADebitAgencyBankAccount\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,8 +9,30 @@
         <h3 class="content-header"><b>Authority to Debit Credit</b></h3>
     </div>
 </div>
-<div class="content-body font-weight-bold black">
+<div class="content-body black">
     <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <fieldset class="radio">
+                        <label>
+                            <input type="radio" name="radio" id="radioDBP">
+                            Development Bank of the Philippines
+                        </label>
+                    </fieldset>
+                </div>
+                <div class="col-md-6">
+                    <fieldset class="radio">
+                        <label>
+                            <input type="radio" name="radio" id="radioLBP">
+                            Landbank of the Philippines
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="DivDBP">
         <div class="col-xl-12 col-lg-12">
             <div class="card" style="border: 1px solid; border-color: #EABEBB">
                 <div class="card-block">
@@ -138,6 +160,163 @@
                     </div>
                 </div>
             </div>
+            <div class="row mt-1">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn bg-addbutton form-control black px-0"><b>Save</b></button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn bg-addbutton form-control black px-0"><b>Print</b></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="DivLBP">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card" style="border: 1px solid; border-color: #EABEBB">
+                <div class="card-block">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6">
+                                <h5 class="text-center">Republic of The Philippines</h5>
+                                <h4 class="text-center"><b>City/Municipality</b></h4>
+                                <h5 class="text-center">Province</h5>
+                            </div>
+                            <div class="col-md-3 pull-right">
+                                <input type="text" class="form-control mt-2" value="DM-2019-07-01" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <label class="mt-1 text-right p-0">Date: </label>
+                            </div>
+                            <div class="col-md-3 pull-right">
+                                <input placeholder="12/31/2018" class="form-control pickadate ui-datepicker" />
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-md-1">
+                                <label class="mt-1 text-right p-0">To: </label>
+                            </div>
+                            <div class="col-md-4 pull-right">
+                                <label><b>THE LANDBANK OF THE PHILIPPINES</b></label>
+                                <label>[Name of Branch]</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <label class="mt-1 text-right p-0">Subject: </label>
+                            </div>
+                            <div class="col-md-4 mt-1 pull-right">
+                                <label><b>AUTHORITY TO DEBIT/CREDIT ACCOUNT</b></label>
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-md-4 mt-1">
+                                <label>
+                                    Please debit to our Saving/Current Account No.
+                                </label>
+                            </div>
+                            <div class="col-md-3 px-0">
+                                <select class="form-control">
+                                    <option>0442-1046-11</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 px-0 text-center mt-1">
+                                <label>
+                                    Account Balance:
+                                </label>
+                            </div>
+                            <div class="col-md-3 pl-0">
+                                <input type="text" class="form-control text-right" value="387,376,655.29" />
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-md-2 pr-0 mt-1">
+                                <label>
+                                    the amount of ₱
+                                </label>
+                            </div>
+                            <div class="col-md-3 pl-0">
+                                <input type="text" class="form-control text-left" value="" />
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-md-8 pr-0 mt-1">
+                                <label>For credit to Various Payroll Accounts (See Attached Schedule) representing ATM Payroll for</label>
+                            </div>
+                            <div class="col-md-4 pl-0">
+                                <input type="text" class="form-control text-left" value="" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mt-1">
+                                <label>I/We declare under penalty of perjury that my/our co-depositor/s is/are still living. This also authorizes you to debit my/our account for the corresponding service charges.</label>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                    <option>Francisco A. Santos</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                    <option>Andria C. Ocampo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-3 text-center">
+                                <label>Printed Name and Signature</label>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-3 text-center">
+                                <label>Printed Name and Signature</label>
+                            </div>
+                        </div>
+
+                        <hr class="mt-2" style=" border:.5px solid;" />
+                        <div class="row">
+                            <div class="col-md-12 black text-center">
+                                <h4><b>FOR BANK'S USE ONLY</b></h4>
+                            </div>
+                        </div>
+                        <hr class="mt-2" style=" border:.5px solid;" />
+
+                        <div class="row">
+                            <div class="col-md-3 text-center">
+                                <label>SIGNATURE VERIFIED BY :</label>
+                            </div>
+
+                            <div class="col-md-3 text-center">
+                                <label>POSTED BY :</label>
+                            </div>
+
+                            <div class="col-md-3 text-center">
+                                <label>CHECKED BY :</label>
+                            </div>
+
+                            <div class="col-md-3 text-center">
+                                <label>APPROVED BY :</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
             <div class="row mt-1">
                 <div class="col-md-3"></div>
@@ -155,3 +334,19 @@
         </div>
     </div>
 </div>
+<style>
+   #DivLBP {
+        display: none;
+    }
+</style>
+<script>
+    $("#radioDBP").click();
+    $("input[id='radioDBP']").change(function () {
+        $("#DivDBP").toggle('show');
+        $("#DivLBP").toggle('hide');
+    });
+    $("input[id='radioLBP']").change(function () {
+        $("#DivDBP").toggle('hide');
+        $("#DivLBP").toggle('show');
+    });
+</script>
