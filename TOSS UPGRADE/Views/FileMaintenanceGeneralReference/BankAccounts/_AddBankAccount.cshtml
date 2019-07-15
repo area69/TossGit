@@ -5,9 +5,7 @@
 @using TOSS_UPGRADE.Models;
 
 
-@using (Ajax.BeginForm("", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc('FMGeneralReferenceController','','')", OnFailure = "OnFailure()", }))
-{
-    <div class="row">
+  <div class="row">
         <div class="col-md-5 form-group" id="BankDivID">
 
         </div>
@@ -40,7 +38,8 @@
         </div>
         <div class="col-md-2">
             <label style="visibility:hidden">New Bank</label>
-            <button type="button" class="form-control bg-addbutton black"><b>New Account</b></button>
+            
+            <button type="button" class="form-control bg-addbutton black"  data-toggle="modal" data-target="#addAccountTypeModal"><b>New Account</b></button>
         </div>
         <div class="col-md-1 form-group">
 
@@ -57,15 +56,11 @@
                 </div>
             </div>
         </div>
-
     </div>
-}
-
 <script>
     $(function () {
         LoadDataTable();
         LoadPopOver();
         CurrentAccountConcate();
     })
-   
 </script>
