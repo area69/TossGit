@@ -10,14 +10,13 @@
     </div>
 </div>
 <div class="content-body font-weight-bold black">
-
     <div class="row">
         <div class="col-md-4">
             <div class="row">
                 <div class="col-md-6">
                     <fieldset class="radio">
                         <label>
-                            <input type="radio" name="radio">
+                            <input type="radio" name="radio" id="RBregular">
                             Regular/Casual
                         </label>
                     </fieldset>
@@ -25,7 +24,7 @@
                 <div class="col-md-6">
                     <fieldset class="radio">
                         <label>
-                            <input type="radio" name="radio">
+                            <input type="radio" name="radio" id="RBjoborder">
                             Job Order
                         </label>
                     </fieldset>
@@ -82,38 +81,102 @@
                                     <input type="text" class="form-control" value="" />
                                 </div>
                             </div>
+
                             <div class="row mt-1">
                                 <div class="col-md-1"></div>
-                                <div class="col-10 col-xl-10 ">
+                                <div class="col-10 col-md-10 ">
                                     <div class="card box-shadow-2">
                                         <div class="card-header bg-carheadercolor" style="height:30px">
                                             <h4 class="card-title black"></h4>
                                         </div>
                                         <div class="card-content collapse show">
                                             <div class="card-body box-shadow-2">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-striped table-bordered zero-configuration w-100">
-                                                                <thead class="text-center">
-                                                                    <tr>
-                                                                        <th>Title</th>
-                                                                        <th width="5px">Amount</th>
-                                                                        <th width="5px">Action</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <select class="form-control">
-                                                                                <option>Office of the Provincial Governor</option>
-                                                                            </select>
-                                                                        </td>
-                                                                        <td><input type="text" class="form-control text-right" value="0.00" /></td>
-                                                                        <td><button type="button" class="btn btn-icon bg-headerbc" data-toggle="popoverShowRCD" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
+                                                <div id="Divregular">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-striped table-bordered zero-configuration w-100">
+                                                                    <thead class="text-center">
+                                                                        <tr>
+                                                                            <th>Title</th>
+                                                                            <th width="30%">Amount</th>
+                                                                            <th width="5px">Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <select class="form-control">
+                                                                                    <option>Office of the Provincial Governor</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td><input type="text" class="form-control text-right" value="100,000,000,000.00" /></td>
+                                                                            <td><button type="button" class="btn btn-icon bg-headerbc" data-toggle="popoverShowRCD" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+
+                                                                </div>
+                                                                <div class="col-md-3 text-right">
+                                                                    <label class="mt-1">Total Amount:</label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <input type="text" class="form-control text-right" value="100,000,000,000.00" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div id="Divjoborder">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-striped table-bordered zero-configuration w-100">
+                                                                    <thead class="text-center">
+                                                                        <tr>
+                                                                            <th>Title</th>
+                                                                            <th>Amount</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="text-center">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <select class="form-control">
+                                                                                    <option>Cluster 1</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td><input type="text" class="form-control text-right" value="100,000,000,000.00" /></td>
+                                                                            <td><button type="button" class="btn btn-icon bg-headerbc" data-toggle="popoverShowRCD" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+
+                                                                </div>
+                                                                <div class="col-md-3 text-right">
+                                                                    <label class="mt-1">Total Amount:</label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <input type="text" class="form-control text-right" value="100,000,000,000.00" />
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -122,20 +185,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                                <div class="row">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-10">
-                                        <div class="row">
-                                            <div class="col-md-7"></div>
-                                            <div class="col-md-5 form-inline">
-                                                <label class="mt-1 mr-2">Total Amount:</label>
-                                                <input type="text" class="form-control text-right" value="0.00" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                   
-                                </div>
                             <div class="row">
                                 <div class="col-md-2"></div>
                                 <div class="col"><b>SIGNED BY</b></div>
@@ -157,12 +206,12 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
     <div class="row mt-1">
         <div class="col-md-4"></div>
         <div class="col-md-4">
@@ -185,3 +234,19 @@
 
 
 
+<style>
+    #Divjoborder {
+        display: none;
+    }
+</style>
+<script>
+    $("#RBregular").click();
+    $("input[id='RBregular']").change(function () {
+        $("#Divjoborder").toggle('hide');
+        $("#Divregular").toggle('show');
+    });
+    $("input[id='RBjoborder']").change(function () {
+        $("#Divregular").toggle('hide');
+        $("#Divjoborder").toggle('show');
+    });
+</script>
