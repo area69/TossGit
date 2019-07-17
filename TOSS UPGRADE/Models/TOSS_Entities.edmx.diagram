@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="DB_TOSSModel.Level1Modules" Width="1.5" PointX="8" PointY="2" />
         <EntityTypeShape EntityType="DB_TOSSModel.Level2Modules" Width="1.5" PointX="10.25" PointY="2" />
         <EntityTypeShape EntityType="DB_TOSSModel.Level3Modules" Width="1.5" PointX="12.5" PointY="2.125" />
-        <EntityTypeShape EntityType="DB_TOSSModel.ParentModule" Width="1.5" PointX="5.75" PointY="1.875" />
+        <EntityTypeShape EntityType="DB_TOSSModel.ParentModule" Width="1.5" PointX="6.25" PointY="0.625" />
         <EntityTypeShape EntityType="DB_TOSSModel.PersonalInformation" Width="1.5" PointX="7.75" PointY="8.875" />
         <EntityTypeShape EntityType="DB_TOSSModel.PositionName" Width="1.5" PointX="7.75" PointY="6" />
         <EntityTypeShape EntityType="DB_TOSSModel.SignatoriesTable" Width="1.5" PointX="10" PointY="5.875" />

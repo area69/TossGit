@@ -67,7 +67,7 @@
                                 </tr>
                                 <tr>
                                     <td ALIGN="CENTER" rowspan="2" colspan="1">Address</td>
-                                    <td rowspan="2" colspan="1"><textarea style="height:100px; text-align:left; vertical-align:text-top;" class="form-control">Metro Manila</textarea></td>
+                                    <td rowspan="2" colspan="1"><textarea style="height:96px; text-align:left; vertical-align:text-top;" class="form-control">Metro Manila</textarea></td>
                                     <td ALIGN="CENTER" colspan="9">Responsibility Center</td>
                                 </tr>
                                 <tr>
@@ -113,7 +113,7 @@
                                     </td>
                                     <td colspan="8">
                                         <label>Detail:</label>
-                                        <input class="form-control" style="height:70px" value="" />
+                                        <textarea class="form-control" style="height:70px"></textarea>
 
                                     </td>
                                 </tr>
@@ -592,12 +592,11 @@
                                                 <button class="btn bg-addbutton form-control black"><b>Save Attachment</b></button>
                                             </div>
 
-                                            <div class="col-md-3 form-group">
-                                                <img id="blah" src="~/Resources/Logo/docicon.png" style="max-width:150px;" alt="your image" />
-                                                <label class="ft-plus-square font-medium-2 success btn" for="my-file-selector">
-                                                    <input id="my-file-selector" type="file" style="display:none;">
-                                                    <span>Upload File</span>
-                                                </label>
+                                            <div class="col-md-3">
+                                                <img id="blah" src="~/Resources/Logo/docicon.png" class="pull-right" style="max-width:150px;" alt="your image" />
+                                                <div class="ml-5 pl-2">
+                                                    <button id="uploadFile" class="btn bg-addbutton btn-min-width"><b>Upload File</b></button>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
