@@ -174,18 +174,8 @@
                                                 <div class="modal-body skin skin-square">
                                                     <div class="row">
                                                         <div class="col-md-1"></div>
-                                                        <div class="col-md-10">
-                                                            <div class="row">
-                                                                <div class="col-md-3 mt-1">
-                                                                    <label>Account Type</label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <input type="text" class="form-control" value="" />
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <label><button class="btn bg-addbutton form-control black"><b>Save</b></button></label>
-                                                                </div>
-                                                            </div>
+                                                        <div class="col-md-10" id="AccountTypeID">
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="row mt-1">
@@ -230,6 +220,14 @@
         F.SuccessSave1 = function () {
             var SuccessMess = F.P;
             swalSuccess("Fund Type Successfully Added", SuccessMess);
+        }
+        F.SuccessSave2 = function () {
+            var SuccessMess = F.P;
+            swalSuccess("Account Type Successfully Added", SuccessMess);
+        }
+        F.SuccessUpdate = function () {
+            var SuccessMess = F.P;
+            swalSuccess("Account Type Successfully Update", SuccessMess);
         }
         F.Get_FundTypeTables = function () {
             P({
@@ -344,6 +342,7 @@
                 $("#AccountCodeDivID").html(response.data);
             });
         }
+
         F.LoadDynamicDDAccountType = function () {
             P({
                 url: '/FileMaintenanceGeneralReference/GetDynamicAccountType',
@@ -351,17 +350,39 @@
                 $("#AccountTypeDivID").html(response.data);
             });
         }
-
+        F.Get_AddAccountType = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_AddAccountType',
+            }).then(function (response) {
+                $("#AccountTypeID").html(response.data);
+            });
+        }
         F.Get_AccountTypeTable = function () {
             P({
                 url: '/FileMaintenanceGeneralReference/Get_AccountTypeTable',
             }).then(function (response) {
                 $("#AccountTableID").html(response.data);
             });
-            //F.Get_AddPosition();
+            F.Get_AddAccountType();
         }
-       
+        F.Get_UpdateAccountType = function (AccountID) {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_UpdateAccountType',
+                params: { AccountID: AccountID }
+            }).then(function (response) {
+                $("#AccountTypeID").html(response.data);
+            });
+        }
+        F.Get_DeleteAccountType = function (AccountID) {
+            P({
+                url: '/FileMaintenanceGeneralReference/DeleteAccountType',
+                params: { AccountID: AccountID }
+            }).then(function (response) {
+                F.Get_AccountTypeTable();
+            });
+        }
     });
+
     function CurrentAccountConcate() {
 
         var FundNameListIDTemp = document.getElementById("FundNameListID2");

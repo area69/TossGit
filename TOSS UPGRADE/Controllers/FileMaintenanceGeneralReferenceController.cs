@@ -247,7 +247,49 @@ namespace TOSS_UPGRADE.Controllers
 
         }
 
+        //Get Add Account Type Partial View
+        public ActionResult Get_AddAccountType()
+        {
+            FM_GeneralReference_BankAccount model = new FM_GeneralReference_BankAccount();
+            return PartialView("BankAccounts/_AddAccountType", model);
+        }
+
+        //Add Account Type
+        public JsonResult AddAccountType(FM_GeneralReference_BankAccount model)
+        {
+            BankAccount_AccountType tblAccountType = new BankAccount_AccountType();
+            tblAccountType.AccountType = GlobalFunction.ReturnEmptyString(model.getAccountTypeColumns.AccountType);
+            TOSSDB.BankAccount_AccountType.Add(tblAccountType);
+            TOSSDB.SaveChanges();
+            return Json(tblAccountType);
+        }
+
+        //Get Update Account Type
+        public ActionResult Get_UpdateAccountType(FM_GeneralReference_BankAccount model, int AccountID)
+        {
+            BankAccount_AccountType tblAccountType = (from e in TOSSDB.BankAccount_AccountType where e.AccountID == AccountID select e).FirstOrDefault();
+            model.getAccountTypeColumns.AccountID = tblAccountType.AccountID;
+            model.getAccountTypeColumns.AccountType = tblAccountType.AccountType;
+            return PartialView("BankAccounts/_UpdateAccountType", model);
+        }
+        //Update Account Type
+        public ActionResult UpdateAccountType(FM_GeneralReference_BankAccount model)
+        {
+            BankAccount_AccountType tblAccountType = (from e in TOSSDB.BankAccount_AccountType where e.AccountID == model.getAccountTypeColumns.AccountID select e).FirstOrDefault();
+            tblAccountType.AccountType = model.getAccountTypeColumns.AccountType;
+            TOSSDB.Entry(tblAccountType);
+            TOSSDB.SaveChanges();
+            return PartialView("BankAccounts/_UpdateAccountType", model);
+        }
 
 
+        //Delete Account Type
+        public ActionResult DeleteAccountType(FM_GeneralReference_BankAccount model, int AccountID)
+        {
+            BankAccount_AccountType tblAccountType = (from e in TOSSDB.BankAccount_AccountType where e.AccountID == AccountID select e).FirstOrDefault();
+            TOSSDB.BankAccount_AccountType.Remove(tblAccountType);
+            TOSSDB.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
