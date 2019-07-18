@@ -8901,6 +8901,8 @@
     <Content Include="Views\AuthoritytoDebitCredit\Index.cshtml" />
     <Content Include="Views\BankTransactionInvestment\Index.cshtml" />
     <Content Include="Views\BankTransactionADebitAgencyBankAccount\Index.cshtml" />
+    <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_AddAccountType.cshtml" />
+    <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_AccountTypeTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

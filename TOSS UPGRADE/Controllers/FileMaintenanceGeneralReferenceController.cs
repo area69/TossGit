@@ -212,5 +212,42 @@ namespace TOSS_UPGRADE.Controllers
             return PartialView("BankAccounts/_AddBankAccount", model);
         }
 
+        //Account Type Table Partial View
+        public ActionResult Get_AccountTypeTable()
+        {
+            FM_GeneralReference_BankAccount model = new FM_GeneralReference_BankAccount();
+            List<BankAccount_AccountType> tbl_AccountType = new List<BankAccount_AccountType>();
+
+            var SQLQuery = "SELECT * FROM DB_TOSS.dbo.BankAccount_AccountType order by AccountType asc";
+            //SQLQuery += " WHERE (IsActive != 0)";
+            using (SqlConnection Connection = new SqlConnection(GlobalFunction.ReturnConnectionString()))
+            {
+                Connection.Open();
+                using (SqlCommand command = new SqlCommand("[dbo].[SP_AccountTypeList]", Connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@SQLStatement", SQLQuery));
+                    SqlDataReader dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        tbl_AccountType.Add(new BankAccount_AccountType()
+                        {
+                            AccountID = GlobalFunction.ReturnEmptyInt(dr[0]),
+                            AccountType = GlobalFunction.ReturnEmptyString(dr[1]),
+                        });
+                    }
+                }
+                Connection.Close();
+            }
+
+            model.getAccountType = tbl_AccountType.ToList();
+
+
+            return PartialView("BankAccounts/_AccountTypeTable", model.getAccountType);
+
+        }
+
+
+
     }
 }

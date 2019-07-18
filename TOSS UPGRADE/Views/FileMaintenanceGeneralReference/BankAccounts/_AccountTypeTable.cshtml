@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TOSS_UPGRADE.Models.BankAccount_AccountType>
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+
+<div class="col-md-12">
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered zero-configuration">
+            <thead class="text-center">
+                <tr>
+                    <th>Account Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @{
+                    foreach (var Items in Model)
+                    {
+                        var ViewEdit = "<button class=\"btn btn-icon btn-block white bg-addbutton border-0\" type=\"button\"><i class='la la-edit'></i> Edit </button>";
+                        var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\"> <i class='ft-delete'></i> Delete</button>";
+                        var ActionContentProgram = ViewEdit + ViewDelete;
+                        <tr>
+                            <td>@Items.AccountType</td>
+                            <td>
+                                <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-m btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
+                                        data-original-title="" data-html="true" data-placement="right">
+                                    <i class="la la-bars"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <script>
+
+            $(function () {
+                LoadDataTable();
+                LoadPopOver();
+            })
+        </script>
+    </div>
+</div>

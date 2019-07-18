@@ -191,25 +191,8 @@
                                                     <div class="row mt-1">
                                                         <div class="col-md-1"></div>
                                                         <div class="col-md-10">
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="table-responsive">
-                                                                        <table class="table table-striped table-bordered zero-configuration">
-                                                                            <thead class="text-center">
-                                                                                <tr>
-                                                                                    <th>Account Type</th>
-                                                                                    <th>Action</th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody class="text-center">
-                                                                                <tr>
-                                                                                    <td>Joint Technical and Credit Assistance Program</td>
-                                                                                    <td><button type="button" class="btn btn-icon bg-headerbc text-white"><i class="la la-reorder"></i></button></td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
+                                                            <div class="row" id="AccountTableID">
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -237,6 +220,7 @@
             F.Get_FundTypeTables();
             F.Get_BankTables();
             F.Get_AddBankAccounts();
+            F.Get_AccountTypeTable();
             F.LoadDynamicDDBank();
             F.LoadDynamicDDAccountCode();
             F.LoadDynamicDDAccountType();
@@ -368,6 +352,14 @@
             });
         }
 
+        F.Get_AccountTypeTable = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_AccountTypeTable',
+            }).then(function (response) {
+                $("#AccountTableID").html(response.data);
+            });
+            //F.Get_AddPosition();
+        }
        
     });
     function CurrentAccountConcate() {
