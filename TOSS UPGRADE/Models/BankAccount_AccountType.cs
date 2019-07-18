@@ -20,7 +20,7 @@ namespace TOSS_UPGRADE.Models
             this.BankAccountTables = new HashSet<BankAccountTable>();
         }
     
-        public int AccountID { get; set; }
+        public int AccountTypeID { get; set; }
         public string AccountType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

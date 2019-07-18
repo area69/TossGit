@@ -6,7 +6,7 @@
 @using (Ajax.BeginForm("UpdateAccountType", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithTripleFunc('FMGeneralReferenceController', 'Get_AccountTypeTable',  'LoadDynamicDDAccountType','SuccessUpdate')", OnFailure = "OnFailure()", }))
 {
     <div class="row">
-        @Html.HiddenFor(m => m.getAccountTypeColumns.AccountID, new { })
+        @Html.HiddenFor(m => m.getAccountTypeColumns.AccountTypeID, new { })
         <div class="col-md-7 pr-0 mr-1 form-group">
             <label>Account Type</label>
             @Html.TextBoxFor(m => m.getAccountTypeColumns.AccountType, new { @class = "form-control", type = "text" })

@@ -203,13 +203,8 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult GetDynamicAccountType()
         {
             FM_GeneralReference_BankAccount model = new FM_GeneralReference_BankAccount();
-            model.getBankAccountAccountTypeList = new SelectList((from s in TOSSDB.BankAccount_AccountType.ToList() orderby s.AccountID ascending select new { AccountID = s.AccountID, AccountType = s.AccountType }), "AccountID", "AccountType");
+            model.getBankAccountAccountTypeList = new SelectList((from s in TOSSDB.BankAccount_AccountType.ToList() orderby s.AccountTypeID ascending select new { AccountTypeID = s.AccountTypeID, AccountType = s.AccountType }), "AccountTypeID", "AccountType");
             return PartialView("BankAccounts/_DynamicDDAccountType", model);
-        }
-        //Get Add Bank Account Partial View
-        public ActionResult Get_AddBankAccounts(FM_GeneralReference_BankAccount model)
-        {
-            return PartialView("BankAccounts/_AddBankAccount", model);
         }
 
         //Account Type Table Partial View
@@ -232,7 +227,7 @@ namespace TOSS_UPGRADE.Controllers
                     {
                         tbl_AccountType.Add(new BankAccount_AccountType()
                         {
-                            AccountID = GlobalFunction.ReturnEmptyInt(dr[0]),
+                            AccountTypeID = GlobalFunction.ReturnEmptyInt(dr[0]),
                             AccountType = GlobalFunction.ReturnEmptyString(dr[1]),
                         });
                     }
@@ -265,31 +260,91 @@ namespace TOSS_UPGRADE.Controllers
         }
 
         //Get Update Account Type
-        public ActionResult Get_UpdateAccountType(FM_GeneralReference_BankAccount model, int AccountID)
+        public ActionResult Get_UpdateAccountType(FM_GeneralReference_BankAccount model, int AccountTypeID)
         {
-            BankAccount_AccountType tblAccountType = (from e in TOSSDB.BankAccount_AccountType where e.AccountID == AccountID select e).FirstOrDefault();
-            model.getAccountTypeColumns.AccountID = tblAccountType.AccountID;
+            BankAccount_AccountType tblAccountType = (from e in TOSSDB.BankAccount_AccountType where e.AccountTypeID == AccountTypeID select e).FirstOrDefault();
+            model.getAccountTypeColumns.AccountTypeID = tblAccountType.AccountTypeID;
             model.getAccountTypeColumns.AccountType = tblAccountType.AccountType;
             return PartialView("BankAccounts/_UpdateAccountType", model);
         }
+
         //Update Account Type
         public ActionResult UpdateAccountType(FM_GeneralReference_BankAccount model)
         {
-            BankAccount_AccountType tblAccountType = (from e in TOSSDB.BankAccount_AccountType where e.AccountID == model.getAccountTypeColumns.AccountID select e).FirstOrDefault();
+            BankAccount_AccountType tblAccountType = (from e in TOSSDB.BankAccount_AccountType where e.AccountTypeID == model.getAccountTypeColumns.AccountTypeID select e).FirstOrDefault();
             tblAccountType.AccountType = model.getAccountTypeColumns.AccountType;
             TOSSDB.Entry(tblAccountType);
             TOSSDB.SaveChanges();
             return PartialView("BankAccounts/_UpdateAccountType", model);
         }
 
-
         //Delete Account Type
-        public ActionResult DeleteAccountType(FM_GeneralReference_BankAccount model, int AccountID)
+        public ActionResult DeleteAccountType(FM_GeneralReference_BankAccount model, int AccountTypeID)
         {
-            BankAccount_AccountType tblAccountType = (from e in TOSSDB.BankAccount_AccountType where e.AccountID == AccountID select e).FirstOrDefault();
+            BankAccount_AccountType tblAccountType = (from e in TOSSDB.BankAccount_AccountType where e.AccountTypeID == AccountTypeID select e).FirstOrDefault();
             TOSSDB.BankAccount_AccountType.Remove(tblAccountType);
             TOSSDB.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        //Bank Account Table Partial View
+        public ActionResult Get_BankAccountTable()
+        {
+            FM_GeneralReference_BankAccount model = new FM_GeneralReference_BankAccount();
+            List<BankAccountList> tbl_BankAccount = new List<BankAccountList>();
+
+            var SQLQuery = "SELECT * FROM DB_TOSS.dbo.BankAccountTable,dbo.BankTable,dbo.FundType_FundName,dbo.BankAccount_AccountCode,dbo.BankAccount_AccountType where dbo.BankTable.BankID=BankAccountTable.BankID and dbo.FundType_FundName.FundID=BankAccountTable.FundID and dbo.BankAccount_AccountCode.AccountCodeID=BankAccountTable.AccountCodeID and dbo.BankAccount_AccountType.AccountTypeID=BankAccountTable.AccountTypeID";
+            //SQLQuery += " WHERE (IsActive != 0)";
+            using (SqlConnection Connection = new SqlConnection(GlobalFunction.ReturnConnectionString()))
+            {
+                Connection.Open();
+                using (SqlCommand command = new SqlCommand("[dbo].[SP_BankAccountTable]", Connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@SQLStatement", SQLQuery));
+                    SqlDataReader dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        tbl_BankAccount.Add(new BankAccountList()
+                        {
+                            BankAccountID = GlobalFunction.ReturnEmptyInt(dr[0]),
+                            BankName = GlobalFunction.ReturnEmptyString(dr[9]),
+                            AccountName = GlobalFunction.ReturnEmptyString(dr[2]),
+                            AccountNo = GlobalFunction.ReturnEmptyString(dr[3]),
+                            FundName = GlobalFunction.ReturnEmptyString(dr[11]),
+                            CurrentAccount = GlobalFunction.ReturnEmptyString(dr[5]),
+                            AccountCode = GlobalFunction.ReturnEmptyString(dr[13]),
+                            AccountType = GlobalFunction.ReturnEmptyString(dr[15]),
+                        });
+                    }
+                }
+                Connection.Close();
+            }
+            model.getBankAccountList = tbl_BankAccount.ToList();
+            return PartialView("BankAccounts/_BankAccountTable", model.getBankAccountList);
+        }
+
+        //Get Add Bank Account Partial View
+        public ActionResult Get_AddBankAccount()
+        {
+            FM_GeneralReference_BankAccount model = new FM_GeneralReference_BankAccount();
+            return PartialView("BankAccounts/_AddBankAccount", model);
+        }
+
+        //Add Bank Account
+        public JsonResult AddBankAccount(FM_GeneralReference_BankAccount model)
+        {
+            BankAccountTable tblBankAccount = new BankAccountTable();
+            tblBankAccount.BankID =model.BankAccountBankID;
+            tblBankAccount.AccountName = model.getBankAccountColumns.AccountName;
+            tblBankAccount.AccountNo = model.getBankAccountColumns.AccountNo;
+            tblBankAccount.FundID = model.FundID;
+            tblBankAccount.CurrentAccount = model.getBankAccountColumns.CurrentAccount;
+            tblBankAccount.AccountCodeID = model.AccountCodeID;
+            tblBankAccount.AccountTypeID = model.AccountTypeID;
+            TOSSDB.BankAccountTables.Add(tblBankAccount);
+            TOSSDB.SaveChanges();
+            return Json(tblBankAccount);
         }
     }
 }

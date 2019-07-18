@@ -4,8 +4,9 @@
 }
 @using TOSS_UPGRADE.Models;
 
-
-  <div class="row">
+@using (Ajax.BeginForm("AddBankAccount", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc('FMGeneralReferenceController', 'Get_AddBankAccount','SuccessSave')", OnFailure = "OnFailure()", }))
+{
+    <div class="row">
         <div class="col-md-5 form-group" id="BankDivID">
 
         </div>
@@ -15,7 +16,7 @@
         </div>
         <div class="col-md-4 form-group">
             <label>Current Account</label>
-            <input type="text" class="form-control" value="" id="CurrentAccountID" />
+            @Html.TextBoxFor(m => m.getBankAccountColumns.CurrentAccount, new { @class = "form-control", type = "text", id = "CurrentAccountID" })
         </div>
     </div>
 
@@ -25,42 +26,43 @@
         </div>
         <div class="col-md-3 form-group">
             <label>Account Name</label>
-            <input type="text" class="form-control" value="" />
+            @Html.TextBoxFor(m => m.getBankAccountColumns.AccountName, new { @class = "form-control", type = "text" })
         </div>
         <div class="col-md-4 form-group">
             <label>Account No</label>
-            <input type="text" class="form-control" value="" />
+            @Html.TextBoxFor(m => m.getBankAccountColumns.AccountNo, new { @class = "form-control", type = "text" })
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-5 form-group" id="AccountTypeDivID">
+
         </div>
         <div class="col-md-2">
             <label style="visibility:hidden">New Bank</label>
-            
-            <button type="button" class="form-control bg-addbutton black"  data-toggle="modal" data-target="#addAccountTypeModal"><b>New Account</b></button>
+            <button type="button" class="form-control bg-addbutton black" data-toggle="modal" data-target="#addAccountTypeModal"><b>New Account</b></button>
         </div>
-        <div class="col-md-1 form-group">
+        <div class="col-md-1">
 
         </div>
         <div class="col-md-4">
             <div class="row">
                 <div class="col-md-6">
                     <label style="visibility:hidden">New Bank</label>
-                    <button type="button" class="btn bg-addbutton black form-control"><b>Save</b></button>
+                    <button type="submit" class="btn bg-addbutton black form-control"><b>Save</b></button>
                 </div>
                 <div class="col-md-6">
                     <label style="visibility:hidden">New Bank</label>
-                    <button type="button" class="btn bg-headerbc black form-control"><b>Cancel</b></button>
+                    <button type="reset" class="btn bg-headerbc black form-control"><b>Cancel</b></button>
                 </div>
             </div>
         </div>
     </div>
-<script>
-    $(function () {
-        LoadDataTable();
-        LoadPopOver();
-        CurrentAccountConcate();
-    })
-</script>
+}
+    <script>
+        $(function () {
+            LoadDataTable();
+            LoadPopOver();
+            CurrentAccountConcate();
+        })
+    </script>

@@ -21,13 +21,13 @@
             <PropertyRef Name="AccountCodeID" />
           </Key>
           <Property Name="AccountCodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AccountCode" Type="varchar" MaxLength="50" />
+          <Property Name="AccountCode" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="BankAccount_AccountType">
           <Key>
-            <PropertyRef Name="AccountID" />
+            <PropertyRef Name="AccountTypeID" />
           </Key>
-          <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AccountType" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="BankAccountTable">
@@ -41,7 +41,7 @@
           <Property Name="FundID" Type="int" Nullable="false" />
           <Property Name="CurrentAccount" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="AccountCodeID" Type="int" Nullable="false" />
-          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="AccountTypeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="BankTable">
           <Key>
@@ -156,18 +156,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BankAccount_AccountCode_BankAccount_AccountCode">
-          <End Role="BankAccount_AccountCode" Type="Self.BankAccount_AccountCode" Multiplicity="1" />
-          <End Role="BankAccount_AccountCode1" Type="Self.BankAccount_AccountCode" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="BankAccount_AccountCode">
-              <PropertyRef Name="AccountCodeID" />
-            </Principal>
-            <Dependent Role="BankAccount_AccountCode1">
-              <PropertyRef Name="AccountCodeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_BankAccountTable_BankAccount_AccountCode">
           <End Role="BankAccount_AccountCode" Type="Self.BankAccount_AccountCode" Multiplicity="1" />
           <End Role="BankAccountTable" Type="Self.BankAccountTable" Multiplicity="*" />
@@ -185,10 +173,10 @@
           <End Role="BankAccountTable" Type="Self.BankAccountTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BankAccount_AccountType">
-              <PropertyRef Name="AccountID" />
+              <PropertyRef Name="AccountTypeID" />
             </Principal>
             <Dependent Role="BankAccountTable">
-              <PropertyRef Name="AccountID" />
+              <PropertyRef Name="AccountTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -320,10 +308,6 @@
             <End Role="PersonalInformation" EntitySet="PersonalInformation" />
             <End Role="Accounts" EntitySet="Accounts" />
           </AssociationSet>
-          <AssociationSet Name="FK_BankAccount_AccountCode_BankAccount_AccountCode" Association="Self.FK_BankAccount_AccountCode_BankAccount_AccountCode">
-            <End Role="BankAccount_AccountCode" EntitySet="BankAccount_AccountCode" />
-            <End Role="BankAccount_AccountCode1" EntitySet="BankAccount_AccountCode" />
-          </AssociationSet>
           <AssociationSet Name="FK_BankAccountTable_BankAccount_AccountCode" Association="Self.FK_BankAccountTable_BankAccount_AccountCode">
             <End Role="BankAccount_AccountCode" EntitySet="BankAccount_AccountCode" />
             <End Role="BankAccountTable" EntitySet="BankAccountTable" />
@@ -393,10 +377,6 @@
             <End Role="PersonalInformation" EntitySet="PersonalInformations" />
             <End Role="Account" EntitySet="Accounts" />
           </AssociationSet>
-          <AssociationSet Name="FK_BankAccount_AccountCode_BankAccount_AccountCode" Association="DB_TOSSModel.FK_BankAccount_AccountCode_BankAccount_AccountCode">
-            <End Role="BankAccount_AccountCode" EntitySet="BankAccount_AccountCode" />
-            <End Role="BankAccount_AccountCode1" EntitySet="BankAccount_AccountCode" />
-          </AssociationSet>
           <AssociationSet Name="FK_BankAccountTable_BankAccount_AccountCode" Association="DB_TOSSModel.FK_BankAccountTable_BankAccount_AccountCode">
             <End Role="BankAccount_AccountCode" EntitySet="BankAccount_AccountCode" />
             <End Role="BankAccountTable" EntitySet="BankAccountTables" />
@@ -459,16 +439,14 @@
             <PropertyRef Name="AccountCodeID" />
           </Key>
           <Property Name="AccountCodeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AccountCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="BankAccount_AccountCode1" Relationship="DB_TOSSModel.FK_BankAccount_AccountCode_BankAccount_AccountCode" FromRole="BankAccount_AccountCode" ToRole="BankAccount_AccountCode1" />
-          <NavigationProperty Name="BankAccount_AccountCode2" Relationship="DB_TOSSModel.FK_BankAccount_AccountCode_BankAccount_AccountCode" FromRole="BankAccount_AccountCode1" ToRole="BankAccount_AccountCode" />
+          <Property Name="AccountCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BankAccountTables" Relationship="DB_TOSSModel.FK_BankAccountTable_BankAccount_AccountCode" FromRole="BankAccount_AccountCode" ToRole="BankAccountTable" />
         </EntityType>
         <EntityType Name="BankAccount_AccountType">
           <Key>
-            <PropertyRef Name="AccountID" />
+            <PropertyRef Name="AccountTypeID" />
           </Key>
-          <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AccountType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BankAccountTables" Relationship="DB_TOSSModel.FK_BankAccountTable_BankAccountTable" FromRole="BankAccount_AccountType" ToRole="BankAccountTable" />
         </EntityType>
@@ -483,7 +461,7 @@
           <Property Name="FundID" Type="Int32" Nullable="false" />
           <Property Name="CurrentAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AccountCodeID" Type="Int32" Nullable="false" />
-          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="AccountTypeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BankAccount_AccountCode" Relationship="DB_TOSSModel.FK_BankAccountTable_BankAccount_AccountCode" FromRole="BankAccountTable" ToRole="BankAccount_AccountCode" />
           <NavigationProperty Name="BankAccount_AccountType" Relationship="DB_TOSSModel.FK_BankAccountTable_BankAccountTable" FromRole="BankAccountTable" ToRole="BankAccount_AccountType" />
           <NavigationProperty Name="BankTable" Relationship="DB_TOSSModel.FK_BankAccountTable_BankTable" FromRole="BankAccountTable" ToRole="BankTable" />
@@ -619,18 +597,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BankAccount_AccountCode_BankAccount_AccountCode">
-          <End Type="DB_TOSSModel.BankAccount_AccountCode" Role="BankAccount_AccountCode" Multiplicity="1" />
-          <End Type="DB_TOSSModel.BankAccount_AccountCode" Role="BankAccount_AccountCode1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="BankAccount_AccountCode">
-              <PropertyRef Name="AccountCodeID" />
-            </Principal>
-            <Dependent Role="BankAccount_AccountCode1">
-              <PropertyRef Name="AccountCodeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_BankAccountTable_BankAccount_AccountCode">
           <End Type="DB_TOSSModel.BankAccount_AccountCode" Role="BankAccount_AccountCode" Multiplicity="1" />
           <End Type="DB_TOSSModel.BankAccountTable" Role="BankAccountTable" Multiplicity="*" />
@@ -648,10 +614,10 @@
           <End Type="DB_TOSSModel.BankAccountTable" Role="BankAccountTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BankAccount_AccountType">
-              <PropertyRef Name="AccountID" />
+              <PropertyRef Name="AccountTypeID" />
             </Principal>
             <Dependent Role="BankAccountTable">
-              <PropertyRef Name="AccountID" />
+              <PropertyRef Name="AccountTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -793,14 +759,14 @@
             <EntityTypeMapping TypeName="DB_TOSSModel.BankAccount_AccountType">
               <MappingFragment StoreEntitySet="BankAccount_AccountType">
                 <ScalarProperty Name="AccountType" ColumnName="AccountType" />
-                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BankAccountTables">
             <EntityTypeMapping TypeName="DB_TOSSModel.BankAccountTable">
               <MappingFragment StoreEntitySet="BankAccountTable">
-                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
                 <ScalarProperty Name="AccountCodeID" ColumnName="AccountCodeID" />
                 <ScalarProperty Name="CurrentAccount" ColumnName="CurrentAccount" />
                 <ScalarProperty Name="FundID" ColumnName="FundID" />

@@ -23,8 +23,6 @@ namespace TOSS_UPGRADE.Models
         public int AccountCodeID { get; set; }
         public string AccountCode { get; set; }
     
-        public virtual BankAccount_AccountCode BankAccount_AccountCode1 { get; set; }
-        public virtual BankAccount_AccountCode BankAccount_AccountCode2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BankAccountTable> BankAccountTables { get; set; }
     }

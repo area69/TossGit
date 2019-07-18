@@ -21,7 +21,7 @@ namespace TOSS_UPGRADE.Models
         public int FundID { get; set; }
         public string CurrentAccount { get; set; }
         public int AccountCodeID { get; set; }
-        public int AccountID { get; set; }
+        public int AccountTypeID { get; set; }
     
         public virtual BankAccount_AccountCode BankAccount_AccountCode { get; set; }
         public virtual BankAccount_AccountType BankAccount_AccountType { get; set; }

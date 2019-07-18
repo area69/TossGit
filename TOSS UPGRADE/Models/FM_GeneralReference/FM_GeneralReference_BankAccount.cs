@@ -24,6 +24,10 @@ namespace TOSS_UPGRADE.Models
             //Account Type
             getAccountType = new List<BankAccount_AccountType>();
             getAccountTypeColumns = new BankAccount_AccountType();
+            //Bank Account
+            getBankAccount = new List<BankAccountTable>();
+            getBankAccountColumns = new BankAccountTable();
+            getBankAccountList = new List<BankAccountList>();
         }
         //Bank Account Bank Name
         public BankTable getBankAccountBankColumns { get; set; }
@@ -58,6 +62,12 @@ namespace TOSS_UPGRADE.Models
         public int AccountTypeID { get; set; }
         public IEnumerable<System.Web.Mvc.SelectListItem> getBankAccountAccountTypeList { get; set; }
         public List<BankAccountAccountTypeList> getBankAccountAccountType { get; set; }
+
+        //Bank Account
+        public BankAccountTable getBankAccountColumns { get; set; }
+        public IEnumerable<TOSS_UPGRADE.Models.BankAccountTable> getBankAccount { get; set; }
+        
+        public List<BankAccountList> getBankAccountList { get; set; }
     }
     //Bank Name
     public class BankAccountBankList
@@ -77,4 +87,18 @@ namespace TOSS_UPGRADE.Models
         public int BankAccountAccountTypeID { get; set; }
         public string BankAccountAccountType { get; set; }
     }
+
+    public class BankAccountList
+    {
+        public int BankAccountID { get; set; }
+        public string BankName { get; set; }
+        public string AccountName { get; set; }
+        public string AccountNo { get; set; }
+        public string FundName { get; set; }
+        public string CurrentAccount { get; set; }
+        public string AccountCode { get; set; }
+        public string AccountType { get; set; }
+
+    }
+
 }
