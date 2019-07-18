@@ -379,6 +379,7 @@
                 params: { AccountID: AccountID }
             }).then(function (response) {
                 F.Get_AccountTypeTable();
+                F.LoadDynamicDDAccountType();
             });
         }
     });
