@@ -36,6 +36,8 @@ namespace TOSS_UPGRADE.Models
         public virtual DbSet<Level1Modules> Level1Modules { get; set; }
         public virtual DbSet<Level2Modules> Level2Modules { get; set; }
         public virtual DbSet<Level3Modules> Level3Modules { get; set; }
+        public virtual DbSet<MemoAccClass_AccountCode> MemoAccClass_AccountCode { get; set; }
+        public virtual DbSet<MemoAccClassTable> MemoAccClassTables { get; set; }
         public virtual DbSet<ParentModule> ParentModules { get; set; }
         public virtual DbSet<PersonalInformation> PersonalInformations { get; set; }
         public virtual DbSet<PositionName> PositionNames { get; set; }

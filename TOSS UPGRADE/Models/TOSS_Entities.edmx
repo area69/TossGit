@@ -107,6 +107,22 @@
           <Property Name="ActionName" Type="varchar" MaxLength="50" />
           <Property Name="JSID" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="MemoAccClass_AccountCode">
+          <Key>
+            <PropertyRef Name="AccountCodeID" />
+          </Key>
+          <Property Name="AccountCodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AccountTitle" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemoAccClassTable">
+          <Key>
+            <PropertyRef Name="MemoAccClassID" />
+          </Key>
+          <Property Name="MemoAccClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RevisionYear" Type="int" Nullable="false" />
+          <Property Name="AccountCodeID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="ParentModules">
           <Key>
             <PropertyRef Name="ModuleParentID" />
@@ -252,6 +268,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MemoAccClassTable_MemoAccClass_AccountCode">
+          <End Role="MemoAccClass_AccountCode" Type="Self.MemoAccClass_AccountCode" Multiplicity="1" />
+          <End Role="MemoAccClassTable" Type="Self.MemoAccClassTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemoAccClass_AccountCode">
+              <PropertyRef Name="AccountCodeID" />
+            </Principal>
+            <Dependent Role="MemoAccClassTable">
+              <PropertyRef Name="AccountCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ParentModules_ParentModules">
           <End Role="ParentModules" Type="Self.ParentModules" Multiplicity="1" />
           <End Role="ParentModules1" Type="Self.ParentModules" Multiplicity="0..1" />
@@ -300,6 +328,8 @@
           <EntitySet Name="Level1Modules" EntityType="Self.Level1Modules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Level2Modules" EntityType="Self.Level2Modules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Level3Modules" EntityType="Self.Level3Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemoAccClass_AccountCode" EntityType="Self.MemoAccClass_AccountCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemoAccClassTable" EntityType="Self.MemoAccClassTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParentModules" EntityType="Self.ParentModules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonalInformation" EntityType="Self.PersonalInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PositionName" EntityType="Self.PositionName" Schema="dbo" store:Type="Tables" />
@@ -340,6 +370,10 @@
             <End Role="Level2Modules" EntitySet="Level2Modules" />
             <End Role="Level3Modules" EntitySet="Level3Modules" />
           </AssociationSet>
+          <AssociationSet Name="FK_MemoAccClassTable_MemoAccClass_AccountCode" Association="Self.FK_MemoAccClassTable_MemoAccClass_AccountCode">
+            <End Role="MemoAccClass_AccountCode" EntitySet="MemoAccClass_AccountCode" />
+            <End Role="MemoAccClassTable" EntitySet="MemoAccClassTable" />
+          </AssociationSet>
           <AssociationSet Name="FK_ParentModules_ParentModules" Association="Self.FK_ParentModules_ParentModules">
             <End Role="ParentModules" EntitySet="ParentModules" />
             <End Role="ParentModules1" EntitySet="ParentModules" />
@@ -369,6 +403,8 @@
           <EntitySet Name="Level1Modules" EntityType="DB_TOSSModel.Level1Modules" />
           <EntitySet Name="Level2Modules" EntityType="DB_TOSSModel.Level2Modules" />
           <EntitySet Name="Level3Modules" EntityType="DB_TOSSModel.Level3Modules" />
+          <EntitySet Name="MemoAccClass_AccountCode" EntityType="DB_TOSSModel.MemoAccClass_AccountCode" />
+          <EntitySet Name="MemoAccClassTables" EntityType="DB_TOSSModel.MemoAccClassTable" />
           <EntitySet Name="ParentModules" EntityType="DB_TOSSModel.ParentModule" />
           <EntitySet Name="PersonalInformations" EntityType="DB_TOSSModel.PersonalInformation" />
           <EntitySet Name="PositionNames" EntityType="DB_TOSSModel.PositionName" />
@@ -412,6 +448,10 @@
           <AssociationSet Name="FK_Level3Modules_Level2Modules" Association="DB_TOSSModel.FK_Level3Modules_Level2Modules">
             <End Role="Level2Modules" EntitySet="Level2Modules" />
             <End Role="Level3Modules" EntitySet="Level3Modules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemoAccClassTable_MemoAccClass_AccountCode" Association="DB_TOSSModel.FK_MemoAccClassTable_MemoAccClass_AccountCode">
+            <End Role="MemoAccClass_AccountCode" EntitySet="MemoAccClass_AccountCode" />
+            <End Role="MemoAccClassTable" EntitySet="MemoAccClassTables" />
           </AssociationSet>
           <AssociationSet Name="FK_ParentModules_ParentModules" Association="DB_TOSSModel.FK_ParentModules_ParentModules">
             <End Role="ParentModule" EntitySet="ParentModules" />
@@ -541,6 +581,24 @@
           <Property Name="ActionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="JSID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Level2Modules" Relationship="DB_TOSSModel.FK_Level3Modules_Level2Modules" FromRole="Level3Modules" ToRole="Level2Modules" />
+        </EntityType>
+        <EntityType Name="MemoAccClass_AccountCode">
+          <Key>
+            <PropertyRef Name="AccountCodeID" />
+          </Key>
+          <Property Name="AccountCodeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MemoAccClassTables" Relationship="DB_TOSSModel.FK_MemoAccClassTable_MemoAccClass_AccountCode" FromRole="MemoAccClass_AccountCode" ToRole="MemoAccClassTable" />
+        </EntityType>
+        <EntityType Name="MemoAccClassTable">
+          <Key>
+            <PropertyRef Name="MemoAccClassID" />
+          </Key>
+          <Property Name="MemoAccClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RevisionYear" Type="Int32" Nullable="false" />
+          <Property Name="AccountCodeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MemoAccClass_AccountCode" Relationship="DB_TOSSModel.FK_MemoAccClassTable_MemoAccClass_AccountCode" FromRole="MemoAccClassTable" ToRole="MemoAccClass_AccountCode" />
         </EntityType>
         <EntityType Name="ParentModule">
           <Key>
@@ -705,6 +763,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MemoAccClassTable_MemoAccClass_AccountCode">
+          <End Type="DB_TOSSModel.MemoAccClass_AccountCode" Role="MemoAccClass_AccountCode" Multiplicity="1" />
+          <End Type="DB_TOSSModel.MemoAccClassTable" Role="MemoAccClassTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemoAccClass_AccountCode">
+              <PropertyRef Name="AccountCodeID" />
+            </Principal>
+            <Dependent Role="MemoAccClassTable">
+              <PropertyRef Name="AccountCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ParentModules_ParentModules">
           <End Type="DB_TOSSModel.ParentModule" Role="ParentModule" Multiplicity="1" />
           <End Type="DB_TOSSModel.ParentModule" Role="ParentModule1" Multiplicity="0..1" />
@@ -845,6 +915,24 @@
                 <ScalarProperty Name="Level2ModuleID" ColumnName="Level2ModuleID" />
                 <ScalarProperty Name="Level3ModuleName" ColumnName="Level3ModuleName" />
                 <ScalarProperty Name="Level3ModuleID" ColumnName="Level3ModuleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemoAccClass_AccountCode">
+            <EntityTypeMapping TypeName="DB_TOSSModel.MemoAccClass_AccountCode">
+              <MappingFragment StoreEntitySet="MemoAccClass_AccountCode">
+                <ScalarProperty Name="AccountTitle" ColumnName="AccountTitle" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+                <ScalarProperty Name="AccountCodeID" ColumnName="AccountCodeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemoAccClassTables">
+            <EntityTypeMapping TypeName="DB_TOSSModel.MemoAccClassTable">
+              <MappingFragment StoreEntitySet="MemoAccClassTable">
+                <ScalarProperty Name="AccountCodeID" ColumnName="AccountCodeID" />
+                <ScalarProperty Name="RevisionYear" ColumnName="RevisionYear" />
+                <ScalarProperty Name="MemoAccClassID" ColumnName="MemoAccClassID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

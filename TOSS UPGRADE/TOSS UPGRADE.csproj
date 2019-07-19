@@ -232,6 +232,7 @@
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_Bank.cs" />
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_BankAccount.cs" />
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_FundTypes.cs" />
+    <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_MemoAccountClass.cs" />
     <Compile Include="Models\FM_SignatoriesModel.cs" />
     <Compile Include="Models\FundType_FundName.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
@@ -252,6 +253,12 @@
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel\LoginModel.cs" />
+    <Compile Include="Models\MemoAccClassTable.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MemoAccClass_AccountCode.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ParentModule.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
@@ -8905,6 +8912,7 @@
     <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_AccountTypeTable.cshtml" />
     <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_UpdateAccountType.cshtml" />
     <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_UpdateBankAccount.cshtml" />
+    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_DynamicDDAccountTitle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,6 +8,7 @@ using TOSS_UPGRADE.Models;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using TOSS_UPGRADE.Models.FM_GeneralReference;
 
 namespace TOSS_UPGRADE.Controllers
 {
@@ -22,9 +23,9 @@ namespace TOSS_UPGRADE.Controllers
             return View(model);
         }
         //Dropdown FundType
-        public ActionResult GetDynamicFundType(FM_GeneralReference_FundTypes model,int FundID)
+        public ActionResult GetDynamicFundType(FM_GeneralReference_FundTypes model, int FundID)
         {
-          model.FundTypeList = new SelectList((from s in TOSSDB.FundType_FundType.Where(a => a.FundID == FundID).ToList() select new { FundTypeID = s.FundTypeID, FundTypeTitle = s.FundTypeTitle }), "FundTypeID", "FundTypeTitle");
+            model.FundTypeList = new SelectList((from s in TOSSDB.FundType_FundType.Where(a => a.FundID == FundID).ToList() select new { FundTypeID = s.FundTypeID, FundTypeTitle = s.FundTypeTitle }), "FundTypeID", "FundTypeTitle");
 
             return PartialView("FundTypes/_DynamicDDFundType", model);
         }
@@ -360,7 +361,7 @@ namespace TOSS_UPGRADE.Controllers
         public JsonResult AddBankAccount(FM_GeneralReference_BankAccount model)
         {
             BankAccountTable tblBankAccount = new BankAccountTable();
-            tblBankAccount.BankID =model.BankAccountBankID;
+            tblBankAccount.BankID = model.BankAccountBankID;
             tblBankAccount.AccountName = model.getBankAccountColumns.AccountName;
             tblBankAccount.AccountNo = model.getBankAccountColumns.AccountNo;
             tblBankAccount.FundID = model.FundID;
@@ -403,7 +404,6 @@ namespace TOSS_UPGRADE.Controllers
             return PartialView("BankAccounts/_UpdateBankAccount", model);
         }
 
-
         //Delete Bank Account
         public ActionResult DeleteBankAccount(FM_GeneralReference_BankAccount model, int BankAccountID)
         {
@@ -411,6 +411,14 @@ namespace TOSS_UPGRADE.Controllers
             TOSSDB.BankAccountTables.Remove(tblBankAccount);
             TOSSDB.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        //Dropdown Memo Account Classification
+        public ActionResult GetDynamicMemoAccountTitle()
+        {
+            FM_GeneralReference_MemoAccountClass model = new FM_GeneralReference_MemoAccountClass();
+            model.MMAccountTitleList = new SelectList((from s in TOSSDB.MemoAccClass_AccountCode.ToList() orderby s.AccountCodeID ascending select new { AccountCodeID = s.AccountCodeID, AccountTitle = s.AccountTitle }), "AccountCodeID", "AccountTitle");
+            return PartialView("MemoAccountClass/_DynamicDDAccountTitle", model);
         }
     }
 }
