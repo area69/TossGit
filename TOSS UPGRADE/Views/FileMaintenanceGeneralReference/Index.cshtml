@@ -284,7 +284,6 @@
                 $("#AccountCodeDivID").html(response.data);
             });
         }
-
         F.LoadSelectedDynamicDDAccountCode = function () {
             var AccountCodeIDTempID = $("#AccountCodeIDTempID").val();
             P({
@@ -386,6 +385,14 @@
                 F.LoadSelectedDynamicDDBank();
                 F.LoadSelectedDynamicDDAccountCode();
                 F.LoadSelectedDynamicDDAccountType();
+                });
+        }
+        F.Get_DeleteBankAccount = function (BankAccountID) {
+            P({
+                url: '/FileMaintenanceGeneralReference/DeleteBankAccount',
+                params: { BankAccountID: BankAccountID }
+            }).then(function (response) {
+                F.Get_BankAccountTable();
                 });
         }
     });

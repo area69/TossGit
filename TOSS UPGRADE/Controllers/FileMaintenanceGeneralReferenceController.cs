@@ -372,7 +372,7 @@ namespace TOSS_UPGRADE.Controllers
             return Json(tblBankAccount);
         }
 
-        //Get Update Account Type
+        //Get Update Bank Account
         public ActionResult Get_UpdateBankAccount(FM_GeneralReference_BankAccount model, int BankAccountID)
         {
             BankAccountTable tblBankAccount = (from e in TOSSDB.BankAccountTables where e.BankAccountID == BankAccountID select e).FirstOrDefault();
@@ -387,7 +387,7 @@ namespace TOSS_UPGRADE.Controllers
             return PartialView("BankAccounts/_UpdateBankAccount", model);
         }
 
-        //Update Account Type
+        //Update Bank Account
         public ActionResult UpdateBankAccount(FM_GeneralReference_BankAccount model)
         {
             BankAccountTable tblBankAccount = (from e in TOSSDB.BankAccountTables where e.BankAccountID == model.getBankAccountColumns.BankAccountID select e).FirstOrDefault();
@@ -401,6 +401,16 @@ namespace TOSS_UPGRADE.Controllers
             TOSSDB.Entry(tblBankAccount);
             TOSSDB.SaveChanges();
             return PartialView("BankAccounts/_UpdateBankAccount", model);
+        }
+
+
+        //Delete Bank Account
+        public ActionResult DeleteBankAccount(FM_GeneralReference_BankAccount model, int BankAccountID)
+        {
+            BankAccountTable tblBankAccount = (from e in TOSSDB.BankAccountTables where e.BankAccountID == BankAccountID select e).FirstOrDefault();
+            TOSSDB.BankAccountTables.Remove(tblBankAccount);
+            TOSSDB.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
