@@ -29,6 +29,9 @@ namespace TOSS_UPGRADE.Models
             getBankAccountColumns = new BankAccountTable();
             getBankAccountList = new List<BankAccountList>();
         }
+        public int AccountTypeIDTemp { get; set; }
+        public int BankNameIDTemp { get; set; }
+        public int AccountCodeIDTemp { get; set; }
         //Bank Account Bank Name
         public BankTable getBankAccountBankColumns { get; set; }
         public List<BankAccountBankList> getBankAccountBankList { get; set; }

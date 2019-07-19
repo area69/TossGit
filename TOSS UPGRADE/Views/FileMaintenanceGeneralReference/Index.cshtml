@@ -50,7 +50,7 @@
                         <div class="tab-pane" id="tab3" aria-labelledby="base-tab3">
                             <div class="content-body">
                                 @* Bank Name *@
-                                <div class="row mt-1">
+                                <div class="row mt-1 collapse">
                                     <div class="col-md-2"></div>
                                     <div class="col-md-8">
                                         <div class="card box-shadow-2">
@@ -63,7 +63,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row collapse">
                                     <div class="col-md-12">
                                         <div class="card box-shadow-2">
                                             <div class="card-header bg-carheadercolor mt-1">
@@ -266,10 +266,30 @@
                 CurrentAccountConcate();
             });
         }
+        F.LoadSelectedDynamicDDBank = function () {
+            var BankNameIDTempID = $("#BankNameIDTempID").val();
+            P({
+                url: '/FileMaintenanceGeneralReference/GetSelectedDynamicBankName',
+                params: { BankNameIDTempID: BankNameIDTempID }
+            }).then(function (response) {
+                $("#BankDivID").html(response.data);
+                CurrentAccountConcate();
+            });
+        }
         @*Bank Account - Account Code*@
         F.LoadDynamicDDAccountCode = function () {
             P({
                 url: '/FileMaintenanceGeneralReference/GetDynamicAccountCode',
+            }).then(function (response) {
+                $("#AccountCodeDivID").html(response.data);
+            });
+        }
+
+        F.LoadSelectedDynamicDDAccountCode = function () {
+            var AccountCodeIDTempID = $("#AccountCodeIDTempID").val();
+            P({
+                url: '/FileMaintenanceGeneralReference/GetSelectedDynamicAccountCode',
+                params: { AccountCodeIDTempID: AccountCodeIDTempID }
             }).then(function (response) {
                 $("#AccountCodeDivID").html(response.data);
             });
@@ -286,6 +306,15 @@
         F.LoadDynamicDDAccountType = function () {
             P({
                 url: '/FileMaintenanceGeneralReference/GetDynamicAccountType',
+            }).then(function (response) {
+                $("#AccountTypeDivID").html(response.data);
+            });
+        }
+        F.LoadSelectedDynamicDDAccountType = function () {
+            var AccountTypeIDTempID = $("#AccountTypeIDTempID").val();
+            P({
+                url: '/FileMaintenanceGeneralReference/GetSelectedDynamicAccountType',
+                params: { AccountTypeIDTempID: AccountTypeIDTempID }
             }).then(function (response) {
                 $("#AccountTypeDivID").html(response.data);
             });
@@ -347,8 +376,19 @@
             var SuccessMess = F.P;
             swalSuccess("Bank Account Successfully Added", SuccessMess);
         }
-    });
+        F.Get_UpdateBankAccount = function (BankAccountID) {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_UpdateBankAccount',
+                params: { BankAccountID: BankAccountID }
+            }).then(function (response) {
+                $("#BankAccountID").html(response.data);
 
+                F.LoadSelectedDynamicDDBank();
+                F.LoadSelectedDynamicDDAccountCode();
+                F.LoadSelectedDynamicDDAccountType();
+                });
+        }
+    });
     function CurrentAccountConcate() {
 
         var FundNameListIDTemp = document.getElementById("FundNameListID2");
