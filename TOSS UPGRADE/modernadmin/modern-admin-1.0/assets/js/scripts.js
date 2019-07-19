@@ -134,7 +134,17 @@ function AngularGlobalAlertsCallingNoModalNoSuccessWithTripleFunc(ControllerName
         eval("scope." + ActionName3 + "();");
     });
 }
-
+function AngularGlobalAlertsCallingNoModalNoSuccessWith6Func(ControllerName, ActionName1, ActionName2, ActionName3, ActionName4, ActionName5, ActionName6) {
+    var scope = angular.element(document.getElementById(ControllerName)).scope();
+    scope.$apply(function () {
+        eval("scope." + ActionName1 + "();");
+        eval("scope." + ActionName2 + "();");
+        eval("scope." + ActionName3 + "();");
+        eval("scope." + ActionName4 + "();");
+        eval("scope." + ActionName5 + "();");
+        eval("scope." + ActionName6 + "();");
+    });
+}
 function AngularGlobalAlertsCallingNoModalSuccessWithTwoFunc(ControllerName, ActionName1, ActionName2, SuccessMess) {
     var scope = angular.element(document.getElementById(ControllerName)).scope();
     scope.$apply(function () {

@@ -4,7 +4,7 @@
 }
 @using TOSS_UPGRADE.Models;
 
-@using (Ajax.BeginForm("AddBankAccount", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc('FMGeneralReferenceController', 'Get_AddBankAccount','SuccessSave')", OnFailure = "OnFailure()", }))
+@using (Ajax.BeginForm("AddBankAccount", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMGeneralReferenceController', 'Get_BankAccountTable','Bank Account Successfully Added')", OnFailure = "OnFailure()", }))
 {
     <div class="row">
         <div class="col-md-5 form-group" id="BankDivID">

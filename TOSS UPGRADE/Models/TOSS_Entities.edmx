@@ -39,7 +39,7 @@
           <Property Name="AccountName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="AccountNo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FundID" Type="int" Nullable="false" />
-          <Property Name="CurrentAccount" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CurrentAccount" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="AccountCodeID" Type="int" Nullable="false" />
           <Property Name="AccountTypeID" Type="int" Nullable="false" />
         </EntityType>
@@ -459,7 +459,7 @@
           <Property Name="AccountName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AccountNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FundID" Type="Int32" Nullable="false" />
-          <Property Name="CurrentAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentAccount" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="AccountCodeID" Type="Int32" Nullable="false" />
           <Property Name="AccountTypeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BankAccount_AccountCode" Relationship="DB_TOSSModel.FK_BankAccountTable_BankAccount_AccountCode" FromRole="BankAccountTable" ToRole="BankAccount_AccountCode" />

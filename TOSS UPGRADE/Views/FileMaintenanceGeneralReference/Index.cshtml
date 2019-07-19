@@ -143,30 +143,27 @@
         var F = $scope, P = $http, D = $sce.trustAsHtml;
 
         F.InitAllFunction = function () {
+
+            //Fund Type
             F.Get_FundTypeTables();
+            //Bank Name
             F.Get_BankTables();
+            //Account Type
             F.Get_AccountTypeTable();
+            //Bank Account
             F.Get_BankAccountTable();
+            //DropDown Bank Name
             F.LoadDynamicDDBank();
+            //DropDown Account Code
             F.LoadDynamicDDAccountCode();
+            //DropDown Account Type
             F.LoadDynamicDDAccountType();
+
         }
         @* Fund Type *@
-        F.SuccessSave = function () {
-            var SuccessMess = F.P;
-            swalSuccess("Bank Account Successfully Added", SuccessMess);
-        }
         F.SuccessSave1 = function () {
             var SuccessMess = F.P;
             swalSuccess("Fund Type Successfully Added", SuccessMess);
-        }
-        F.SuccessSave2 = function () {
-            var SuccessMess = F.P;
-            swalSuccess("Account Type Successfully Added", SuccessMess);
-        }
-        F.SuccessUpdate = function () {
-            var SuccessMess = F.P;
-            swalSuccess("Account Type Successfully Update", SuccessMess);
         }
         F.Get_FundTypeTables = function () {
             P({
@@ -221,6 +218,10 @@
         }
 
         @*Bank*@
+        F.SuccessSave = function () {
+            var SuccessMess = F.P;
+            swalSuccess("Bank Account Successfully Added", SuccessMess);
+        }
         F.Get_BankTables = function () {
             P({
                 url: '/FileMaintenanceGeneralReference/Get_BankTables',
@@ -274,6 +275,14 @@
             });
         }
         @*Bank Account - Account Type*@
+        F.SuccessSave2 = function () {
+            var SuccessMess = F.P;
+            swalSuccess("Account Type Successfully Added", SuccessMess);
+        }
+        F.SuccessUpdate = function () {
+            var SuccessMess = F.P;
+            swalSuccess("Account Type Successfully Update", SuccessMess);
+        }
         F.LoadDynamicDDAccountType = function () {
             P({
                 url: '/FileMaintenanceGeneralReference/GetDynamicAccountType',
@@ -327,9 +336,17 @@
                 url: '/FileMaintenanceGeneralReference/Get_AddBankAccount',
             }).then(function (response) {
                 $("#BankAccountID").html(response.data);
+                F.LoadDynamicDDBank();
+                F.LoadDynamicDDAccountCode();
+                F.LoadDynamicDDAccountType();
+                F.CurrentAccountConcate();
+                F.SuccessSaveB();
                 });
+        }      
+        F.SuccessSaveB = function () {
+            var SuccessMess = F.P;
+            swalSuccess("Bank Account Successfully Added", SuccessMess);
         }
-
     });
 
     function CurrentAccountConcate() {
