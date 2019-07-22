@@ -259,6 +259,9 @@
     <Compile Include="Models\MemoAccClass_AccountCode.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MemoAccClass_RevisionYr.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ParentModule.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
@@ -8913,6 +8916,9 @@
     <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_UpdateAccountType.cshtml" />
     <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_UpdateBankAccount.cshtml" />
     <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_DynamicDDAccountTitle.cshtml" />
+    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_DynamicDDRevisionYear.cshtml" />
+    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_MemoAccClassTable.cshtml" />
+    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_AddMemoAccClass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

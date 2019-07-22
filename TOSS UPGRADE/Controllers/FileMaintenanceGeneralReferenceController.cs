@@ -420,5 +420,63 @@ namespace TOSS_UPGRADE.Controllers
             model.MMAccountTitleList = new SelectList((from s in TOSSDB.MemoAccClass_AccountCode.ToList() orderby s.AccountCodeID ascending select new { AccountCodeID = s.AccountCodeID, AccountTitle = s.AccountTitle }), "AccountCodeID", "AccountTitle");
             return PartialView("MemoAccountClass/_DynamicDDAccountTitle", model);
         }
+       
+        //Dropdown Memo Account Revision Year
+        public ActionResult GetDynamicMemoRevisionYear()
+        {
+            FM_GeneralReference_MemoAccountClass model = new FM_GeneralReference_MemoAccountClass();
+            model.MMRevisionYearList = new SelectList((from s in TOSSDB.MemoAccClass_RevisionYr.ToList() orderby s.RevisionID ascending select new { RevisionID = s.RevisionID, RevisionYear = s.RevisionYear }), "RevisionID", "RevisionYear");
+            return PartialView("MemoAccountClass/_DynamicDDRevisionYear", model);
+        }
+
+        //Memo Account Classification Table
+        public ActionResult Get_MemoAccountClassTable()
+        {
+            FM_GeneralReference_MemoAccountClass model = new FM_GeneralReference_MemoAccountClass();
+            List<MemoAccList> tbl_MemoAccount = new List<MemoAccList>();
+
+            var SQLQuery = "SELECT * FROM DB_TOSS.dbo.MemoAccClassTable,dbo.MemoAccClass_AccountCode,MemoAccClass_RevisionYr where  dbo.MemoAccClass_AccountCode.AccountCodeID = dbo.MemoAccClassTable.AccountCodeID  and  dbo.MemoAccClass_RevisionYr.RevisionID = dbo.MemoAccClassTable.RevisionID";
+            //SQLQuery += " WHERE (IsActive != 0)";
+            using (SqlConnection Connection = new SqlConnection(GlobalFunction.ReturnConnectionString()))
+            {
+                Connection.Open();
+                using (SqlCommand command = new SqlCommand("[dbo].[SP_MemoAccountClassList]", Connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@SQLStatement", SQLQuery));
+                    SqlDataReader dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        tbl_MemoAccount.Add(new MemoAccList()
+                        {
+                          MMAccountID = Convert.ToInt32(dr[0]),
+                          AccountTitle = GlobalFunction.ReturnEmptyString(dr[5]),
+                          AccountCode = GlobalFunction.ReturnEmptyString(dr[4]),
+                        });
+                    }
+                }
+                Connection.Close();
+            }
+            model.getMemoAccList = tbl_MemoAccount.ToList();
+            return PartialView("MemoAccountClass/_MemoAccClassTable", model.getMemoAccList);
+        }
+
+        //Get Add Memo Account Classification Partial View
+        public ActionResult Get_AddMemoAccClassTable()
+        {
+            FM_GeneralReference_MemoAccountClass model = new FM_GeneralReference_MemoAccountClass();
+            return PartialView("MemoAccountClass/_AddMemoAccClass", model);
+        }
+
+        //Add Memo Account Classification
+        public JsonResult AddMemoAccClassTable(FM_GeneralReference_MemoAccountClass model)
+        {
+            MemoAccClassTable tblMemoAccount = new MemoAccClassTable();
+            tblMemoAccount.AccountCodeID = model.MMAccountTitleID;
+            tblMemoAccount.RevisionID = model.MMRevisionYrID;
+            TOSSDB.MemoAccClassTables.Add(tblMemoAccount);
+            TOSSDB.SaveChanges();
+            return Json(tblMemoAccount);
+        }
     }
 }

@@ -115,12 +115,19 @@
           <Property Name="AccountCode" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="AccountTitle" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="MemoAccClass_RevisionYr">
+          <Key>
+            <PropertyRef Name="RevisionID" />
+          </Key>
+          <Property Name="RevisionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RevisionYear" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="MemoAccClassTable">
           <Key>
             <PropertyRef Name="MemoAccClassID" />
           </Key>
           <Property Name="MemoAccClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RevisionYear" Type="int" Nullable="false" />
+          <Property Name="RevisionID" Type="int" Nullable="false" />
           <Property Name="AccountCodeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ParentModules">
@@ -280,6 +287,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MemoAccClassTable_MemoAccClass_RevisionYr">
+          <End Role="MemoAccClass_RevisionYr" Type="Self.MemoAccClass_RevisionYr" Multiplicity="1" />
+          <End Role="MemoAccClassTable" Type="Self.MemoAccClassTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemoAccClass_RevisionYr">
+              <PropertyRef Name="RevisionID" />
+            </Principal>
+            <Dependent Role="MemoAccClassTable">
+              <PropertyRef Name="RevisionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ParentModules_ParentModules">
           <End Role="ParentModules" Type="Self.ParentModules" Multiplicity="1" />
           <End Role="ParentModules1" Type="Self.ParentModules" Multiplicity="0..1" />
@@ -329,6 +348,7 @@
           <EntitySet Name="Level2Modules" EntityType="Self.Level2Modules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Level3Modules" EntityType="Self.Level3Modules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemoAccClass_AccountCode" EntityType="Self.MemoAccClass_AccountCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemoAccClass_RevisionYr" EntityType="Self.MemoAccClass_RevisionYr" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemoAccClassTable" EntityType="Self.MemoAccClassTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParentModules" EntityType="Self.ParentModules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonalInformation" EntityType="Self.PersonalInformation" Schema="dbo" store:Type="Tables" />
@@ -374,6 +394,10 @@
             <End Role="MemoAccClass_AccountCode" EntitySet="MemoAccClass_AccountCode" />
             <End Role="MemoAccClassTable" EntitySet="MemoAccClassTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_MemoAccClassTable_MemoAccClass_RevisionYr" Association="Self.FK_MemoAccClassTable_MemoAccClass_RevisionYr">
+            <End Role="MemoAccClass_RevisionYr" EntitySet="MemoAccClass_RevisionYr" />
+            <End Role="MemoAccClassTable" EntitySet="MemoAccClassTable" />
+          </AssociationSet>
           <AssociationSet Name="FK_ParentModules_ParentModules" Association="Self.FK_ParentModules_ParentModules">
             <End Role="ParentModules" EntitySet="ParentModules" />
             <End Role="ParentModules1" EntitySet="ParentModules" />
@@ -404,6 +428,7 @@
           <EntitySet Name="Level2Modules" EntityType="DB_TOSSModel.Level2Modules" />
           <EntitySet Name="Level3Modules" EntityType="DB_TOSSModel.Level3Modules" />
           <EntitySet Name="MemoAccClass_AccountCode" EntityType="DB_TOSSModel.MemoAccClass_AccountCode" />
+          <EntitySet Name="MemoAccClass_RevisionYr" EntityType="DB_TOSSModel.MemoAccClass_RevisionYr" />
           <EntitySet Name="MemoAccClassTables" EntityType="DB_TOSSModel.MemoAccClassTable" />
           <EntitySet Name="ParentModules" EntityType="DB_TOSSModel.ParentModule" />
           <EntitySet Name="PersonalInformations" EntityType="DB_TOSSModel.PersonalInformation" />
@@ -451,6 +476,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_MemoAccClassTable_MemoAccClass_AccountCode" Association="DB_TOSSModel.FK_MemoAccClassTable_MemoAccClass_AccountCode">
             <End Role="MemoAccClass_AccountCode" EntitySet="MemoAccClass_AccountCode" />
+            <End Role="MemoAccClassTable" EntitySet="MemoAccClassTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemoAccClassTable_MemoAccClass_RevisionYr" Association="DB_TOSSModel.FK_MemoAccClassTable_MemoAccClass_RevisionYr">
+            <End Role="MemoAccClass_RevisionYr" EntitySet="MemoAccClass_RevisionYr" />
             <End Role="MemoAccClassTable" EntitySet="MemoAccClassTables" />
           </AssociationSet>
           <AssociationSet Name="FK_ParentModules_ParentModules" Association="DB_TOSSModel.FK_ParentModules_ParentModules">
@@ -591,14 +620,23 @@
           <Property Name="AccountTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="MemoAccClassTables" Relationship="DB_TOSSModel.FK_MemoAccClassTable_MemoAccClass_AccountCode" FromRole="MemoAccClass_AccountCode" ToRole="MemoAccClassTable" />
         </EntityType>
+        <EntityType Name="MemoAccClass_RevisionYr">
+          <Key>
+            <PropertyRef Name="RevisionID" />
+          </Key>
+          <Property Name="RevisionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RevisionYear" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MemoAccClassTables" Relationship="DB_TOSSModel.FK_MemoAccClassTable_MemoAccClass_RevisionYr" FromRole="MemoAccClass_RevisionYr" ToRole="MemoAccClassTable" />
+        </EntityType>
         <EntityType Name="MemoAccClassTable">
           <Key>
             <PropertyRef Name="MemoAccClassID" />
           </Key>
           <Property Name="MemoAccClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RevisionYear" Type="Int32" Nullable="false" />
+          <Property Name="RevisionID" Type="Int32" Nullable="false" />
           <Property Name="AccountCodeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="MemoAccClass_AccountCode" Relationship="DB_TOSSModel.FK_MemoAccClassTable_MemoAccClass_AccountCode" FromRole="MemoAccClassTable" ToRole="MemoAccClass_AccountCode" />
+          <NavigationProperty Name="MemoAccClass_RevisionYr" Relationship="DB_TOSSModel.FK_MemoAccClassTable_MemoAccClass_RevisionYr" FromRole="MemoAccClassTable" ToRole="MemoAccClass_RevisionYr" />
         </EntityType>
         <EntityType Name="ParentModule">
           <Key>
@@ -775,6 +813,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MemoAccClassTable_MemoAccClass_RevisionYr">
+          <End Type="DB_TOSSModel.MemoAccClass_RevisionYr" Role="MemoAccClass_RevisionYr" Multiplicity="1" />
+          <End Type="DB_TOSSModel.MemoAccClassTable" Role="MemoAccClassTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemoAccClass_RevisionYr">
+              <PropertyRef Name="RevisionID" />
+            </Principal>
+            <Dependent Role="MemoAccClassTable">
+              <PropertyRef Name="RevisionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ParentModules_ParentModules">
           <End Type="DB_TOSSModel.ParentModule" Role="ParentModule" Multiplicity="1" />
           <End Type="DB_TOSSModel.ParentModule" Role="ParentModule1" Multiplicity="0..1" />
@@ -927,11 +977,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MemoAccClass_RevisionYr">
+            <EntityTypeMapping TypeName="DB_TOSSModel.MemoAccClass_RevisionYr">
+              <MappingFragment StoreEntitySet="MemoAccClass_RevisionYr">
+                <ScalarProperty Name="RevisionYear" ColumnName="RevisionYear" />
+                <ScalarProperty Name="RevisionID" ColumnName="RevisionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MemoAccClassTables">
             <EntityTypeMapping TypeName="DB_TOSSModel.MemoAccClassTable">
               <MappingFragment StoreEntitySet="MemoAccClassTable">
                 <ScalarProperty Name="AccountCodeID" ColumnName="AccountCodeID" />
-                <ScalarProperty Name="RevisionYear" ColumnName="RevisionYear" />
+                <ScalarProperty Name="RevisionID" ColumnName="RevisionID" />
                 <ScalarProperty Name="MemoAccClassID" ColumnName="MemoAccClassID" />
               </MappingFragment>
             </EntityTypeMapping>

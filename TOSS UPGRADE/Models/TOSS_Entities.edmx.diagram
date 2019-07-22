@@ -5,9 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="40de8afaeb1b4b14a3300d2a7328d1ef" Name="Diagram1" ZoomLevel="66">
-        <EntityTypeShape EntityType="DB_TOSSModel.Account" Width="1.5" PointX="10" PointY="8.625" />
-        <EntityTypeShape EntityType="DB_TOSSModel.BankAccount_AccountCode" Width="1.5" PointX="0.75" PointY="9.5" />
-        <EntityTypeShape EntityType="DB_TOSSModel.BankAccount_AccountType" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_TOSSModel.Account" Width="1.5" PointX="5" PointY="11.625" />
+        <EntityTypeShape EntityType="DB_TOSSModel.BankAccount_AccountCode" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_TOSSModel.BankAccount_AccountType" Width="1.5" PointX="0.75" PointY="9.5" />
         <EntityTypeShape EntityType="DB_TOSSModel.BankAccountTable" Width="1.5" PointX="3" PointY="3.25" />
         <EntityTypeShape EntityType="DB_TOSSModel.BankTable" Width="1.5" PointX="0.75" PointY="7.125" />
         <EntityTypeShape EntityType="DB_TOSSModel.FundType_FundName" Width="1.5" PointX="0.75" PointY="4" />
@@ -16,12 +16,13 @@
         <EntityTypeShape EntityType="DB_TOSSModel.Level1Modules" Width="1.5" PointX="8" PointY="1.75" />
         <EntityTypeShape EntityType="DB_TOSSModel.Level2Modules" Width="1.5" PointX="10.25" PointY="1.75" />
         <EntityTypeShape EntityType="DB_TOSSModel.Level3Modules" Width="1.5" PointX="12.5" PointY="1.875" />
-        <EntityTypeShape EntityType="DB_TOSSModel.MemoAccClass_AccountCode" Width="1.5" PointX="0.75" PointY="12.625" />
-        <EntityTypeShape EntityType="DB_TOSSModel.MemoAccClassTable" Width="1.5" PointX="3" PointY="12.625" />
+        <EntityTypeShape EntityType="DB_TOSSModel.MemoAccClass_AccountCode" Width="2.375" PointX="12.125" PointY="5.625" />
+        <EntityTypeShape EntityType="DB_TOSSModel.MemoAccClass_RevisionYr" Width="2.5" PointX="6.75" PointY="5.875" />
+        <EntityTypeShape EntityType="DB_TOSSModel.MemoAccClassTable" Width="1.5" PointX="10" PointY="5.625" />
         <EntityTypeShape EntityType="DB_TOSSModel.ParentModule" Width="1.5" PointX="5.75" PointY="1.75" />
-        <EntityTypeShape EntityType="DB_TOSSModel.PersonalInformation" Width="1.5" PointX="7.75" PointY="8.625" />
-        <EntityTypeShape EntityType="DB_TOSSModel.PositionName" Width="1.5" PointX="7.75" PointY="5.75" />
-        <EntityTypeShape EntityType="DB_TOSSModel.SignatoriesTable" Width="1.5" PointX="10" PointY="5.625" />
+        <EntityTypeShape EntityType="DB_TOSSModel.PersonalInformation" Width="1.5" PointX="2.75" PointY="11.625" />
+        <EntityTypeShape EntityType="DB_TOSSModel.PositionName" Width="1.5" PointX="9.75" PointY="8.75" />
+        <EntityTypeShape EntityType="DB_TOSSModel.SignatoriesTable" Width="1.5" PointX="12" PointY="8.625" />
         <AssociationConnector Association="DB_TOSSModel.FK_Accounts_PersonalInformation" />
         <AssociationConnector Association="DB_TOSSModel.FK_BankAccountTable_BankAccount_AccountCode" />
         <AssociationConnector Association="DB_TOSSModel.FK_BankAccountTable_BankAccountTable" />
@@ -33,6 +34,7 @@
         <AssociationConnector Association="DB_TOSSModel.FK_Level2Modules_Level1Modules" />
         <AssociationConnector Association="DB_TOSSModel.FK_Level3Modules_Level2Modules" />
         <AssociationConnector Association="DB_TOSSModel.FK_MemoAccClassTable_MemoAccClass_AccountCode" />
+        <AssociationConnector Association="DB_TOSSModel.FK_MemoAccClassTable_MemoAccClass_RevisionYr" />
         <AssociationConnector Association="DB_TOSSModel.FK_ParentModules_ParentModules" />
         <AssociationConnector Association="DB_TOSSModel.FK_SignatoriesTable_PositionName" />
       </Diagram>

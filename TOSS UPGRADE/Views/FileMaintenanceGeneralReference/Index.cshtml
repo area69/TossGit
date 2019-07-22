@@ -139,51 +139,21 @@
                                     <div class="col-md-2">
 
                                     </div>
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-md-3 form-group">
-                                                <label>Revision Year</label>
-                                                <input type="number" class="form-control" value="2015" max="2099" min="1990" />
-                                            </div>
-                                            <div class="col-md-5 form-group" id="MemoAccClass_AccountTitleDD">
-                                              
-                                            </div>
-                                            <div class="col-md-2 text-right">
-                                                <label style="visibility:hidden">Hide</label><br />
-                                                <button type="button" class="btn black bg-addbutton form-control"><b>Save</b></button>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <label style="visibility:hidden">Hide</label><br />
-                                                <button type="button" class="btn bg-headerbc black form-control"><b>Cancel</b></button>
-                                            </div>
-                                        </div>
+                                    <div class="col-md-8" id="MemoAccClassID">
+                                      
                                     </div>
                                 </div>
                                 <div class="row mt-1">
-                                    <div class="col-12 col-xl-12 ">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-8">
                                         <div class="card box-shadow-2">
                                             <div class="card-header bg-carheadercolor">
                                                 <h4 class="card-title black"><b>List of Memorandum Account Classifications</b></h4>
                                             </div>
                                             <div class="card-content collapse show">
                                                 <div class="card-body box-shadow-2">
-                                                    <div class="row">
-                                                        <div class="col-md-2"></div>
-                                                        <div class="col-md-8">
-                                                            <div class="table-responsive">
-                                                                <table class="table table-striped table-bordered zero-configuration w-100">
-                                                                    <thead class="text-center">
-                                                                        <tr>
-                                                                            <th>Account Title</th>
-                                                                            <th>Account Code</th>
-                                                                            <th width="5px;">Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody class="text-center">
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
+                                                    <div class="row" id="MemoClassTableID">
+                                                      
                                                     </div>
                                                 </div>
                                             </div>
@@ -191,7 +161,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -224,6 +193,10 @@
             F.LoadDynamicDDAccountType();
             //DropDown Memo Account Title
             F.LoadDynamicDDMemoAccClass();
+            //DropDown Memo Account Revision Yr
+            F.LoadDynamicDDMemoAccRevisionYr();
+            //Memo Account Classification Table
+            F.Get_MemoAccountClassTable();
 
         }
         @* Fund Type *@
@@ -462,13 +435,37 @@
                 });
         }
 
-        //Memo Account Classification
+        //Memo Account Classification  MemoAccClassID
         F.LoadDynamicDDMemoAccClass = function () {
             P({
                 url: '/FileMaintenanceGeneralReference/GetDynamicMemoAccountTitle',
             }).then(function (response) {
                 $("#MemoAccClass_AccountTitleDD").html(response.data);
             });
+        }
+        F.LoadDynamicDDMemoAccRevisionYr = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/GetDynamicMemoRevisionYear',
+            }).then(function (response) {
+                $("#MemoAccClass_RevisionYrID").html(response.data);
+            });
+        }
+        F.Get_MemoAccountClassTable = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_MemoAccountClassTable',
+            }).then(function (response) {
+                $("#MemoClassTableID").html(response.data);
+                });
+            F.Get_AddMemoAccClassTable();
+        }
+        F.Get_AddMemoAccClassTable = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_AddMemoAccClassTable',
+            }).then(function (response) {
+                $("#MemoAccClassID").html(response.data);
+                });
+            F.LoadDynamicDDMemoAccClass();
+            F.LoadDynamicDDMemoAccRevisionYr();
         }
     });
     function CurrentAccountConcate() {

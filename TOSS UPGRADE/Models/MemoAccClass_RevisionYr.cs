@@ -12,13 +12,18 @@ namespace TOSS_UPGRADE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MemoAccClassTable
+    public partial class MemoAccClass_RevisionYr
     {
-        public int MemoAccClassID { get; set; }
-        public int RevisionID { get; set; }
-        public int AccountCodeID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MemoAccClass_RevisionYr()
+        {
+            this.MemoAccClassTables = new HashSet<MemoAccClassTable>();
+        }
     
-        public virtual MemoAccClass_AccountCode MemoAccClass_AccountCode { get; set; }
-        public virtual MemoAccClass_RevisionYr MemoAccClass_RevisionYr { get; set; }
+        public int RevisionID { get; set; }
+        public int RevisionYear { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MemoAccClassTable> MemoAccClassTables { get; set; }
     }
 }
