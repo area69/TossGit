@@ -467,6 +467,42 @@
             F.LoadDynamicDDMemoAccClass();
             F.LoadDynamicDDMemoAccRevisionYr();
         }
+        F.LoadSelectedDynamicDDMemoAccClass = function () {
+            var MMAccountTitleTempID = $("#MMAccountTitleTempID").val();
+            P({
+                url: '/FileMaintenanceGeneralReference/GetSelectedDynamicMemoAccountTitle',
+                params: { MMAccountTitleTempID: MMAccountTitleTempID }
+            }).then(function (response) {
+                $("#MemoAccClass_AccountTitleDD").html(response.data);
+            });
+        }
+        F.LoadSelectedDynamicDDMemoAccRevisionYr = function () {
+            var MMRevisionYrTempID = $("#MMRevisionYrTempID").val();
+            P({
+                url: '/FileMaintenanceGeneralReference/GetSelectedDynamicMemoRevisionYear',
+                params: { MMRevisionYrTempID: MMRevisionYrTempID }
+            }).then(function (response) {
+                $("#MemoAccClass_RevisionYrID").html(response.data);
+            });
+        }
+        F.Get_UpdateMemoAccClass = function (MemoAccClassID) {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_UpdateMemoAccount',
+                params: { MemoAccClassID: MemoAccClassID }
+            }).then(function (response) {
+                $("#MemoAccClassID").html(response.data);
+                F.LoadSelectedDynamicDDMemoAccClass();
+            });
+
+        }
+        F.Get_DeleteMemoAccClass = function (MemoAccClassID) {
+            P({
+                url: '/FileMaintenanceGeneralReference/DeleteMemoAccount',
+                params: { MemoAccClassID: MemoAccClassID }
+            }).then(function (response) {
+                F.Get_MemoAccountClassTable();
+            });
+        }
     });
     function CurrentAccountConcate() {
 

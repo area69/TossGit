@@ -19,8 +19,11 @@
                 foreach (var Items in Model)
                 {
 
-                    var ViewEdit = "<button class=\"btn btn-icon btn-block white bg-addbutton border-0\" type=\"button\"><i class='ft-edit'></i> Edit</button>";
-                    var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\"> <i class='ft-delete'></i> Delete</button>";
+                    var DeleteConfirmationMess = "Are you sure do you want to delete this Memo Account Classification?";
+                    var DeleteSuccesMess = "Memo Account Classification Deleted";
+
+                    var ViewEdit = "<button class=\"btn btn-icon btn-block white bg-addbutton border-0\" type=\"button\" onclick=\"AngularGlobalEdit('FMGeneralReferenceController','Get_UpdateMemoAccClass','" + @Items.MMAccountID + "')\"><i class='ft-edit'></i> Edit</button>";
+                    var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.AccountTitle + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.MMAccountID + ",&quot;Get_DeleteMemoAccClass&quot;,&quot;FMGeneralReferenceController&quot;)')\"> <i class='ft-delete'></i> Delete</button>";
                     var ActionContentProgram = ViewEdit + ViewDelete;
                     <tr>
                         <td>@Items.AccountTitle</td>
