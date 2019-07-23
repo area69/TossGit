@@ -388,6 +388,7 @@ namespace TOSS_UPGRADE.Controllers
             return PartialView("BankAccounts/_UpdateBankAccount", model);
         }
 
+        #region
         //Update Bank Account
         public ActionResult UpdateBankAccount(FM_GeneralReference_BankAccount model)
         {
@@ -493,14 +494,14 @@ namespace TOSS_UPGRADE.Controllers
             TOSSDB.SaveChanges();
             return Json(tblMemoAccount);
         }
-
+        #endregion
         //Get Update Memo Account
         public ActionResult Get_UpdateMemoAccount(FM_GeneralReference_MemoAccountClass model, int MemoAccClassID)
         {
             MemoAccClassTable tblMemoAccount = (from e in TOSSDB.MemoAccClassTables where e.MemoAccClassID == MemoAccClassID select e).FirstOrDefault();
             model.getMemoColumns.MemoAccClassID = tblMemoAccount.MemoAccClassID;
-            model.MMAccountTitleTempID = tblMemoAccount.AccountCodeID;
-            model.MMRevisionYrTempID = tblMemoAccount.RevisionID;
+            model.MMAccountTitleTemp = tblMemoAccount.AccountCodeID;
+            model.MMRevisionYrTemp = tblMemoAccount.RevisionID;
             return PartialView("MemoAccountClass/_UpdateMemoAccClass", model);
         }
 

@@ -420,7 +420,6 @@
                 params: { BankAccountID: BankAccountID }
             }).then(function (response) {
                 $("#BankAccountID").html(response.data);
-
                 F.LoadSelectedDynamicDDBank();
                 F.LoadSelectedDynamicDDAccountCode();
                 F.LoadSelectedDynamicDDAccountType();
@@ -468,33 +467,35 @@
             F.LoadDynamicDDMemoAccRevisionYr();
         }
         F.LoadSelectedDynamicDDMemoAccClass = function () {
-            var MMAccountTitleTempID = $("#MMAccountTitleTempID").val();
+            var MMAccountTitleIDTempID = $("#MMAccountTitleIDTempID").val();
             P({
                 url: '/FileMaintenanceGeneralReference/GetSelectedDynamicMemoAccountTitle',
-                params: { MMAccountTitleTempID: MMAccountTitleTempID }
+                params: { MMAccountTitleIDTempID: MMAccountTitleIDTempID }
             }).then(function (response) {
                 $("#MemoAccClass_AccountTitleDD").html(response.data);
             });
         }
         F.LoadSelectedDynamicDDMemoAccRevisionYr = function () {
-            var MMRevisionYrTempID = $("#MMRevisionYrTempID").val();
+            var RevisionYrIDTempID = $("#RevisionYrIDTempID").val();
             P({
                 url: '/FileMaintenanceGeneralReference/GetSelectedDynamicMemoRevisionYear',
-                params: { MMRevisionYrTempID: MMRevisionYrTempID }
+                params: { RevisionYrIDTempID: RevisionYrIDTempID }
             }).then(function (response) {
                 $("#MemoAccClass_RevisionYrID").html(response.data);
             });
         }
-        F.Get_UpdateMemoAccClass = function (MemoAccClassID) {
+
+        F.Get_UpdateMemoAccount = function (MemoAccClassID) {
             P({
                 url: '/FileMaintenanceGeneralReference/Get_UpdateMemoAccount',
                 params: { MemoAccClassID: MemoAccClassID }
             }).then(function (response) {
                 $("#MemoAccClassID").html(response.data);
                 F.LoadSelectedDynamicDDMemoAccClass();
+                F.LoadSelectedDynamicDDMemoAccRevisionYr();
             });
-
         }
+
         F.Get_DeleteMemoAccClass = function (MemoAccClassID) {
             P({
                 url: '/FileMaintenanceGeneralReference/DeleteMemoAccount',

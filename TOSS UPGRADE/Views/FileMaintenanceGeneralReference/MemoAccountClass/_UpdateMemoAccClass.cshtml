@@ -5,11 +5,11 @@
 @using TOSS_UPGRADE.Models;
 
 
-@using (Ajax.BeginForm("UpdateFundTypes", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMGeneralReferenceController','Get_FundTypeTables','Fund Type Successfully Updated')", OnFailure = "OnFailure()", }))
+@using (Ajax.BeginForm("UpdateMemoAccount", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMGeneralReferenceController','Get_MemoAccountClassTable','Memo Account Classification Successfully Updated')", OnFailure = "OnFailure()", }))
 {
     @Html.HiddenFor(m => m.getMemoColumns.MemoAccClassID, new { })
-    @Html.HiddenFor(m => m.MMAccountTitleTempID, new { id = "AccountTypeIDTempID" })
-    @Html.HiddenFor(m => m.MMRevisionYrTempID, new { id = "RevisionYrTempID" })
+    @Html.HiddenFor(m => m.MMAccountTitleTemp, new { id = "MMAccountTitleIDTempID" })
+    @Html.HiddenFor(m => m.MMRevisionYrTemp, new { id = "RevisionYrIDTempID" })
     <div class="row">
         <div class="col-md-3 form-group" id="MemoAccClass_RevisionYrID">
 
