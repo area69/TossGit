@@ -116,22 +116,28 @@
             F.GetListOfSignatories();
             F.Get_PositionTable();
             F.LoadDynamicDDDepartment();
-            //F.Get_UpdateSignatories();
+            F.Get_DepartmentTable();
         }
 
         F.SuccessSave1 = function () {
             var SuccessMess = F.P;
             swalSuccess("Success", SuccessMess);
         }
-
         F.SuccessSave2 = function () {
             var SuccessMess = F.PositionNameID;
             swalSuccess("Success", SuccessMess);
         }
-
+        F.SuccessSave4 = function () {
+            var SuccessMess = "Department Successfully Added";
+            swalSuccess("Success", SuccessMess);
+        }
         F.SuccessSave3 = function () {
             var SuccessMess = F.PositionNameID;
             swalSuccess("Position Successfully Updated", SuccessMess);
+        }
+        F.SuccessSave5 = function () {
+            var SuccessMess = "Department Successfully Update";
+            swalSuccess("Success", SuccessMess);
         }
         
         F.Get_PositionTable = function () {
@@ -142,7 +148,6 @@
                 });
             F.Get_AddPosition();
         }
-
         F.Get_AddPosition = function () {
             P({
                 url: '/FileMaintenanceSignatories/Get_AddPosition',
@@ -151,7 +156,6 @@
                 });
 
         }
-
         F.Get_UpdatePosition = function (PositionID) {
             P({
                 url: '/FileMaintenanceSignatories/Get_UpdatePosition',
@@ -160,7 +164,6 @@
                 $("#PositionTempID").html(response.data);
                 });
         }
-
         F.Get_DeletePosition = function (PositionID) {
             P({
                 url: '/FileMaintenanceSignatories/DeletePosition',
@@ -179,7 +182,6 @@
                 });
             F.Get_SignatoriesAdd();
         }
-
         F.Get_SignatoriesAdd = function () {
             P({
                 url: '/FileMaintenanceSignatories/Get_SignatoriesAdd',
@@ -188,15 +190,6 @@
             });
             F.LoadDynamicDDPositionName();
         }
-
-        F.LoadDynamicDDDepartment = function () {
-            P({
-                url: '/FileMaintenanceSignatories/GetDynamicDepartment',
-            }).then(function (response) {
-                $("#_DynamicDDDepartmentID").html(response.data);
-            });
-        }
-
         F.LoadDynamicDDPositionName = function () {
             P({
                 url: '/FileMaintenanceSignatories/GetDynamicSignatories',
@@ -204,7 +197,6 @@
                 $("#_DynamicDDPositionNameID").html(response.data);
             });
         }
-
         F.LoadDynamicDDPositionName2 = function (SignatoriesID) {
             P({
                 url: '/FileMaintenanceSignatories/GetDynamicSignatories2',
@@ -213,7 +205,6 @@
                 $("#_DynamicDDPositionNameID2").html(response.data);
             });
         }
-
         F.Get_UpdateSignatories = function (SignatoriesID) {
            
             P({
@@ -224,13 +215,53 @@
                 F.LoadDynamicDDPositionName2(SignatoriesID);
             });
         }
-
         F.Get_DeleteSignatories = function (SignatoriesID) {
             P({
                 url: '/FileMaintenanceSignatories/DeleteSignature',
                 params: { SignatoriesID: SignatoriesID }
             }).then(function (response) {
                 F.GetListOfSignatories();
+            });
+        }
+        
+        F.LoadDynamicDDDepartment = function () {
+            P({
+                url: '/FileMaintenanceSignatories/GetDynamicDepartment',
+            }).then(function (response) {
+                $("#_DynamicDDDepartmentID").html(response.data);
+            });
+        }
+        F.Get_DepartmentTable = function () {
+            P({
+                url: '/FileMaintenanceSignatories/Get_DepartmentTable',
+            }).then(function (response) {
+                $("#DepartmentTableID").html(response.data);
+                });
+            F.Get_AddDepartment();
+        }
+        F.Get_AddDepartment = function () {
+            P({
+                url: '/FileMaintenanceSignatories/Get_AddDepartment',
+            }).then(function (response) {
+                $("#DepartmentTempID").html(response.data);
+            });
+
+        }
+        F.Get_UpdateDepartment = function (DepartmentID) {
+            P({
+                url: '/FileMaintenanceSignatories/Get_UpdateDepartment',
+                params: { DepartmentID: DepartmentID }
+            }).then(function (response) {
+                $("#DepartmentTempID").html(response.data);
+            });
+        }
+        F.Get_DeleteDepartment = function (DepartmentID) {
+            P({
+                url: '/FileMaintenanceSignatories/DeleteDepartment',
+                params: { DepartmentID: DepartmentID }
+            }).then(function (response) {
+                F.Get_DepartmentTable();
+                F.LoadDynamicDDDepartment();
             });
         }
         });

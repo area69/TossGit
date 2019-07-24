@@ -207,7 +207,87 @@ namespace TOSS_UPGRADE.Controllers
             TOSSDB.SaveChanges();
             return RedirectToAction("Index");
         }
+        
+        //Department
+        #region
+        //Department Table Partial View
+        public ActionResult Get_DepartmentTable()
+        {
+            FM_SignatoriesModel model = new FM_SignatoriesModel();
+            List<Signatory_DepartmentTable> tbl_Department = new List<Signatory_DepartmentTable>();
 
+            var SQLQuery = "SELECT * FROM DB_TOSS.dbo.Signatory_DepartmentTable order by Department asc";
+            //SQLQuery += " WHERE (IsActive != 0)";
+            using (SqlConnection Connection = new SqlConnection(GlobalFunction.ReturnConnectionString()))
+            {
+                Connection.Open();
+                using (SqlCommand command = new SqlCommand("[dbo].[SP_SignatoryDepartmentList]", Connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@SQLStatement", SQLQuery));
+                    SqlDataReader dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        tbl_Department.Add(new Signatory_DepartmentTable()
+                        {
+                            DepartmentID = GlobalFunction.ReturnEmptyInt(dr[0]),
+                            Department = GlobalFunction.ReturnEmptyString(dr[1]),
+                            DepartmentCode = GlobalFunction.ReturnEmptyString(dr[2]),
+                        });
+                    }
+                }
+                Connection.Close();
+            }
+            model.getDepartment = tbl_Department.ToList();
+            return PartialView("_DepartmentTable", model.getDepartment);
+        }
 
+        //Get Add Department Partial View
+        public ActionResult Get_AddDepartment()
+        {
+            FM_SignatoriesModel model = new FM_SignatoriesModel();
+            return PartialView("_DepartmentAdd", model);
+        }
+
+        //Add Department
+        public JsonResult AddDepartment(FM_SignatoriesModel model)
+        {
+            Signatory_DepartmentTable tblDepartment = new Signatory_DepartmentTable();
+            tblDepartment.Department = GlobalFunction.ReturnEmptyString(model.getDepartmentColumns.Department);
+            tblDepartment.DepartmentCode = GlobalFunction.ReturnEmptyString(model.getDepartmentColumns.DepartmentCode);
+            TOSSDB.Signatory_DepartmentTable.Add(tblDepartment);
+            TOSSDB.SaveChanges();
+            return Json(tblDepartment);
+        }
+
+        //Get Position Update
+        public ActionResult Get_UpdateDepartment(FM_SignatoriesModel model, int DepartmentID)
+        {
+            Signatory_DepartmentTable tblDepartment = (from e in TOSSDB.Signatory_DepartmentTable where e.DepartmentID == DepartmentID select e).FirstOrDefault();
+            model.getDepartmentColumns.DepartmentID = tblDepartment.DepartmentID;
+            model.getDepartmentColumns.Department = tblDepartment.Department;
+            model.getDepartmentColumns.DepartmentCode = tblDepartment.DepartmentCode;
+            return PartialView("_DepartmentUpdate", model);
+        }
+
+        public ActionResult UpdateDepartment(FM_SignatoriesModel model)
+        {
+            Signatory_DepartmentTable tblDepartment = (from e in TOSSDB.Signatory_DepartmentTable where e.DepartmentID == model.getDepartmentColumns.DepartmentID select e).FirstOrDefault();
+            tblDepartment.Department = model.getDepartmentColumns.Department;
+            tblDepartment.DepartmentCode = model.getDepartmentColumns.DepartmentCode;
+            TOSSDB.Entry(tblDepartment);
+            TOSSDB.SaveChanges();
+            return PartialView("_DepartmentUpdate", model);
+        }
+        //Delete Position Table
+        public ActionResult DeleteDepartment(FM_SignatoriesModel model, int DepartmentID)
+        {
+            Signatory_DepartmentTable tblDepartment = (from e in TOSSDB.Signatory_DepartmentTable where e.DepartmentID == DepartmentID select e).FirstOrDefault();
+            TOSSDB.Signatory_DepartmentTable.Remove(tblDepartment);
+            TOSSDB.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        #endregion
     }
 }

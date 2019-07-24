@@ -1,1 +1,40 @@
-﻿
+﻿@model TOSS_UPGRADE.Models.FM_SignatoriesModel
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+
+@using (Ajax.BeginForm("UpdateDepartment", "FileMaintenanceSignatories", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithTripleFunc('FMSignatoriesController','Get_DepartmentTable','LoadDynamicDDDepartment','SuccessSave5')", OnFailure = "OnFailure()", }))
+{
+    <div class="row">
+        @Html.HiddenFor(m => m.getDepartmentColumns.DepartmentID, new { })
+        <div class="col-md-8">
+            <label class="mt-1">Department</label>
+            @Html.TextBoxFor(m => m.getDepartmentColumns.Department, new { @class = "form-control", type = "text" })
+            @Html.ValidationMessageFor(model => model.getDepartmentColumns.Department)
+        </div>
+        <div class="col-md-4">
+            <label class="mt-1">Department Code</label>
+            @Html.TextBoxFor(m => m.getDepartmentColumns.DepartmentCode, new { @class = "form-control", type = "text" })
+            @Html.ValidationMessageFor(model => model.getDepartmentColumns.DepartmentCode)
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col-md-8"></div>
+        <div class="col-md-2">
+            <button type="submit" class="btn bg-addbutton form-control black"><b>Save</b></button>
+        </div>
+        <div class="col-md-2">
+            <button class="btn bg-headerbc form-control black" data-dismiss="modal"><b>Cancel</b></button>
+        </div>
+    </div>
+}
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+</script>
+
+
