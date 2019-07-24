@@ -11,24 +11,34 @@ namespace TOSS_UPGRADE.Models
         DB_TOSSEntities db = new DB_TOSSEntities();
         public FM_SignatoriesModel()
         {
-            getPosition = new List<PositionName>();
-            getPositionColumns = new PositionName();
+            getPosition = new List<Signatory_PositionTable>();
+            getPositionColumns = new Signatory_PositionTable();
+
             getSignatoriesTable = new List<SignatoriesTable>();
             getSignatoriesColumns = new SignatoriesTable();
             getSignatoriesList = new List<SignatoriesList>();
+
+            getDepartment = new List<Signatory_DepartmentTable>();
+            getDepartmentColumns = new Signatory_DepartmentTable();
         }
         
-        public PositionName getPositionColumns { get; set; }
+        public Signatory_PositionTable getPositionColumns { get; set; }
         public int PositionID { get; set; }
         public IEnumerable<System.Web.Mvc.SelectListItem> Position { get; set; }
         
         //Course Table List All Columns
-        public IEnumerable<TOSS_UPGRADE.Models.PositionName> getPosition { get; set; }
+        public IEnumerable<TOSS_UPGRADE.Models.Signatory_PositionTable> getPosition { get; set; }
        
         public SignatoriesTable getSignatoriesColumns { get; set; }
          public List<SignatoriesList> getSignatoriesList { get; set; }
 
         public IEnumerable<TOSS_UPGRADE.Models.SignatoriesTable> getSignatoriesTable { get; set; }
+
+
+        public Signatory_DepartmentTable getDepartmentColumns { get; set; }
+        public int DepartmentID { get; set; }
+        public IEnumerable<System.Web.Mvc.SelectListItem> Department { get; set; }
+        public IEnumerable<TOSS_UPGRADE.Models.Signatory_DepartmentTable> getDepartment { get; set; }
     }
 
 
@@ -39,5 +49,7 @@ namespace TOSS_UPGRADE.Models
         public string SignatoriesName { get; set; }
         
         public string PositionNames { get; set; }
+
+        public string Department { get; set; }
     }
 }

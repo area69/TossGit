@@ -52,7 +52,6 @@
         </div>
     </div>
 
-
     @* Add Position Modal *@
     <div class="col-lg-8 col-md-8 col-sm-12">
         <div class="form-group">
@@ -60,15 +59,41 @@
                 <div class="modal-dialog" style="max-width:600px" role="document">
                     <div class="modal-content">
                         <div class="modal-header bg-headerbc white">
-                            <h4 class="modal-title white"><i class="la la-plus"></i>Position</h4>
+                            <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Position</h4>
                         </div>
                         <div class="modal-body skin skin-square">
                             <div class="row">
                                 <div class="col-md-12" id="PositionTempID">
-                                  
+
                                 </div>
                             </div>
                             <div class="row mt-1" id="PositionTableID">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @* Add Department Modal *@
+    <div class="col-lg-8 col-md-8 col-sm-12">
+        <div class="form-group">
+            <div class="modal animated zoomIn text-left" id="addDepartmentModal" role="dialog">
+                <div class="modal-dialog" style="max-width:600px" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-headerbc white">
+                            <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Department</h4>
+                        </div>
+                        <div class="modal-body skin skin-square">
+                            <div class="row">
+                                <div class="col-md-12" id="DepartmentTempID">
+
+                                </div>
+                            </div>
+                            <div class="row mt-1" id="DepartmentTableID">
 
                             </div>
                         </div>
@@ -90,6 +115,7 @@
         F.InitAllFunction = function () {
             F.GetListOfSignatories();
             F.Get_PositionTable();
+            F.LoadDynamicDDDepartment();
             //F.Get_UpdateSignatories();
         }
 
@@ -107,8 +133,7 @@
             var SuccessMess = F.PositionNameID;
             swalSuccess("Position Successfully Updated", SuccessMess);
         }
-
-
+        
         F.Get_PositionTable = function () {
             P({
                 url: '/FileMaintenanceSignatories/Get_PositionTable',
@@ -117,6 +142,7 @@
                 });
             F.Get_AddPosition();
         }
+
         F.Get_AddPosition = function () {
             P({
                 url: '/FileMaintenanceSignatories/Get_AddPosition',
@@ -161,6 +187,14 @@
                 $("#SignatoriesIDTemp").html(response.data);
             });
             F.LoadDynamicDDPositionName();
+        }
+
+        F.LoadDynamicDDDepartment = function () {
+            P({
+                url: '/FileMaintenanceSignatories/GetDynamicDepartment',
+            }).then(function (response) {
+                $("#_DynamicDDDepartmentID").html(response.data);
+            });
         }
 
         F.LoadDynamicDDPositionName = function () {

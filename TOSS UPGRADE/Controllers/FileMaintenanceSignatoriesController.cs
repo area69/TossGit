@@ -27,18 +27,28 @@ namespace TOSS_UPGRADE.Controllers
         {
             FM_SignatoriesModel model = new FM_SignatoriesModel();
 
-            model.Position = new SelectList((from s in TOSSDB.PositionNames.ToList() orderby s.PositionName1 ascending select new { PositionID = s.PositionID, PositionName1 = s.PositionName1 }), "PositionID", "PositionName1");
+            model.Position = new SelectList((from s in TOSSDB.Signatory_PositionTable.ToList() orderby s.PositionName ascending select new { PositionID = s.PositionID, PositionName = s.PositionName }), "PositionID", "PositionName");
 
             return PartialView("_DynamicDDPositionName", model);
         }
+
+        //Position in Dropdown
+        public ActionResult GetDynamicDepartment()
+        {
+            FM_SignatoriesModel model = new FM_SignatoriesModel();
+
+            model.Department = new SelectList((from s in TOSSDB.Signatory_DepartmentTable.ToList() orderby s.Department ascending select new { DepartmentID = s.DepartmentID, Department = s.Department }), "DepartmentID", "Department");
+
+            return PartialView("_DynamicDDDepartment", model);
+        }
+
         //Signatories Table Partial View
         public ActionResult GetListOfSignatories()
         {
             FM_SignatoriesModel model = new FM_SignatoriesModel();
-
             List<SignatoriesList> TblsignatoriesLists = new List<SignatoriesList>();
 
-            var SQLQuery = "  SELECT * FROM DB_TOSS.dbo.SignatoriesTable,DB_TOSS.dbo.PositionName where DB_TOSS.dbo.SignatoriesTable.PositionID=DB_TOSS.dbo.PositionName.PositionID order by SignatoriesName asc";
+            var SQLQuery = "SELECT * FROM DB_TOSS.dbo.SignatoriesTable,DB_TOSS.dbo.Signatory_PositionTable,DB_TOSS.dbo.Signatory_DepartmentTable where DB_TOSS.dbo.Signatory_PositionTable.PositionID = DB_TOSS.dbo.SignatoriesTable.PositionID and DB_TOSS.dbo.Signatory_DepartmentTable.DepartmentID = DB_TOSS.dbo.SignatoriesTable.DepartmentID order by SignatoriesName asc";
             //SQLQuery += " WHERE (IsActive != 0)";
             using (SqlConnection Connection = new SqlConnection(GlobalFunction.ReturnConnectionString()))
             {
@@ -82,21 +92,14 @@ namespace TOSS_UPGRADE.Controllers
             FM_SignatoriesModel model = new FM_SignatoriesModel();
             return PartialView("_SignatoriesAdd", model);
         }
-
-
-
+        
         public ActionResult GetDynamicSignatories2(int SignatoriesID)
         {
             FM_SignatoriesModel model = new FM_SignatoriesModel();
 
-            model.Position = new SelectList((from s in TOSSDB.PositionNames.ToList() orderby s.PositionName1 ascending select new { PositionID = s.PositionID, PositionName1 = s.PositionName1 }), "PositionID", "PositionName1");
-
-
+            model.Position = new SelectList((from s in TOSSDB.Signatory_PositionTable.ToList() orderby s.PositionName ascending select new { PositionID = s.PositionID, PositionName1 = s.PositionName }), "PositionID", "PositionName");
             SignatoriesTable tblSignatories = (from e in TOSSDB.SignatoriesTables where e.SignatoriesID == SignatoriesID select e).FirstOrDefault();
             model.PositionID = tblSignatories.PositionID;
-
-
-
             return PartialView("_DynamicDDPositionName", model);
         }
 
@@ -140,9 +143,9 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult Get_PositionTable()
         {
             FM_SignatoriesModel model = new FM_SignatoriesModel();
-            List<PositionName> tbl_Position = new List<PositionName>();
+            List<Signatory_PositionTable> tbl_Position = new List<Signatory_PositionTable>();
 
-            var SQLQuery = "SELECT * FROM DB_TOSS.dbo.PositionName order by PositionName asc";
+            var SQLQuery = "SELECT * FROM DB_TOSS.dbo.Signatory_PositionTable order by PositionName asc";
             //SQLQuery += " WHERE (IsActive != 0)";
             using (SqlConnection Connection = new SqlConnection(GlobalFunction.ReturnConnectionString()))
             {
@@ -154,19 +157,16 @@ namespace TOSS_UPGRADE.Controllers
                     SqlDataReader dr = command.ExecuteReader();
                     while (dr.Read())
                     {
-                        tbl_Position.Add(new PositionName()
+                        tbl_Position.Add(new Signatory_PositionTable()
                         {
                             PositionID = GlobalFunction.ReturnEmptyInt(dr[0]),
-                            PositionName1 = GlobalFunction.ReturnEmptyString(dr[1]),
+                            PositionName = GlobalFunction.ReturnEmptyString(dr[1]),
                         });
                     }
                 }
                 Connection.Close();
             }
-
             model.getPosition = tbl_Position.ToList();
-
-
             return PartialView("_PositionTable", model.getPosition);
 
         }
@@ -174,26 +174,26 @@ namespace TOSS_UPGRADE.Controllers
         //Get Position Update
         public ActionResult Get_UpdatePosition (FM_SignatoriesModel model, int PositionID)
         {
-            PositionName tblPosition = (from e in TOSSDB.PositionNames where e.PositionID == PositionID select e).FirstOrDefault();
+            Signatory_PositionTable tblPosition = (from e in TOSSDB.Signatory_PositionTable where e.PositionID == PositionID select e).FirstOrDefault();
             model.getPositionColumns.PositionID = tblPosition.PositionID;
-            model.getPositionColumns.PositionName1 = tblPosition.PositionName1;
+            model.getPositionColumns.PositionName = tblPosition.PositionName;
             return PartialView("_PositionUpdate", model);
         }
 
         //Add Position
         public JsonResult AddPosition(FM_SignatoriesModel model)
         {
-            PositionName tblPositionName = new PositionName();
-            tblPositionName.PositionName1 = GlobalFunction.ReturnEmptyString(model.getPositionColumns.PositionName1);
-            TOSSDB.PositionNames.Add(tblPositionName);
+            Signatory_PositionTable tblPositionName = new Signatory_PositionTable();
+            tblPositionName.PositionName = GlobalFunction.ReturnEmptyString(model.getPositionColumns.PositionName);
+            TOSSDB.Signatory_PositionTable.Add(tblPositionName);
             TOSSDB.SaveChanges();
             return Json(tblPositionName);
         }
      
         public ActionResult UpdatePosition(FM_SignatoriesModel model)
         {
-            PositionName tblPosition = (from e in TOSSDB.PositionNames where e.PositionID == model.getPositionColumns.PositionID select e).FirstOrDefault();
-            tblPosition.PositionName1 = model.getPositionColumns.PositionName1;
+            Signatory_PositionTable tblPosition = (from e in TOSSDB.Signatory_PositionTable where e.PositionID == model.getPositionColumns.PositionID select e).FirstOrDefault();
+            tblPosition.PositionName = model.getPositionColumns.PositionName;
             TOSSDB.Entry(tblPosition);
             TOSSDB.SaveChanges();
             return PartialView("_PositionUpdate", model);
@@ -202,10 +202,12 @@ namespace TOSS_UPGRADE.Controllers
         //Delete Position Table
         public ActionResult DeletePosition(FM_SignatoriesModel model, int PositionID)
         {
-            PositionName tblPosition = (from e in TOSSDB.PositionNames where e.PositionID == PositionID select e).FirstOrDefault();
-            TOSSDB.PositionNames.Remove(tblPosition);
+            Signatory_PositionTable tblPosition = (from e in TOSSDB.Signatory_PositionTable where e.PositionID == PositionID select e).FirstOrDefault();
+            TOSSDB.Signatory_PositionTable.Remove(tblPosition);
             TOSSDB.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
     }
 }

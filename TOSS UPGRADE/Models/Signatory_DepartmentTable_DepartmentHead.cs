@@ -12,16 +12,16 @@ namespace TOSS_UPGRADE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PositionName
+    public partial class Signatory_DepartmentTable_DepartmentHead
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PositionName()
+        public Signatory_DepartmentTable_DepartmentHead()
         {
             this.SignatoriesTables = new HashSet<SignatoriesTable>();
         }
     
-        public int PositionID { get; set; }
-        public string PositionName1 { get; set; }
+        public int DepartmentHeadID { get; set; }
+        public int DepartmentHead { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SignatoriesTable> SignatoriesTables { get; set; }

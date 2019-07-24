@@ -12,16 +12,18 @@ namespace TOSS_UPGRADE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SignatoriesTable
+    public partial class Signatory_PositionTable
     {
-        public int SignatoriesID { get; set; }
-        public string SignatoriesName { get; set; }
-        public int PositionID { get; set; }
-        public int DepartmentID { get; set; }
-        public int DepartmentHeadID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Signatory_PositionTable()
+        {
+            this.SignatoriesTables = new HashSet<SignatoriesTable>();
+        }
     
-        public virtual Signatory_PositionTable Signatory_PositionTable { get; set; }
-        public virtual Signatory_DepartmentTable Signatory_DepartmentTable { get; set; }
-        public virtual Signatory_DepartmentTable_DepartmentHead Signatory_DepartmentTable_DepartmentHead { get; set; }
+        public int PositionID { get; set; }
+        public string PositionName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SignatoriesTable> SignatoriesTables { get; set; }
     }
 }

@@ -268,10 +268,16 @@
     <Compile Include="Models\PersonalInformation.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PositionName.cs">
+    <Compile Include="Models\SignatoriesTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SignatoriesTable.cs">
+    <Compile Include="Models\Signatory_DepartmentTable.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Signatory_DepartmentTable_DepartmentHead.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Signatory_PositionTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TOSSDataSet.Designer.cs">
@@ -8920,6 +8926,10 @@
     <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_MemoAccClassTable.cshtml" />
     <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_AddMemoAccClass.cshtml" />
     <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_UpdateMemoAccClass.cshtml" />
+    <Content Include="Views\FileMaintenanceSignatories\_DynamicDDDepartment.cshtml" />
+    <Content Include="Views\FileMaintenanceSignatories\_DepartmentAdd.cshtml" />
+    <Content Include="Views\FileMaintenanceSignatories\_DepartmentTable.cshtml" />
+    <Content Include="Views\FileMaintenanceSignatories\_DepartmentUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

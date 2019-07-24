@@ -6,11 +6,12 @@
 
 
 <label>Position</label>
-@Html.DropDownListFor(m => m.PositionID, Model.Position, new { @class = "form-control select2", id = "SignatoriesIDD" })
+<span class="input-group-append" id="button-addon2">
+    @Html.DropDownListFor(m => m.getPositionColumns.PositionName, Model.Position, new { @class = "form-control select2", id = "SignatoriesIDD" })
+    <button class="btn bg-addbutton" type="button"  data-toggle="modal" data-target="#addPositionModal" ng-click="Get_PositionTable()"><strong>+</strong></button>
+</span>
 <script>
-
     $(function () {
         $("#SignatoriesIDD").select2();
     })
-
 </script>

@@ -41,7 +41,9 @@ namespace TOSS_UPGRADE.Models
         public virtual DbSet<MemoAccClassTable> MemoAccClassTables { get; set; }
         public virtual DbSet<ParentModule> ParentModules { get; set; }
         public virtual DbSet<PersonalInformation> PersonalInformations { get; set; }
-        public virtual DbSet<PositionName> PositionNames { get; set; }
         public virtual DbSet<SignatoriesTable> SignatoriesTables { get; set; }
+        public virtual DbSet<Signatory_DepartmentTable> Signatory_DepartmentTable { get; set; }
+        public virtual DbSet<Signatory_DepartmentTable_DepartmentHead> Signatory_DepartmentTable_DepartmentHead { get; set; }
+        public virtual DbSet<Signatory_PositionTable> Signatory_PositionTable { get; set; }
     }
 }

@@ -1,0 +1,17 @@
+﻿@model TOSS_UPGRADE.Models.FM_SignatoriesModel
+@{
+    DB_TOSSEntities TOSSDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+
+<label>Department</label>
+<span class="input-group-append" id="button-addon2">
+    @Html.DropDownListFor(m => m.getDepartmentColumns.Department, Model.Department, new { @class = "form-control select2", id = "DepartmentIDD" })
+    <button class="btn bg-addbutton" type="button" data-toggle="modal" data-target="#addDepartmentModal" ng-click="Get_PositionTable()"><strong>+</strong></button>
+</span>
+<script>
+    $(function () {
+        $("#DepartmentIDD").select2();
+    })
+</script>
