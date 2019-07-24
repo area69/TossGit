@@ -7,24 +7,25 @@
 @using (Ajax.BeginForm("AddSignatories", "FileMaintenanceSignatories", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc('FMSignatoriesController', 'GetListOfSignatories','SuccessSave1')", OnFailure = "OnFailure()", }))
 {
 
-    <div class="row">
-        <div class="col-md-5 form-group">
-            <label>Signatory Name</label>
-            @Html.TextBoxFor(m => m.getSignatoriesColumns.SignatoriesName, new { @class = "form-control", type = "text", ng_model = "SignatoriesNameID" })
-            @Html.ValidationMessageFor(model => model.getSignatoriesColumns.SignatoriesName)
+<div class="row">
+    <div class="col-md-4 form-group">
+        <label>Signatory Name</label>
+        @Html.TextBoxFor(m => m.getSignatoriesColumns.SignatoriesName, new { @class = "form-control", type = "text", ng_model = "SignatoriesNameID" })
+        @Html.ValidationMessageFor(model => model.getSignatoriesColumns.SignatoriesName)
 
-        </div>
-        <div class="col-md-5 pl-0 form-group" id="_DynamicDDPositionNameID">
-
-        </div>
-        <div class="col-md-2">
-            <label>Department Head</label>
-            <select class="form-control">
-                <option>Yes</option>
-                <option>No</option>
-            </select>
-        </div>
     </div>
+    <div class="col-md-5 pl-0 form-group" id="_DynamicDDPositionNameID">
+
+    </div>
+    @Html.HiddenFor(m => m.isDeptHeads, new { id="isDeptHeadID"})
+    <div class="col-md-3">
+        <label>If Department Head?</label>
+        <select class="form-control" id="isDeptHeadDD" onchange="IsDeptHeadOnChange()">
+            <option value="True">Yes</option>
+            <option value="False">No</option>
+        </select>
+    </div>
+</div>
 
     <div class="row">
         <div class="col-md-8 form-group" id="_DynamicDDDepartmentID">
@@ -40,3 +41,13 @@
         </div>
     </div>
 }
+
+    <script>
+        $(function () {
+            IsDeptHeadOnChange()
+        })
+        function IsDeptHeadOnChange() {
+            var isDeptHeadValue = $("#isDeptHeadDD").val();
+            $("#isDeptHeadID").val(isDeptHeadValue);
+        }
+    </script>

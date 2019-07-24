@@ -160,7 +160,7 @@
           <Property Name="SignatoriesName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PositionID" Type="int" Nullable="false" />
           <Property Name="DepartmentID" Type="int" Nullable="false" />
-          <Property Name="DepartmentHeadID" Type="int" Nullable="false" />
+          <Property Name="IsDeptHead" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Signatory_DepartmentTable">
           <Key>
@@ -169,13 +169,6 @@
           <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Department" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="DepartmentCode" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Signatory_DepartmentTable_DepartmentHead">
-          <Key>
-            <PropertyRef Name="DepartmentHeadID" />
-          </Key>
-          <Property Name="DepartmentHeadID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DepartmentHead" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Signatory_PositionTable">
           <Key>
@@ -352,18 +345,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SignatoriesTable_Signatory_DepartmentTable_DepartmentHead">
-          <End Role="Signatory_DepartmentTable_DepartmentHead" Type="Self.Signatory_DepartmentTable_DepartmentHead" Multiplicity="1" />
-          <End Role="SignatoriesTable" Type="Self.SignatoriesTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Signatory_DepartmentTable_DepartmentHead">
-              <PropertyRef Name="DepartmentHeadID" />
-            </Principal>
-            <Dependent Role="SignatoriesTable">
-              <PropertyRef Name="DepartmentHeadID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tbl_listoffundtypes_tbl_listoffundtypes">
           <End Role="FundType_FundType" Type="Self.FundType_FundType" Multiplicity="1" />
           <End Role="FundType_FundTypeTable" Type="Self.FundType_FundTypeTable" Multiplicity="*" />
@@ -395,7 +376,6 @@
           <EntitySet Name="PersonalInformation" EntityType="Self.PersonalInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SignatoriesTable" EntityType="Self.SignatoriesTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatory_DepartmentTable" EntityType="Self.Signatory_DepartmentTable" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Signatory_DepartmentTable_DepartmentHead" EntityType="Self.Signatory_DepartmentTable_DepartmentHead" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatory_PositionTable" EntityType="Self.Signatory_PositionTable" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Accounts_PersonalInformation" Association="Self.FK_Accounts_PersonalInformation">
             <End Role="PersonalInformation" EntitySet="PersonalInformation" />
@@ -453,10 +433,6 @@
             <End Role="Signatory_DepartmentTable" EntitySet="Signatory_DepartmentTable" />
             <End Role="SignatoriesTable" EntitySet="SignatoriesTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_SignatoriesTable_Signatory_DepartmentTable_DepartmentHead" Association="Self.FK_SignatoriesTable_Signatory_DepartmentTable_DepartmentHead">
-            <End Role="Signatory_DepartmentTable_DepartmentHead" EntitySet="Signatory_DepartmentTable_DepartmentHead" />
-            <End Role="SignatoriesTable" EntitySet="SignatoriesTable" />
-          </AssociationSet>
           <AssociationSet Name="FK_tbl_listoffundtypes_tbl_listoffundtypes" Association="Self.FK_tbl_listoffundtypes_tbl_listoffundtypes">
             <End Role="FundType_FundType" EntitySet="FundType_FundType" />
             <End Role="FundType_FundTypeTable" EntitySet="FundType_FundTypeTable" />
@@ -485,7 +461,6 @@
           <EntitySet Name="PersonalInformations" EntityType="DB_TOSSModel.PersonalInformation" />
           <EntitySet Name="SignatoriesTables" EntityType="DB_TOSSModel.SignatoriesTable" />
           <EntitySet Name="Signatory_DepartmentTable" EntityType="DB_TOSSModel.Signatory_DepartmentTable" />
-          <EntitySet Name="Signatory_DepartmentTable_DepartmentHead" EntityType="DB_TOSSModel.Signatory_DepartmentTable_DepartmentHead" />
           <EntitySet Name="Signatory_PositionTable" EntityType="DB_TOSSModel.Signatory_PositionTable" />
           <AssociationSet Name="FK_Accounts_PersonalInformation" Association="DB_TOSSModel.FK_Accounts_PersonalInformation">
             <End Role="PersonalInformation" EntitySet="PersonalInformations" />
@@ -545,10 +520,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_SignatoriesTable_Signatory_DepartmentTable" Association="DB_TOSSModel.FK_SignatoriesTable_Signatory_DepartmentTable">
             <End Role="Signatory_DepartmentTable" EntitySet="Signatory_DepartmentTable" />
-            <End Role="SignatoriesTable" EntitySet="SignatoriesTables" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SignatoriesTable_Signatory_DepartmentTable_DepartmentHead" Association="DB_TOSSModel.FK_SignatoriesTable_Signatory_DepartmentTable_DepartmentHead">
-            <End Role="Signatory_DepartmentTable_DepartmentHead" EntitySet="Signatory_DepartmentTable_DepartmentHead" />
             <End Role="SignatoriesTable" EntitySet="SignatoriesTables" />
           </AssociationSet>
         </EntityContainer>
@@ -733,10 +704,9 @@
           <Property Name="SignatoriesName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PositionID" Type="Int32" Nullable="false" />
           <Property Name="DepartmentID" Type="Int32" Nullable="false" />
-          <Property Name="DepartmentHeadID" Type="Int32" Nullable="false" />
+          <Property Name="IsDeptHead" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Signatory_PositionTable" Relationship="DB_TOSSModel.FK_SignatoriesTable_PositionName" FromRole="SignatoriesTable" ToRole="Signatory_PositionTable" />
           <NavigationProperty Name="Signatory_DepartmentTable" Relationship="DB_TOSSModel.FK_SignatoriesTable_Signatory_DepartmentTable" FromRole="SignatoriesTable" ToRole="Signatory_DepartmentTable" />
-          <NavigationProperty Name="Signatory_DepartmentTable_DepartmentHead" Relationship="DB_TOSSModel.FK_SignatoriesTable_Signatory_DepartmentTable_DepartmentHead" FromRole="SignatoriesTable" ToRole="Signatory_DepartmentTable_DepartmentHead" />
         </EntityType>
         <EntityType Name="Signatory_DepartmentTable">
           <Key>
@@ -746,14 +716,6 @@
           <Property Name="Department" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SignatoriesTables" Relationship="DB_TOSSModel.FK_SignatoriesTable_Signatory_DepartmentTable" FromRole="Signatory_DepartmentTable" ToRole="SignatoriesTable" />
-        </EntityType>
-        <EntityType Name="Signatory_DepartmentTable_DepartmentHead">
-          <Key>
-            <PropertyRef Name="DepartmentHeadID" />
-          </Key>
-          <Property Name="DepartmentHeadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DepartmentHead" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SignatoriesTables" Relationship="DB_TOSSModel.FK_SignatoriesTable_Signatory_DepartmentTable_DepartmentHead" FromRole="Signatory_DepartmentTable_DepartmentHead" ToRole="SignatoriesTable" />
         </EntityType>
         <EntityType Name="Signatory_PositionTable">
           <Key>
@@ -943,18 +905,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SignatoriesTable_Signatory_DepartmentTable_DepartmentHead">
-          <End Type="DB_TOSSModel.Signatory_DepartmentTable_DepartmentHead" Role="Signatory_DepartmentTable_DepartmentHead" Multiplicity="1" />
-          <End Type="DB_TOSSModel.SignatoriesTable" Role="SignatoriesTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Signatory_DepartmentTable_DepartmentHead">
-              <PropertyRef Name="DepartmentHeadID" />
-            </Principal>
-            <Dependent Role="SignatoriesTable">
-              <PropertyRef Name="DepartmentHeadID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1127,7 +1077,7 @@
           <EntitySetMapping Name="SignatoriesTables">
             <EntityTypeMapping TypeName="DB_TOSSModel.SignatoriesTable">
               <MappingFragment StoreEntitySet="SignatoriesTable">
-                <ScalarProperty Name="DepartmentHeadID" ColumnName="DepartmentHeadID" />
+                <ScalarProperty Name="IsDeptHead" ColumnName="IsDeptHead" />
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
                 <ScalarProperty Name="PositionID" ColumnName="PositionID" />
                 <ScalarProperty Name="SignatoriesName" ColumnName="SignatoriesName" />
@@ -1141,14 +1091,6 @@
                 <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Signatory_DepartmentTable_DepartmentHead">
-            <EntityTypeMapping TypeName="DB_TOSSModel.Signatory_DepartmentTable_DepartmentHead">
-              <MappingFragment StoreEntitySet="Signatory_DepartmentTable_DepartmentHead">
-                <ScalarProperty Name="DepartmentHead" ColumnName="DepartmentHead" />
-                <ScalarProperty Name="DepartmentHeadID" ColumnName="DepartmentHeadID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -64,7 +64,10 @@ namespace TOSS_UPGRADE.Controllers
                         {
                             SignatoriesID = GlobalFunction.ReturnEmptyInt(dr[0]),
                             SignatoriesName = GlobalFunction.ReturnEmptyString(dr[1]),
-                            PositionNames = GlobalFunction.ReturnEmptyString(dr[4]),
+                            PositionNames = GlobalFunction.ReturnEmptyString(dr[6]),
+                            Department = GlobalFunction.ReturnEmptyString(dr[8]),
+                            DepartmentCode = GlobalFunction.ReturnEmptyString(dr[9]),
+                            idDeptHead = GlobalFunction.ReturnEmptyBool(dr[4]),
                         });
                     }
                 }
@@ -76,12 +79,15 @@ namespace TOSS_UPGRADE.Controllers
 
             return PartialView("_SignatoriesTable", model.getSignatoriesList);
         }
+
         //Add Signatories
         public JsonResult AddSignatories(FM_SignatoriesModel model)
         {
             SignatoriesTable tblSignatories = new SignatoriesTable();
             tblSignatories.SignatoriesName = GlobalFunction.ReturnEmptyString(model.getSignatoriesColumns.SignatoriesName);
-            tblSignatories.PositionID = GlobalFunction.ReturnEmptyInt(model.PositionID);
+            tblSignatories.PositionID = GlobalFunction.ReturnEmptyInt(model.getPositionColumns.PositionName);
+            tblSignatories.DepartmentID = GlobalFunction.ReturnEmptyInt(model.getDepartmentColumns.Department);
+            tblSignatories.IsDeptHead = GlobalFunction.ReturnEmptyBool(model.isDeptHeads);
             TOSSDB.SignatoriesTables.Add(tblSignatories);
             TOSSDB.SaveChanges();
             return Json(tblSignatories);
@@ -131,12 +137,14 @@ namespace TOSS_UPGRADE.Controllers
             TOSSDB.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+
+        //Position
+        #region
         //Get Add Position Partial View
         public ActionResult Get_AddPosition()
         {
             FM_SignatoriesModel model = new FM_SignatoriesModel();
-            return PartialView("_PositionAdd", model);
+            return PartialView("Position/_PositionAdd", model);
         }
 
         //Position Table Partial View
@@ -167,7 +175,7 @@ namespace TOSS_UPGRADE.Controllers
                 Connection.Close();
             }
             model.getPosition = tbl_Position.ToList();
-            return PartialView("_PositionTable", model.getPosition);
+            return PartialView("Position/_PositionTable", model.getPosition);
 
         }
 
@@ -177,7 +185,7 @@ namespace TOSS_UPGRADE.Controllers
             Signatory_PositionTable tblPosition = (from e in TOSSDB.Signatory_PositionTable where e.PositionID == PositionID select e).FirstOrDefault();
             model.getPositionColumns.PositionID = tblPosition.PositionID;
             model.getPositionColumns.PositionName = tblPosition.PositionName;
-            return PartialView("_PositionUpdate", model);
+            return PartialView("Position/_PositionUpdate", model);
         }
 
         //Add Position
@@ -196,7 +204,7 @@ namespace TOSS_UPGRADE.Controllers
             tblPosition.PositionName = model.getPositionColumns.PositionName;
             TOSSDB.Entry(tblPosition);
             TOSSDB.SaveChanges();
-            return PartialView("_PositionUpdate", model);
+            return PartialView("Position/_PositionUpdate", model);
         }
 
         //Delete Position Table
@@ -207,7 +215,7 @@ namespace TOSS_UPGRADE.Controllers
             TOSSDB.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+        #endregion
         //Department
         #region
         //Department Table Partial View
@@ -239,14 +247,14 @@ namespace TOSS_UPGRADE.Controllers
                 Connection.Close();
             }
             model.getDepartment = tbl_Department.ToList();
-            return PartialView("_DepartmentTable", model.getDepartment);
+            return PartialView("Department/_DepartmentTable", model.getDepartment);
         }
 
         //Get Add Department Partial View
         public ActionResult Get_AddDepartment()
         {
             FM_SignatoriesModel model = new FM_SignatoriesModel();
-            return PartialView("_DepartmentAdd", model);
+            return PartialView("Department/_DepartmentAdd", model);
         }
 
         //Add Department
@@ -267,7 +275,7 @@ namespace TOSS_UPGRADE.Controllers
             model.getDepartmentColumns.DepartmentID = tblDepartment.DepartmentID;
             model.getDepartmentColumns.Department = tblDepartment.Department;
             model.getDepartmentColumns.DepartmentCode = tblDepartment.DepartmentCode;
-            return PartialView("_DepartmentUpdate", model);
+            return PartialView("Department/_DepartmentUpdate", model);
         }
 
         public ActionResult UpdateDepartment(FM_SignatoriesModel model)
@@ -277,7 +285,7 @@ namespace TOSS_UPGRADE.Controllers
             tblDepartment.DepartmentCode = model.getDepartmentColumns.DepartmentCode;
             TOSSDB.Entry(tblDepartment);
             TOSSDB.SaveChanges();
-            return PartialView("_DepartmentUpdate", model);
+            return PartialView("Department/_DepartmentUpdate", model);
         }
         //Delete Position Table
         public ActionResult DeleteDepartment(FM_SignatoriesModel model, int DepartmentID)

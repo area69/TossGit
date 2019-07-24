@@ -89,7 +89,7 @@
                         </div>
                         <div class="modal-body skin skin-square">
                             <div class="row">
-                                <div class="col-md-12" id="DepartmentTempID">
+                                <div class="col-md-12" id="DepartmentxID">
 
                                 </div>
                             </div>
@@ -197,6 +197,27 @@
                 $("#_DynamicDDPositionNameID").html(response.data);
             });
         }
+
+
+        F.LoadSelectedDynamicDDDepartment = function () {
+            var DepartmentIDTempID = $("#DepartmentIDTempID").val();
+            P({
+                url: '/FileMaintenanceGeneralReference/GetSelectedDynamicDepartment',
+                params: { DepartmentIDTempID: DepartmentIDTempID }
+            }).then(function (response) {
+                $("#_DynamicDDPositionNameID").html(response.data);
+            });
+        }
+        
+        F.LoadSelectedDynamicDDPositionName = function () {
+            var PositionIDTempID = $("#PositionIDTempID").val();
+            P({
+                url: '/FileMaintenanceGeneralReference/GetSelectedDynamicSignatories',
+                params: { PositionIDTempID: PositionIDTempID }
+            }).then(function (response) {
+                $("#_DynamicDDPositionNameID").html(response.data);
+            });
+        }
         F.LoadDynamicDDPositionName2 = function (SignatoriesID) {
             P({
                 url: '/FileMaintenanceSignatories/GetDynamicSignatories2',
@@ -243,7 +264,7 @@
             P({
                 url: '/FileMaintenanceSignatories/Get_AddDepartment',
             }).then(function (response) {
-                $("#DepartmentTempID").html(response.data);
+                $("#DepartmentxID").html(response.data);
             });
 
         }
@@ -252,7 +273,9 @@
                 url: '/FileMaintenanceSignatories/Get_UpdateDepartment',
                 params: { DepartmentID: DepartmentID }
             }).then(function (response) {
-                $("#DepartmentTempID").html(response.data);
+                $("#DepartmentxID").html(response.data);
+                F.LoadSelectedDynamicDDPositionName();
+                F.LoadSelectedDynamicDDDepartment();
             });
         }
         F.Get_DeleteDepartment = function (DepartmentID) {

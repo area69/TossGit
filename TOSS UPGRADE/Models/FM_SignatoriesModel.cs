@@ -24,6 +24,7 @@ namespace TOSS_UPGRADE.Models
         
         public Signatory_PositionTable getPositionColumns { get; set; }
         public int PositionID { get; set; }
+        public int PositionTempID { get; set; }
         public IEnumerable<System.Web.Mvc.SelectListItem> Position { get; set; }
         
         //Course Table List All Columns
@@ -37,8 +38,11 @@ namespace TOSS_UPGRADE.Models
 
         public Signatory_DepartmentTable getDepartmentColumns { get; set; }
         public int DepartmentID { get; set; }
+        public int DepartmentTempID { get; set; }
         public IEnumerable<System.Web.Mvc.SelectListItem> Department { get; set; }
         public IEnumerable<TOSS_UPGRADE.Models.Signatory_DepartmentTable> getDepartment { get; set; }
+
+        public bool isDeptHeads { get; set; }
     }
 
 
@@ -51,5 +55,8 @@ namespace TOSS_UPGRADE.Models
         public string PositionNames { get; set; }
 
         public string Department { get; set; }
+        public string DepartmentCode  { get; set; }
+
+        public bool idDeptHead { get; set; }
     }
 }

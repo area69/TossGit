@@ -274,9 +274,6 @@
     <Compile Include="Models\Signatory_DepartmentTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Signatory_DepartmentTable_DepartmentHead.cs">
-      <DependentUpon>TOSS_Entities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Signatory_PositionTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
@@ -8892,11 +8889,11 @@
     <Content Include="Views\AF53\Index.cshtml" />
     <Content Include="Views\AF54\Index.cshtml" />
     <Content Include="Views\FileMaintenanceSignatories\_SignatoriesTable.cshtml" />
-    <Content Include="Views\FileMaintenanceSignatories\_PositionTable.cshtml" />
-    <Content Include="Views\FileMaintenanceSignatories\_PositionUpdate.cshtml" />
+    <Content Include="Views\FileMaintenanceSignatories\Position\_PositionTable.cshtml" />
+    <Content Include="Views\FileMaintenanceSignatories\Position\_PositionUpdate.cshtml" />
     <Content Include="Views\FileMaintenanceSignatories\_SignatoriesAdd.cshtml" />
     <Content Include="Views\FileMaintenanceSignatories\_SignatoriesUpdate.cshtml" />
-    <Content Include="Views\FileMaintenanceSignatories\_PositionAdd.cshtml" />
+    <Content Include="Views\FileMaintenanceSignatories\Position\_PositionAdd.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\FileMaintenanceGeneralReference\FundTypes\_DynamicDDFundType.cshtml" />
     <Content Include="Views\FileMaintenanceGeneralReference\FundTypes\_FundTypesTable.cshtml" />
@@ -8927,9 +8924,9 @@
     <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_AddMemoAccClass.cshtml" />
     <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_UpdateMemoAccClass.cshtml" />
     <Content Include="Views\FileMaintenanceSignatories\_DynamicDDDepartment.cshtml" />
-    <Content Include="Views\FileMaintenanceSignatories\_DepartmentAdd.cshtml" />
-    <Content Include="Views\FileMaintenanceSignatories\_DepartmentTable.cshtml" />
-    <Content Include="Views\FileMaintenanceSignatories\_DepartmentUpdate.cshtml" />
+    <Content Include="Views\FileMaintenanceSignatories\Department\_DepartmentAdd.cshtml" />
+    <Content Include="Views\FileMaintenanceSignatories\Department\_DepartmentTable.cshtml" />
+    <Content Include="Views\FileMaintenanceSignatories\Department\_DepartmentUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
