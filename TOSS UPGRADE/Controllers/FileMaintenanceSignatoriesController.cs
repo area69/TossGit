@@ -26,19 +26,28 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult GetDynamicSignatories()
         {
             FM_SignatoriesModel model = new FM_SignatoriesModel();
-
-            model.Position = new SelectList((from s in TOSSDB.Signatory_PositionTable.ToList() orderby s.PositionName ascending select new { PositionID = s.PositionID, PositionName = s.PositionName }), "PositionID", "PositionName");
-
+            model.PositionList = new SelectList((from s in TOSSDB.Signatory_PositionTable.ToList() orderby s.PositionName ascending select new { PositionID = s.PositionID, PositionName = s.PositionName }), "PositionID", "PositionName");
             return PartialView("_DynamicDDPositionName", model);
         }
-
-        //Position in Dropdown
+        public ActionResult GetSelectedDynamicSignatories(int PositionIDTempID)
+        {
+            FM_SignatoriesModel model = new FM_SignatoriesModel();
+            model.PositionList = new SelectList((from s in TOSSDB.Signatory_PositionTable.ToList() orderby s.PositionName ascending select new { PositionID = s.PositionID, PositionName = s.PositionName }), "PositionID", "PositionName");
+            model.PositionID = PositionIDTempID;
+            return PartialView("_DynamicDDPositionName", model);
+        }
+        //Department in Dropdown
         public ActionResult GetDynamicDepartment()
         {
             FM_SignatoriesModel model = new FM_SignatoriesModel();
-
-            model.Department = new SelectList((from s in TOSSDB.Signatory_DepartmentTable.ToList() orderby s.Department ascending select new { DepartmentID = s.DepartmentID, Department = s.Department }), "DepartmentID", "Department");
-
+            model.DepartmentList = new SelectList((from s in TOSSDB.Signatory_DepartmentTable.ToList() select new { DepartmentID = s.DepartmentID, Department = s.Department }), "DepartmentID", "Department");
+            return PartialView("_DynamicDDDepartment", model);
+        }
+        public ActionResult GetSelectedDynamicDepartment(int DepartmentIDTempID)
+        {
+            FM_SignatoriesModel model = new FM_SignatoriesModel();
+            model.DepartmentList = new SelectList((from s in TOSSDB.Signatory_DepartmentTable.ToList() select new { DepartmentID = s.DepartmentID, Department = s.Department }), "DepartmentID", "Department");
+            model.DepartmentID = DepartmentIDTempID;
             return PartialView("_DynamicDDDepartment", model);
         }
 
@@ -85,8 +94,8 @@ namespace TOSS_UPGRADE.Controllers
         {
             SignatoriesTable tblSignatories = new SignatoriesTable();
             tblSignatories.SignatoriesName = GlobalFunction.ReturnEmptyString(model.getSignatoriesColumns.SignatoriesName);
-            tblSignatories.PositionID = GlobalFunction.ReturnEmptyInt(model.getPositionColumns.PositionName);
-            tblSignatories.DepartmentID = GlobalFunction.ReturnEmptyInt(model.getDepartmentColumns.Department);
+            tblSignatories.PositionID = GlobalFunction.ReturnEmptyInt(model.PositionID);
+            tblSignatories.DepartmentID = GlobalFunction.ReturnEmptyInt(model.DepartmentID);
             tblSignatories.IsDeptHead = GlobalFunction.ReturnEmptyBool(model.isDeptHeads);
             TOSSDB.SignatoriesTables.Add(tblSignatories);
             TOSSDB.SaveChanges();
@@ -99,22 +108,14 @@ namespace TOSS_UPGRADE.Controllers
             return PartialView("_SignatoriesAdd", model);
         }
         
-        public ActionResult GetDynamicSignatories2(int SignatoriesID)
-        {
-            FM_SignatoriesModel model = new FM_SignatoriesModel();
-
-            model.Position = new SelectList((from s in TOSSDB.Signatory_PositionTable.ToList() orderby s.PositionName ascending select new { PositionID = s.PositionID, PositionName1 = s.PositionName }), "PositionID", "PositionName");
-            SignatoriesTable tblSignatories = (from e in TOSSDB.SignatoriesTables where e.SignatoriesID == SignatoriesID select e).FirstOrDefault();
-            model.PositionID = tblSignatories.PositionID;
-            return PartialView("_DynamicDDPositionName", model);
-        }
-
         //Get Signature Data
         public ActionResult Get_UpdateSignatories(FM_SignatoriesModel model, int SignatoriesID)
         {
             SignatoriesTable tblSignatories = (from e in TOSSDB.SignatoriesTables where e.SignatoriesID == SignatoriesID select e).FirstOrDefault();
             model.getSignatoriesColumns.SignatoriesID = tblSignatories.SignatoriesID;
             model.getSignatoriesColumns.SignatoriesName = tblSignatories.SignatoriesName;
+            model.DepartmentTempID = tblSignatories.DepartmentID;
+            model.PositionTempID = tblSignatories.PositionID;
             return PartialView("_SignatoriesUpdate", model);
         }
 
@@ -122,8 +123,10 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult UpdateSignatories(FM_SignatoriesModel model)
         {
             SignatoriesTable tblSignatories = (from e in TOSSDB.SignatoriesTables where e.SignatoriesID == model.getSignatoriesColumns.SignatoriesID select e).FirstOrDefault();
-            tblSignatories.PositionID = model.PositionID;
             tblSignatories.SignatoriesName = model.getSignatoriesColumns.SignatoriesName;
+            tblSignatories.PositionID = model.PositionID;
+            tblSignatories.DepartmentID = model.DepartmentID;
+            tblSignatories.IsDeptHead = model.isDeptHeads;
             TOSSDB.Entry(tblSignatories);
             TOSSDB.SaveChanges();
             return PartialView("_SignatoriesUpdate", model);

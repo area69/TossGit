@@ -7,7 +7,7 @@
 
 <label>Department</label>
 <span class="input-group-append" id="button-addon2">
-    @Html.DropDownListFor(m => m.getDepartmentColumns.Department, Model.Department, new { @class = "form-control select2", id = "DepartmentIDD" })
+    @Html.DropDownListFor(m => m.DepartmentID, Model.DepartmentList, new { @class = "form-control select2", id = "DepartmentIDD" })
     <button class="btn bg-addbutton" type="button" data-toggle="modal" data-target="#addDepartmentModal" ng-click="Get_PositionTable()"><strong>+</strong></button>
 </span>
 <script>
