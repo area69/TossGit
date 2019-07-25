@@ -7,9 +7,9 @@
 
 @using (Ajax.BeginForm("UpdateMemoAccount", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMGeneralReferenceController','Get_MemoAccountClassTable','Memo Account Classification Successfully Updated')", OnFailure = "OnFailure()", }))
 {
-    @Html.HiddenFor(m => m.getMemoColumns.MemoAccClassID, new { })
-    @Html.HiddenFor(m => m.MMAccountTitleTemp, new { id = "MMAccountTitleIDTempID" })
-    @Html.HiddenFor(m => m.MMRevisionYrTemp, new { id = "RevisionYrIDTempID" })
+    @Html.HiddenFor(m => m.MemoAccClassID, new { })
+    @Html.HiddenFor(m => m.MMAccountTitleTempID, new { id = "MMAccountTitleIDTempID" })
+    @Html.HiddenFor(m => m.MMRevisionYrTempID, new { id = "MMRevisionYrIDTempID" })
     <div class="row">
         <div class="col-md-3 form-group" id="MemoAccClass_RevisionYrID">
 

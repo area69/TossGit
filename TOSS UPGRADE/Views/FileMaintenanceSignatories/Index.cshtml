@@ -121,7 +121,7 @@
         }
 
         F.SuccessSave1 = function () {
-            var SuccessMess = F.P;
+            var SuccessMess = "Signatory Successfully Added";
             swalSuccess("Success", SuccessMess);
         }
         F.SuccessSave2 = function () {
@@ -212,6 +212,7 @@
                 $("#_DynamicDDDepartmentID").html(response.data);
             });
         }
+        
         F.LoadSelectedDynamicDDPositionName = function () {
             var PositionIDTempID = $("#PositionIDTempID").val();
             P({

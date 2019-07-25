@@ -419,14 +419,16 @@ namespace TOSS_UPGRADE.Controllers
         {
             FM_GeneralReference_MemoAccountClass model = new FM_GeneralReference_MemoAccountClass();
             model.MMAccountTitleList = new SelectList((from s in TOSSDB.MemoAccClass_AccountCode.ToList() orderby s.AccountCodeID ascending select new { AccountCodeID = s.AccountCodeID, AccountTitle = s.AccountTitle }), "AccountCodeID", "AccountTitle");
+
+
             return PartialView("MemoAccountClass/_DynamicDDAccountTitle", model);
         }
 
-        public ActionResult GetSelectedDynamicMemoAccountTitle(int MMAccountTitleTempID)
+        public ActionResult GetSelectedDynamicMemoAccountTitle(int MMAccountTitleIDTempID)
         {
             FM_GeneralReference_MemoAccountClass model = new FM_GeneralReference_MemoAccountClass();
             model.MMAccountTitleList = new SelectList((from s in TOSSDB.MemoAccClass_AccountCode.ToList() orderby s.AccountCodeID ascending select new { AccountCodeID = s.AccountCodeID, AccountTitle = s.AccountTitle }), "AccountCodeID", "AccountTitle");
-            model.MMAccountTitleID = MMAccountTitleTempID;
+            model.MMAccountTitleID = MMAccountTitleIDTempID;
             return PartialView("MemoAccountClass/_DynamicDDAccountTitle", model);
          
         }
@@ -437,11 +439,11 @@ namespace TOSS_UPGRADE.Controllers
             model.MMRevisionYearList = new SelectList((from s in TOSSDB.MemoAccClass_RevisionYr.ToList() orderby s.RevisionID ascending select new { RevisionID = s.RevisionID, RevisionYear = s.RevisionYear }), "RevisionID", "RevisionYear");
             return PartialView("MemoAccountClass/_DynamicDDRevisionYear", model);
         }
-        public ActionResult GetSelectedDynamicMemoRevisionYear(int MMRevisionYrTempID)
+        public ActionResult GetSelectedDynamicMemoRevisionYear(int MMRevisionYrIDTempID)
         {
             FM_GeneralReference_MemoAccountClass model = new FM_GeneralReference_MemoAccountClass();
             model.MMRevisionYearList = new SelectList((from s in TOSSDB.MemoAccClass_RevisionYr.ToList() orderby s.RevisionID ascending select new { RevisionID = s.RevisionID, RevisionYear = s.RevisionYear }), "RevisionID", "RevisionYear");
-            model.MMRevisionYrID = MMRevisionYrTempID;
+            model.MMRevisionYrID = MMRevisionYrIDTempID;
             return PartialView("MemoAccountClass/_DynamicDDRevisionYear", model);
         }
 
@@ -499,16 +501,16 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult Get_UpdateMemoAccount(FM_GeneralReference_MemoAccountClass model, int MemoAccClassID)
         {
             MemoAccClassTable tblMemoAccount = (from e in TOSSDB.MemoAccClassTables where e.MemoAccClassID == MemoAccClassID select e).FirstOrDefault();
-            model.getMemoColumns.MemoAccClassID = tblMemoAccount.MemoAccClassID;
-            model.MMAccountTitleTemp = tblMemoAccount.AccountCodeID;
-            model.MMRevisionYrTemp = tblMemoAccount.RevisionID;
+            model.MemoAccClassID = tblMemoAccount.MemoAccClassID;
+            model.MMAccountTitleTempID = tblMemoAccount.AccountCodeID;
+            model.MMRevisionYrTempID = tblMemoAccount.RevisionID;
             return PartialView("MemoAccountClass/_UpdateMemoAccClass", model);
         }
 
         //Update Memo Account
         public ActionResult UpdateMemoAccount(FM_GeneralReference_MemoAccountClass model)
         {
-            MemoAccClassTable tblMemoAccount = (from e in TOSSDB.MemoAccClassTables where e.MemoAccClassID == model.getMemoColumns.MemoAccClassID select e).FirstOrDefault();
+            MemoAccClassTable tblMemoAccount = (from e in TOSSDB.MemoAccClassTables where e.MemoAccClassID == model.MemoAccClassID select e).FirstOrDefault();
             tblMemoAccount.AccountCodeID = model.MMAccountTitleID;
             tblMemoAccount.RevisionID = model.MMRevisionYrID;
             TOSSDB.Entry(tblMemoAccount);

@@ -50,7 +50,6 @@ namespace TOSS_UPGRADE.Controllers
             model.DepartmentID = DepartmentIDTempID;
             return PartialView("_DynamicDDDepartment", model);
         }
-
         //Signatories Table Partial View
         public ActionResult GetListOfSignatories()
         {
@@ -116,6 +115,7 @@ namespace TOSS_UPGRADE.Controllers
             model.getSignatoriesColumns.SignatoriesName = tblSignatories.SignatoriesName;
             model.DepartmentTempID = tblSignatories.DepartmentID;
             model.PositionTempID = tblSignatories.PositionID;
+            model.isDeptHeads = tblSignatories.IsDeptHead;
             return PartialView("_SignatoriesUpdate", model);
         }
 

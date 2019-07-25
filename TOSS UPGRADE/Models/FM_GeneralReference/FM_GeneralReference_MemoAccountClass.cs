@@ -25,7 +25,8 @@ namespace TOSS_UPGRADE.Models.FM_GeneralReference
             getMMRevisionYrColumns = new MemoAccClass_RevisionYr();
             getMMRevisionYrList = new List<MMRevisionYearList>();
         }
-            //Memo Account
+        //Memo Account
+            public int MemoAccClassID { get; set; }
             public MemoAccClassTable getMemoColumns { get; set; }
             public IEnumerable<TOSS_UPGRADE.Models.MemoAccClassTable> getMemo { get; set; }
 
@@ -33,8 +34,9 @@ namespace TOSS_UPGRADE.Models.FM_GeneralReference
             public IEnumerable<TOSS_UPGRADE.Models.MemoAccClassTable> MemoAccList { get; set; }
 
         //Memo Account Classification > Account Title
+        
             public int MMAccountTitleID { get; set; }
-            public int MMAccountTitleTemp { get; set; }
+            public int MMAccountTitleTempID { get; set; }
             public List<MMAccountTitleList> getMMAccountTitleList { get; set; }
             public IEnumerable<System.Web.Mvc.SelectListItem> MMAccountTitleList { get; set; }
 
@@ -43,7 +45,7 @@ namespace TOSS_UPGRADE.Models.FM_GeneralReference
 
         //Memo Account Classification > Revision Year
             public int MMRevisionYrID { get; set; }
-            public int MMRevisionYrTemp { get; set; }
+            public int MMRevisionYrTempID { get; set; }
             public List<MMRevisionYearList> getMMRevisionYrList { get; set; }
             public IEnumerable<System.Web.Mvc.SelectListItem> MMRevisionYearList { get; set; }
             public MemoAccClass_RevisionYr getMMRevisionYrColumns { get; set; }

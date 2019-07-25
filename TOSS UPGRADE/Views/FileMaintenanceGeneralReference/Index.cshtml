@@ -466,6 +466,7 @@
             F.LoadDynamicDDMemoAccClass();
             F.LoadDynamicDDMemoAccRevisionYr();
         }
+
         F.LoadSelectedDynamicDDMemoAccClass = function () {
             var MMAccountTitleIDTempID = $("#MMAccountTitleIDTempID").val();
             P({
@@ -476,15 +477,14 @@
             });
         }
         F.LoadSelectedDynamicDDMemoAccRevisionYr = function () {
-            var RevisionYrIDTempID = $("#RevisionYrIDTempID").val();
+            var MMRevisionYrIDTempID = $("#MMRevisionYrIDTempID").val();
             P({
                 url: '/FileMaintenanceGeneralReference/GetSelectedDynamicMemoRevisionYear',
-                params: { RevisionYrIDTempID: RevisionYrIDTempID }
+                params: { MMRevisionYrIDTempID: MMRevisionYrIDTempID }
             }).then(function (response) {
                 $("#MemoAccClass_RevisionYrID").html(response.data);
             });
         }
-
         F.Get_UpdateMemoAccount = function (MemoAccClassID) {
             P({
                 url: '/FileMaintenanceGeneralReference/Get_UpdateMemoAccount',
@@ -493,9 +493,8 @@
                 $("#MemoAccClassID").html(response.data);
                 F.LoadSelectedDynamicDDMemoAccClass();
                 F.LoadSelectedDynamicDDMemoAccRevisionYr();
-            });
+                });
         }
-
         F.Get_DeleteMemoAccClass = function (MemoAccClassID) {
             P({
                 url: '/FileMaintenanceGeneralReference/DeleteMemoAccount',
