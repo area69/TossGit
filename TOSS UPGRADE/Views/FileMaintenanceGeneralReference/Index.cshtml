@@ -557,6 +557,23 @@
                 $("#_IraID").html(response.data);
             });
         }
+        F.Get_UpdateInternalRevenueAllotment = function (IRAID) {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_UpdateInternalRevenueAllotment',
+                params: { IRAID: IRAID }
+            }).then(function (response) {
+                $("#_IraID").html(response.data);
+            });
+        }
+        F.Get_DeleteInternalRevenueAllotment = function (IRAID) {
+            P({
+                url: '/FileMaintenanceGeneralReference/DeleteInternalRevenueAllotment',
+                params: { IRAID: IRAID }
+            }).then(function (response) {
+                F.Get_InternalRevenueAllotmentTable();
+            });
+        }
+
     });
     function CurrentAccountConcate() {
 

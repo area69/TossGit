@@ -560,14 +560,14 @@ namespace TOSS_UPGRADE.Controllers
             return PartialView("IRAShares/_InternalRevenueAllotmentTable", model.getIRAList);
         }
 
-        //Get Add Memo Account Classification Partial View
+        //Get Add Internal Revenue Allotment Partial View
         public ActionResult Get_AddInternalRevenueAllotmentTable()
         {
             FM_GeneralReference_IRA model = new FM_GeneralReference_IRA();
             return PartialView("IRAShares/_AddInternalRevenueAllotment", model);
         }
 
-        //Add Memo Account Classification
+        //Add Internal Revenue Allotment
         public JsonResult AddInternalRevenueAllotmentTable(FM_GeneralReference_IRA model)
         {
             IRA_Table tblIRA = new IRA_Table();
@@ -577,6 +577,38 @@ namespace TOSS_UPGRADE.Controllers
             TOSSDB.IRA_Table.Add(tblIRA);
             TOSSDB.SaveChanges();
             return Json(tblIRA);
+        }
+
+        //Get Update Internal Revenue Allotment
+        public ActionResult Get_UpdateInternalRevenueAllotment(FM_GeneralReference_IRA model, int IRAID)
+        {
+            IRA_Table tblMemoAccount = (from e in TOSSDB.IRA_Table where e.IRAID == IRAID select e).FirstOrDefault();
+            model.getIRAcolumns.IRAID = tblMemoAccount.IRAID;
+            model.getIRAcolumns.IRAPercentageShare = tblMemoAccount.IRAPercentageShare;
+            model.getIRAcolumns.IRAPercent = tblMemoAccount.IRAPercent;
+            model.getIRAcolumns.IRABase = tblMemoAccount.IRABase;
+            return PartialView("IRAShares/_UpdateInternalRevenueAllotment", model);
+        }
+
+        //Update Internal Revenue Allotment
+        public ActionResult UpdateInternalRevenueAllotment(FM_GeneralReference_IRA model)
+        {
+            IRA_Table tblMemoAccount = (from e in TOSSDB.IRA_Table where e.IRAID == model.getIRAcolumns.IRAID select e).FirstOrDefault();
+            tblMemoAccount.IRAPercentageShare = model.getIRAcolumns.IRAPercentageShare;
+            tblMemoAccount.IRAPercent = model.getIRAcolumns.IRAPercent;
+            tblMemoAccount.IRABase = model.getIRAcolumns.IRABase;
+            TOSSDB.Entry(tblMemoAccount);
+            TOSSDB.SaveChanges();
+            return PartialView("IRAShares/_UpdateInternalRevenueAllotment", model);
+        }
+
+        //Delete Internal Revenue Allotment
+        public ActionResult DeleteInternalRevenueAllotment(FM_GeneralReference_IRA model, int IRAID)
+        {
+            IRA_Table tblMemoAccount = (from e in TOSSDB.IRA_Table where e.IRAID == IRAID select e).FirstOrDefault();
+            TOSSDB.IRA_Table.Remove(tblMemoAccount);
+            TOSSDB.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
