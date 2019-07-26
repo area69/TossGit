@@ -1,0 +1,40 @@
+﻿@model TOSS_UPGRADE.Models.FM_GeneralReference.FM_GeneralReference_IRA
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+
+@using (Ajax.BeginForm("AddInternalRevenueAllotmentTable", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc('FMGeneralReferenceController','Get_InternalRevenueAllotmentTable','SuccessSaveira')", OnFailure = "OnFailure()", }))
+{
+<div class="row">
+    <div class="col-md-3 form-group">
+        <label>IRA Percentage Share</label>
+        @Html.TextBoxFor(m => m.getIRAcolumns.IRAPercentageShare, new { @class = "form-control", type = "text"})
+    </div>
+    <div class="col-md-2 form-group">
+        <label>%</label>
+        @Html.TextBoxFor(m => m.getIRAcolumns.IRAPercent, new { @class = "form-control", type = "text"})
+    </div>
+    <div class="col-md-2 form-group">
+        <label>Base</label>
+        @Html.TextBoxFor(m => m.getIRAcolumns.IRABase, new { @class = "form-control", type = "text" })
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-2">
+        <label style="visibility:hidden">%</label>
+        <button type="submit" class="btn form-control black bg-addbutton"><b>Save</b></button>
+    </div>
+    <div class="col-md-2">
+        <label style="visibility:hidden">%</label>
+        <button type="button" class="btn form-control black bg-headerbc"><b>Cancel</b></button>
+    </div>
+</div>
+}
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+    }
+</script>

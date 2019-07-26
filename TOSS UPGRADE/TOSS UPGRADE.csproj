@@ -232,6 +232,7 @@
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_Bank.cs" />
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_BankAccount.cs" />
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_FundTypes.cs" />
+    <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_IRA.cs" />
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_MemoAccountClass.cs" />
     <Compile Include="Models\FM_SignatoriesModel.cs" />
     <Compile Include="Models\FundType_FundName.cs">
@@ -241,6 +242,9 @@
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FundType_FundTypeTable.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IRA_Table.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Level1Modules.cs">
@@ -8927,6 +8931,9 @@
     <Content Include="Views\FileMaintenanceSignatories\Department\_DepartmentAdd.cshtml" />
     <Content Include="Views\FileMaintenanceSignatories\Department\_DepartmentTable.cshtml" />
     <Content Include="Views\FileMaintenanceSignatories\Department\_DepartmentUpdate.cshtml" />
+    <Content Include="Views\FileMaintenanceGeneralReference\IRAShares\_InternalRevenueAllotmentTable.cshtml" />
+    <Content Include="Views\FileMaintenanceGeneralReference\IRAShares\_AddInternalRevenueAllotment.cshtml" />
+    <Content Include="Views\FileMaintenanceGeneralReference\IRAShares\_UpdateInternalRevenueAllotment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

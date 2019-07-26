@@ -526,5 +526,57 @@ namespace TOSS_UPGRADE.Controllers
             TOSSDB.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        //Table Internal Revenue Allotment
+        public ActionResult Get_InternalRevenueAllotmentTable()
+        {
+            FM_GeneralReference_IRA model = new FM_GeneralReference_IRA();
+            List<IRAList> tbl_IRA = new List<IRAList>();
+
+            var SQLQuery = "SELECT * FROM DB_TOSS.dbo.IRA_Table";
+            //SQLQuery += " WHERE (IsActive != 0)";
+            using (SqlConnection Connection = new SqlConnection(GlobalFunction.ReturnConnectionString()))
+            {
+                Connection.Open();
+                using (SqlCommand command = new SqlCommand("[dbo].[SP_IRAList]", Connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@SQLStatement", SQLQuery));
+                    SqlDataReader dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        tbl_IRA.Add(new IRAList()
+                        {
+                            IRAID = Convert.ToInt32(dr[0]),
+                            IRAPercentageShare = GlobalFunction.ReturnEmptyDecimal(dr[1]),
+                            IRAPercent = GlobalFunction.ReturnEmptyInt(dr[2]),
+                            IRABase = GlobalFunction.ReturnEmptyInt(dr[3]),
+                        });
+                    }
+                }
+                Connection.Close();
+            }
+            model.getIRAList = tbl_IRA.ToList();
+            return PartialView("IRAShares/_InternalRevenueAllotmentTable", model.getIRAList);
+        }
+
+        //Get Add Memo Account Classification Partial View
+        public ActionResult Get_AddInternalRevenueAllotmentTable()
+        {
+            FM_GeneralReference_IRA model = new FM_GeneralReference_IRA();
+            return PartialView("IRAShares/_AddInternalRevenueAllotment", model);
+        }
+
+        //Add Memo Account Classification
+        public JsonResult AddInternalRevenueAllotmentTable(FM_GeneralReference_IRA model)
+        {
+            IRA_Table tblIRA = new IRA_Table();
+            tblIRA.IRAPercentageShare = model.getIRAcolumns.IRAPercentageShare;
+            tblIRA.IRAPercent = model.getIRAcolumns.IRAPercent;
+            tblIRA.IRABase = model.getIRAcolumns.IRABase;
+            TOSSDB.IRA_Table.Add(tblIRA);
+            TOSSDB.SaveChanges();
+            return Json(tblIRA);
+        }
     }
 }

@@ -33,6 +33,7 @@ namespace TOSS_UPGRADE.Models
         public virtual DbSet<FundType_FundName> FundType_FundName { get; set; }
         public virtual DbSet<FundType_FundType> FundType_FundType { get; set; }
         public virtual DbSet<FundType_FundTypeTable> FundType_FundTypeTable { get; set; }
+        public virtual DbSet<IRA_Table> IRA_Table { get; set; }
         public virtual DbSet<Level1Modules> Level1Modules { get; set; }
         public virtual DbSet<Level2Modules> Level2Modules { get; set; }
         public virtual DbSet<Level3Modules> Level3Modules { get; set; }

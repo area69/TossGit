@@ -7,17 +7,18 @@
       <Diagram DiagramId="40de8afaeb1b4b14a3300d2a7328d1ef" Name="Diagram1" ZoomLevel="45">
         <EntityTypeShape EntityType="DB_TOSSModel.Account" Width="1.5" PointX="5" PointY="11.625" />
         <EntityTypeShape EntityType="DB_TOSSModel.BankAccount_AccountCode" Width="1.5" PointX="0.75" PointY="7.125" />
-        <EntityTypeShape EntityType="DB_TOSSModel.BankAccount_AccountType" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_TOSSModel.BankAccount_AccountType" Width="1.5" PointX="0.75" PointY="9.5" />
         <EntityTypeShape EntityType="DB_TOSSModel.BankAccountTable" Width="1.5" PointX="3" PointY="3.25" />
-        <EntityTypeShape EntityType="DB_TOSSModel.BankTable" Width="1.5" PointX="0.75" PointY="9.5" />
+        <EntityTypeShape EntityType="DB_TOSSModel.BankTable" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="DB_TOSSModel.FundType_FundName" Width="1.5" PointX="0.75" PointY="4" />
         <EntityTypeShape EntityType="DB_TOSSModel.FundType_FundType" Width="1.5" PointX="3" PointY="8" />
         <EntityTypeShape EntityType="DB_TOSSModel.FundType_FundTypeTable" Width="1.5" PointX="5.25" PointY="8" />
+        <EntityTypeShape EntityType="DB_TOSSModel.IRA_Table" Width="1.5" PointX="12.375" PointY="5.75" />
         <EntityTypeShape EntityType="DB_TOSSModel.Level1Modules" Width="1.5" PointX="8" PointY="1.75" />
         <EntityTypeShape EntityType="DB_TOSSModel.Level2Modules" Width="1.5" PointX="10.25" PointY="1.75" />
         <EntityTypeShape EntityType="DB_TOSSModel.Level3Modules" Width="1.5" PointX="12.5" PointY="1.875" />
-        <EntityTypeShape EntityType="DB_TOSSModel.MemoAccClass_AccountCode" Width="1.5" PointX="9.75" PointY="9.75" />
-        <EntityTypeShape EntityType="DB_TOSSModel.MemoAccClass_RevisionYr" Width="1.5" PointX="9.75" PointY="12.875" />
+        <EntityTypeShape EntityType="DB_TOSSModel.MemoAccClass_AccountCode" Width="1.5" PointX="9.75" PointY="12.75" />
+        <EntityTypeShape EntityType="DB_TOSSModel.MemoAccClass_RevisionYr" Width="1.5" PointX="9.75" PointY="9.875" />
         <EntityTypeShape EntityType="DB_TOSSModel.MemoAccClassTable" Width="1.5" PointX="12" PointY="9.625" />
         <EntityTypeShape EntityType="DB_TOSSModel.ParentModule" Width="1.5" PointX="5.75" PointY="1.75" />
         <EntityTypeShape EntityType="DB_TOSSModel.PersonalInformation" Width="1.5" PointX="2.75" PointY="11.625" />
