@@ -79,9 +79,9 @@
             <PropertyRef Name="IRAID" />
           </Key>
           <Property Name="IRAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IRAPercentageShare" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IRAPercentageShare" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="IRAPercent" Type="int" Nullable="false" />
-          <Property Name="IRABase" Type="int" Nullable="false" />
+          <Property Name="IRABase" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Level1Modules">
           <Key>
@@ -621,9 +621,9 @@
             <PropertyRef Name="IRAID" />
           </Key>
           <Property Name="IRAID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IRAPercentageShare" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="IRAPercentageShare" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="IRAPercent" Type="Int32" Nullable="false" />
-          <Property Name="IRABase" Type="Int32" Nullable="false" />
+          <Property Name="IRABase" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Level1Modules">
           <Key>

@@ -17,6 +17,6 @@ namespace TOSS_UPGRADE.Models
         public int IRAID { get; set; }
         public decimal IRAPercentageShare { get; set; }
         public int IRAPercent { get; set; }
-        public int IRABase { get; set; }
+        public decimal IRABase { get; set; }
     }
 }

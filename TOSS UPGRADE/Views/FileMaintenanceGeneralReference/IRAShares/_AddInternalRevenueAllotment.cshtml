@@ -12,7 +12,7 @@
 
     <div class="col-md-3 form-group">
         <label>IRA Percentage Share</label>
-        @Html.TextBoxFor(m => m.getIRAcolumns.IRAPercentageShare, new { @class = "form-control", type = "text", id = "tb1", onkeyup = "calc(this)" })
+        @Html.TextBoxFor(m => m.getIRAcolumns.IRAPercentageShare, new { @class = "form-control", type = "text", id = "tb1", onkeyup ="AddComma(this) + calc(this)" })
     </div>
     <div class="col-md-2 form-group">
         <label>%</label>
@@ -22,7 +22,7 @@
 
     <div class="col-md-2 form-group">
         <label>Base</label>
-        @Html.TextBoxFor(m => m.getIRAcolumns.IRABase, new { @class = "form-control", type = "text" })
+        @Html.TextBoxFor(m => m.getIRAcolumns.IRABase, new { @class = "form-control", type = "text", id = "base1" })
     </div>
     <div class="col-md-1"></div>
     <div class="col-md-2">
@@ -44,6 +44,7 @@
         LoadDataTable();
         LoadPopOver();
         $('#update').attr('disabled', 'disabled');
+    
     })
 
     var x = 0;
@@ -60,8 +61,34 @@
         }
         z = x * y;
         document.getElementById('total').value = z;
-        $("#update").val(z );
-      
+        $("#update").val(z + "%");
+
+    }
+    function AddComma(text) {
+        switch (text.value.length) {
+            case 1:
+                document.getElementById("tb1").value = "0.0" + text.value;
+                break;
+            default:
+                var data = text.value.replace(".", "");
+                var first = data.substring(1, (data.length - 2));
+                var second = data.substring(data.length - 2);
+                var temp = Math.abs(first) + "." + second;
+                document.getElementById("tb1").value = temp;
+        }
+    }
+    function addZeroes(num) {
+        var num = Number(num);
+        if (String(num).split(".").length < 2 || String(num).split(".")[1].length <= 2) {
+            num = num.toFixed(2);
+        }
+        return num;
     }
 
+    $('#base1').blur(function () {
+        //just for testing
+        var thisVal = $(this).val();
+        thisVal = addZeroes(thisVal);
+        $(this).val(thisVal);
+    });
 </script>

@@ -550,7 +550,7 @@ namespace TOSS_UPGRADE.Controllers
                             IRAID = Convert.ToInt32(dr[0]),
                             IRAPercentageShare = GlobalFunction.ReturnEmptyDecimal(dr[1]),
                             IRAPercent = GlobalFunction.ReturnEmptyInt(dr[2]),
-                            IRABase = GlobalFunction.ReturnEmptyInt(dr[3]),
+                            IRABase = GlobalFunction.ReturnEmptyDecimal(dr[3]),
                         });
                     }
                 }
