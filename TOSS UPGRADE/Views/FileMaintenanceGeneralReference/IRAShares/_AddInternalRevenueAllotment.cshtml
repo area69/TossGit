@@ -12,14 +12,12 @@
 
     <div class="col-md-3 form-group">
         <label>IRA Percentage Share</label>
-        @Html.TextBoxFor(m => m.getIRAcolumns.IRAPercentageShare, new { @class = "form-control", type = "text", id = "tb1", onkeyup ="AddComma(this) + calc(this)" })
+        @Html.TextBoxFor(m => m.getIRAcolumns.IRAPercentageShare, new { @class = "form-control", type = "text", id = "tb1", onkeyup ="AddComma(this)" })
     </div>
     <div class="col-md-2 form-group">
         <label>%</label>
         @Html.TextBoxFor(m => m.getIRAcolumns.IRAPercent, new { @class = "form-control", type = "text", id = "update"})
-
     </div>
-
     <div class="col-md-2 form-group">
         <label>Base</label>
         @Html.TextBoxFor(m => m.getIRAcolumns.IRABase, new { @class = "form-control", type = "text", id = "base1" })
@@ -43,27 +41,27 @@
     $(function () {
         LoadDataTable();
         LoadPopOver();
-        $('#update').attr('disabled', 'disabled');
-    
+        //$('#update').attr('disabled', 'disabled');
+        
     })
 
-    var x = 0;
-    var y = 0;
-    var z = 0;
-    function calc(obj) {
-        var e = obj.id.toString();
-        if (e == 'tb1') {
-            x = Number(obj.value);
-            y = Number(document.getElementById('tb2').value);
-        } else {
-            x = Number(document.getElementById('tb1').value);
-            y = Number(obj.value);
-        }
-        z = x * y;
-        document.getElementById('total').value = z;
-        $("#update").val(z + "%");
+    //var x = 0;
+    //var y = 0;
+    //var z = 0;
+    //function calc(obj) {
+    //    var e = obj.id.toString();
+    //    if (e == 'tb1') {
+    //        x = Number(obj.value);
+    //        y = Number(document.getElementById('tb2').value);
+    //    } else {
+    //        x = Number(document.getElementById('tb1').value);
+    //        y = Number(obj.value);
+    //    }
+    //    z = x * y;
+    //    document.getElementById('total').value = z;
+    //    $("#update").val(z + "%");
+    //}
 
-    }
     function AddComma(text) {
         switch (text.value.length) {
             case 1:

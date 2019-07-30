@@ -14,6 +14,12 @@ namespace TOSS_UPGRADE.Models
     
     public partial class BankAccountTable
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BankAccountTable()
+        {
+            this.CheckInventoryTables = new HashSet<CheckInventoryTable>();
+        }
+    
         public int BankAccountID { get; set; }
         public int BankID { get; set; }
         public string AccountName { get; set; }
@@ -27,5 +33,7 @@ namespace TOSS_UPGRADE.Models
         public virtual BankAccount_AccountType BankAccount_AccountType { get; set; }
         public virtual BankTable BankTable { get; set; }
         public virtual FundType_FundName FundType_FundName { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CheckInventoryTable> CheckInventoryTables { get; set; }
     }
 }

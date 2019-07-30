@@ -1,0 +1,47 @@
+﻿@model TOSS_UPGRADE.Models.FM_Disbursement.FM_Disbursement_CheckInventory
+@{
+    /**/
+
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+
+@using (Ajax.BeginForm("AddCheckInventory", "FileMaintenanceDisbursement", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMDisbursementController','Get_CheckInventoryTable','Check Inventory Successfully Saved')", OnFailure = "OnFailure()", }))
+{
+    <div class="row">
+        <div class="col-md-4 form-group">
+            <label>Bank Name</label>
+            @Html.DropDownListFor(m => m.CheckInventoryBankID, Model.CheckInventoryBankList, new { @class = "form-control select2", id = "BankIDDD", onchange = "AngularGlobalFunctions('FMDisbursementController','LoadDynamicDDAccountName','')" })
+        </div>
+        <div class="col-md-5 form-group" id="_DynamicDDAccountNameID">
+
+        </div>
+        <div class="col-md-3 form-group">
+            <label>Quantity</label>
+            <input type="text" class="form-control" value="" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 form-group">
+            <label>Starting Check No.</label>
+            <input type="text" class="form-control" value="" />
+        </div>
+        <div class="col-md-4 form-group">
+            <label>Ending Check No.</label>
+            <input type="text" class="form-control" value="" />
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+            <label style="visibility:hidden">Hide</label>
+            <button type="submit" class="btn black bg-addbutton form-control"><b>Save</b></button>
+        </div>
+    </div>
+}
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+</script>

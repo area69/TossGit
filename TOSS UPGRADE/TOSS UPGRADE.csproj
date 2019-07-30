@@ -229,6 +229,14 @@
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BarModels\BarModel.cs" />
+    <Compile Include="Models\CheckInventoryTable.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DVTypeTable.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FM_Disbursement\FM_Disbursement_CheckInventory.cs" />
+    <Compile Include="Models\FM_Disbursement\FM_Disbursement_DVType.cs" />
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_Bank.cs" />
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_BankAccount.cs" />
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_FundTypes.cs" />
@@ -8934,6 +8942,13 @@
     <Content Include="Views\FileMaintenanceGeneralReference\IRAShares\_InternalRevenueAllotmentTable.cshtml" />
     <Content Include="Views\FileMaintenanceGeneralReference\IRAShares\_AddInternalRevenueAllotment.cshtml" />
     <Content Include="Views\FileMaintenanceGeneralReference\IRAShares\_UpdateInternalRevenueAllotment.cshtml" />
+    <Content Include="Views\FileMaintenanceDisbursement\DVType\_AddDVType.cshtml" />
+    <Content Include="Views\FileMaintenanceDisbursement\DVType\_UpdateDVType.cshtml" />
+    <Content Include="Views\FileMaintenanceDisbursement\DVType\_DVTypeTable.cshtml" />
+    <Content Include="Views\FileMaintenanceDisbursement\CheckInventory\_AddCheckInventory.cshtml" />
+    <Content Include="Views\FileMaintenanceDisbursement\CheckInventory\_CheckInventoryTable.cshtml" />
+    <Content Include="Views\FileMaintenanceDisbursement\CheckInventory\_UpdateCheckInventory.cshtml" />
+    <Content Include="Views\FileMaintenanceDisbursement\CheckInventory\_DynamicDDAccountName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

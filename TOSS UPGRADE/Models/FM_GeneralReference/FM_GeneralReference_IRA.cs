@@ -19,7 +19,6 @@ namespace TOSS_UPGRADE.Models.FM_GeneralReference
         public IRA_Table getIRAcolumns { get; set; }
         public IEnumerable<System.Web.Mvc.SelectListItem> IRAList { get; set; }
         public IEnumerable<TOSS_UPGRADE.Models.IRA_Table> getIRA { get; set; }
-        public int BankID { get; set; }
 
     }
     public class IRAList
