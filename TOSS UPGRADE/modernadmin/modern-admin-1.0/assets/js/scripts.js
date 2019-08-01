@@ -26,6 +26,21 @@ function PopoveLostFocus() {
     $('[data-toggle="popover"]').popover('hide');
 }
 
+function LoadPickDatetime() {
+    $('.pickadate').pickadate({
+        format: 'mmmm dd, yyyy',
+        formatSubmit: 'yyyy/MM/dd',
+        onStart: function () {
+            var d = new Date();
+            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            var todayDate = months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+
+            $(this).val(todayDate);
+        }
+    });
+}
+
 
 //ANGULAR
 function AngularGlobalFunctions(ControllerName, ActionName, IDParams) {

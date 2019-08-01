@@ -18,6 +18,8 @@ namespace TOSS_UPGRADE.Models
         public BankTable()
         {
             this.BankAccountTables = new HashSet<BankAccountTable>();
+            this.CheckInventoryTables = new HashSet<CheckInventoryTable>();
+            this.CheckMaintenanceTables = new HashSet<CheckMaintenanceTable>();
         }
     
         public int BankID { get; set; }
@@ -25,5 +27,9 @@ namespace TOSS_UPGRADE.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BankAccountTable> BankAccountTables { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CheckInventoryTable> CheckInventoryTables { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CheckMaintenanceTable> CheckMaintenanceTables { get; set; }
     }
 }

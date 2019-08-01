@@ -232,10 +232,14 @@
     <Compile Include="Models\CheckInventoryTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CheckMaintenanceTable.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DVTypeTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FM_Disbursement\FM_Disbursement_CheckInventory.cs" />
+    <Compile Include="Models\FM_Disbursement\FM_Disbursement_CheckMaintenance.cs" />
     <Compile Include="Models\FM_Disbursement\FM_Disbursement_DVType.cs" />
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_Bank.cs" />
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_BankAccount.cs" />
@@ -8949,6 +8953,10 @@
     <Content Include="Views\FileMaintenanceDisbursement\CheckInventory\_CheckInventoryTable.cshtml" />
     <Content Include="Views\FileMaintenanceDisbursement\CheckInventory\_UpdateCheckInventory.cshtml" />
     <Content Include="Views\FileMaintenanceDisbursement\CheckInventory\_DynamicDDAccountName.cshtml" />
+    <Content Include="Views\FileMaintenanceDisbursement\CheckMaintenance\_DynamicDDAccountName2.cshtml" />
+    <Content Include="Views\FileMaintenanceDisbursement\CheckMaintenance\_AddCheckMaintenance.cshtml" />
+    <Content Include="Views\FileMaintenanceDisbursement\CheckMaintenance\_CheckMaintenanceTable.cshtml" />
+    <Content Include="Views\FileMaintenanceDisbursement\CheckMaintenance\_DynamicDDCheckInventory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

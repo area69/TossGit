@@ -14,7 +14,14 @@ namespace TOSS_UPGRADE.Models
     
     public partial class CheckInventoryTable
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CheckInventoryTable()
+        {
+            this.CheckMaintenanceTables = new HashSet<CheckMaintenanceTable>();
+        }
+    
         public int CheckInvntID { get; set; }
+        public int BankID { get; set; }
         public int BankAccountID { get; set; }
         public int Quantity { get; set; }
         public int StartingChckNo { get; set; }
@@ -22,5 +29,8 @@ namespace TOSS_UPGRADE.Models
         public System.DateTime Date { get; set; }
     
         public virtual BankAccountTable BankAccountTable { get; set; }
+        public virtual BankTable BankTable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CheckMaintenanceTable> CheckMaintenanceTables { get; set; }
     }
 }

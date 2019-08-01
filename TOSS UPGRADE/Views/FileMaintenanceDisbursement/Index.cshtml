@@ -16,9 +16,9 @@
                     <li class="nav-item bg-headerbc">
                             <a class="nav-link active text-white" id="base-tab1" data-toggle="tab" aria-controls="tab1" href="#tab1" aria-expanded="true">Check Inventory</a>
                         </li>
-                        @*<li class="nav-item bg-headerbc">
+                        <li class="nav-item bg-headerbc">
                             <a class="nav-link text-white" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false">Check Maintenance</a>
-                        </li>*@
+                        </li>
                     <li class="nav-item bg-headerbc">
                         <a class="nav-link text-white" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" aria-expanded="false">DV Type</a>
                     </li>
@@ -34,10 +34,35 @@
                                             <h4 class="card-title black"><b>Check Inventory</b></h4>
                                         </div>
                                         <div class="card-body box-shadow-2" id="_CheckInventoryID">
-                                       
+
                                         </div>
                                         <div class="card-body box-shadow-2 mt-1" id="_CheckInventoryTableID">
-                                          
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @* Check Maintenance *@
+                    <div role="tabpanel" class="tab-pane" id="tab2" aria-expanded="true" aria-labelledby="base-tab2">
+                        <div class="content-body" id="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card-block">
+                                        <div class="card-header bg-carheadercolor">
+                                            <h4 class="card-title black"><b>Bank Account</b></h4>
+                                        </div>
+                                        <div class="card-body box-shadow-2" id="_checkMaintenanceID">
+                                    
+                                        </div>
+                                    </div>
+                                    <div class="card-block mt-1">
+                                        <div class="card-header bg-carheadercolor">
+                                            <h4 class="card-title black"><b>Check Details</b></h4>
+                                        </div>
+                                        <div class="card-body box-shadow-2" id="_checkMaintenanceTableID">
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -83,15 +108,23 @@
             //DV Type Table
             F.Get_DVTypeTable();
             F.Get_CheckInventoryTable();
-          
+            F.Get_AddCheckMaintenance();
         }
         //Check Inventory
         F.LoadDynamicDDAccountName = function () {
-  
            var BankAccountID = $("#BankIDDD").val()
             P({
                 url: '/FileMaintenanceDisbursement/GetDynamicAccountName',
                 params: { BankAccountID: BankAccountID }
+            }).then(function (response) {
+                $("#_DynamicDDAccountNameID").html(response.data);
+            });
+        }
+        F.LoadSelectDynamicDDAccountName = function () {
+            var BankAccountIDTempID = $("#BankIDDD").val();
+            P({
+                url: '/FileMaintenanceDisbursement/GetSelectedDynamicAccountName',
+                params: { BankAccountIDTempID: BankAccountIDTempID }
             }).then(function (response) {
                 $("#_DynamicDDAccountNameID").html(response.data);
             });
@@ -112,6 +145,50 @@
                 F.LoadDynamicDDAccountName();
                 });
           
+        }
+        F.Get_UpdateCheckInventory = function (CheckInvntID) {
+            P({
+                url: '/FileMaintenanceDisbursement/Get_UpdateCheckInventory',
+                params: { CheckInvntID: CheckInvntID }
+            }).then(function (response) {
+                $("#_CheckInventoryID").html(response.data);
+                F.LoadSelectDynamicDDAccountName();
+            });
+        }
+        F.Get_DeleteCheckInventory = function (CheckInvntID) {
+            P({
+                url: '/FileMaintenanceDisbursement/DeleteCheckInventory',
+                params: { CheckInvntID: CheckInvntID }
+            }).then(function (response) {
+                F.Get_CheckInventoryTable();
+            });
+        }
+
+        //Check Maintenance
+        F.LoadDynamicDDAccountName2 = function () {
+            var BankAccountID = $("#BankIDDD2").val()
+            P({
+                url: '/FileMaintenanceDisbursement/GetDynamicMaitenance',
+                params: { BankAccountID: BankAccountID }
+            }).then(function (response) {
+                $("#_DynamicDDAccountID").html(response.data);
+            });
+        }
+        F.Get_AddCheckMaintenance = function () {
+            P({
+                url: '/FileMaintenanceDisbursement/Get_AddCheckMaitenance',
+            }).then(function (response) {
+                $("#_checkMaintenanceID").html(response.data);
+                F.LoadDynamicDDAccountName2();
+                F.Get_AddCheckMaintenanceInventory();
+            });
+        }
+        F.Get_AddCheckMaintenanceInventory = function () {
+            P({
+                url: '/FileMaintenanceDisbursement/Get_AddCheckMaitenanceInventory',
+            }).then(function (response) {
+                $("#_CheckInventoryPVID").html(response.data);
+            });
         }
         //DV Type
         F.Get_DVTypeTable = function () {

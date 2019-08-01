@@ -55,11 +55,21 @@
             <PropertyRef Name="CheckInvntID" />
           </Key>
           <Property Name="CheckInvntID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankID" Type="int" Nullable="false" />
           <Property Name="BankAccountID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="StartingChckNo" Type="int" Nullable="false" />
           <Property Name="EndingChckNo" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CheckMaintenanceTable">
+          <Key>
+            <PropertyRef Name="CheckMainteID" />
+          </Key>
+          <Property Name="CheckMainteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankID" Type="int" Nullable="false" />
+          <Property Name="BankAccountID" Type="int" Nullable="false" />
+          <Property Name="CheckInvntID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DVTypeTable">
           <Key>
@@ -276,6 +286,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CheckInventoryTable_BankTable">
+          <End Role="BankTable" Type="Self.BankTable" Multiplicity="1" />
+          <End Role="CheckInventoryTable" Type="Self.CheckInventoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankTable">
+              <PropertyRef Name="BankID" />
+            </Principal>
+            <Dependent Role="CheckInventoryTable">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CheckMaintenanceTable_BankAccountTable">
+          <End Role="BankAccountTable" Type="Self.BankAccountTable" Multiplicity="1" />
+          <End Role="CheckMaintenanceTable" Type="Self.CheckMaintenanceTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankAccountTable">
+              <PropertyRef Name="BankAccountID" />
+            </Principal>
+            <Dependent Role="CheckMaintenanceTable">
+              <PropertyRef Name="BankAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CheckMaintenanceTable_BankTable">
+          <End Role="BankTable" Type="Self.BankTable" Multiplicity="1" />
+          <End Role="CheckMaintenanceTable" Type="Self.CheckMaintenanceTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankTable">
+              <PropertyRef Name="BankID" />
+            </Principal>
+            <Dependent Role="CheckMaintenanceTable">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CheckMaintenanceTable_CheckMaintenanceTable">
+          <End Role="CheckInventoryTable" Type="Self.CheckInventoryTable" Multiplicity="1" />
+          <End Role="CheckMaintenanceTable" Type="Self.CheckMaintenanceTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CheckInventoryTable">
+              <PropertyRef Name="CheckInvntID" />
+            </Principal>
+            <Dependent Role="CheckMaintenanceTable">
+              <PropertyRef Name="CheckInvntID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FundType_FundName">
           <End Role="FundType_FundName" Type="Self.FundType_FundName" Multiplicity="0..1" />
           <End Role="FundType_FundType" Type="Self.FundType_FundType" Multiplicity="*" />
@@ -403,6 +461,7 @@
           <EntitySet Name="BankAccountTable" EntityType="Self.BankAccountTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankTable" EntityType="Self.BankTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckInventoryTable" EntityType="Self.CheckInventoryTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckMaintenanceTable" EntityType="Self.CheckMaintenanceTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DVTypeTable" EntityType="Self.DVTypeTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FundType_FundName" EntityType="Self.FundType_FundName" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FundType_FundType" EntityType="Self.FundType_FundType" Schema="dbo" store:Type="Tables" />
@@ -442,6 +501,22 @@
           <AssociationSet Name="FK_CheckInventoryTable_BankAccountTable" Association="Self.FK_CheckInventoryTable_BankAccountTable">
             <End Role="BankAccountTable" EntitySet="BankAccountTable" />
             <End Role="CheckInventoryTable" EntitySet="CheckInventoryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckInventoryTable_BankTable" Association="Self.FK_CheckInventoryTable_BankTable">
+            <End Role="BankTable" EntitySet="BankTable" />
+            <End Role="CheckInventoryTable" EntitySet="CheckInventoryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckMaintenanceTable_BankAccountTable" Association="Self.FK_CheckMaintenanceTable_BankAccountTable">
+            <End Role="BankAccountTable" EntitySet="BankAccountTable" />
+            <End Role="CheckMaintenanceTable" EntitySet="CheckMaintenanceTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckMaintenanceTable_BankTable" Association="Self.FK_CheckMaintenanceTable_BankTable">
+            <End Role="BankTable" EntitySet="BankTable" />
+            <End Role="CheckMaintenanceTable" EntitySet="CheckMaintenanceTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckMaintenanceTable_CheckMaintenanceTable" Association="Self.FK_CheckMaintenanceTable_CheckMaintenanceTable">
+            <End Role="CheckInventoryTable" EntitySet="CheckInventoryTable" />
+            <End Role="CheckMaintenanceTable" EntitySet="CheckMaintenanceTable" />
           </AssociationSet>
           <AssociationSet Name="FK_FundType_FundName" Association="Self.FK_FundType_FundName">
             <End Role="FundType_FundName" EntitySet="FundType_FundName" />
@@ -495,6 +570,7 @@
           <EntitySet Name="BankAccountTables" EntityType="DB_TOSSModel.BankAccountTable" />
           <EntitySet Name="BankTables" EntityType="DB_TOSSModel.BankTable" />
           <EntitySet Name="CheckInventoryTables" EntityType="DB_TOSSModel.CheckInventoryTable" />
+          <EntitySet Name="CheckMaintenanceTables" EntityType="DB_TOSSModel.CheckMaintenanceTable" />
           <EntitySet Name="DVTypeTables" EntityType="DB_TOSSModel.DVTypeTable" />
           <EntitySet Name="FundType_FundName" EntityType="DB_TOSSModel.FundType_FundName" />
           <EntitySet Name="FundType_FundType" EntityType="DB_TOSSModel.FundType_FundType" />
@@ -534,6 +610,22 @@
           <AssociationSet Name="FK_CheckInventoryTable_BankAccountTable" Association="DB_TOSSModel.FK_CheckInventoryTable_BankAccountTable">
             <End Role="BankAccountTable" EntitySet="BankAccountTables" />
             <End Role="CheckInventoryTable" EntitySet="CheckInventoryTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckMaintenanceTable_BankAccountTable" Association="DB_TOSSModel.FK_CheckMaintenanceTable_BankAccountTable">
+            <End Role="BankAccountTable" EntitySet="BankAccountTables" />
+            <End Role="CheckMaintenanceTable" EntitySet="CheckMaintenanceTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckInventoryTable_BankTable" Association="DB_TOSSModel.FK_CheckInventoryTable_BankTable">
+            <End Role="BankTable" EntitySet="BankTables" />
+            <End Role="CheckInventoryTable" EntitySet="CheckInventoryTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckMaintenanceTable_BankTable" Association="DB_TOSSModel.FK_CheckMaintenanceTable_BankTable">
+            <End Role="BankTable" EntitySet="BankTables" />
+            <End Role="CheckMaintenanceTable" EntitySet="CheckMaintenanceTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckMaintenanceTable_CheckMaintenanceTable" Association="DB_TOSSModel.FK_CheckMaintenanceTable_CheckMaintenanceTable">
+            <End Role="CheckInventoryTable" EntitySet="CheckInventoryTables" />
+            <End Role="CheckMaintenanceTable" EntitySet="CheckMaintenanceTables" />
           </AssociationSet>
           <AssociationSet Name="FK_FundType_FundName" Association="DB_TOSSModel.FK_FundType_FundName">
             <End Role="FundType_FundName" EntitySet="FundType_FundName" />
@@ -621,6 +713,7 @@
           <NavigationProperty Name="BankTable" Relationship="DB_TOSSModel.FK_BankAccountTable_BankTable" FromRole="BankAccountTable" ToRole="BankTable" />
           <NavigationProperty Name="FundType_FundName" Relationship="DB_TOSSModel.FK_BankAccountTable_FundType_FundName" FromRole="BankAccountTable" ToRole="FundType_FundName" />
           <NavigationProperty Name="CheckInventoryTables" Relationship="DB_TOSSModel.FK_CheckInventoryTable_BankAccountTable" FromRole="BankAccountTable" ToRole="CheckInventoryTable" />
+          <NavigationProperty Name="CheckMaintenanceTables" Relationship="DB_TOSSModel.FK_CheckMaintenanceTable_BankAccountTable" FromRole="BankAccountTable" ToRole="CheckMaintenanceTable" />
         </EntityType>
         <EntityType Name="BankTable">
           <Key>
@@ -629,18 +722,35 @@
           <Property Name="BankID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BankName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BankAccountTables" Relationship="DB_TOSSModel.FK_BankAccountTable_BankTable" FromRole="BankTable" ToRole="BankAccountTable" />
+          <NavigationProperty Name="CheckInventoryTables" Relationship="DB_TOSSModel.FK_CheckInventoryTable_BankTable" FromRole="BankTable" ToRole="CheckInventoryTable" />
+          <NavigationProperty Name="CheckMaintenanceTables" Relationship="DB_TOSSModel.FK_CheckMaintenanceTable_BankTable" FromRole="BankTable" ToRole="CheckMaintenanceTable" />
         </EntityType>
         <EntityType Name="CheckInventoryTable">
           <Key>
             <PropertyRef Name="CheckInvntID" />
           </Key>
           <Property Name="CheckInvntID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankID" Type="Int32" Nullable="false" />
           <Property Name="BankAccountID" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="StartingChckNo" Type="Int32" Nullable="false" />
           <Property Name="EndingChckNo" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="BankAccountTable" Relationship="DB_TOSSModel.FK_CheckInventoryTable_BankAccountTable" FromRole="CheckInventoryTable" ToRole="BankAccountTable" />
+          <NavigationProperty Name="BankTable" Relationship="DB_TOSSModel.FK_CheckInventoryTable_BankTable" FromRole="CheckInventoryTable" ToRole="BankTable" />
+          <NavigationProperty Name="CheckMaintenanceTables" Relationship="DB_TOSSModel.FK_CheckMaintenanceTable_CheckMaintenanceTable" FromRole="CheckInventoryTable" ToRole="CheckMaintenanceTable" />
+        </EntityType>
+        <EntityType Name="CheckMaintenanceTable">
+          <Key>
+            <PropertyRef Name="CheckMainteID" />
+          </Key>
+          <Property Name="CheckMainteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankID" Type="Int32" Nullable="false" />
+          <Property Name="BankAccountID" Type="Int32" Nullable="false" />
+          <Property Name="CheckInvntID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BankAccountTable" Relationship="DB_TOSSModel.FK_CheckMaintenanceTable_BankAccountTable" FromRole="CheckMaintenanceTable" ToRole="BankAccountTable" />
+          <NavigationProperty Name="BankTable" Relationship="DB_TOSSModel.FK_CheckMaintenanceTable_BankTable" FromRole="CheckMaintenanceTable" ToRole="BankTable" />
+          <NavigationProperty Name="CheckInventoryTable" Relationship="DB_TOSSModel.FK_CheckMaintenanceTable_CheckMaintenanceTable" FromRole="CheckMaintenanceTable" ToRole="CheckInventoryTable" />
         </EntityType>
         <EntityType Name="DVTypeTable">
           <Key>
@@ -879,6 +989,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CheckMaintenanceTable_BankAccountTable">
+          <End Type="DB_TOSSModel.BankAccountTable" Role="BankAccountTable" Multiplicity="1" />
+          <End Type="DB_TOSSModel.CheckMaintenanceTable" Role="CheckMaintenanceTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankAccountTable">
+              <PropertyRef Name="BankAccountID" />
+            </Principal>
+            <Dependent Role="CheckMaintenanceTable">
+              <PropertyRef Name="BankAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CheckInventoryTable_BankTable">
+          <End Type="DB_TOSSModel.BankTable" Role="BankTable" Multiplicity="1" />
+          <End Type="DB_TOSSModel.CheckInventoryTable" Role="CheckInventoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankTable">
+              <PropertyRef Name="BankID" />
+            </Principal>
+            <Dependent Role="CheckInventoryTable">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CheckMaintenanceTable_BankTable">
+          <End Type="DB_TOSSModel.BankTable" Role="BankTable" Multiplicity="1" />
+          <End Type="DB_TOSSModel.CheckMaintenanceTable" Role="CheckMaintenanceTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankTable">
+              <PropertyRef Name="BankID" />
+            </Principal>
+            <Dependent Role="CheckMaintenanceTable">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CheckMaintenanceTable_CheckMaintenanceTable">
+          <End Type="DB_TOSSModel.CheckInventoryTable" Role="CheckInventoryTable" Multiplicity="1" />
+          <End Type="DB_TOSSModel.CheckMaintenanceTable" Role="CheckMaintenanceTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CheckInventoryTable">
+              <PropertyRef Name="CheckInvntID" />
+            </Principal>
+            <Dependent Role="CheckMaintenanceTable">
+              <PropertyRef Name="CheckInvntID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FundType_FundName">
           <End Type="DB_TOSSModel.FundType_FundName" Role="FundType_FundName" Multiplicity="0..1" />
           <End Type="DB_TOSSModel.FundType_FundType" Role="FundType_FundType" Multiplicity="*" />
@@ -1063,7 +1221,18 @@
                 <ScalarProperty Name="StartingChckNo" ColumnName="StartingChckNo" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="BankAccountID" ColumnName="BankAccountID" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
                 <ScalarProperty Name="CheckInvntID" ColumnName="CheckInvntID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckMaintenanceTables">
+            <EntityTypeMapping TypeName="DB_TOSSModel.CheckMaintenanceTable">
+              <MappingFragment StoreEntitySet="CheckMaintenanceTable">
+                <ScalarProperty Name="CheckInvntID" ColumnName="CheckInvntID" />
+                <ScalarProperty Name="BankAccountID" ColumnName="BankAccountID" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="CheckMainteID" ColumnName="CheckMainteID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

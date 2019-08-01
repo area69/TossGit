@@ -1,0 +1,11 @@
+﻿@model TOSS_UPGRADE.Models.FM_Disbursement.FM_Disbursement_CheckMaintenance
+@{
+    DB_TOSSEntities TOSSDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+<label>Account Name/ Number</label>
+@Html.DropDownListFor(m => m.CheckMaintenanceAccountNameID, Model.CheckMaintenanceAccountNameList, new { @class = "form-control select2", id = "AccountNameIDDD" })
+
+
+

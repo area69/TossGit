@@ -19,7 +19,7 @@ namespace TOSS_UPGRADE.Models.FM_Disbursement
         public CheckInventoryTable getCheckInventorycolumns { get; set; }
         public IEnumerable<System.Web.Mvc.SelectListItem> CheckInventoryList { get; set; }
         public IEnumerable<TOSS_UPGRADE.Models.CheckInventoryTable> getCheckInventoryType { get; set; }
-        public int CheckInventoryBankID { get; set; }
+        public int CheckInventoryBankTempID { get; set; }
 
         public IEnumerable<System.Web.Mvc.SelectListItem> CheckInventoryBankList
         {
@@ -32,6 +32,7 @@ namespace TOSS_UPGRADE.Models.FM_Disbursement
 
         public IEnumerable<System.Web.Mvc.SelectListItem> CheckInventoryAccountNameList { get; set; }
         public int CheckInventoryAccountNameID { get; set; }
+        public int CheckInventoryAccountNameTempID { get; set; }
     }
     public class CheckInventoryList
     {

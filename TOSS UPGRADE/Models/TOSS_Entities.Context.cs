@@ -31,6 +31,7 @@ namespace TOSS_UPGRADE.Models
         public virtual DbSet<BankAccountTable> BankAccountTables { get; set; }
         public virtual DbSet<BankTable> BankTables { get; set; }
         public virtual DbSet<CheckInventoryTable> CheckInventoryTables { get; set; }
+        public virtual DbSet<CheckMaintenanceTable> CheckMaintenanceTables { get; set; }
         public virtual DbSet<DVTypeTable> DVTypeTables { get; set; }
         public virtual DbSet<FundType_FundName> FundType_FundName { get; set; }
         public virtual DbSet<FundType_FundType> FundType_FundType { get; set; }

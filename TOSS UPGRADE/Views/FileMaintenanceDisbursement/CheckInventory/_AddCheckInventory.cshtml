@@ -10,29 +10,34 @@
 @using (Ajax.BeginForm("AddCheckInventory", "FileMaintenanceDisbursement", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMDisbursementController','Get_CheckInventoryTable','Check Inventory Successfully Saved')", OnFailure = "OnFailure()", }))
 {
     <div class="row">
-        <div class="col-md-4 form-group">
+        <div class="col-md-5 form-group">
             <label>Bank Name</label>
-            @Html.DropDownListFor(m => m.CheckInventoryBankID, Model.CheckInventoryBankList, new { @class = "form-control select2", id = "BankIDDD", onchange = "AngularGlobalFunctions('FMDisbursementController','LoadDynamicDDAccountName','')" })
+            @Html.DropDownListFor(m => m.getCheckInventorycolumns.BankID, Model.CheckInventoryBankList, new { @class = "form-control select2", id = "BankIDDD", onchange = "AngularGlobalFunctions('FMDisbursementController','LoadDynamicDDAccountName','')" })
         </div>
         <div class="col-md-5 form-group" id="_DynamicDDAccountNameID">
 
         </div>
-        <div class="col-md-3 form-group">
+        <div class="col-md-2 form-group">
             <label>Quantity</label>
-            <input type="text" class="form-control" value="" />
+            @Html.TextBoxFor(m => m.getCheckInventorycolumns.Quantity, new { @class = "form-control", type = "text", id = "txtChkInvQty" })
         </div>
     </div>
     <div class="row">
         <div class="col-md-4 form-group">
             <label>Starting Check No.</label>
-            <input type="text" class="form-control" value="" />
+            @Html.TextBoxFor(m => m.getCheckInventorycolumns.StartingChckNo, new { @class = "form-control", type = "text", id = "txtStrtChkNo" })
         </div>
         <div class="col-md-4 form-group">
             <label>Ending Check No.</label>
-            <input type="text" class="form-control" value="" />
+            @Html.TextBoxFor(m => m.getCheckInventorycolumns.EndingChckNo, new { @class = "form-control", type = "text", id = "txtEndChkNo" })
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4 form-group">
+            <label>Date</label>
+            @Html.TextBoxFor(m => m.getCheckInventorycolumns.Date, new { @class = "form-control pickadate", type = "text"})
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10"></div>
         <div class="col-md-2">
             <label style="visibility:hidden">Hide</label>
             <button type="submit" class="btn black bg-addbutton form-control"><b>Save</b></button>
@@ -43,5 +48,27 @@
     $(function () {
         LoadDataTable();
         LoadPopOver();
+        LoadPickDatetime();
     })
+
+    $("#txtStrtChkNo").change(function () {
+        var startNo = $("#txtStrtChkNo").val();
+        var countStartNo = startNo.toString().length;
+        var startNoQty = parseFloat($("#txtStrtChkNo").val()) + parseFloat($("#txtChkInvQty").val() - parseFloat(1));
+        var countEndNo = startNoQty.toString().length;
+        var number = "";
+
+        for (i = 0; i < countStartNo; i++) {
+            number += "0";
+        }
+
+        var countZero = number.toString().length;
+        var res = number.toString().substring(0, countZero - countEndNo) + startNoQty;
+
+        if ($("#txtStrtChkNo").val() == "") {
+            $("#txtEndChkNo").val("");
+        } else {
+            $("#txtEndChkNo").val(res);
+        }
+    });
 </script>
