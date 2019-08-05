@@ -7,14 +7,15 @@
 @using TOSS_UPGRADE.Models;
 
 
-@using (Ajax.BeginForm("AddCheckInventory", "FileMaintenanceDisbursement", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMDisbursementController','Get_CheckInventoryTable','Check Inventory Successfully Saved')", OnFailure = "OnFailure()", }))
+@using (Ajax.BeginForm("AddCheckMaintenance", "FileMaintenanceDisbursement", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMDisbursementController','Get_CheckMaintenanceTable','Check Maintenance Successfully Saved')", OnFailure = "OnFailure()", }))
 {
     <div class="row">
         <div class="col-md-6 form-group">
             <label>Bank Name</label>
-            @Html.DropDownListFor(m => m.getCheckMaintenancecolumns.BankID, Model.CheckMaintenanceBankList, new { @class = "form-control select2", id = "BankIDDD2", onchange = "AngularGlobalFunctions('FMDisbursementController','LoadDynamicDDAccountName2','')" })
+            @Html.DropDownListFor(m => m.CheckMaintenanceBankID, Model.CheckMaintenanceBankList, new { @class = "form-control select2", id = "BankIDDD2", onchange = "AngularGlobalFunctions('FMDisbursementController','LoadDynamicDDAccountName2','')" })
         </div>
         <div class="col-md-6 form-group" id="_DynamicDDAccountID">
+
         </div>
 
     </div>
@@ -22,16 +23,13 @@
 
     </div>
     <div class="row">
-        <div class="col-md-8"></div>
+        <div class="col-md-10"></div>
         <div class="col-md-2">
-            <label class="white">Check No.</label>
-            <button class="btn black bg-addbutton form-control"><b>Save</b></button>
-        </div>
-        <div class="col-md-2">
-            <label class="white">Check No.</label>
-            <button class="btn black bg-headerbc form-control"><b>Delete</b></button>
+            <label style="visibility:hidden">Check No.</label>
+            <button type="submit" class="btn black bg-addbutton form-control"><b>Save</b></button>
         </div>
     </div>
+
 }
 <script>
     $(function () {

@@ -10,7 +10,7 @@
 @using (Ajax.BeginForm("UpdateCheckInventory", "FileMaintenanceDisbursement", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMDisbursementController','Get_CheckInventoryTable','Check Inventory Updated Successfully')", OnFailure = "OnFailure()", }))
 {
     @Html.HiddenFor(m => m.getCheckInventorycolumns.CheckInvntID, new { })
-    @Html.HiddenFor(m => m.CheckInventoryAccountNameTempID, new { id = "BankAccountIDTempID" })
+    @Html.HiddenFor(m => m.CheckInventoryAccountNameTempID, new { id = "CheckInventoryAccountNameIDTempID" })
     <div class="row">
         <div class="col-md-4 form-group">
             <label>Bank Name</label>
@@ -39,10 +39,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-10"></div>
+        <div class="col-md-8"></div>
         <div class="col-md-2">
             <label style="visibility:hidden">Hide</label>
             <button type="submit" class="btn black bg-addbutton form-control"><b>Save</b></button>
+        </div>
+        <div class="col-md-2">
+            <label style="visibility:hidden">Check No.</label>
+            <button type="reset" class="btn black bg-headerbc form-control" onclick="AngularGlobalEdit('FMDisbursementController','Get_AddCheckInventory','')"><b>Cancel</b></button>
         </div>
     </div>
 }

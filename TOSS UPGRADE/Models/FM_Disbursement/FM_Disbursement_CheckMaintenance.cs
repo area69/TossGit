@@ -29,9 +29,21 @@ namespace TOSS_UPGRADE.Models.FM_Disbursement
         }
     }
 
-    public IEnumerable<System.Web.Mvc.SelectListItem> CheckMaintenanceAccountNameList { get; set; }
-    public int CheckMaintenanceAccountNameID { get; set; }
-    public int CheckMaintenanceAccountNameTempID { get; set; }
+        public IEnumerable<System.Web.Mvc.SelectListItem> CheckMaintenanceInventoryList { get; set; }
+        public IEnumerable<System.Web.Mvc.SelectListItem> CheckMaintenanceAccountNameList { get; set; }
+
+        public int CheckMaintenanceAccountNameID { get; set; }
+
+        public int CheckMaintenanceInventoryID { get; set; }
+
+        public int CheckMaintenanceQuantityID { get; set; }
+
+        public int CheckMaintenanceBankID { get; set; }
+        public int CheckMaintenanceBankIDTemp { get; set; }
+
+        public int CheckMaintenanceStartingNoID { get; set; }
+        public int CheckMaintenanceEndingNoID { get; set; }
+        public int CheckMaintenanceAccountNameTempID { get; set; }
     }
     public class CheckMaintenanceList
     {

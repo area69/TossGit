@@ -1,4 +1,9 @@
-﻿<div class="row">
+﻿@model IEnumerable<TOSS_UPGRADE.Models.FM_Disbursement.CheckMaintenanceList>
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+<div class="row">
     <div class="col-md-12">
         <div class="table-responsive">
             <table class="table table-striped table-bordered zero-configuration w-100">
@@ -9,25 +14,42 @@
                         <th>Starting Check No.</th>
                         <th>Ending Check No.</th>
                         <th width="5%;">Remaining Quantity</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
+                    @{
+                        foreach (var Items in Model)
+                        {
+                            var DeleteConfirmationMess = "Are you sure do you want to delete this Check Maintenance?";
+                            var DeleteSuccesMess = "Check Maintenance Deleted";
+
+                          //  var ViewEdit = "<button class=\"btn btn-icon btn-block white bg-addbutton border-0\" type=\"button\"onclick=\"AngularGlobalEdit('FMDisbursementController','Get_UpdateCheckMaintenance','" + @Items.CheckMainteID + "')\"><i class='ft-edit'></i> Edit</button>";
+                            var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.Bank + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.CheckMainteID + ",&quot;Get_DeleteCheckMaintenance&quot;,&quot;FMDisbursementController&quot;)')\"> <i class='ft-delete'></i> Delete</button>";
+                            var ActionContentProgram =  ViewDelete;
                     <tr>
-                        <td>Land Bank of the Philippines</td>
-                        <td>0441-1941-10</td>
-                        <td>101235</td>
-                        <td>101236</td>
-                        <td>80</td>
+                        <td>@Items.Bank</td>
+                        <td>@Items.AccountName</td>
+                        <td>@Items.StartingChckNo</td>
+                        <td>@Items.EndingChckNo</td>
+                        <td>@Items.Quantity</td>
+                        <td>
+                            <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-m btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
+                                    data-original-title="" data-html="true" data-placement="right">
+                                <i class="la la-bars"></i>
+                            </button>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>Land Bank of the Philippines</td>
-                        <td>0441-1941-10</td>
-                        <td>101235</td>
-                        <td>101236</td>
-                        <td>80</td>
-                    </tr>
+                        }
+                    }
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+</script>

@@ -5,7 +5,7 @@
 @using TOSS_UPGRADE.Models;
 
 <label>Account Name/ Number</label>
-@Html.DropDownListFor(m => m.CheckMaintenanceAccountNameID, Model.CheckMaintenanceAccountNameList, new { @class = "form-control select2", id = "AccountNameIDDD" })
+@Html.DropDownListFor(m => m.CheckMaintenanceAccountNameID, Model.CheckMaintenanceAccountNameList, new { @class = "form-control select2", id = "AccountNameIDDD2", onchange = "AngularGlobalFunctions('FMDisbursementController','Get_AddCheckMaintenanceInventory','')" })
 
 
 

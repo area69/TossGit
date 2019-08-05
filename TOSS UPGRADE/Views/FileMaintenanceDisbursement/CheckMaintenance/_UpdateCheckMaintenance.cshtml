@@ -1,0 +1,45 @@
+﻿@model TOSS_UPGRADE.Models.FM_Disbursement.FM_Disbursement_CheckMaintenance
+@{
+    /**/
+
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+
+@using (Ajax.BeginForm("AddCheckMaintenance", "FileMaintenanceDisbursement", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMDisbursementController','Get_CheckMaintenanceTable','Check Maintenance Successfully Saved')", OnFailure = "OnFailure()", }))
+{
+<div class="row">
+    @Html.HiddenFor(m => m.getCheckMaintenancecolumns.CheckMainteID, new { })
+    @Html.HiddenFor(m => m.CheckMaintenanceBankIDTemp, new { id = "CheckMaintenanceBankIDTempID" })
+    <div class="col-md-6 form-group">
+        <label>Bank Name</label>
+        @Html.DropDownListFor(m => m.CheckMaintenanceBankID, Model.CheckMaintenanceBankList, new { @class = "form-control select2", id = "BankIDDD2", onchange = "AngularGlobalFunctions('FMDisbursementController','LoadDynamicDDAccountName2','')" })
+    </div>
+    <div class="col-md-6 form-group" id="_DynamicDDAccountID">
+
+    </div>
+</div>
+    <div id="_CheckInventoryPVID">
+
+    </div>
+    <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-2">
+            <label style="visibility:hidden">Check No.</label>
+            <button type="submit" class="btn black bg-addbutton form-control"><b>Save</b></button>
+        </div>
+        <div class="col-md-2">
+            <label style="visibility:hidden">Check No.</label>
+            <button type="reset" class="btn black bg-headerbc form-control" onclick="AngularGlobalEdit('FMDisbursementController','Get_AddCheckMaintenance','')"><b>Cancel</b></button>
+        </div>
+    </div>
+
+}
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+        LoadPickDatetime();
+    })
+</script>

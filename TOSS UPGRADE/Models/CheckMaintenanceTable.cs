@@ -15,12 +15,8 @@ namespace TOSS_UPGRADE.Models
     public partial class CheckMaintenanceTable
     {
         public int CheckMainteID { get; set; }
-        public int BankID { get; set; }
-        public int BankAccountID { get; set; }
         public int CheckInvntID { get; set; }
     
-        public virtual BankAccountTable BankAccountTable { get; set; }
-        public virtual BankTable BankTable { get; set; }
         public virtual CheckInventoryTable CheckInventoryTable { get; set; }
     }
 }

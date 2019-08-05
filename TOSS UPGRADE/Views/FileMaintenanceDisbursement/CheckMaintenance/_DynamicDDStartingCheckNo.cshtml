@@ -1,0 +1,9 @@
+﻿@model TOSS_UPGRADE.Models.FM_Disbursement.FM_Disbursement_CheckMaintenance
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+<label>Starting Check No.</label>
+@Html.DropDownListFor(m => m.CheckMaintenanceInventoryID, Model.CheckMaintenanceInventoryList, new { @class = "form-control select2", id = "AccountNameInventoryIDDD2", onchange = "AngularGlobalFunctions('FMDisbursementController','Get_CheckMaintenanceQuantyNEnd','')" })
+

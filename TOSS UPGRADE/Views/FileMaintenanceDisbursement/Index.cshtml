@@ -108,11 +108,12 @@
             //DV Type Table
             F.Get_DVTypeTable();
             F.Get_CheckInventoryTable();
-            F.Get_AddCheckMaintenance();
+            F.Get_CheckMaintenanceTable();
         }
         //Check Inventory
         F.LoadDynamicDDAccountName = function () {
-           var BankAccountID = $("#BankIDDD").val()
+            var BankAccountID = $("#BankIDDD").val()
+          
             P({
                 url: '/FileMaintenanceDisbursement/GetDynamicAccountName',
                 params: { BankAccountID: BankAccountID }
@@ -121,10 +122,10 @@
             });
         }
         F.LoadSelectDynamicDDAccountName = function () {
-            var BankAccountIDTempID = $("#BankIDDD").val();
+            var CheckInventoryAccountNameIDTempID = $("#CheckInventoryAccountNameIDTempID").val();
             P({
                 url: '/FileMaintenanceDisbursement/GetSelectedDynamicAccountName',
-                params: { BankAccountIDTempID: BankAccountIDTempID }
+                params: { CheckInventoryAccountNameIDTempID: CheckInventoryAccountNameIDTempID }
             }).then(function (response) {
                 $("#_DynamicDDAccountNameID").html(response.data);
             });
@@ -165,6 +166,23 @@
         }
 
         //Check Maintenance
+        F.Get_CheckMaintenanceTable = function () {
+            P({
+                url: '/FileMaintenanceDisbursement/Get_CheckMaintenanceTable',
+            }).then(function (response) {
+                $("#_checkMaintenanceTableID").html(response.data);
+            });
+            F.Get_AddCheckMaintenance();
+        }
+        F.Get_AddCheckMaintenance = function () {
+            P({
+                url: '/FileMaintenanceDisbursement/Get_AddCheckMaitenance',
+            }).then(function (response) {
+                $("#_checkMaintenanceID").html(response.data);
+                F.LoadDynamicDDAccountName2(); 
+                F.Get_CheckInventoryTable();
+            });
+        }
         F.LoadDynamicDDAccountName2 = function () {
             var BankAccountID = $("#BankIDDD2").val()
             P({
@@ -172,24 +190,73 @@
                 params: { BankAccountID: BankAccountID }
             }).then(function (response) {
                 $("#_DynamicDDAccountID").html(response.data);
-            });
-        }
-        F.Get_AddCheckMaintenance = function () {
-            P({
-                url: '/FileMaintenanceDisbursement/Get_AddCheckMaitenance',
-            }).then(function (response) {
-                $("#_checkMaintenanceID").html(response.data);
-                F.LoadDynamicDDAccountName2();
                 F.Get_AddCheckMaintenanceInventory();
             });
         }
         F.Get_AddCheckMaintenanceInventory = function () {
             P({
-                url: '/FileMaintenanceDisbursement/Get_AddCheckMaitenanceInventory',
+                url: '/FileMaintenanceDisbursement/Get_AddCheckMaintenanceInventory',
             }).then(function (response) {
                 $("#_CheckInventoryPVID").html(response.data);
+                F.LoadDynamicCheckMaintenanceInventory();
             });
         }
+        F.LoadDynamicCheckMaintenanceInventory = function () {
+            var BankID = $("#BankIDDD2").val()
+            var AccountNameIDDD2 = $("#AccountNameIDDD2").val()
+            if (AccountNameIDDD2 == null) {
+                AccountNameIDDD2 = 0;
+            }
+            P({
+                url: '/FileMaintenanceDisbursement/LoadDynamicCheckMaintenanceInventory',
+                params: { BankID: BankID, AccountNameIDDD2: AccountNameIDDD2 }
+            }).then(function (response) {
+                $("#_DynamicDDStartingNoID").html(response.data);
+                F.Get_CheckMaintenanceQuantyNEnd();
+            });
+        }
+        F.Get_CheckMaintenanceQuantyNEnd = function () {
+            var BankID = $("#BankIDDD2").val();
+            var BankAccountID = $("#AccountNameIDDD2").val();
+            var StartingChckNo = $("#AccountNameInventoryIDDD2 option:selected").text();
+            if (StartingChckNo == null || StartingChckNo == "" || BankAccountID == null || BankAccountID == "") {
+                StartingChckNo = 0;
+                BankAccountID = 0;
+            }
+            P({
+                url: '/FileMaintenanceDisbursement/Get_CheckMaintenanceQuantyNEnd',
+                params: { BankID: BankID, BankAccountID: BankAccountID, StartingChckNo: StartingChckNo }
+            }).then(function (response) {
+                $("#_DynamicTBQuanEnding").html(response.data);
+            });
+        }
+        F.Get_UpdateCheckMaintenance = function (CheckMainteID) {
+            P({
+                url: '/FileMaintenanceDisbursement/Get_UpdateCheckMaintenance',
+                params: { CheckMainteID: CheckMainteID }
+            }).then(function (response) {
+                $("#_checkMaintenanceID").html(response.data);
+                F.GetLoadDynamicDDAccountName();
+            });
+        }
+        F.GetLoadDynamicDDAccountName = function () {
+            var CheckMaintenanceBankIDTempID = $("#CheckMaintenanceBankIDTempID").val();
+            P({
+                url: '/FileMaintenanceDisbursement/GetSelectedDynamicMaitenance',
+                params: { CheckMaintenanceBankIDTempID: CheckMaintenanceBankIDTempID }
+            }).then(function (response) {
+                $("#_DynamicDDAccountID").html(response.data);
+            });
+        }
+        F.Get_DeleteCheckMaintenance = function (CheckMainteID) {
+            P({
+                url: '/FileMaintenanceDisbursement/DeleteCheckMaintenance',
+                params: { CheckMainteID: CheckMainteID }
+            }).then(function (response) {
+                F.Get_CheckMaintenanceTable();
+            });
+        }
+
         //DV Type
         F.Get_DVTypeTable = function () {
             P({

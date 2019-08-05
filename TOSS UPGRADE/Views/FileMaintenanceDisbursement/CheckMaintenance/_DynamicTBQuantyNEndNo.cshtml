@@ -1,0 +1,14 @@
+﻿@model TOSS_UPGRADE.Models.FM_Disbursement.FM_Disbursement_CheckMaintenance
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+<div class="col-md-6 form-group">
+    <label>Ending Check No.</label>
+    @Html.TextBoxFor(m => m.CheckMaintenanceEndingNoID, new { @class = "form-control", type = "text" })
+</div>
+<div class="col-md-6 form-group">
+    <label>Quantity</label>
+    @Html.TextBoxFor(m => m.CheckMaintenanceQuantityID, new { @class = "form-control", type = "text" })
+</div>
