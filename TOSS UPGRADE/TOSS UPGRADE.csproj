@@ -216,6 +216,9 @@
     <Compile Include="Models\Account.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountableFormTable.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BankAccountTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
@@ -238,6 +241,7 @@
     <Compile Include="Models\DVTypeTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FM_CollectionAndDeposit\FM_CollectionAndDeposit_AccountableForm.cs" />
     <Compile Include="Models\FM_Disbursement\FM_Disbursement_CheckInventory.cs" />
     <Compile Include="Models\FM_Disbursement\FM_Disbursement_CheckMaintenance.cs" />
     <Compile Include="Models\FM_Disbursement\FM_Disbursement_DVType.cs" />
@@ -8960,6 +8964,9 @@
     <Content Include="Views\FileMaintenanceDisbursement\CheckMaintenance\_DynamicDDStartingCheckNo.cshtml" />
     <Content Include="Views\FileMaintenanceDisbursement\CheckMaintenance\_DynamicTBQuantyNEndNo.cshtml" />
     <Content Include="Views\FileMaintenanceDisbursement\CheckMaintenance\_UpdateCheckMaintenance.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\_AccountableFormTable.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\_AddAccountableForm.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\_UpdateAccountableForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -8974,6 +8981,7 @@
     <Folder Include="modernadmin\__MACOSX\modern-admin-1.0\src\template-builder\pages\" />
     <Folder Include="modernadmin\__MACOSX\modern-admin-1.0\starter-kit\" />
     <Folder Include="Resources\PDF\" />
+    <Folder Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DB_TOSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountableFormTable">
+          <Key>
+            <PropertyRef Name="AccountFormID" />
+          </Key>
+          <Property Name="AccountFormID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountFormName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isCTC" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Accounts">
           <Key>
             <PropertyRef Name="AccountID" />
@@ -429,6 +438,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DB_TOSSModelStoreContainer">
+          <EntitySet Name="AccountableFormTable" EntityType="Self.AccountableFormTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankAccount_AccountCode" EntityType="Self.BankAccount_AccountCode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankAccount_AccountType" EntityType="Self.BankAccount_AccountType" Schema="dbo" store:Type="Tables" />
@@ -530,6 +540,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="DB_TOSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DB_TOSSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountableFormTables" EntityType="DB_TOSSModel.AccountableFormTable" />
           <EntitySet Name="Accounts" EntityType="DB_TOSSModel.Account" />
           <EntitySet Name="BankAccount_AccountCode" EntityType="DB_TOSSModel.BankAccount_AccountCode" />
           <EntitySet Name="BankAccount_AccountType" EntityType="DB_TOSSModel.BankAccount_AccountType" />
@@ -626,6 +637,15 @@
             <End Role="SignatoriesTable" EntitySet="SignatoriesTables" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AccountableFormTable">
+          <Key>
+            <PropertyRef Name="AccountFormID" />
+          </Key>
+          <Property Name="AccountFormID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountFormName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isCTC" Type="Boolean" Nullable="false" />
+        </EntityType>
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="AccountID" />
@@ -1091,6 +1111,16 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DB_TOSSModelStoreContainer" CdmEntityContainer="DB_TOSSEntities">
+          <EntitySetMapping Name="AccountableFormTables">
+            <EntityTypeMapping TypeName="DB_TOSSModel.AccountableFormTable">
+              <MappingFragment StoreEntitySet="AccountableFormTable">
+                <ScalarProperty Name="isCTC" ColumnName="isCTC" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AccountFormName" ColumnName="AccountFormName" />
+                <ScalarProperty Name="AccountFormID" ColumnName="AccountFormID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="DB_TOSSModel.Account">
               <MappingFragment StoreEntitySet="Accounts">
