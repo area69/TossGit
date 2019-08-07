@@ -6,7 +6,7 @@
 }
 @using TOSS_UPGRADE.Models;
 
-@using (Ajax.BeginForm("AddAccountableForm", "FileMaintenanceCollectionDeposit", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMCollectionDepositController','Get_CheckInventoryTable','Accountable Form Successfully Saved')", OnFailure = "OnFailure()", }))
+@using (Ajax.BeginForm("AddAccountableForm", "FileMaintenanceCollectionDeposit", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMCollectionDepositController','Get_AccountableFormTable','Accountable Form Successfully Saved')", OnFailure = "OnFailure()", }))
 {
 <div class="row">
     <div class="col-md-3 form-group ml-5">
@@ -20,9 +20,8 @@
             <label>For CTC</label>
         </fieldset>
     </div>
-    <div class="col-md-4 px-0 mx-1 form-group">
-        <label>Description</label>
-        @Html.TextBoxFor(m => m.getAccountableFormcolumns.Description, new { @class = "form-control", type = "text" })
+    <div class="col-md-4 px-0 mx-1 form-group" id="_DescriptionID">
+
     </div>
     <div class="col-md-1 px-0 mx-1">
         <label style="visibility:hidden">Description</label>

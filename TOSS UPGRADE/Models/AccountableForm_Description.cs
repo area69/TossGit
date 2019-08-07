@@ -12,21 +12,18 @@ namespace TOSS_UPGRADE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AccountableFormTable
+    public partial class AccountableForm_Description
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AccountableFormTable()
+        public AccountableForm_Description()
         {
-            this.AccountableForm_Inventory = new HashSet<AccountableForm_Inventory>();
+            this.AccountableFormTables = new HashSet<AccountableFormTable>();
         }
     
-        public int AccountFormID { get; set; }
-        public string AccountFormName { get; set; }
         public int DescriptionID { get; set; }
-        public bool isCTC { get; set; }
+        public string Description { get; set; }
     
-        public virtual AccountableForm_Description AccountableForm_Description { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AccountableForm_Inventory> AccountableForm_Inventory { get; set; }
+        public virtual ICollection<AccountableFormTable> AccountableFormTables { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -17,6 +18,8 @@ namespace TOSS_UPGRADE.Models.FM_CollectionAndDeposit
         public AccountableFormTable getAccountableFormcolumns { get; set; }
         public IEnumerable<System.Web.Mvc.SelectListItem> AccountableFormList { get; set; }
         public IEnumerable<TOSS_UPGRADE.Models.AccountableFormTable> getAccountableForm { get; set; }
+        public int DescriptionID { get; set; }
+        public IEnumerable<System.Web.Mvc.SelectListItem> DescriptionList { get; set; }
     }
     public class AccountableFormList
     {

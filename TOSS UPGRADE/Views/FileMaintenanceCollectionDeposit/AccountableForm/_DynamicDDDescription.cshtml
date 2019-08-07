@@ -1,0 +1,17 @@
+﻿@model TOSS_UPGRADE.Models.FM_CollectionAndDeposit.FM_CollectionAndDeposit_AccountableForm
+@{
+    DB_TOSSEntities TOSSDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+
+<label>Description</label>
+<span class="input-group-append" id="button-addon2">
+    @Html.DropDownListFor(m => m.DescriptionID, Model.DescriptionList, new { @class = "form-control select2", id = "DescriptionIDD" })
+    <button class="btn bg-addbutton" type="button" data-toggle="modal" data-target="#addDescriptionModal" ng-click="Get_DescriptionTable()"><strong>+</strong></button>
+</span>
+<script>
+    $(function () {
+        $("#DescriptionIDD").select2();
+    })
+</script>
