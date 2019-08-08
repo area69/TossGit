@@ -8978,6 +8978,10 @@
     <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\OR\_ORDetailsTable.cshtml" />
     <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\OR\_DynamicDDAccountableForm.cshtml" />
     <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\_DynamicDDDescription.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\Description\_AddDescription.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\Description\_DescriptionTable.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\Description\_UpdateDescription.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\OR\_UpdateORDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

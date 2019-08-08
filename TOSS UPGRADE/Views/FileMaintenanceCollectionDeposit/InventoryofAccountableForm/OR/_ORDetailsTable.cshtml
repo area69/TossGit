@@ -9,39 +9,61 @@
             <table class="table table-striped table-bordered zero-configuration w-100">
                 <thead class="text-center">
                     <tr>
+                        <th>Accountable Forms</th>
                         <th>Stub No.</th>
-                        <th>Quantity</th>
                         <th>Starting OR</th>
                         <th>Ending OR</th>
-                        <th>Form Type</th>
-                        <th>Date</th>
+                        <th>Quantity</th>
+                        <th>Date Issued</th>
+                        <th>Is Issued</th>
                         <th width="5px;">Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     @{
                         foreach (var Items in Model)
                         {
                             var DeleteConfirmationMess = "Are you sure do you want to delete this Accountable Form?";
                             var DeleteSuccesMess = "Accountable Form Deleted";
 
-                            var ViewEdit = "<button class=\"btn btn-icon btn-block white bg-addbutton border-0\" type=\"button\"onclick=\"AngularGlobalEdit('FMCollectionDepositController','Get_UpdateAccountableForm','" + @Items.AFORID + "')\"><i class='ft-edit'></i> Edit</button>";
-                            var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.AF + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.AFORID + ",&quot;Get_DeleteAccountableForm&quot;,&quot;FMCollectionDepositController&quot;)')\"> <i class='ft-delete'></i> Delete</button>";
+                            var ViewEdit = "<button class=\"btn btn-icon btn-block white bg-addbutton border-0\" type=\"button\"onclick=\"AngularGlobalEdit('FMCollectionDepositController','Get_UpdateAccountableFormInventory','" + @Items.AFORID + "')\"><i class='ft-edit'></i> Edit</button>";
+                            var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.AF + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.AFORID + ",&quot;Get_DeleteAccountableFormInventory&quot;,&quot;FMCollectionDepositController&quot;)')\"> <i class='ft-delete'></i> Delete</button>";
                             var ActionContentProgram = ViewEdit + ViewDelete;
-                            <tr>
-                                <td>@Items.StubNo</td>
-                                <td>@Items.Quantity</td>
-                                <td>@Items.StratingOR</td>
-                                <td>@Items.EndingOR</td>
-                                <td>@Items.AF</td>
-                                <td>@Items.Date</td>
-                                <td>
-                                    <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-m btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
-                                            data-original-title="" data-html="true" data-placement="right">
-                                        <i class="la la-bars"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                    <tr>
+                        <td>@Items.AF</td>
+                        <td>@Items.StubNo</td>
+                        <td>@Items.StratingOR</td>
+                        <td>@Items.EndingOR</td>
+                        <td>@Items.Quantity</td>
+                        <td>
+                            @{
+                                DateTime DateofHearing = Convert.ToDateTime(@Items.Date);
+                            }
+
+                            @DateofHearing.ToString("MMMM dd, yyyy")
+                        </td>
+                        <td>
+                            @{
+                                var isIssued = "";
+                                if (Items.isIssued == true)
+                                {
+                                    isIssued = "Yes";
+                                }
+                                else if (Items.isIssued == false)
+                                {
+                                    isIssued = "No";
+                                }
+
+                            }
+                            @isIssued
+                        </td>
+                        <td>
+                            <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-m btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
+                                    data-original-title="" data-html="true" data-placement="right">
+                                <i class="la la-bars"></i>
+                            </button>
+                        </td>
+                    </tr>
                         }
                     }
                 </tbody>

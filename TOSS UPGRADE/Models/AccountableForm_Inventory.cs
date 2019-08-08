@@ -21,6 +21,7 @@ namespace TOSS_UPGRADE.Models
         public int StartingOR { get; set; }
         public int EndingOR { get; set; }
         public System.DateTime Date { get; set; }
+        public bool isIssued { get; set; }
     
         public virtual AccountableFormTable AccountableFormTable { get; set; }
     }

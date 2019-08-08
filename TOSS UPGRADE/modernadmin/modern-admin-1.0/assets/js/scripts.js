@@ -130,9 +130,15 @@ function AngularGlobalAlertsCallingNoModal(ControllerName, ActionName,  SuccessM
         eval("scope." + ActionName + "();");
         swalSuccess("Success", SuccessMess);
     });
-
 }
-
+function AngularGlobalAlertsCallingTwoActionNoModal(ControllerName, ActionName1,ActionName2, SuccessMess) {
+    var scope = angular.element(document.getElementById(ControllerName)).scope();
+    scope.$apply(function () {
+        eval("scope." + ActionName1 + "();");
+        eval("scope." + ActionName2 + "();");
+        swalSuccess("Success", SuccessMess);
+    });
+}
 function AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc(ControllerName, ActionName1, ActionName2) {
     var scope = angular.element(document.getElementById(ControllerName)).scope();
     scope.$apply(function () {

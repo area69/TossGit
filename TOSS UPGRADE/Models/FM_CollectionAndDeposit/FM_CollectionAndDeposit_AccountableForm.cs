@@ -13,13 +13,21 @@ namespace TOSS_UPGRADE.Models.FM_CollectionAndDeposit
             getAccountableForm = new List<AccountableFormTable>();
             getAccountableFormcolumns = new AccountableFormTable();
             getAccountableFormList = new List<AccountableFormList>();
+
+
+            getDescription = new List<AccountableForm_Description>();
+            getDescriptionColumns = new AccountableForm_Description();
         }
         public List<AccountableFormList> getAccountableFormList { get; set; }
         public AccountableFormTable getAccountableFormcolumns { get; set; }
         public IEnumerable<System.Web.Mvc.SelectListItem> AccountableFormList { get; set; }
         public IEnumerable<TOSS_UPGRADE.Models.AccountableFormTable> getAccountableForm { get; set; }
         public int DescriptionID { get; set; }
+        public int DescriptionTempID { get; set; }
         public IEnumerable<System.Web.Mvc.SelectListItem> DescriptionList { get; set; }
+
+        public AccountableForm_Description getDescriptionColumns { get; set; }
+        public IEnumerable<TOSS_UPGRADE.Models.AccountableForm_Description> getDescription { get; set; }
     }
     public class AccountableFormList
     {

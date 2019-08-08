@@ -1,0 +1,31 @@
+﻿@model TOSS_UPGRADE.Models.FM_CollectionAndDeposit.FM_CollectionAndDeposit_AccountableForm
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+@using (Ajax.BeginForm("AddDescription", "FileMaintenanceCollectionDeposit", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingTwoActionNoModal('FMCollectionDepositController','Get_AFDescriptionTable','LoadDynamicDDDescription','Description Successfully Saved')", OnFailure = "OnFailure()", }))
+{
+    <div class="row">
+        <div class="col-md-7 mr-1">
+            <label>Department</label>
+            @Html.TextBoxFor(m => m.getDescriptionColumns.Description, new { @class = "form-control", type = "text" })
+        </div>
+        <div class="col-md-2 px-0 mr-1">
+            <label style="visibility:hidden">Department</label>
+            <button type="submit" class="btn bg-addbutton form-control black"><b>Save</b></button>
+        </div>
+        <div class="col-md-2 px-0">
+            <label style="visibility:hidden">Department</label>
+            <button class="btn bg-headerbc form-control white" data-dismiss="modal"><b>Cancel</b></button>
+        </div>
+    </div>
+}
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+</script>
+
+

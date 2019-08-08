@@ -54,8 +54,34 @@
                                     <div class="card box-shadow-2" id="_AccountableFormID">
 
                                     </div>
+
                                     <div class="row">
                                         <div class="col-md-12" id="_AccountableFormTableID">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @* Add Description Modal *@
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <div class="modal animated zoomIn text-left" id="addDescriptionModal" role="dialog">
+                            <div class="modal-dialog" style="max-width:500px" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-headerbc white">
+                                        <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Description</h4>
+                                    </div>
+                                    <div class="modal-body skin skin-square">
+                                        <div class="row">
+                                            <div class="col-md-12" id="_DescriptionxID">
+
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1" id="_DescriptionTableID">
 
                                         </div>
                                     </div>
@@ -137,6 +163,7 @@
 
             </div>
         </div>
+
     </div>
 </div>
 <style>
@@ -176,7 +203,7 @@
             //Accountable Form Table
             F.Get_AccountableFormTable();
             //Inventory of Accountable Forms
-            F.Get_InvtAccountableFormTable();
+            F.Get_InvtAccountableFormTable(); F.Get_AFDescriptionTable();
         }
         //Accountable Form
         F.Get_AccountableFormTable = function () {
@@ -186,13 +213,63 @@
                 $("#_AccountableFormTableID").html(response.data);
             });
             F.Get_AddAccountableForm();
+            F.LoadDynamicDDAccountableForm();
         }
         F.Get_AddAccountableForm = function () {
             P({
                 url: '/FileMaintenanceCollectionDeposit/Get_AddAccountableForm',
             }).then(function (response) {
                 $("#_AccountableFormID").html(response.data);
-                F.LoadDynamicDDAccountableForm();
+                F.LoadDynamicDDDescription();
+             
+            });
+        }
+        F.LoadDynamicDDDescription = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicAccountableformDescription',
+            }).then(function (response) {
+                $("#_DescriptionID").html(response.data);
+            });
+        }
+        F.LoadSelectedDynamicDDDescription = function () {
+            var DescriptionIDTempID = $("#DescriptionIDTempID").val();
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetSelectedDynamicAccountableformDescription',
+                params: { DescriptionIDTempID: DescriptionIDTempID }
+            }).then(function (response) {
+                $("#_DescriptionID").html(response.data);
+            });
+        }
+        F.Get_AFDescriptionTable = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_AFDescriptionTable',
+            }).then(function (response) {
+                $("#_DescriptionTableID").html(response.data);
+            });
+            F.Get_AddDescription();
+        }
+        F.Get_AddDescription = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_AddDescription',
+            }).then(function (response) {
+                $("#_DescriptionxID").html(response.data);
+            });
+        }
+        F.Get_UpdateDescription = function (DescriptionID) {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_UpdateDescription',
+                params: { DescriptionID: DescriptionID }
+            }).then(function (response) {
+                $("#_DescriptionxID").html(response.data);
+            });
+        }
+        F.Get_DeleteDescription = function (DescriptionID) {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/DeleteDescription',
+                params: { DescriptionID: DescriptionID }
+            }).then(function (response) {
+                F.Get_AFDescriptionTable();
+                F.LoadDynamicDDDescription();
             });
         }
         F.Get_UpdateAccountableForm = function (AccountFormID) {
@@ -201,7 +278,8 @@
                 params: { AccountFormID: AccountFormID }
             }).then(function (response) {
                 $("#_AccountableFormID").html(response.data);
-            });
+                F.LoadSelectedDynamicDDDescription();
+                }); 
         }
         F.Get_DeleteAccountableForm = function (AccountFormID) {
             P({
@@ -233,6 +311,32 @@
                 url: '/FileMaintenanceCollectionDeposit/GetDynamicAccountableform',
             }).then(function (response) {
                 $("#_ORAFID").html(response.data);
+            });
+        }
+        F.Get_UpdateAccountableFormInventory = function (AFORID) {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_UpdateAccountableFormInventory',
+                params: { AFORID: AFORID }
+            }).then(function (response) {
+                $("#_ORDetailsID").html(response.data);
+                F.LoadSelectedDynamicDDAF();
+            });
+        }
+        F.LoadSelectedDynamicDDAF = function () {
+            var AFIDTempID = $("#AFIDTempID").val();
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetSelectedDynamicAccountableform',
+                params: { AFIDTempID: AFIDTempID }
+            }).then(function (response) {
+                $("#_ORAFID").html(response.data);
+            });
+        }
+        F.Get_DeleteAccountableFormInventory = function (AFORID) {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/DeleteAccountableFormInventory',
+                params: { AFORID: AFORID }
+            }).then(function (response) {
+                F.Get_InvtAccountableFormTable();
             });
         }
     });

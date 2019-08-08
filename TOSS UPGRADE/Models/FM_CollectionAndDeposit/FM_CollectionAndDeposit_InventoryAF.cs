@@ -17,6 +17,8 @@ namespace TOSS_UPGRADE.Models.FM_CollectionAndDeposit
         public List<AccountableFormInvtList> getAccountableFormInvtList { get; set; }
         public AccountableForm_Inventory getAccountableFormInvtcolumns { get; set; }
         public IEnumerable<System.Web.Mvc.SelectListItem> AccountableFormInvtList { get; set; }
+
+        public int AFTempID { get; set; }
         public IEnumerable<TOSS_UPGRADE.Models.AccountableForm_Inventory> getAccountableFormInvt { get; set; }
         public int AccountableFormInvtID { get; set; }
     }
@@ -29,5 +31,7 @@ namespace TOSS_UPGRADE.Models.FM_CollectionAndDeposit
         public int StratingOR { get; set; }
         public int EndingOR { get; set; }
         public string Date { get; set; }
+        public bool isIssued { get; set; }
+        
     }
 }

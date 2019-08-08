@@ -23,6 +23,7 @@
           <Property Name="StartingOR" Type="int" Nullable="false" />
           <Property Name="EndingOR" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="isIssued" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="AccountableFormTable">
           <Key>
@@ -719,6 +720,7 @@
           <Property Name="StartingOR" Type="Int32" Nullable="false" />
           <Property Name="EndingOR" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isIssued" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AccountableFormTable" Relationship="DB_TOSSModel.FK_AccountableFormInventory_AccountableFormTable" FromRole="AccountableForm_Inventory" ToRole="AccountableFormTable" />
         </EntityType>
         <EntityType Name="AccountableFormTable">
@@ -1232,6 +1234,7 @@
           <EntitySetMapping Name="AccountableForm_Inventory">
             <EntityTypeMapping TypeName="DB_TOSSModel.AccountableForm_Inventory">
               <MappingFragment StoreEntitySet="AccountableForm_Inventory">
+                <ScalarProperty Name="isIssued" ColumnName="isIssued" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="EndingOR" ColumnName="EndingOR" />
                 <ScalarProperty Name="StartingOR" ColumnName="StartingOR" />
