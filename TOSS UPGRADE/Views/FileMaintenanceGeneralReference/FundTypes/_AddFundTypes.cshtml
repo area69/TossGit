@@ -7,28 +7,23 @@
 
 @using (Ajax.BeginForm("AddFundTypes", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc('FMGeneralReferenceController','Get_FundTypeTables','SuccessSave1')", OnFailure = "OnFailure()", }))
 {
-    <div class="row">
-        <div class="col-md-3 pr-0 form-group">
-            <label>Fund</label>
-            @Html.DropDownListFor(m => m.getFundColumns.FundID, Model.FundNameList, new { @class = "form-control select2", id = "FundNameListID", onchange = "AngularGlobalFunctions('FMGeneralReferenceController','LoadDynamicDDFundType','')" })
-        </div>
-        <div class="col-md-3 form-group" id="FundTypeDivID">
-
-        </div>
-        <div class="col-md-3 pl-0 form-group">
-            <label>Particulars</label>
-            @Html.TextBoxFor(m => m.getFundColumns.FundParticulars, new { @class = "form-control", type = "text" })
-
-        </div>
-        <div class="col-md-1 mr-1 px-0">
-            <label style="visibility:hidden">Particulars</label>
-            <button type="submit" class="btn bg-addbutton black form-control"><b>Save</b></button>
-        </div>
-        <div class="col-md-1 px-0">
-            <label style="visibility:hidden">Particulars</label>
-            <button type="reset" class="btn bg-headerbc form-control black"><b>Cancel</b></button>
-        </div>
+<div class="row">
+    <div class="col-md-3 pr-0 form-group">
+        <label>Fund</label>
+        @Html.DropDownListFor(m => m.getFundColumns.FundID, Model.FundNameList, new { @class = "form-control select2", id = "FundNameListID", onchange = "AngularGlobalFunctions('FMGeneralReferenceController','LoadDynamicDDFundType','')" })
     </div>
+    <div class="col-md-3 form-group" id="FundTypeDivID">
+
+    </div>
+    <div class="col-md-4 pl-0 form-group">
+        <label>Particulars</label>
+        @Html.TextBoxFor(m => m.getFundColumns.FundParticulars, new { @class = "form-control", type = "text" })
+    </div>
+    <div class="col-md-2">
+        <label style="visibility:hidden">Particulars</label>
+        <button type="submit" class="btn bg-addbutton black form-control"><b>Save</b></button>
+    </div>
+</div>
 }
 <script>
     $(function () {

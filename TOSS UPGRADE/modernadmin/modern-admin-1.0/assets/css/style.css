@@ -29,8 +29,8 @@ table thead tr th{
 .nav-tabs .nav-topline .nav-item {
     background-color: #E49B1F;
     box-shadow: inset 0 3px 0 #388E3C;
-    color: white;
-    text-decoration-color: white;
+    color: black;
+    text-decoration-color: black;
     border-radius: 0;
     border-bottom: none;
 }
@@ -42,7 +42,7 @@ table thead tr th{
 .nav-link.active {
     background-color: #E49B1F !important;
     border-radius: 0.25rem 0.25rem 0 0;
-    color: white;
+   text-decoration-color: black;
 }
 
 .bg-labelcolor {

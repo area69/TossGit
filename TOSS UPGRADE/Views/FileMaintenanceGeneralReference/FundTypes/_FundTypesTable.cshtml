@@ -20,8 +20,8 @@
                     var DeleteConfirmationMess = "Are you sure do you want to delete this Fund Type?";
                     var DeleteSuccesMess = "Fund Type Deleted";
 
-                    var ViewEdit = "<button class=\"btn btn-icon btn-block white bg-addbutton border-0\" type=\"button\" onclick=\"AngularGlobalEdit('FMGeneralReferenceController','Get_UpdateFundTypes','" + @Items.ListFundTypeID + "')\"><i class='ft-edit'></i> Edit</button>";
-                    var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.Particulars + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.ListFundTypeID + ",&quot;Get_DeleteFundTypes&quot;,&quot;FMGeneralReferenceController&quot;)')\"> <i class='ft-delete'></i> Delete</button>";
+                    var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\" onclick=\"AngularGlobalEdit('FMGeneralReferenceController','Get_UpdateFundTypes','" + @Items.ListFundTypeID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
+                    var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.Particulars + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.ListFundTypeID + ",&quot;Get_DeleteFundTypes&quot;,&quot;FMGeneralReferenceController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete</b></button>";
                     var ActionContentProgram = ViewEdit + ViewDelete;
                     <tr>
                         <td>@Items.FundTitle</td>

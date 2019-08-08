@@ -5,20 +5,18 @@
 @using TOSS_UPGRADE.Models;
 @using (Ajax.BeginForm("AddAccountType", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithTripleFunc('FMGeneralReferenceController', 'Get_AccountTypeTable',  'LoadDynamicDDAccountType','SuccessSave2')", OnFailure = "OnFailure()", }))
 {
-    <div class="row">
-        <div class="col-md-7 pr-0 mr-1 form-group">
-            <label>Account Type</label>
-            @Html.TextBoxFor(m => m.getAccountTypeColumns.AccountType, new { @class = "form-control", type = "text" })
-        </div>
-        <div class="col-md-2 px-0 mr-1">
-            <label style="visibility:hidden">Particulars</label>
-            <button type="submit" class="btn bg-addbutton black form-control"><b>Save</b></button>
-        </div>
-        <div class="col-md-2 px-0">
-            <label style="visibility:hidden">Particulars</label>
-            <button type="reset" class="btn bg-headerbc form-control black"><b>Cancel</b></button>
-        </div>
+<div class="row">
+    <div class="col-md-8 form-group">
+        <label>Account Type</label>
+        @Html.TextBoxFor(m => m.getAccountTypeColumns.AccountType, new { @class = "form-control", type = "text" })
     </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-3">
+        <label style="visibility:hidden">Particulars</label>
+        <button type="submit" class="btn bg-addbutton black form-control"><b>Save</b></button>
+    </div>
+</div>
 }
 <script>
 

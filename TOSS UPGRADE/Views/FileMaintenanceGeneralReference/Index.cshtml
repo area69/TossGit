@@ -56,32 +56,28 @@
                         <div class="tab-pane" id="tab3" aria-labelledby="base-tab3">
                             <div class="content-body">
                                 @* Bank Name *@
-                                <div class="row mt-1">
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-8">
-                                        <div class="card box-shadow-2">
-                                            <div class="card-header bg-carheadercolor">
-                                                <h4 class="card-title black"><b>Bank</b></h4>
-                                            </div>
-                                            <div class="card-body box-shadow-2" id="BankID">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="card box-shadow-2">
                                             <div class="card-header bg-carheadercolor mt-1">
-                                                <h4 class="card-title black"><b>Bank Details</b></h4>
-                                                @*<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                                                    <div class="heading-elements">
-                                                        <ul class="list-inline mb-0">
-                                                            <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
-                                                        </ul>
-                                                    </div>*@
+                                                <h4 class="card-title black"><b>Bank Names</b></h4>
+                                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                                <div class="heading-elements">
+                                                    <ul class="list-inline mb-0">
+                                                        <li><a data-action="collapse"><i class="ft-plus text-white"></i></a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                            <div class="card-content" @*collapse*@>
+                                            <div class="card-content collapse show">
+                                                <div class="row mt-1">
+                                                    <div class="col-md-2"></div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body box-shadow-2" id="BankID">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <div class="card-body box-shadow-1" id="BankTableID">
 
                                                 </div>
@@ -89,19 +85,37 @@
                                         </div>
                                     </div>
                                 </div>
-                                @* Bank Account *@
-                                <div class="row mt-1">
+                                @* Bank Account *@ 
+                                <div class="row">
                                     <div class="col-md-12">
-                                        <div class="card-body box-shadow-2" id="BankAccountID">
+                                        <div class="card box-shadow-2">
+                                            <div class="card-header bg-carheadercolor mt-1">
+                                                <h4 class="card-title black"><b>Bank Accounts</b></h4>
+                                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                                <div class="heading-elements">
+                                                    <ul class="list-inline mb-0">
+                                                        <li><a data-action="collapse"><i class="ft-plus text-white"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="card-content collapse">
+                                                <div class="row mt-1">
+                                                    <div class="col-md-12">
+                                                        <div class="card-body box-shadow-2" id="BankAccountID">
 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @* Bank Account Table *@
+                                                <div class="row mt-1" id="BankAccountTableID">
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                @* Bank Account Table *@
-                                <div class="row mt-1" id="BankAccountTableID">
-
-                                </div>
                             </div>
+
 
 
                             @* Add Account Type Modal *@
@@ -135,58 +149,60 @@
                                 </div>
                             </div>
                         </div>
-                        @*Memo Account Classification*@
-                        <div class="tab-pane" id="tab4" aria-labelledby="base-tab4">
-                            <div class="content-body">
-                                <div class="row mt-1">
-                                    <div class="col-md-2">
+                                    @*Memo Account Classification*@
+                                    <div class="tab-pane" id="tab4" aria-labelledby="base-tab4">
+                                        <div class="content-body">
+                                            <div class="row mt-1">
+                                                <div class="col-md-2">
 
-                                    </div>
-                                    <div class="col-md-8" id="MemoAccClassID">
+                                                </div>
+                                                <div class="col-md-8" id="MemoAccClassID">
 
-                                    </div>
-                                </div>
-                                <div class="row mt-1">
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-8">
-                                        <div class="card box-shadow-2">
-                                            <div class="card-header bg-carheadercolor">
-                                                <h4 class="card-title black"><b>List of Memorandum Account Classifications</b></h4>
+                                                </div>
                                             </div>
-                                            <div class="card-content collapse show">
-                                                <div class="card-body box-shadow-2">
-                                                    <div class="row" id="MemoClassTableID">
+                                            <div class="row mt-1">
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-8">
+                                                    <div class="card box-shadow-2">
+                                                        <div class="card-header bg-carheadercolor">
+                                                            <h4 class="card-title black"><b>List of Memorandum Account Classifications</b></h4>
+                                                        </div>
+                                                        <div class="card-content collapse show">
+                                                            <div class="card-body box-shadow-2">
+                                                                <div class="row" id="MemoClassTableID">
 
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        @*Internal Revenue Allotment Share*@
-                        <div class="tab-pane" id="tab5" aria-labelledby="base-tab5">
-                            <div class="content-body">
-                                <div class="card-body box-shadow-2">
-                                    <div class="row">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-10" id="_IraID">
-                                          
-                                        </div>
-                                    </div>
-                                </div>
-                                    <div class="card box-shadow-2">
-                                        <div class="card-header bg-carheadercolor">
-                                            <h4 class="card-title black"><b>Internal Revenue Allotment Share</b></h4>
-                                        </div>
-                                        <div class="card-content collapse show">
+                                    @*Internal Revenue Allotment Share*@
+                                    <div class="tab-pane" id="tab5" aria-labelledby="base-tab5">
+                                        <div class="content-body">
                                             <div class="card-body box-shadow-2">
-
                                                 <div class="row">
                                                     <div class="col-md-1"></div>
-                                                    <div class="col-md-10" id="_IraTableID">
-                                                       
+                                                    <div class="col-md-10" id="_IraID">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card box-shadow-2">
+                                                <div class="card-header bg-carheadercolor">
+                                                    <h4 class="card-title black"><b>Internal Revenue Allotment Share</b></h4>
+                                                </div>
+                                                <div class="card-content collapse show">
+                                                    <div class="card-body box-shadow-2">
+
+                                                        <div class="row">
+                                                            <div class="col-md-1"></div>
+                                                            <div class="col-md-10" id="_IraTableID">
+
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -194,8 +210,6 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

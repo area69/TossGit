@@ -12,11 +12,11 @@
 
     <div class="col-md-3 form-group">
         <label>IRA Percentage Share</label>
-        @Html.TextBoxFor(m => m.getIRAcolumns.IRAPercentageShare, new { @class = "form-control", type = "text", id = "tb1", onkeyup ="AddComma(this)" })
+        @Html.TextBoxFor(m => m.getIRAcolumns.IRAPercentageShare, new { @class = "form-control", type = "text", id = "tb1", onkeyup = "AddComma(this)" })
     </div>
     <div class="col-md-2 form-group">
         <label>%</label>
-        @Html.TextBoxFor(m => m.getIRAcolumns.IRAPercent, new { @class = "form-control", type = "text", id = "update"})
+        @Html.TextBoxFor(m => m.getIRAcolumns.IRAPercent, new { @class = "form-control", type = "text", id = "update" })
     </div>
     <div class="col-md-2 form-group">
         <label>Base</label>
@@ -24,12 +24,10 @@
     </div>
     <div class="col-md-1"></div>
     <div class="col-md-2">
-        <label style="visibility:hidden">%</label>
-        <button type="submit" class="btn form-control black bg-addbutton"><b>Save</b></button>
     </div>
     <div class="col-md-2">
         <label style="visibility:hidden">%</label>
-        <button type="button" class="btn form-control black bg-headerbc"><b>Cancel</b></button>
+        <button type="submit" class="btn form-control black bg-addbutton"><b>Save</b></button>
     </div>
 
     <input type="text" class="hidden" id="total" name="total" value="0" />

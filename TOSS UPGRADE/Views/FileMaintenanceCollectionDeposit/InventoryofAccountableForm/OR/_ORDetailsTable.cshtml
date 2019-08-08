@@ -26,8 +26,8 @@
                             var DeleteConfirmationMess = "Are you sure do you want to delete this Accountable Form?";
                             var DeleteSuccesMess = "Accountable Form Deleted";
 
-                            var ViewEdit = "<button class=\"btn btn-icon btn-block white bg-addbutton border-0\" type=\"button\"onclick=\"AngularGlobalEdit('FMCollectionDepositController','Get_UpdateAccountableFormInventory','" + @Items.AFORID + "')\"><i class='ft-edit'></i> Edit</button>";
-                            var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.AF + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.AFORID + ",&quot;Get_DeleteAccountableFormInventory&quot;,&quot;FMCollectionDepositController&quot;)')\"> <i class='ft-delete'></i> Delete</button>";
+                            var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\"onclick=\"AngularGlobalEdit('FMCollectionDepositController','Get_UpdateAccountableFormInventory','" + @Items.AFORID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
+                            var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.AF + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.AFORID + ",&quot;Get_DeleteAccountableFormInventory&quot;,&quot;FMCollectionDepositController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete</b></button>";
                             var ActionContentProgram = ViewEdit + ViewDelete;
                     <tr>
                         <td>@Items.AF</td>
