@@ -1,0 +1,72 @@
+﻿@model TOSS_UPGRADE.Models.FM_CollectionAndDeposit.FM_CollectionAndDeposit_InventoryAF
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+@using (Ajax.BeginForm("UpdateAccountableFormInventoryCT", "FileMaintenanceCollectionDeposit", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMCollectionDepositController','Get_InvtAccountableFormTableCT','Accountable Form Inventory Successfully Update')", OnFailure = "OnFailure()", }))
+{
+    <div class="card-content collapse show">
+        <div class="row">
+            @Html.HiddenFor(m => m.getAccountableFormInvtcolumns.AFORID, new { })
+            @Html.HiddenFor(m => m.AFTempID, new { id = "AFIDTempIDCT" })
+            <div class="col-md-4 form-group" id="_CTAFID">
+            </div>
+            <div class="col-md-4 form-group">
+                <label>CT Date</label>
+                @Html.TextBoxFor(m => m.getAccountableFormInvtcolumns.Date, new { @class = "form-control pickadate", type = "text" })
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Quantity</label>
+                @Html.TextBoxFor(m => m.getAccountableFormInvtcolumns.Quantity, new { @class = "form-control", type = "text", id = "txtCTInvQty" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <label>Starting CT No.</label>
+                @Html.TextBoxFor(m => m.getAccountableFormInvtcolumns.StartingOR, new { @class = "form-control", type = "text", id = "txtStrtCTNo" })
+            </div>
+            <div class="col-md-4 form-group">
+                <label>Ending CT No.</label>
+                @Html.TextBoxFor(m => m.getAccountableFormInvtcolumns.EndingOR, new { @class = "form-control", type = "text", id = "txtEndCTNo" })
+            </div>
+         
+            <div class="col-md-2">
+            <label style="visibility:hidden">Ending OR</label>
+            <button type="submit" class="btn black form-control bg-addbutton"><b>Save</b></button>
+            </div>
+
+            <div class="col-md-2">
+                <label style="visibility:hidden">Ending OR</label>
+                <button type="reset" class="btn bg-headerbc ui-widget-header white form-control" onclick="AngularGlobalEdit('FMCollectionDepositController','Get_AddInvtAccountableFormCT','')"><b>Cancel</b></button>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+        LoadPickDatetime();
+    })
+    $("#txtStrtCTNo").change(function () {
+        var startNo = $("#txtStrtCTNo").val();
+        var countStartNo = startNo.toString().length;
+        var startNoQty = parseFloat($("#txtStrtCTNo").val()) + parseFloat($("#txtCTInvQty").val() - parseFloat(1));
+        var countEndNo = startNoQty.toString().length;
+        var number = "";
+
+        for (i = 0; i < countStartNo; i++) {
+            number += "0";
+        }
+
+        var countZero = number.toString().length;
+        var res = number.toString().substring(0, countZero - countEndNo) + startNoQty;
+
+        if ($("#txtStrtCTNo").val() == "") {
+            $("#txtEndCTNo").val("");
+        } else {
+            $("#txtEndCTNo").val(res);
+        }
+    });
+</script>

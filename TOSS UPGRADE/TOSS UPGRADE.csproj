@@ -8982,6 +8982,17 @@
     <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\Description\_DescriptionTable.cshtml" />
     <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\Description\_UpdateDescription.cshtml" />
     <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\OR\_UpdateORDetails.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CT\_AddCTDetails.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CT\_DynamicDDAFCT.cshtml" />
+    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\AccountCode\_AddAccountCode.cshtml" />
+    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\AccountCode\_AccountCodeTable.cshtml" />
+    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\AccountCode\_UpdateAccountCode.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CT\_CTDetailsTable.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CT\_UpdateCTDetails.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CTC\_AddCTCDetails.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CTC\_CTCDetailsTable.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CTC\_UpdateCTCDetails.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CTC\_DynamicDDAccountableFormCTC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

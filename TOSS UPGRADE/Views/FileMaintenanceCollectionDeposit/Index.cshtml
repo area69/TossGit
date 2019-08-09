@@ -150,11 +150,35 @@
                             </div>
                             @* Cash Ticket *@
                             <div id="DivCashTickets">
-                                <label>Cash Tickets</label>
+                                <div class="card-header bg-carheadercolor mt-1">
+                                    <h4 class="card-title black"><b>Cash Ticket Details</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div id="_CTDetailsID">
+
+                                        </div>
+                                        <div id="_CTDetailsTableID">
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             @* Community Tax Certificate *@
                             <div id="DivCommunityTaxCertificate">
-                                <label>Community Tax Certificate</label>
+                                <div class="card-header bg-carheadercolor mt-1">
+                                    <h4 class="card-title black"><b>Community Tax Certificate Details</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div id="_CTCDetailsID">
+
+                                        </div>
+                                        <div id="_CTCDetailsTableID">
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -203,7 +227,9 @@
             //Accountable Form Table
             F.Get_AccountableFormTable();
             //Inventory of Accountable Forms
-            F.Get_InvtAccountableFormTable(); F.Get_AFDescriptionTable();
+            F.Get_InvtAccountableFormTable();
+            F.Get_AFDescriptionTable();
+            F.Get_InvtAccountableFormTableCT(); F.Get_InvtAccountableFormTableCTC();
         }
         //Accountable Form
         F.Get_AccountableFormTable = function () {
@@ -214,6 +240,7 @@
             });
             F.Get_AddAccountableForm();
             F.LoadDynamicDDAccountableForm();
+            F.LoadDynamicDDAccountableFormCT();
         }
         F.Get_AddAccountableForm = function () {
             P({
@@ -290,6 +317,7 @@
             });
         }
         //Inventory of Accountable Forms
+        //OR
         F.Get_InvtAccountableFormTable = function () {
             P({
                 url: '/FileMaintenanceCollectionDeposit/Get_AccountableFormInvtTable',
@@ -337,6 +365,106 @@
                 params: { AFORID: AFORID }
             }).then(function (response) {
                 F.Get_InvtAccountableFormTable();
+            });
+        }
+        //CT
+        F.Get_AddInvtAccountableFormCT = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_AddInvntAccountableFormCT',
+            }).then(function (response) {
+                $("#_CTDetailsID").html(response.data);
+                F.LoadDynamicDDAccountableFormCT();
+            });
+        }
+        F.LoadDynamicDDAccountableFormCT = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicAccountableformCT',
+            }).then(function (response) {
+                $("#_CTAFID").html(response.data);
+            });
+        }
+        F.Get_InvtAccountableFormTableCT = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_AccountableFormInvtTableCT',
+            }).then(function (response) {
+                $("#_CTDetailsTableID").html(response.data);
+            });
+            F.Get_AddInvtAccountableFormCT();
+        }
+        F.LoadSelectedDynamicDDAFCT = function () {
+            var AFIDTempIDCT = $("#AFIDTempIDCT").val();
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetSelectedDynamicAccountableformCT',
+                params: { AFIDTempIDCT: AFIDTempIDCT }
+            }).then(function (response) {
+                $("#_CTAFID").html(response.data);
+            });
+        }
+        F.Get_UpdateAccountableFormInventoryCT = function (AFORID) {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_UpdateAccountableFormInventoryCT',
+                params: { AFORID: AFORID }
+            }).then(function (response) {
+                $("#_CTDetailsID").html(response.data);
+                F.LoadSelectedDynamicDDAFCT();
+            });
+        }
+        F.Get_DeleteAccountableFormInventoryCT = function (AFORID) {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/DeleteAccountableFormInventoryCT',
+                params: { AFORID: AFORID }
+            }).then(function (response) {
+                F.Get_InvtAccountableFormTableCT();
+            });
+        }
+        //CTC
+        F.Get_InvtAccountableFormTableCTC = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_AccountableFormInvtTableCTC',
+            }).then(function (response) {
+                $("#_CTCDetailsTableID").html(response.data);
+            });
+            F.Get_AddInvtAccountableFormCTC();
+        }
+        F.Get_AddInvtAccountableFormCTC = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_AddInvntAccountableFormCTC',
+            }).then(function (response) {
+                $("#_CTCDetailsID").html(response.data);
+                F.LoadDynamicDDAccountableFormCTC();
+            });
+        }
+        F.LoadDynamicDDAccountableFormCTC = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicAccountableformCTC',
+            }).then(function (response) {
+                $("#_CTCAFID").html(response.data);
+            });
+        }
+        F.Get_UpdateAccountableFormInventoryCTC = function (AFORID) {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_UpdateAccountableFormInventoryCTC',
+                params: { AFORID: AFORID }
+            }).then(function (response) {
+                $("#_CTCDetailsID").html(response.data);
+                F.LoadSelectedDynamicDDAFCTC();
+            });
+        }
+        F.LoadSelectedDynamicDDAFCTC = function () {
+            var AFIDTempIDCTC = $("#AFIDTempIDCTC").val();
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetSelectedDynamicAccountableformCTC',
+                params: { AFIDTempIDCTC: AFIDTempIDCTC }
+            }).then(function (response) {
+                $("#_CTCAFID").html(response.data);
+            });
+        }
+        F.Get_DeleteAccountableFormInventoryCTC = function (AFORID) {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/DeleteAccountableFormInventoryCTC',
+                params: { AFORID: AFORID }
+            }).then(function (response) {
+                F.Get_InvtAccountableFormTableCTC();
             });
         }
     });

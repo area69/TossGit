@@ -16,13 +16,12 @@ namespace TOSS_UPGRADE.Models
     {
         public int AFORID { get; set; }
         public int AccountFormID { get; set; }
-        public int StubNo { get; set; }
+        public Nullable<int> StubNo { get; set; }
         public int Quantity { get; set; }
         public int StartingOR { get; set; }
         public int EndingOR { get; set; }
         public System.DateTime Date { get; set; }
         public bool isIssued { get; set; }
-    
-        public virtual AccountableFormTable AccountableFormTable { get; set; }
+        public int AFTableID { get; set; }
     }
 }

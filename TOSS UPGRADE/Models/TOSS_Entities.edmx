@@ -18,12 +18,13 @@
           </Key>
           <Property Name="AFORID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AccountFormID" Type="int" Nullable="false" />
-          <Property Name="StubNo" Type="int" Nullable="false" />
+          <Property Name="StubNo" Type="int" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="StartingOR" Type="int" Nullable="false" />
           <Property Name="EndingOR" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="isIssued" Type="bit" Nullable="false" />
+          <Property Name="AFTableID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="AccountableFormTable">
           <Key>
@@ -241,18 +242,6 @@
           <Property Name="PositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PositionName" Type="varchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_AccountableFormInventory_AccountableFormTable">
-          <End Role="AccountableFormTable" Type="Self.AccountableFormTable" Multiplicity="1" />
-          <End Role="AccountableForm_Inventory" Type="Self.AccountableForm_Inventory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AccountableFormTable">
-              <PropertyRef Name="AccountFormID" />
-            </Principal>
-            <Dependent Role="AccountableForm_Inventory">
-              <PropertyRef Name="AccountFormID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_AccountableFormTable_AccountableForm_Description">
           <End Role="AccountableForm_Description" Type="Self.AccountableForm_Description" Multiplicity="1" />
           <End Role="AccountableFormTable" Type="Self.AccountableFormTable" Multiplicity="*" />
@@ -508,10 +497,6 @@
           <EntitySet Name="SignatoriesTable" EntityType="Self.SignatoriesTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatory_DepartmentTable" EntityType="Self.Signatory_DepartmentTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatory_PositionTable" EntityType="Self.Signatory_PositionTable" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_AccountableFormInventory_AccountableFormTable" Association="Self.FK_AccountableFormInventory_AccountableFormTable">
-            <End Role="AccountableFormTable" EntitySet="AccountableFormTable" />
-            <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
-          </AssociationSet>
           <AssociationSet Name="FK_AccountableFormTable_AccountableForm_Description" Association="Self.FK_AccountableFormTable_AccountableForm_Description">
             <End Role="AccountableForm_Description" EntitySet="AccountableForm_Description" />
             <End Role="AccountableFormTable" EntitySet="AccountableFormTable" />
@@ -624,10 +609,6 @@
             <End Role="AccountableForm_Description" EntitySet="AccountableForm_Description" />
             <End Role="AccountableFormTable" EntitySet="AccountableFormTables" />
           </AssociationSet>
-          <AssociationSet Name="FK_AccountableFormInventory_AccountableFormTable" Association="DB_TOSSModel.FK_AccountableFormInventory_AccountableFormTable">
-            <End Role="AccountableFormTable" EntitySet="AccountableFormTables" />
-            <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
-          </AssociationSet>
           <AssociationSet Name="FK_Accounts_PersonalInformation" Association="DB_TOSSModel.FK_Accounts_PersonalInformation">
             <End Role="PersonalInformation" EntitySet="PersonalInformations" />
             <End Role="Account" EntitySet="Accounts" />
@@ -715,13 +696,13 @@
           </Key>
           <Property Name="AFORID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AccountFormID" Type="Int32" Nullable="false" />
-          <Property Name="StubNo" Type="Int32" Nullable="false" />
+          <Property Name="StubNo" Type="Int32" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="StartingOR" Type="Int32" Nullable="false" />
           <Property Name="EndingOR" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="isIssued" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="AccountableFormTable" Relationship="DB_TOSSModel.FK_AccountableFormInventory_AccountableFormTable" FromRole="AccountableForm_Inventory" ToRole="AccountableFormTable" />
+          <Property Name="AFTableID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="AccountableFormTable">
           <Key>
@@ -732,7 +713,6 @@
           <Property Name="DescriptionID" Type="Int32" Nullable="false" />
           <Property Name="isCTC" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AccountableForm_Description" Relationship="DB_TOSSModel.FK_AccountableFormTable_AccountableForm_Description" FromRole="AccountableFormTable" ToRole="AccountableForm_Description" />
-          <NavigationProperty Name="AccountableForm_Inventory" Relationship="DB_TOSSModel.FK_AccountableFormInventory_AccountableFormTable" FromRole="AccountableFormTable" ToRole="AccountableForm_Inventory" />
         </EntityType>
         <EntityType Name="Account">
           <Key>
@@ -989,18 +969,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_AccountableFormInventory_AccountableFormTable">
-          <End Type="DB_TOSSModel.AccountableFormTable" Role="AccountableFormTable" Multiplicity="1" />
-          <End Type="DB_TOSSModel.AccountableForm_Inventory" Role="AccountableForm_Inventory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AccountableFormTable">
-              <PropertyRef Name="AccountFormID" />
-            </Principal>
-            <Dependent Role="AccountableForm_Inventory">
-              <PropertyRef Name="AccountFormID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Accounts_PersonalInformation">
           <End Type="DB_TOSSModel.PersonalInformation" Role="PersonalInformation" Multiplicity="0..1" />
           <End Type="DB_TOSSModel.Account" Role="Account" Multiplicity="*" />
@@ -1234,6 +1202,7 @@
           <EntitySetMapping Name="AccountableForm_Inventory">
             <EntityTypeMapping TypeName="DB_TOSSModel.AccountableForm_Inventory">
               <MappingFragment StoreEntitySet="AccountableForm_Inventory">
+                <ScalarProperty Name="AFTableID" ColumnName="AFTableID" />
                 <ScalarProperty Name="isIssued" ColumnName="isIssued" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="EndingOR" ColumnName="EndingOR" />

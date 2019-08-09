@@ -64,7 +64,7 @@
                                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                                 <div class="heading-elements">
                                                     <ul class="list-inline mb-0">
-                                                        <li><a data-action="collapse"><i class="ft-plus text-white"></i></a></li>
+                                                        <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -85,7 +85,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @* Bank Account *@ 
+                                @* Bank Account *@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="card box-shadow-2">
@@ -115,9 +115,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
                             @* Add Account Type Modal *@
                             <div class="col-lg-8 col-md-8 col-sm-12">
                                 <div class="form-group">
@@ -149,60 +146,28 @@
                                 </div>
                             </div>
                         </div>
-                                    @*Memo Account Classification*@
-                                    <div class="tab-pane" id="tab4" aria-labelledby="base-tab4">
-                                        <div class="content-body">
-                                            <div class="row mt-1">
-                                                <div class="col-md-2">
+                        @*Memo Account Classification*@
+                        <div class="tab-pane" id="tab4" aria-labelledby="base-tab4">
+                            <div class="content-body">
+                                <div class="row mt-1">
+                                    <div class="col-md-1">
 
-                                                </div>
-                                                <div class="col-md-8" id="MemoAccClassID">
-
-                                                </div>
-                                            </div>
-                                            <div class="row mt-1">
-                                                <div class="col-md-2"></div>
-                                                <div class="col-md-8">
-                                                    <div class="card box-shadow-2">
-                                                        <div class="card-header bg-carheadercolor">
-                                                            <h4 class="card-title black"><b>List of Memorandum Account Classifications</b></h4>
-                                                        </div>
-                                                        <div class="card-content collapse show">
-                                                            <div class="card-body box-shadow-2">
-                                                                <div class="row" id="MemoClassTableID">
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                    @*Internal Revenue Allotment Share*@
-                                    <div class="tab-pane" id="tab5" aria-labelledby="base-tab5">
-                                        <div class="content-body">
-                                            <div class="card-body box-shadow-2">
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <div class="col-md-10" id="_IraID">
+                                    <div class="col-md-10" id="MemoAccClassID">
 
-                                                    </div>
-                                                </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-10">
+                                        <div class="card box-shadow-2">
+                                            <div class="card-header bg-carheadercolor">
+                                                <h4 class="card-title black"><b>List of Memorandum Account Classifications</b></h4>
                                             </div>
-                                            <div class="card box-shadow-2">
-                                                <div class="card-header bg-carheadercolor">
-                                                    <h4 class="card-title black"><b>Internal Revenue Allotment Share</b></h4>
-                                                </div>
-                                                <div class="card-content collapse show">
-                                                    <div class="card-body box-shadow-2">
+                                            <div class="card-content collapse show">
+                                                <div class="card-body box-shadow-2">
+                                                    <div class="row" id="MemoClassTableID">
 
-                                                        <div class="row">
-                                                            <div class="col-md-1"></div>
-                                                            <div class="col-md-10" id="_IraTableID">
-
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -210,6 +175,64 @@
                                     </div>
                                 </div>
                             </div>
+
+                            @* Add Account Code Modal *@
+                            <div class="col-lg-8 col-md-8 col-sm-12">
+                                <div class="form-group">
+                                    <div class="modal animated zoomIn text-left" id="addAccountCodeModal" role="dialog">
+                                        <div class="modal-dialog" style="max-width:600px" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-headerbc white">
+                                                    <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Account Code</h4>
+                                                    <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
+                                                </div>
+                                                <div class="modal-body skin skin-square">
+                                                    <div class="row">
+                                                        <div class="col-md-12" id="AccountCodexID">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-1" id="AccountCodeTableID">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*Internal Revenue Allotment Share*@
+                        <div class="tab-pane" id="tab5" aria-labelledby="base-tab5">
+                            <div class="content-body">
+                                <div class="card-body box-shadow-2">
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-10" id="_IraID">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card box-shadow-2">
+                                    <div class="card-header bg-carheadercolor">
+                                        <h4 class="card-title black"><b>Internal Revenue Allotment Share</b></h4>
+                                    </div>
+                                    <div class="card-content collapse show">
+                                        <div class="card-body box-shadow-2">
+
+                                            <div class="row">
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-10" id="_IraTableID">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -243,6 +266,8 @@
             F.LoadDynamicDDMemoAccRevisionYr();
             //Memo Account Classification Table
             F.Get_MemoAccountClassTable();
+
+            F.Get_AccountCodeTable();
             //Internal Revenue Allotment Table
             F.Get_InternalRevenueAllotmentTable();
 
@@ -250,7 +275,11 @@
         @* Fund Type *@
         F.SuccessSave1 = function () {
             var SuccessMess = F.P;
-            swalSuccess("Fund Type Successfully Added", SuccessMess);
+            swalSuccess("Successfully Added", SuccessMess);
+        }
+        F.SuccessUpdate1 = function () {
+            var SuccessMess = F.P;
+            swalSuccess("Successfully Update", SuccessMess);
         }
         F.SuccessSaveira = function () {
             var SuccessMess = F.P;
@@ -486,6 +515,7 @@
                 });
         }
 
+
         //Memo Account Classification  MemoAccClassID
         F.LoadDynamicDDMemoAccClass = function () {
             P({
@@ -555,6 +585,40 @@
             });
         }
 
+        F.Get_AccountCodeTable = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_AccountCodeTable',
+            }).then(function (response) {
+                $("#AccountCodeTableID").html(response.data);
+            });
+            F.Get_AddAccountCode();
+        }
+        F.Get_AddAccountCode = function () {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_AddAccountCode',
+            }).then(function (response) {
+                $("#AccountCodexID").html(response.data);
+            });
+            F.LoadDynamicDDMemoAccClass();
+        }
+        F.Get_UpdateAccountCode = function (AccountCodeID) {
+            P({
+                url: '/FileMaintenanceGeneralReference/Get_UpdateAccountCode',
+                params: { AccountCodeID: AccountCodeID }
+            }).then(function (response) {
+                $("#AccountCodexID").html(response.data);
+                F.LoadDynamicDDMemoAccClass();
+            });
+        }
+
+        F.Get_DeleteAccountCode = function (AccountCodeID) {
+            P({
+                url: '/FileMaintenanceGeneralReference/DeleteAccountCode',
+                params: { AccountCodeID: AccountCodeID }
+            }).then(function (response) {
+                F.Get_AccountCodeTable();
+            });
+        }
         //Internal Revenue Allotment Share
         F.Get_InternalRevenueAllotmentTable = function () {
             P({

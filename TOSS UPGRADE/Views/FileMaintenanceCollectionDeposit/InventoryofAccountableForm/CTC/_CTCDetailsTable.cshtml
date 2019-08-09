@@ -1,0 +1,80 @@
+﻿@model IEnumerable<TOSS_UPGRADE.Models.FM_CollectionAndDeposit.AccountableFormInvtList>
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered zero-configuration w-100">
+                <thead class="text-center">
+                    <tr>
+                        <th>Accountable Forms</th>
+                        <th>Stub No.</th>
+                        <th>Starting OR</th>
+                        <th>Ending OR</th>
+                        <th>Quantity</th>
+                        <th>Date Issued</th>
+                        <th>Is Issued</th>
+                        <th width="5px;">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    @{
+                        foreach (var Items in Model)
+                        {
+                            var DeleteConfirmationMess = "Are you sure do you want to delete this Accountable Form?";
+                            var DeleteSuccesMess = "Accountable Form Deleted";
+
+                            var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\"onclick=\"AngularGlobalEdit('FMCollectionDepositController','Get_UpdateAccountableFormInventoryCTC','" + @Items.AFORID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
+                            var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.AF + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.AFORID + ",&quot;Get_DeleteAccountableFormInventoryCTC&quot;,&quot;FMCollectionDepositController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete</b></button>";
+                            var ActionContentProgram = ViewEdit + ViewDelete;
+                            <tr>
+                                <td>@Items.AF</td>
+                                <td>@Items.StubNo</td>
+                                <td>@Items.StratingOR</td>
+                                <td>@Items.EndingOR</td>
+                                <td>@Items.Quantity</td>
+                                <td>
+                                    @{
+                                        DateTime DateofHearing = Convert.ToDateTime(@Items.Date);
+                                    }
+
+                                    @DateofHearing.ToString("MMMM dd, yyyy")
+                                </td>
+                                <td>
+                                    @{
+                                        var isIssued = "";
+                                        if (Items.isIssued == true)
+                                        {
+                                            isIssued = "Yes";
+                                        }
+                                        else if (Items.isIssued == false)
+                                        {
+                                            isIssued = "No";
+                                        }
+
+                                    }
+                                    @isIssued
+                                </td>
+                                <td>
+                                    <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-m btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
+                                            data-original-title="" data-html="true" data-placement="right">
+                                        <i class="la la-bars"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+</script>
+

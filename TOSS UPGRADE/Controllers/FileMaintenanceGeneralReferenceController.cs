@@ -22,6 +22,7 @@ namespace TOSS_UPGRADE.Controllers
             FM_GeneralReference_FundTypes model = new FM_GeneralReference_FundTypes();
             return View(model);
         }
+        #region Fund Type
         //Dropdown FundType
         public ActionResult GetDynamicFundType(FM_GeneralReference_FundTypes model, int FundID)
         {
@@ -116,6 +117,9 @@ namespace TOSS_UPGRADE.Controllers
             return RedirectToAction("Index");
         }
 
+        #endregion
+
+        #region Bank & Bank Account
         //Bank Table Partial View
         public ActionResult Get_BankTables()
         {
@@ -387,8 +391,7 @@ namespace TOSS_UPGRADE.Controllers
             model.AccountTypeIDTemp = tblBankAccount.AccountTypeID;
             return PartialView("BankAccounts/_UpdateBankAccount", model);
         }
-
-        #region
+        
         //Update Bank Account
         public ActionResult UpdateBankAccount(FM_GeneralReference_BankAccount model)
         {
@@ -414,6 +417,8 @@ namespace TOSS_UPGRADE.Controllers
             return RedirectToAction("Index");
         }
 
+        #endregion
+        #region Memo Account Classification
         //Dropdown Memo Account Classification
         public ActionResult GetDynamicMemoAccountTitle()
         {
@@ -423,6 +428,7 @@ namespace TOSS_UPGRADE.Controllers
 
             return PartialView("MemoAccountClass/_DynamicDDAccountTitle", model);
         }
+        //Get Add Account Code Memo Account Classification Partial View
 
         public ActionResult GetSelectedDynamicMemoAccountTitle(int MMAccountTitleIDTempID)
         {
@@ -430,7 +436,7 @@ namespace TOSS_UPGRADE.Controllers
             model.MMAccountTitleList = new SelectList((from s in TOSSDB.MemoAccClass_AccountCode.ToList() orderby s.AccountCodeID ascending select new { AccountCodeID = s.AccountCodeID, AccountTitle = s.AccountTitle }), "AccountCodeID", "AccountTitle");
             model.MMAccountTitleID = MMAccountTitleIDTempID;
             return PartialView("MemoAccountClass/_DynamicDDAccountTitle", model);
-         
+
         }
         //Dropdown Memo Account Revision Year
         public ActionResult GetDynamicMemoRevisionYear()
@@ -467,9 +473,9 @@ namespace TOSS_UPGRADE.Controllers
                     {
                         tbl_MemoAccount.Add(new MemoAccList()
                         {
-                          MMAccountID = Convert.ToInt32(dr[0]),
-                          AccountTitle = GlobalFunction.ReturnEmptyString(dr[5]),
-                          AccountCode = GlobalFunction.ReturnEmptyString(dr[4]),
+                            MMAccountID = Convert.ToInt32(dr[0]),
+                            AccountTitle = GlobalFunction.ReturnEmptyString(dr[5]),
+                            AccountCode = GlobalFunction.ReturnEmptyString(dr[4]),
                         });
                     }
                 }
@@ -496,7 +502,6 @@ namespace TOSS_UPGRADE.Controllers
             TOSSDB.SaveChanges();
             return Json(tblMemoAccount);
         }
-        #endregion
         //Get Update Memo Account
         public ActionResult Get_UpdateMemoAccount(FM_GeneralReference_MemoAccountClass model, int MemoAccClassID)
         {
@@ -527,6 +532,87 @@ namespace TOSS_UPGRADE.Controllers
             return RedirectToAction("Index");
         }
 
+        //Table Account Code Partial View
+        public ActionResult Get_AccountCodeTable()
+        {
+            FM_GeneralReference_MemoAccountClass model = new FM_GeneralReference_MemoAccountClass();
+            List<MMAccountTitleList> tbl_AccountCode = new List<MMAccountTitleList>();
+
+            var SQLQuery = "SELECT * FROM DB_TOSS.dbo.MemoAccClass_AccountCode";
+            //SQLQuery += " WHERE (IsActive != 0)";
+            using (SqlConnection Connection = new SqlConnection(GlobalFunction.ReturnConnectionString()))
+            {
+                Connection.Open();
+                using (SqlCommand command = new SqlCommand("[dbo].[SP_MMAccountCodeList]", Connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@SQLStatement", SQLQuery));
+                    SqlDataReader dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        tbl_AccountCode.Add(new MMAccountTitleList()
+                        {
+                            AccountCodeID = GlobalFunction.ReturnEmptyInt(dr[0]),
+                            AccountCode = GlobalFunction.ReturnEmptyString(dr[1]),
+                            AccountTitle = GlobalFunction.ReturnEmptyString(dr[2]),
+                        });
+                    }
+                }
+                Connection.Close();
+            }
+            model.getMMAccountTitleList = tbl_AccountCode.ToList();
+            return PartialView("MemoAccountClass/AccountCode/_AccountCodeTable", model.getMMAccountTitleList);
+        }
+
+        public ActionResult Get_AddAccountCode()
+        {
+            FM_GeneralReference_MemoAccountClass model = new FM_GeneralReference_MemoAccountClass();
+            return PartialView("MemoAccountClass/AccountCode/_AddAccountCode", model);
+        }
+
+        //Add Memo Account Classification
+        public JsonResult AddAccountCode(FM_GeneralReference_MemoAccountClass model)
+        {
+            MemoAccClass_AccountCode tblMemoAccountCode = new MemoAccClass_AccountCode();
+            tblMemoAccountCode.AccountTitle = model.getMMAccountTitleColumns.AccountTitle;
+            tblMemoAccountCode.AccountCode = model.getMMAccountTitleColumns.AccountCode;
+            TOSSDB.MemoAccClass_AccountCode.Add(tblMemoAccountCode);
+            TOSSDB.SaveChanges();
+            return Json(tblMemoAccountCode);
+        }
+
+        //Get Update Memo Account
+        public ActionResult Get_UpdateAccountCode(FM_GeneralReference_MemoAccountClass model, int AccountCodeID)
+        {
+            MemoAccClass_AccountCode tblMemoAccount = (from e in TOSSDB.MemoAccClass_AccountCode where e.AccountCodeID == AccountCodeID select e).FirstOrDefault();
+            model.getMMAccountTitleColumns.AccountCodeID = tblMemoAccount.AccountCodeID;
+            model.getMMAccountTitleColumns.AccountTitle = tblMemoAccount.AccountTitle;
+            model.getMMAccountTitleColumns.AccountCode = tblMemoAccount.AccountCode;
+            return PartialView("MemoAccountClass/AccountCode/_UpdateAccountCode", model);
+        }
+
+        //Update Memo Account
+        public ActionResult UpdateAccountCode(FM_GeneralReference_MemoAccountClass model)
+        {
+            MemoAccClass_AccountCode tblMemoAccount = (from e in TOSSDB.MemoAccClass_AccountCode where e.AccountCodeID == model.getMMAccountTitleColumns.AccountCodeID select e).FirstOrDefault();
+            tblMemoAccount.AccountCode = model.getMMAccountTitleColumns.AccountCode;
+            tblMemoAccount.AccountTitle = model.getMMAccountTitleColumns.AccountTitle;
+            TOSSDB.Entry(tblMemoAccount);
+            TOSSDB.SaveChanges();
+            return PartialView("MemoAccountClass/AccountCode/_UpdateAccountCode", model);
+        }
+
+        //Delete Memo Account
+        public ActionResult DeleteAccountCode(FM_GeneralReference_MemoAccountClass model, int AccountCodeID)
+        {
+            MemoAccClass_AccountCode tblMemoAccount = (from e in TOSSDB.MemoAccClass_AccountCode where e.AccountCodeID == AccountCodeID select e).FirstOrDefault();
+            TOSSDB.MemoAccClass_AccountCode.Remove(tblMemoAccount);
+            TOSSDB.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        #endregion
+        #region Internal Revenue Allotment
         //Table Internal Revenue Allotment
         public ActionResult Get_InternalRevenueAllotmentTable()
         {
@@ -610,5 +696,8 @@ namespace TOSS_UPGRADE.Controllers
             TOSSDB.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        #endregion
+
     }
 }

@@ -65,7 +65,7 @@ namespace TOSS_UPGRADE.Models.FM_GeneralReference
     // Account Title
     public class MMAccountTitleList
     {
-        public int AccountID { get; set; }
+        public int AccountCodeID { get; set; }
         public string AccountCode { get; set; }
         public string AccountTitle { get; set; }
     }
