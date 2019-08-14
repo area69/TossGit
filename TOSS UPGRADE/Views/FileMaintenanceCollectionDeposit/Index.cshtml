@@ -98,11 +98,11 @@
                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
-                                    <li><a data-action="collapse"><i class="ft-plus text-white"></i></a></li>
+                                    <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="card-content collapse show">
+                        <div class="card-content collapse">
                             <div class="card-body box-shadow-2">
                                 <div class="content-body">
                                     <div class="row mt-1">
@@ -184,22 +184,106 @@
                     </div>
                 </div>
                 @* Assignment AF *@
+                <div class="content-body">
+                    @* OR/Cash Ticket Assignment *@
+                    <div class="card box-shadow-2">
+                        <div class="card-header bg-carheadercolor mt-1">
+                            <h4 class="card-title black"><b>Assignment of Accountable Forms</b></h4>
+                            <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                            <div class="heading-elements">
+                                <ul class="list-inline mb-0">
+                                    <li><a data-action="collapse"><i class="ft-plus text-white"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-content show">
+                            <div class="content-body">
+                                <div class="card-block">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="card-content collapse show">
+                                            <div class="card-body box-shadow-2">
+                                                <div class="row">
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-3  form-group">
+                                                        <fieldset class="radio">
+                                                            <label><input type="radio" name="radio" id="radioTCAssignAF">Treasurer's Collection</label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="col-md-2 px-0 form-group">
+                                                        <fieldset class="radio">
+                                                            <label><input type="radio" name="radio" id="radioFCAssignAF">Field Collectors</label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="col-md-2 form-group">
+                                                        <fieldset class="radio">
+                                                            <label><input type="radio" name="radio" id="radioCTAssignAF">Cash Tickets</label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="col-md-2 form-group">
+                                                        <fieldset class="radio">
+                                                            <label><input type="radio" name="radio" id="radioCTCAssignAF">CTC Collectors</label>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="col-md-2 form-group">
+                                                        <fieldset class="radio">
+                                                            <label><input type="radio" name="radio" id="radioPATASAssignAF">PATAS</label>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @* Treasurer's Collection *@
+                                        <div id="DivTreasurerORASF">
+                                            <div class="card-header bg-carheadercolor mt-1">
+                                                <h4 class="card-title black"><b>Treasurer's OR Details</b></h4>
+                                            </div>
+                                            <div class="card-content collapse show">
+                                                <div class="card-body box-shadow-2">
+                                                    @* Treasurer Partial View *@
+                                                    <div id="_TreasurerCollectionID">
+                                                    </div>
+                                                    @* Treasurer Collection Partial View Table *@
+                                                    <div id="_TreasurerCollectionTableID">
 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @* Field Collectors *@
+                                        <div id="DivFieldCollectorASF">
+                                            <label>Field Collectors</label>
+                                        </div>
+                                        @* Cash Tickets *@
+                                        <div id="DivCashTicketASF">
+                                            <label>Cash Tickets</label>
+                                        </div>
+                                        @* CTC Collectors *@
+                                        <div id="DivCTCCollectorASF">
+                                            <label>CTC Collector</label>
+                                        </div>
+                                        @* PATAS *@
+                                        <div id="DivPATAS">
+                                            <label>PATAS</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
     </div>
 </div>
 <style>
-    #DivCashTickets {
-        display: none;
-    }
-    #DivCommunityTaxCertificate {
+    #DivCashTickets, #DivCommunityTaxCertificate, #DivFieldCollectorASF, #DivCashTicketASF, #DivCTCCollectorASF, #DivPATAS {
         display: none;
     }
 </style>
 
 <script>
+    //Inventory of Accountable Form
     $("#radioOR").attr("checked", true);
     $("input[id='radioOR']").click(function () {
         $("#DivOfficalReceipt").show();
@@ -216,6 +300,44 @@
         $("#DivCashTickets").hide();
         $("#DivCommunityTaxCertificate").show();
     });
+
+    //Assignment of Accountable Form
+    $("#radioTCAssignAF").attr("checked", true);
+    $("input[id='radioTCAssignAF']").click(function () {
+        $("#DivTreasurerORASF").show();
+        $("#DivFieldCollectorASF").hide();
+        $("#DivCashTicketASF").hide();
+        $("#DivCTCCollectorASF").hide();
+        $("#DivPATAS").hide();
+    });
+    $("input[id='radioFCAssignAF']").click(function () {
+        $("#DivTreasurerORASF").hide();
+        $("#DivFieldCollectorASF").show();
+        $("#DivCashTicketASF").hide();
+        $("#DivCTCCollectorASF").hide();
+        $("#DivPATAS").hide();
+    });
+    $("input[id='radioCTAssignAF']").click(function () {
+        $("#DivTreasurerORASF").hide();
+        $("#DivFieldCollectorASF").hide();
+        $("#DivCashTicketASF").show();
+        $("#DivCTCCollectorASF").hide();
+        $("#DivPATAS").hide();
+    });
+    $("input[id='radioCTCAssignAF']").click(function () {
+        $("#DivTreasurerORASF").hide();
+        $("#DivFieldCollectorASF").hide();
+        $("#DivCashTicketASF").hide();
+        $("#DivCTCCollectorASF").show();
+        $("#DivPATAS").hide();
+    });
+    $("input[id='radioPATASAssignAF']").click(function () {
+        $("#DivTreasurerORASF").hide();
+        $("#DivFieldCollectorASF").hide();
+        $("#DivCashTicketASF").hide();
+        $("#DivCTCCollectorASF").hide();
+        $("#DivPATAS").show();
+    });
 </script>
 
 <script>
@@ -229,7 +351,10 @@
             //Inventory of Accountable Forms
             F.Get_InvtAccountableFormTable();
             F.Get_AFDescriptionTable();
-            F.Get_InvtAccountableFormTableCT(); F.Get_InvtAccountableFormTableCTC();
+            F.Get_InvtAccountableFormTableCT();
+            F.Get_InvtAccountableFormTableCTC();
+            //Assignment of Accountable Forms
+            F.Get_AddAssignTreasurerCollector();
         }
         //Accountable Form
         F.Get_AccountableFormTable = function () {
@@ -374,6 +499,7 @@
             }).then(function (response) {
                 $("#_CTDetailsID").html(response.data);
                 F.LoadDynamicDDAccountableFormCT();
+                F.LoadDynamicDDASFAF();
             });
         }
         F.LoadDynamicDDAccountableFormCT = function () {
@@ -465,6 +591,64 @@
                 params: { AFORID: AFORID }
             }).then(function (response) {
                 F.Get_InvtAccountableFormTableCTC();
+            });
+        }
+
+        //Assignment of Accountable Forms
+        //Treasurer Collector
+        F.Get_AddAssignTreasurerCollector = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_AddAssignTreasurerCollector',
+            }).then(function (response) {
+                $("#_TreasurerCollectionID").html(response.data);
+                F.LoadDynamicAFCollector();
+                F.LoadDynamicDDASFFundType();
+                F.LoadDynamicDDASFAF();
+                F.Get_InvtAccountableFormTable();
+            });
+        }
+        F.LoadDynamicDDASFFundType = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicASFFundType',
+            }).then(function (response) {
+                $("#_DynamicFundTypeASF").html(response.data);
+            });
+        }
+        F.LoadDynamicAFCollector = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicAFCollector',
+            }).then(function (response) {
+                $("#_DynamicCollectorTable").html(response.data);
+            });
+        }
+        F.LoadDynamicDDASFAF = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicAFASF',
+            }).then(function (response) {
+                $("#_DynamicAFASF").html(response.data);
+                F.LoadDynamicASFStartOR();
+            });
+        }
+        F.LoadDynamicASFStartOR = function () {
+            var AccountFormID = $("#AFIDDDASF").val()
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicAFStartOR',
+                params: { AccountFormID: AccountFormID}
+            }).then(function (response) {
+                $("#_DynamicAFStartOR").html(response.data);
+                F.LoadDynamicDDASFInvt();
+            });
+        }
+        F.LoadDynamicDDASFInvt = function () {
+            var AFORID = $("#StartIDDDD option:selected").val();
+            if (AFORID == null || AFORID == "") {
+                AFORID = 0;
+            }
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_AddAssignTC',
+                params: { AFORID: AFORID }
+            }).then(function (response) {
+                $("#_DynamicASF").html(response.data);
             });
         }
     });

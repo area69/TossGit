@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DB_TOSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountableForm_Assignment">
+          <Key>
+            <PropertyRef Name="AssignAFID" />
+          </Key>
+          <Property Name="AssignAFID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CollectorID" Type="int" Nullable="false" />
+          <Property Name="FundID" Type="int" Nullable="false" />
+          <Property Name="AFORID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="AccountableForm_Description">
           <Key>
             <PropertyRef Name="DescriptionID" />
@@ -98,6 +108,13 @@
           </Key>
           <Property Name="CheckMainteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CheckInvntID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CollectorTable">
+          <Key>
+            <PropertyRef Name="CollectorID" />
+          </Key>
+          <Property Name="CollectorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CollectorName" Type="varchar" MaxLength="70" Nullable="false" />
         </EntityType>
         <EntityType Name="DVTypeTable">
           <Key>
@@ -242,6 +259,42 @@
           <Property Name="PositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PositionName" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_AccountableForm_Assignment_AccountableForm_Assignment">
+          <End Role="AccountableForm_Assignment" Type="Self.AccountableForm_Assignment" Multiplicity="1" />
+          <End Role="AccountableForm_Assignment1" Type="Self.AccountableForm_Assignment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AccountableForm_Assignment">
+              <PropertyRef Name="AssignAFID" />
+            </Principal>
+            <Dependent Role="AccountableForm_Assignment1">
+              <PropertyRef Name="AssignAFID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountableForm_Assignment_AccountableForm_Inventory">
+          <End Role="AccountableForm_Inventory" Type="Self.AccountableForm_Inventory" Multiplicity="1" />
+          <End Role="AccountableForm_Assignment" Type="Self.AccountableForm_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountableForm_Inventory">
+              <PropertyRef Name="AFORID" />
+            </Principal>
+            <Dependent Role="AccountableForm_Assignment">
+              <PropertyRef Name="AFORID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountableForm_Assignment_CollectorTable">
+          <End Role="CollectorTable" Type="Self.CollectorTable" Multiplicity="1" />
+          <End Role="AccountableForm_Assignment" Type="Self.AccountableForm_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CollectorTable">
+              <PropertyRef Name="CollectorID" />
+            </Principal>
+            <Dependent Role="AccountableForm_Assignment">
+              <PropertyRef Name="CollectorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AccountableFormTable_AccountableForm_Description">
           <End Role="AccountableForm_Description" Type="Self.AccountableForm_Description" Multiplicity="1" />
           <End Role="AccountableFormTable" Type="Self.AccountableFormTable" Multiplicity="*" />
@@ -471,6 +524,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DB_TOSSModelStoreContainer">
+          <EntitySet Name="AccountableForm_Assignment" EntityType="Self.AccountableForm_Assignment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccountableForm_Description" EntityType="Self.AccountableForm_Description" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccountableForm_Inventory" EntityType="Self.AccountableForm_Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccountableFormTable" EntityType="Self.AccountableFormTable" Schema="dbo" store:Type="Tables" />
@@ -481,6 +535,7 @@
           <EntitySet Name="BankTable" EntityType="Self.BankTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckInventoryTable" EntityType="Self.CheckInventoryTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckMaintenanceTable" EntityType="Self.CheckMaintenanceTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CollectorTable" EntityType="Self.CollectorTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DVTypeTable" EntityType="Self.DVTypeTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FundType_FundName" EntityType="Self.FundType_FundName" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FundType_FundType" EntityType="Self.FundType_FundType" Schema="dbo" store:Type="Tables" />
@@ -497,6 +552,18 @@
           <EntitySet Name="SignatoriesTable" EntityType="Self.SignatoriesTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatory_DepartmentTable" EntityType="Self.Signatory_DepartmentTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatory_PositionTable" EntityType="Self.Signatory_PositionTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AccountableForm_Assignment_AccountableForm_Assignment" Association="Self.FK_AccountableForm_Assignment_AccountableForm_Assignment">
+            <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
+            <End Role="AccountableForm_Assignment1" EntitySet="AccountableForm_Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountableForm_Assignment_AccountableForm_Inventory" Association="Self.FK_AccountableForm_Assignment_AccountableForm_Inventory">
+            <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
+            <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountableForm_Assignment_CollectorTable" Association="Self.FK_AccountableForm_Assignment_CollectorTable">
+            <End Role="CollectorTable" EntitySet="CollectorTable" />
+            <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
+          </AssociationSet>
           <AssociationSet Name="FK_AccountableFormTable_AccountableForm_Description" Association="Self.FK_AccountableFormTable_AccountableForm_Description">
             <End Role="AccountableForm_Description" EntitySet="AccountableForm_Description" />
             <End Role="AccountableFormTable" EntitySet="AccountableFormTable" />
@@ -579,6 +646,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="DB_TOSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DB_TOSSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountableForm_Assignment" EntityType="DB_TOSSModel.AccountableForm_Assignment" />
           <EntitySet Name="AccountableForm_Description" EntityType="DB_TOSSModel.AccountableForm_Description" />
           <EntitySet Name="AccountableForm_Inventory" EntityType="DB_TOSSModel.AccountableForm_Inventory" />
           <EntitySet Name="AccountableFormTables" EntityType="DB_TOSSModel.AccountableFormTable" />
@@ -589,6 +657,7 @@
           <EntitySet Name="BankTables" EntityType="DB_TOSSModel.BankTable" />
           <EntitySet Name="CheckInventoryTables" EntityType="DB_TOSSModel.CheckInventoryTable" />
           <EntitySet Name="CheckMaintenanceTables" EntityType="DB_TOSSModel.CheckMaintenanceTable" />
+          <EntitySet Name="CollectorTables" EntityType="DB_TOSSModel.CollectorTable" />
           <EntitySet Name="DVTypeTables" EntityType="DB_TOSSModel.DVTypeTable" />
           <EntitySet Name="FundType_FundName" EntityType="DB_TOSSModel.FundType_FundName" />
           <EntitySet Name="FundType_FundType" EntityType="DB_TOSSModel.FundType_FundType" />
@@ -605,6 +674,18 @@
           <EntitySet Name="SignatoriesTables" EntityType="DB_TOSSModel.SignatoriesTable" />
           <EntitySet Name="Signatory_DepartmentTable" EntityType="DB_TOSSModel.Signatory_DepartmentTable" />
           <EntitySet Name="Signatory_PositionTable" EntityType="DB_TOSSModel.Signatory_PositionTable" />
+          <AssociationSet Name="FK_AccountableForm_Assignment_AccountableForm_Assignment" Association="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Assignment">
+            <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
+            <End Role="AccountableForm_Assignment1" EntitySet="AccountableForm_Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountableForm_Assignment_AccountableForm_Inventory" Association="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Inventory">
+            <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
+            <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountableForm_Assignment_CollectorTable" Association="DB_TOSSModel.FK_AccountableForm_Assignment_CollectorTable">
+            <End Role="CollectorTable" EntitySet="CollectorTables" />
+            <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
+          </AssociationSet>
           <AssociationSet Name="FK_AccountableFormTable_AccountableForm_Description" Association="DB_TOSSModel.FK_AccountableFormTable_AccountableForm_Description">
             <End Role="AccountableForm_Description" EntitySet="AccountableForm_Description" />
             <End Role="AccountableFormTable" EntitySet="AccountableFormTables" />
@@ -682,6 +763,20 @@
             <End Role="SignatoriesTable" EntitySet="SignatoriesTables" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AccountableForm_Assignment">
+          <Key>
+            <PropertyRef Name="AssignAFID" />
+          </Key>
+          <Property Name="AssignAFID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CollectorID" Type="Int32" Nullable="false" />
+          <Property Name="FundID" Type="Int32" Nullable="false" />
+          <Property Name="AFORID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="AccountableForm_Assignment1" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Assignment" FromRole="AccountableForm_Assignment" ToRole="AccountableForm_Assignment1" />
+          <NavigationProperty Name="AccountableForm_Assignment2" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Assignment" FromRole="AccountableForm_Assignment1" ToRole="AccountableForm_Assignment" />
+          <NavigationProperty Name="AccountableForm_Inventory" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Inventory" FromRole="AccountableForm_Assignment" ToRole="AccountableForm_Inventory" />
+          <NavigationProperty Name="CollectorTable" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_CollectorTable" FromRole="AccountableForm_Assignment" ToRole="CollectorTable" />
+        </EntityType>
         <EntityType Name="AccountableForm_Description">
           <Key>
             <PropertyRef Name="DescriptionID" />
@@ -703,6 +798,7 @@
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="isIssued" Type="Boolean" Nullable="false" />
           <Property Name="AFTableID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AccountableForm_Assignment" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Inventory" FromRole="AccountableForm_Inventory" ToRole="AccountableForm_Assignment" />
         </EntityType>
         <EntityType Name="AccountableFormTable">
           <Key>
@@ -791,6 +887,14 @@
           <Property Name="CheckMainteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CheckInvntID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CheckInventoryTable" Relationship="DB_TOSSModel.FK_CheckMaintenanceTable_CheckMaintenanceTable" FromRole="CheckMaintenanceTable" ToRole="CheckInventoryTable" />
+        </EntityType>
+        <EntityType Name="CollectorTable">
+          <Key>
+            <PropertyRef Name="CollectorID" />
+          </Key>
+          <Property Name="CollectorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CollectorName" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AccountableForm_Assignment" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_CollectorTable" FromRole="CollectorTable" ToRole="AccountableForm_Assignment" />
         </EntityType>
         <EntityType Name="DVTypeTable">
           <Key>
@@ -957,6 +1061,42 @@
           <Property Name="PositionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SignatoriesTables" Relationship="DB_TOSSModel.FK_SignatoriesTable_PositionName" FromRole="Signatory_PositionTable" ToRole="SignatoriesTable" />
         </EntityType>
+        <Association Name="FK_AccountableForm_Assignment_AccountableForm_Assignment">
+          <End Type="DB_TOSSModel.AccountableForm_Assignment" Role="AccountableForm_Assignment" Multiplicity="1" />
+          <End Type="DB_TOSSModel.AccountableForm_Assignment" Role="AccountableForm_Assignment1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AccountableForm_Assignment">
+              <PropertyRef Name="AssignAFID" />
+            </Principal>
+            <Dependent Role="AccountableForm_Assignment1">
+              <PropertyRef Name="AssignAFID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountableForm_Assignment_AccountableForm_Inventory">
+          <End Type="DB_TOSSModel.AccountableForm_Inventory" Role="AccountableForm_Inventory" Multiplicity="1" />
+          <End Type="DB_TOSSModel.AccountableForm_Assignment" Role="AccountableForm_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountableForm_Inventory">
+              <PropertyRef Name="AFORID" />
+            </Principal>
+            <Dependent Role="AccountableForm_Assignment">
+              <PropertyRef Name="AFORID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountableForm_Assignment_CollectorTable">
+          <End Type="DB_TOSSModel.CollectorTable" Role="CollectorTable" Multiplicity="1" />
+          <End Type="DB_TOSSModel.AccountableForm_Assignment" Role="AccountableForm_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CollectorTable">
+              <PropertyRef Name="CollectorID" />
+            </Principal>
+            <Dependent Role="AccountableForm_Assignment">
+              <PropertyRef Name="CollectorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AccountableFormTable_AccountableForm_Description">
           <End Type="DB_TOSSModel.AccountableForm_Description" Role="AccountableForm_Description" Multiplicity="1" />
           <End Type="DB_TOSSModel.AccountableFormTable" Role="AccountableFormTable" Multiplicity="*" />
@@ -1191,6 +1331,17 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DB_TOSSModelStoreContainer" CdmEntityContainer="DB_TOSSEntities">
+          <EntitySetMapping Name="AccountableForm_Assignment">
+            <EntityTypeMapping TypeName="DB_TOSSModel.AccountableForm_Assignment">
+              <MappingFragment StoreEntitySet="AccountableForm_Assignment">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="AFORID" ColumnName="AFORID" />
+                <ScalarProperty Name="FundID" ColumnName="FundID" />
+                <ScalarProperty Name="CollectorID" ColumnName="CollectorID" />
+                <ScalarProperty Name="AssignAFID" ColumnName="AssignAFID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="AccountableForm_Description">
             <EntityTypeMapping TypeName="DB_TOSSModel.AccountableForm_Description">
               <MappingFragment StoreEntitySet="AccountableForm_Description">
@@ -1292,6 +1443,14 @@
               <MappingFragment StoreEntitySet="CheckMaintenanceTable">
                 <ScalarProperty Name="CheckInvntID" ColumnName="CheckInvntID" />
                 <ScalarProperty Name="CheckMainteID" ColumnName="CheckMainteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CollectorTables">
+            <EntityTypeMapping TypeName="DB_TOSSModel.CollectorTable">
+              <MappingFragment StoreEntitySet="CollectorTable">
+                <ScalarProperty Name="CollectorName" ColumnName="CollectorName" />
+                <ScalarProperty Name="CollectorID" ColumnName="CollectorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

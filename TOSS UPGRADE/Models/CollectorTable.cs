@@ -12,23 +12,16 @@ namespace TOSS_UPGRADE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AccountableForm_Inventory
+    public partial class CollectorTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AccountableForm_Inventory()
+        public CollectorTable()
         {
             this.AccountableForm_Assignment = new HashSet<AccountableForm_Assignment>();
         }
     
-        public int AFORID { get; set; }
-        public int AccountFormID { get; set; }
-        public Nullable<int> StubNo { get; set; }
-        public int Quantity { get; set; }
-        public int StartingOR { get; set; }
-        public int EndingOR { get; set; }
-        public System.DateTime Date { get; set; }
-        public bool isIssued { get; set; }
-        public int AFTableID { get; set; }
+        public int CollectorID { get; set; }
+        public string CollectorName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AccountableForm_Assignment> AccountableForm_Assignment { get; set; }

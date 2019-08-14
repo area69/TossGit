@@ -219,6 +219,9 @@
     <Compile Include="Models\AccountableFormTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountableForm_Assignment.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountableForm_Description.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
@@ -244,10 +247,14 @@
     <Compile Include="Models\CheckMaintenanceTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CollectorTable.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DVTypeTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FM_CollectionAndDeposit\FM_CollectionAndDeposit_AccountableForm.cs" />
+    <Compile Include="Models\FM_CollectionAndDeposit\FM_CollectionAndDeposit_AssignmentAF.cs" />
     <Compile Include="Models\FM_CollectionAndDeposit\FM_CollectionAndDeposit_InventoryAF.cs" />
     <Compile Include="Models\FM_Disbursement\FM_Disbursement_CheckInventory.cs" />
     <Compile Include="Models\FM_Disbursement\FM_Disbursement_CheckMaintenance.cs" />
@@ -8993,6 +9000,13 @@
     <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CTC\_CTCDetailsTable.cshtml" />
     <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CTC\_UpdateCTCDetails.cshtml" />
     <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CTC\_DynamicDDAccountableFormCTC.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_AddTreasurerCollector.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_TreasurerCollectorTable.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_DynamicDDTCFundType.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_DynamicDDTCAF.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_DynamicDDCollectorOfficer.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_DynamicDDStartOR.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_AddTreasurerCollectorInvt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

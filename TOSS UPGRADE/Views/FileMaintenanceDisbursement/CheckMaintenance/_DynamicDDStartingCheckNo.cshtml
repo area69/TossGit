@@ -4,6 +4,5 @@
 }
 @using TOSS_UPGRADE.Models;
 
-<label>Starting Check No.</label>
+<label>Starting OR</label>
 @Html.DropDownListFor(m => m.CheckMaintenanceInventoryID, Model.CheckMaintenanceInventoryList, new { @class = "form-control select2", id = "AccountNameInventoryIDDD2", onchange = "AngularGlobalFunctions('FMDisbursementController','Get_CheckMaintenanceQuantyNEnd','')" })
-

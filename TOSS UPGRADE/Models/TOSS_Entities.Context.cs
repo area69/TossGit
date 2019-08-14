@@ -25,6 +25,7 @@ namespace TOSS_UPGRADE.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AccountableForm_Assignment> AccountableForm_Assignment { get; set; }
         public virtual DbSet<AccountableForm_Description> AccountableForm_Description { get; set; }
         public virtual DbSet<AccountableForm_Inventory> AccountableForm_Inventory { get; set; }
         public virtual DbSet<AccountableFormTable> AccountableFormTables { get; set; }
@@ -35,6 +36,7 @@ namespace TOSS_UPGRADE.Models
         public virtual DbSet<BankTable> BankTables { get; set; }
         public virtual DbSet<CheckInventoryTable> CheckInventoryTables { get; set; }
         public virtual DbSet<CheckMaintenanceTable> CheckMaintenanceTables { get; set; }
+        public virtual DbSet<CollectorTable> CollectorTables { get; set; }
         public virtual DbSet<DVTypeTable> DVTypeTables { get; set; }
         public virtual DbSet<FundType_FundName> FundType_FundName { get; set; }
         public virtual DbSet<FundType_FundType> FundType_FundType { get; set; }
