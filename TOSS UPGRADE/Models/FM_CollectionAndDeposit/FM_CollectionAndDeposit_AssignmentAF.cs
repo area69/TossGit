@@ -11,12 +11,12 @@ namespace TOSS_UPGRADE.Models.FM_CollectionAndDeposit
         {
             getAccountableFormAssign = new List<AccountableForm_Assignment>();
             getAccountableFormAssigncolumns = new AccountableForm_Assignment();
-            getAccountableFormInvtList = new List<AccountableFormAssignmentList>();
+            getAccountableFormAssList = new List<AccountableFormAssignmentList>();
         }
         public AccountableForm_Assignment getAccountableFormAssigncolumns { get; set; }
         public IEnumerable<TOSS_UPGRADE.Models.AccountableForm_Assignment> getAccountableFormAssign { get; set; }
         public IEnumerable<System.Web.Mvc.SelectListItem> AccountableFormAssignmentList { get; set; }
-        public List<AccountableFormAssignmentList> getAccountableFormInvtList { get; set; }
+        public List<AccountableFormAssignmentList> getAccountableFormAssList { get; set; }
         public int AccountableFormAssignmentID { get; set; }
         public int AccountableFormAssignmentAFID { get; set; }
         public int AccountableFACollectorID { get; set; }

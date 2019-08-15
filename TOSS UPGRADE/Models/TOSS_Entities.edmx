@@ -259,18 +259,6 @@
           <Property Name="PositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PositionName" Type="varchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_AccountableForm_Assignment_AccountableForm_Assignment">
-          <End Role="AccountableForm_Assignment" Type="Self.AccountableForm_Assignment" Multiplicity="1" />
-          <End Role="AccountableForm_Assignment1" Type="Self.AccountableForm_Assignment" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="AccountableForm_Assignment">
-              <PropertyRef Name="AssignAFID" />
-            </Principal>
-            <Dependent Role="AccountableForm_Assignment1">
-              <PropertyRef Name="AssignAFID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_AccountableForm_Assignment_AccountableForm_Inventory">
           <End Role="AccountableForm_Inventory" Type="Self.AccountableForm_Inventory" Multiplicity="1" />
           <End Role="AccountableForm_Assignment" Type="Self.AccountableForm_Assignment" Multiplicity="*" />
@@ -292,6 +280,30 @@
             </Principal>
             <Dependent Role="AccountableForm_Assignment">
               <PropertyRef Name="CollectorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountableForm_Assignment_FundType_FundName">
+          <End Role="FundType_FundName" Type="Self.FundType_FundName" Multiplicity="1" />
+          <End Role="AccountableForm_Assignment" Type="Self.AccountableForm_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FundType_FundName">
+              <PropertyRef Name="FundID" />
+            </Principal>
+            <Dependent Role="AccountableForm_Assignment">
+              <PropertyRef Name="FundID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountableForm_Inventory_AccountableFormTable">
+          <End Role="AccountableFormTable" Type="Self.AccountableFormTable" Multiplicity="1" />
+          <End Role="AccountableForm_Inventory" Type="Self.AccountableForm_Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountableFormTable">
+              <PropertyRef Name="AccountFormID" />
+            </Principal>
+            <Dependent Role="AccountableForm_Inventory">
+              <PropertyRef Name="AccountFormID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -523,6 +535,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SP_AccountableFormInvtList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_AccountableFormList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_AccountTypeList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_AFDescriptionList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_BankAccountTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_BankTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_CheckInventoryList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_CheckMaintenanceList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_DVTypeList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_FundTypesList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_IRAList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_MemoAccountClassList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_MMAccountCodeList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_PositionList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_SignatoryDepartmentList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_SignatoryTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <EntityContainer Name="DB_TOSSModelStoreContainer">
           <EntitySet Name="AccountableForm_Assignment" EntityType="Self.AccountableForm_Assignment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccountableForm_Description" EntityType="Self.AccountableForm_Description" Schema="dbo" store:Type="Tables" />
@@ -552,10 +612,6 @@
           <EntitySet Name="SignatoriesTable" EntityType="Self.SignatoriesTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatory_DepartmentTable" EntityType="Self.Signatory_DepartmentTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatory_PositionTable" EntityType="Self.Signatory_PositionTable" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_AccountableForm_Assignment_AccountableForm_Assignment" Association="Self.FK_AccountableForm_Assignment_AccountableForm_Assignment">
-            <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
-            <End Role="AccountableForm_Assignment1" EntitySet="AccountableForm_Assignment" />
-          </AssociationSet>
           <AssociationSet Name="FK_AccountableForm_Assignment_AccountableForm_Inventory" Association="Self.FK_AccountableForm_Assignment_AccountableForm_Inventory">
             <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
             <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
@@ -563,6 +619,14 @@
           <AssociationSet Name="FK_AccountableForm_Assignment_CollectorTable" Association="Self.FK_AccountableForm_Assignment_CollectorTable">
             <End Role="CollectorTable" EntitySet="CollectorTable" />
             <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountableForm_Assignment_FundType_FundName" Association="Self.FK_AccountableForm_Assignment_FundType_FundName">
+            <End Role="FundType_FundName" EntitySet="FundType_FundName" />
+            <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountableForm_Inventory_AccountableFormTable" Association="Self.FK_AccountableForm_Inventory_AccountableFormTable">
+            <End Role="AccountableFormTable" EntitySet="AccountableFormTable" />
+            <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK_AccountableFormTable_AccountableForm_Description" Association="Self.FK_AccountableFormTable_AccountableForm_Description">
             <End Role="AccountableForm_Description" EntitySet="AccountableForm_Description" />
@@ -646,6 +710,54 @@
     <edmx:ConceptualModels>
       <Schema Namespace="DB_TOSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DB_TOSSEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="SP_AccountableFormInvtList">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_AccountableFormList">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_AccountTypeList">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_AFDescriptionList">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_BankAccountTable">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_BankTable">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CheckInventoryList">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CheckMaintenanceList">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DVTypeList">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_FundTypesList">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_IRAList">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_MemoAccountClassList">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_MMAccountCodeList">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PositionList">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SignatoryDepartmentList">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SignatoryTable">
+          <Parameter Name="SQLStatement" Mode="In" Type="String" />
+          </FunctionImport>
           <EntitySet Name="AccountableForm_Assignment" EntityType="DB_TOSSModel.AccountableForm_Assignment" />
           <EntitySet Name="AccountableForm_Description" EntityType="DB_TOSSModel.AccountableForm_Description" />
           <EntitySet Name="AccountableForm_Inventory" EntityType="DB_TOSSModel.AccountableForm_Inventory" />
@@ -674,10 +786,6 @@
           <EntitySet Name="SignatoriesTables" EntityType="DB_TOSSModel.SignatoriesTable" />
           <EntitySet Name="Signatory_DepartmentTable" EntityType="DB_TOSSModel.Signatory_DepartmentTable" />
           <EntitySet Name="Signatory_PositionTable" EntityType="DB_TOSSModel.Signatory_PositionTable" />
-          <AssociationSet Name="FK_AccountableForm_Assignment_AccountableForm_Assignment" Association="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Assignment">
-            <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
-            <End Role="AccountableForm_Assignment1" EntitySet="AccountableForm_Assignment" />
-          </AssociationSet>
           <AssociationSet Name="FK_AccountableForm_Assignment_AccountableForm_Inventory" Association="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Inventory">
             <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
             <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
@@ -686,9 +794,17 @@
             <End Role="CollectorTable" EntitySet="CollectorTables" />
             <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
           </AssociationSet>
+          <AssociationSet Name="FK_AccountableForm_Assignment_FundType_FundName" Association="DB_TOSSModel.FK_AccountableForm_Assignment_FundType_FundName">
+            <End Role="FundType_FundName" EntitySet="FundType_FundName" />
+            <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
+          </AssociationSet>
           <AssociationSet Name="FK_AccountableFormTable_AccountableForm_Description" Association="DB_TOSSModel.FK_AccountableFormTable_AccountableForm_Description">
             <End Role="AccountableForm_Description" EntitySet="AccountableForm_Description" />
             <End Role="AccountableFormTable" EntitySet="AccountableFormTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountableForm_Inventory_AccountableFormTable" Association="DB_TOSSModel.FK_AccountableForm_Inventory_AccountableFormTable">
+            <End Role="AccountableFormTable" EntitySet="AccountableFormTables" />
+            <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK_Accounts_PersonalInformation" Association="DB_TOSSModel.FK_Accounts_PersonalInformation">
             <End Role="PersonalInformation" EntitySet="PersonalInformations" />
@@ -762,7 +878,7 @@
             <End Role="Signatory_DepartmentTable" EntitySet="Signatory_DepartmentTable" />
             <End Role="SignatoriesTable" EntitySet="SignatoriesTables" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="AccountableForm_Assignment">
           <Key>
             <PropertyRef Name="AssignAFID" />
@@ -772,10 +888,9 @@
           <Property Name="FundID" Type="Int32" Nullable="false" />
           <Property Name="AFORID" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="AccountableForm_Assignment1" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Assignment" FromRole="AccountableForm_Assignment" ToRole="AccountableForm_Assignment1" />
-          <NavigationProperty Name="AccountableForm_Assignment2" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Assignment" FromRole="AccountableForm_Assignment1" ToRole="AccountableForm_Assignment" />
           <NavigationProperty Name="AccountableForm_Inventory" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Inventory" FromRole="AccountableForm_Assignment" ToRole="AccountableForm_Inventory" />
           <NavigationProperty Name="CollectorTable" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_CollectorTable" FromRole="AccountableForm_Assignment" ToRole="CollectorTable" />
+          <NavigationProperty Name="FundType_FundName" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_FundType_FundName" FromRole="AccountableForm_Assignment" ToRole="FundType_FundName" />
         </EntityType>
         <EntityType Name="AccountableForm_Description">
           <Key>
@@ -799,6 +914,7 @@
           <Property Name="isIssued" Type="Boolean" Nullable="false" />
           <Property Name="AFTableID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AccountableForm_Assignment" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Inventory" FromRole="AccountableForm_Inventory" ToRole="AccountableForm_Assignment" />
+          <NavigationProperty Name="AccountableFormTable" Relationship="DB_TOSSModel.FK_AccountableForm_Inventory_AccountableFormTable" FromRole="AccountableForm_Inventory" ToRole="AccountableFormTable" />
         </EntityType>
         <EntityType Name="AccountableFormTable">
           <Key>
@@ -809,6 +925,7 @@
           <Property Name="DescriptionID" Type="Int32" Nullable="false" />
           <Property Name="isCTC" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AccountableForm_Description" Relationship="DB_TOSSModel.FK_AccountableFormTable_AccountableForm_Description" FromRole="AccountableFormTable" ToRole="AccountableForm_Description" />
+          <NavigationProperty Name="AccountableForm_Inventory" Relationship="DB_TOSSModel.FK_AccountableForm_Inventory_AccountableFormTable" FromRole="AccountableFormTable" ToRole="AccountableForm_Inventory" />
         </EntityType>
         <EntityType Name="Account">
           <Key>
@@ -909,6 +1026,7 @@
           </Key>
           <Property Name="FundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FundTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AccountableForm_Assignment" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_FundType_FundName" FromRole="FundType_FundName" ToRole="AccountableForm_Assignment" />
           <NavigationProperty Name="BankAccountTables" Relationship="DB_TOSSModel.FK_BankAccountTable_FundType_FundName" FromRole="FundType_FundName" ToRole="BankAccountTable" />
           <NavigationProperty Name="FundType_FundType" Relationship="DB_TOSSModel.FK_FundType_FundName" FromRole="FundType_FundName" ToRole="FundType_FundType" />
         </EntityType>
@@ -1061,18 +1179,6 @@
           <Property Name="PositionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SignatoriesTables" Relationship="DB_TOSSModel.FK_SignatoriesTable_PositionName" FromRole="Signatory_PositionTable" ToRole="SignatoriesTable" />
         </EntityType>
-        <Association Name="FK_AccountableForm_Assignment_AccountableForm_Assignment">
-          <End Type="DB_TOSSModel.AccountableForm_Assignment" Role="AccountableForm_Assignment" Multiplicity="1" />
-          <End Type="DB_TOSSModel.AccountableForm_Assignment" Role="AccountableForm_Assignment1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="AccountableForm_Assignment">
-              <PropertyRef Name="AssignAFID" />
-            </Principal>
-            <Dependent Role="AccountableForm_Assignment1">
-              <PropertyRef Name="AssignAFID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_AccountableForm_Assignment_AccountableForm_Inventory">
           <End Type="DB_TOSSModel.AccountableForm_Inventory" Role="AccountableForm_Inventory" Multiplicity="1" />
           <End Type="DB_TOSSModel.AccountableForm_Assignment" Role="AccountableForm_Assignment" Multiplicity="*" />
@@ -1097,6 +1203,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AccountableForm_Assignment_FundType_FundName">
+          <End Type="DB_TOSSModel.FundType_FundName" Role="FundType_FundName" Multiplicity="1" />
+          <End Type="DB_TOSSModel.AccountableForm_Assignment" Role="AccountableForm_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FundType_FundName">
+              <PropertyRef Name="FundID" />
+            </Principal>
+            <Dependent Role="AccountableForm_Assignment">
+              <PropertyRef Name="FundID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AccountableFormTable_AccountableForm_Description">
           <End Type="DB_TOSSModel.AccountableForm_Description" Role="AccountableForm_Description" Multiplicity="1" />
           <End Type="DB_TOSSModel.AccountableFormTable" Role="AccountableFormTable" Multiplicity="*" />
@@ -1106,6 +1224,18 @@
             </Principal>
             <Dependent Role="AccountableFormTable">
               <PropertyRef Name="DescriptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountableForm_Inventory_AccountableFormTable">
+          <End Type="DB_TOSSModel.AccountableFormTable" Role="AccountableFormTable" Multiplicity="1" />
+          <End Type="DB_TOSSModel.AccountableForm_Inventory" Role="AccountableForm_Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountableFormTable">
+              <PropertyRef Name="AccountFormID" />
+            </Principal>
+            <Dependent Role="AccountableForm_Inventory">
+              <PropertyRef Name="AccountFormID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1331,6 +1461,22 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DB_TOSSModelStoreContainer" CdmEntityContainer="DB_TOSSEntities">
+          <FunctionImportMapping FunctionImportName="SP_AccountableFormInvtList" FunctionName="DB_TOSSModel.Store.SP_AccountableFormInvtList" />
+          <FunctionImportMapping FunctionImportName="SP_AccountableFormList" FunctionName="DB_TOSSModel.Store.SP_AccountableFormList" />
+          <FunctionImportMapping FunctionImportName="SP_AccountTypeList" FunctionName="DB_TOSSModel.Store.SP_AccountTypeList" />
+          <FunctionImportMapping FunctionImportName="SP_AFDescriptionList" FunctionName="DB_TOSSModel.Store.SP_AFDescriptionList" />
+          <FunctionImportMapping FunctionImportName="SP_BankAccountTable" FunctionName="DB_TOSSModel.Store.SP_BankAccountTable" />
+          <FunctionImportMapping FunctionImportName="SP_BankTable" FunctionName="DB_TOSSModel.Store.SP_BankTable" />
+          <FunctionImportMapping FunctionImportName="SP_CheckInventoryList" FunctionName="DB_TOSSModel.Store.SP_CheckInventoryList" />
+          <FunctionImportMapping FunctionImportName="SP_CheckMaintenanceList" FunctionName="DB_TOSSModel.Store.SP_CheckMaintenanceList" />
+          <FunctionImportMapping FunctionImportName="SP_DVTypeList" FunctionName="DB_TOSSModel.Store.SP_DVTypeList" />
+          <FunctionImportMapping FunctionImportName="SP_FundTypesList" FunctionName="DB_TOSSModel.Store.SP_FundTypesList" />
+          <FunctionImportMapping FunctionImportName="SP_IRAList" FunctionName="DB_TOSSModel.Store.SP_IRAList" />
+          <FunctionImportMapping FunctionImportName="SP_MemoAccountClassList" FunctionName="DB_TOSSModel.Store.SP_MemoAccountClassList" />
+          <FunctionImportMapping FunctionImportName="SP_MMAccountCodeList" FunctionName="DB_TOSSModel.Store.SP_MMAccountCodeList" />
+          <FunctionImportMapping FunctionImportName="SP_PositionList" FunctionName="DB_TOSSModel.Store.SP_PositionList" />
+          <FunctionImportMapping FunctionImportName="SP_SignatoryDepartmentList" FunctionName="DB_TOSSModel.Store.SP_SignatoryDepartmentList" />
+          <FunctionImportMapping FunctionImportName="SP_SignatoryTable" FunctionName="DB_TOSSModel.Store.SP_SignatoryTable" />
           <EntitySetMapping Name="AccountableForm_Assignment">
             <EntityTypeMapping TypeName="DB_TOSSModel.AccountableForm_Assignment">
               <MappingFragment StoreEntitySet="AccountableForm_Assignment">
@@ -1613,7 +1759,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

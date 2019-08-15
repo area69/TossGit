@@ -20,9 +20,8 @@ namespace TOSS_UPGRADE.Models
         public int AFORID { get; set; }
         public System.DateTime Date { get; set; }
     
-        public virtual AccountableForm_Assignment AccountableForm_Assignment1 { get; set; }
-        public virtual AccountableForm_Assignment AccountableForm_Assignment2 { get; set; }
         public virtual AccountableForm_Inventory AccountableForm_Inventory { get; set; }
         public virtual CollectorTable CollectorTable { get; set; }
+        public virtual FundType_FundName FundType_FundName { get; set; }
     }
 }

@@ -354,7 +354,7 @@
             F.Get_InvtAccountableFormTableCT();
             F.Get_InvtAccountableFormTableCTC();
             //Assignment of Accountable Forms
-            F.Get_AddAssignTreasurerCollector();
+            F.Get_AccountableFormAssignmentTable();
         }
         //Accountable Form
         F.Get_AccountableFormTable = function () {
@@ -604,7 +604,6 @@
                 F.LoadDynamicAFCollector();
                 F.LoadDynamicDDASFFundType();
                 F.LoadDynamicDDASFAF();
-                F.Get_InvtAccountableFormTable();
             });
         }
         F.LoadDynamicDDASFFundType = function () {
@@ -630,10 +629,25 @@
             });
         }
         F.LoadDynamicASFStartOR = function () {
-            var AccountFormID = $("#AFIDDDASF").val()
+            //var AFORID = $("#AFIDDDASF").val()
+            //P({
+            //    url: '/FileMaintenanceCollectionDeposit/GetAccountFormID',
+            //    params: { AFORID: AFORID}
+            //}).then(function (response) {
+            //    var AccountFormIDT = response.data.AccountFormID;
+            //    P({
+            //        url: '/FileMaintenanceCollectionDeposit/GetDynamicAFStartOR',
+            //        params: { AccountFormID: AccountFormIDT }
+            //    }).then(function (response) {
+            //        $("#_DynamicAFStartOR").html(response.data);
+            //        F.LoadDynamicDDASFInvt();
+            //    });
+            //});
+            var AccountFormID = $("#AFIDDDASF").val();
+         
             P({
                 url: '/FileMaintenanceCollectionDeposit/GetDynamicAFStartOR',
-                params: { AccountFormID: AccountFormID}
+                params: { AccountFormID: AccountFormID }
             }).then(function (response) {
                 $("#_DynamicAFStartOR").html(response.data);
                 F.LoadDynamicDDASFInvt();
@@ -651,5 +665,14 @@
                 $("#_DynamicASF").html(response.data);
             });
         }
+        F.Get_AccountableFormAssignmentTable = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_AccountableFormAssignmentTable',
+            }).then(function (response) {
+                $("#_TreasurerCollectionTableID").html(response.data);
+            });
+            F.Get_AddAssignTreasurerCollector();
+        }
+        
     });
 </script>

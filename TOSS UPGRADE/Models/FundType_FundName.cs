@@ -17,6 +17,7 @@ namespace TOSS_UPGRADE.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public FundType_FundName()
         {
+            this.AccountableForm_Assignment = new HashSet<AccountableForm_Assignment>();
             this.BankAccountTables = new HashSet<BankAccountTable>();
             this.FundType_FundType = new HashSet<FundType_FundType>();
         }
@@ -24,6 +25,8 @@ namespace TOSS_UPGRADE.Models
         public int FundID { get; set; }
         public string FundTitle { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AccountableForm_Assignment> AccountableForm_Assignment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BankAccountTable> BankAccountTables { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

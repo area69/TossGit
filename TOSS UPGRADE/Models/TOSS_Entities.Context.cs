@@ -12,6 +12,8 @@ namespace TOSS_UPGRADE.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class DB_TOSSEntities : DbContext
     {
@@ -53,5 +55,149 @@ namespace TOSS_UPGRADE.Models
         public virtual DbSet<SignatoriesTable> SignatoriesTables { get; set; }
         public virtual DbSet<Signatory_DepartmentTable> Signatory_DepartmentTable { get; set; }
         public virtual DbSet<Signatory_PositionTable> Signatory_PositionTable { get; set; }
+    
+        public virtual int SP_AccountableFormInvtList(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AccountableFormInvtList", sQLStatementParameter);
+        }
+    
+        public virtual int SP_AccountableFormList(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AccountableFormList", sQLStatementParameter);
+        }
+    
+        public virtual int SP_AccountTypeList(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AccountTypeList", sQLStatementParameter);
+        }
+    
+        public virtual int SP_AFDescriptionList(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AFDescriptionList", sQLStatementParameter);
+        }
+    
+        public virtual int SP_BankAccountTable(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_BankAccountTable", sQLStatementParameter);
+        }
+    
+        public virtual int SP_BankTable(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_BankTable", sQLStatementParameter);
+        }
+    
+        public virtual int SP_CheckInventoryList(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CheckInventoryList", sQLStatementParameter);
+        }
+    
+        public virtual int SP_CheckMaintenanceList(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CheckMaintenanceList", sQLStatementParameter);
+        }
+    
+        public virtual int SP_DVTypeList(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DVTypeList", sQLStatementParameter);
+        }
+    
+        public virtual int SP_FundTypesList(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_FundTypesList", sQLStatementParameter);
+        }
+    
+        public virtual int SP_IRAList(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_IRAList", sQLStatementParameter);
+        }
+    
+        public virtual int SP_MemoAccountClassList(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MemoAccountClassList", sQLStatementParameter);
+        }
+    
+        public virtual int SP_MMAccountCodeList(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MMAccountCodeList", sQLStatementParameter);
+        }
+    
+        public virtual int SP_PositionList(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_PositionList", sQLStatementParameter);
+        }
+    
+        public virtual int SP_SignatoryDepartmentList(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_SignatoryDepartmentList", sQLStatementParameter);
+        }
+    
+        public virtual int SP_SignatoryTable(string sQLStatement)
+        {
+            var sQLStatementParameter = sQLStatement != null ?
+                new ObjectParameter("SQLStatement", sQLStatement) :
+                new ObjectParameter("SQLStatement", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_SignatoryTable", sQLStatementParameter);
+        }
     }
 }

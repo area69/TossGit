@@ -32,5 +32,6 @@ namespace TOSS_UPGRADE.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AccountableForm_Assignment> AccountableForm_Assignment { get; set; }
+        public virtual AccountableFormTable AccountableFormTable { get; set; }
     }
 }
