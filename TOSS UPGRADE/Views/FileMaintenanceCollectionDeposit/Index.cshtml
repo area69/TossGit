@@ -17,20 +17,20 @@
             <a class="nav-link active text-white" id="base-tab1" data-toggle="tab" aria-controls="tab1" href="#tab1" aria-expanded="true"><b>Accountable Forms</b></a>
         </li>
         @*<li class="nav-item bg-headerbc">
-            <a class="nav-link text-white" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" aria-expanded="false">Accountable Forms Assignment</a>
-        </li>
-        <li class="nav-item bg-headerbc">
-            <a class="nav-link text-white" id="base-tab4" data-toggle="tab" aria-controls="tab4" href="#tab4" aria-expanded="false">Barangays</a>
-        </li>
-        <li class="nav-item bg-headerbc">
-            <a class="nav-link text-white" id="base-tab5" data-toggle="tab" aria-controls="tab5" href="#tab5" aria-expanded="false">Barangay Collectors</a>
-        </li>
-        <li class="nav-item bg-headerbc">
-            <a class="nav-link text-white" id="base-tab6" data-toggle="tab" aria-controls="tab6" href="#tab6" aria-expanded="false">Fees</a>
-        </li>
-        <li class="nav-item bg-headerbc">
-            <a class="nav-link text-white" id="base-tab7" data-toggle="tab" aria-controls="tab7" href="#tab7" aria-expanded="false">Collector Account Activation</a>
-        </li>*@
+                <a class="nav-link text-white" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" aria-expanded="false">Accountable Forms Assignment</a>
+            </li>
+            <li class="nav-item bg-headerbc">
+                <a class="nav-link text-white" id="base-tab4" data-toggle="tab" aria-controls="tab4" href="#tab4" aria-expanded="false">Barangays</a>
+            </li>
+            <li class="nav-item bg-headerbc">
+                <a class="nav-link text-white" id="base-tab5" data-toggle="tab" aria-controls="tab5" href="#tab5" aria-expanded="false">Barangay Collectors</a>
+            </li>
+            <li class="nav-item bg-headerbc">
+                <a class="nav-link text-white" id="base-tab6" data-toggle="tab" aria-controls="tab6" href="#tab6" aria-expanded="false">Fees</a>
+            </li>
+            <li class="nav-item bg-headerbc">
+                <a class="nav-link text-white" id="base-tab7" data-toggle="tab" aria-controls="tab7" href="#tab7" aria-expanded="false">Collector Account Activation</a>
+            </li>*@
     </ul>
     <div class="tab-content px-1 pt-1 font-weight-bold black">
         @* Accountable Form *@
@@ -74,6 +74,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header bg-headerbc white">
                                         <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Description</h4>
+                                        <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
                                     </div>
                                     <div class="modal-body skin skin-square">
                                         <div class="row">
@@ -246,6 +247,35 @@
                                                     <div id="_TreasurerCollectionTableID">
 
                                                     </div>
+                                                    <div class="row mt-1">
+                                                        <div class="col-md-7"></div>
+                                                        <div class="col-md-5"><button class="btn black bg-secondary form-control" type="button" data-toggle="modal" data-target="#addTransferReturnModal" ng-click="Get_TransferReturnORTable()"><b>Transfer / Return OR to other collector</b></button></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @* Add Transfer/Return Modal *@
+                                            <div class="col-lg-8 col-md-8 col-sm-12">
+                                                <div class="form-group">
+                                                    <div class="modal animated zoomIn text-left" id="addTransferReturnModal" role="dialog">
+                                                        <div class="modal-dialog" style="max-width:850px" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-headerbc white">
+                                                                    <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Transfer / Return OR Series</h4>
+                                                                    <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
+                                                                </div>
+                                                                <div class="modal-body skin skin-square">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12" id="_TransferReturnORID">
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mt-1" id="_TransferReturnORTableID">
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -373,7 +403,7 @@
             }).then(function (response) {
                 $("#_AccountableFormID").html(response.data);
                 F.LoadDynamicDDDescription();
-             
+
             });
         }
         F.LoadDynamicDDDescription = function () {
@@ -431,7 +461,7 @@
             }).then(function (response) {
                 $("#_AccountableFormID").html(response.data);
                 F.LoadSelectedDynamicDDDescription();
-                }); 
+                });
         }
         F.Get_DeleteAccountableForm = function (AccountFormID) {
             P({
@@ -604,6 +634,7 @@
                 F.LoadDynamicAFCollector();
                 F.LoadDynamicDDASFFundType();
                 F.LoadDynamicDDASFAF();
+                F.Get_InvtAccountableFormTable();
             });
         }
         F.LoadDynamicDDASFFundType = function () {
@@ -644,7 +675,7 @@
             //    });
             //});
             var AccountFormID = $("#AFIDDDASF").val();
-         
+
             P({
                 url: '/FileMaintenanceCollectionDeposit/GetDynamicAFStartOR',
                 params: { AccountFormID: AccountFormID }
@@ -673,6 +704,39 @@
             });
             F.Get_AddAssignTreasurerCollector();
         }
-        
+        F.Get_TransferReturnORTable = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_TransferReturnORTable',
+            }).then(function (response) {
+                $("#_TransferReturnORTableID").html(response.data);
+                });
+            F.Get_AddTransferReturnOR();
+        }
+        F.Get_AddTransferReturnOR = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_AddTransferReturnOR',
+            }).then(function (response) {
+                $("#_TransferReturnORID").html(response.data);
+                F.LoadDynamicMainCollector();
+               
+            });
+        }
+        F.LoadDynamicMainCollector = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicMainCollector',
+            }).then(function (response) {
+                $("#_DynamicMainCollectorID").html(response.data);
+                F.LoadDynamicSubCollector();
+            });
+        }
+        F.LoadDynamicSubCollector = function () {
+            var CollectorID = $("#MainCOIDDD").val();
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicSubCollector',
+                params: { CollectorID: CollectorID }
+            }).then(function (response) {
+                $("#_DynamicSubCollectorID").html(response.data);
+            });
+        }
     });
 </script>

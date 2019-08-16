@@ -9007,6 +9007,10 @@
     <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_DynamicDDCollectorOfficer.cshtml" />
     <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_DynamicDDStartOR.cshtml" />
     <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_AddTreasurerCollectorInvt.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_AddTransferReturnOR.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_TransferReturnORTable.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_DynamicDDMainCollector.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_DynamicDDSubCollector.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

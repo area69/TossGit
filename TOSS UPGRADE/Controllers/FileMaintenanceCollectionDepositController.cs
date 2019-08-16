@@ -225,6 +225,7 @@ namespace TOSS_UPGRADE.Controllers
                             StratingOR = GlobalFunction.ReturnEmptyInt(dr[4]),
                             EndingOR = GlobalFunction.ReturnEmptyInt(dr[5]),
                             Date = GlobalFunction.ReturnEmptyString(dr[6]),
+                            isIssued = GlobalFunction.ReturnEmptyBool(dr[7])
                         });
                     }
                 }
@@ -263,6 +264,7 @@ namespace TOSS_UPGRADE.Controllers
             tblAccountableFormInventory.Quantity = model.getAccountableFormInvtcolumns.Quantity;
             tblAccountableFormInventory.StartingOR = model.getAccountableFormInvtcolumns.StartingOR;
             tblAccountableFormInventory.EndingOR = model.getAccountableFormInvtcolumns.EndingOR;
+            tblAccountableFormInventory.isIssued = false;
             tblAccountableFormInventory.Date = model.getAccountableFormInvtcolumns.Date;
             tblAccountableFormInventory.AFTableID = 1;
             TOSSDB.AccountableForm_Inventory.Add(tblAccountableFormInventory);
@@ -556,7 +558,7 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult GetDynamicAFStartOR(int AccountFormID)
         {
             FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
-            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.AccountableForm_Inventory.ToList() where s.AccountFormID == AccountFormID select new { AFORID = s.AFORID, StartingOR = s.StartingOR }), "AFORID", "StartingOR");
+            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.AccountableForm_Inventory.ToList() where s.AccountFormID == AccountFormID && s.isIssued == false select new { AFORID = s.AFORID, StartingOR = s.StartingOR }), "AFORID", "StartingOR");
             return PartialView("AssignmentofAccountableForm/TreasurerCollector/_DynamicDDStartOR", model);
         }
         public ActionResult Get_AddAssignTC(int AFORID)
@@ -590,7 +592,20 @@ namespace TOSS_UPGRADE.Controllers
             tblAccountableFormAssignment.Date = model.getAccountableFormAssigncolumns.Date;
             TOSSDB.AccountableForm_Assignment.Add(tblAccountableFormAssignment);
             TOSSDB.SaveChanges();
-            return Json(tblAccountableFormAssignment);
+
+            AccountableForm_Inventory tblAccountableFormAssignmentInventory = (from e in TOSSDB.AccountableForm_Inventory where e.AFORID == model.AccountableFormAssignmentID select e).FirstOrDefault();
+            if (tblAccountableFormAssignmentInventory.isIssued == false)
+            {
+                tblAccountableFormAssignmentInventory.isIssued = true;
+            }
+            else
+            {
+                tblAccountableFormAssignmentInventory.isIssued = false;
+            }
+            TOSSDB.Entry(tblAccountableFormAssignmentInventory);
+            TOSSDB.SaveChanges();
+
+            return Json("");
         }
         //public ActionResult GetAccountFormID(int AFORID)
         //{
@@ -632,6 +647,29 @@ namespace TOSS_UPGRADE.Controllers
             }
             model.getAccountableFormAssList = tbl_AccountableFormAss.ToList();
             return PartialView("AssignmentofAccountableForm/TreasurerCollector/_TreasurerCollectorTable", model.getAccountableFormAssList);
+        }
+        public ActionResult Get_AddTransferReturnOR()
+        {
+            FM_CollectionAndDeposit_AccountableForm model = new FM_CollectionAndDeposit_AccountableForm();
+            return PartialView("AssignmentofAccountableForm/TreasurerCollector/TransferReturnOR/_AddTransferReturnOR", model);
+        }
+        public ActionResult Get_TransferReturnORTable()
+        {
+            FM_CollectionAndDeposit_AccountableForm model = new FM_CollectionAndDeposit_AccountableForm();
+            return PartialView("AssignmentofAccountableForm/TreasurerCollector/TransferReturnOR/_TransferReturnORTable", model);
+        }
+
+        public ActionResult GetDynamicMainCollector()
+        {
+            FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
+            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.CollectorTables.ToList() select new { CollectorID = s.CollectorID, CollectorName = s.CollectorName }), "CollectorID", "CollectorName");
+            return PartialView("AssignmentofAccountableForm/TreasurerCollector/TransferReturnOR/_DynamicDDMainCollector", model);
+        }
+        public ActionResult GetDynamicSubCollector(int CollectorID)
+        {
+            FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
+            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.CollectorTables.ToList() where s.CollectorID != CollectorID select new { CollectorID = s.CollectorID, CollectorName = s.CollectorName }), "CollectorID", "CollectorName");
+            return PartialView("AssignmentofAccountableForm/TreasurerCollector/TransferReturnOR/_DynamicDDSubCollector", model);
         }
         #endregion
     }
