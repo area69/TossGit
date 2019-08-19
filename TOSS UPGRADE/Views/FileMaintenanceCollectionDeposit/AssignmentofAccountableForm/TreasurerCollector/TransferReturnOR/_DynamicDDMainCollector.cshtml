@@ -5,5 +5,5 @@
 @using TOSS_UPGRADE.Models;
 
 <label class="mt-1">Main Collector</label>
-@Html.DropDownListFor(m => m.AccountableFACollectorID, Model.AccountableFormAssignmentList, new { @class = "form-control select2", id = "MainCOIDDD", onchange = "AngularGlobalFunctions('FMCollectionDepositController','LoadDynamicSubCollector','')" })
+@Html.DropDownListFor(m => m.AccountableTCTRORMainCID, Model.AccountableFormAssignmentList, new { @class = "form-control select2", id = "MainCOIDDD", onchange = "AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc('FMCollectionDepositController','LoadDynamicSubCollector','LoadDynamicTCTRORStubNo')" })
 

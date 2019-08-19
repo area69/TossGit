@@ -1,32 +1,32 @@
-﻿<div class="row">
-    <div class="col-md-4 form-group" id="_DynamicMainCollectorID">
+﻿@model TOSS_UPGRADE.Models.FM_CollectionAndDeposit.FM_CollectionAndDeposit_AssignmentAF
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+
+@using (Ajax.BeginForm("AddTransferReturnOR", "FileMaintenanceCollectionDeposit", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMCollectionDepositController','Get_TransferReturnORTable','Successfully Saved')", OnFailure = "OnFailure()", }))
+{
+    <div class="row">
+        <div class="col-md-4 form-group" id="_DynamicMainCollectorID">
+        </div>
+        <div class="col-md-4 form-group" id="_DynamicSubCollectorID">
+        </div>
+        <div class="col-md-4 form-group" id="_DynamicStubNoID">
+        </div>
     </div>
-    <div class="col-md-4 form-group" id="_DynamicSubCollectorID">
+    <div id="_TransferReturnORIDPV">
     </div>
-    <div class="col-md-4 form-group">
-        <label class="mt-1">Stub No</label>
-        <select class="form-control">
-            <option></option>
-        </select>
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2">
+            <button class="btn bg-addbutton form-control black" type="submit"><b>Assign</b></button>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-4 form-group">
-        <label class="mt-1">Quantity</label>
-        <input type="text" class="form-control" value="" />
-    </div>
-    <div class="col-md-4 form-group">
-        <label class="mt-1">Starting OR</label>
-        <input type="text" class="form-control" value="" />
-    </div>
-    <div class="col-md-4 form-group">
-        <label class="mt-1">Ending OR</label>
-        <input type="text" class="form-control" value="" />
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-10"></div>
-    <div class="col-md-2">
-        <button class="btn bg-addbutton form-control black"><b>Assign</b></button>
-    </div>
-</div>
+}
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+</script>

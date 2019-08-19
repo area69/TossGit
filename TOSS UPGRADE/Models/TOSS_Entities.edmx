@@ -14,6 +14,8 @@
           <Property Name="FundID" Type="int" Nullable="false" />
           <Property Name="AFORID" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="SubCollector" Type="int" />
+          <Property Name="IsTransferred" Type="bit" />
         </EntityType>
         <EntityType Name="AccountableForm_Description">
           <Key>
@@ -888,6 +890,8 @@
           <Property Name="FundID" Type="Int32" Nullable="false" />
           <Property Name="AFORID" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SubCollector" Type="Int32" />
+          <Property Name="IsTransferred" Type="Boolean" />
           <NavigationProperty Name="AccountableForm_Inventory" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Inventory" FromRole="AccountableForm_Assignment" ToRole="AccountableForm_Inventory" />
           <NavigationProperty Name="CollectorTable" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_CollectorTable" FromRole="AccountableForm_Assignment" ToRole="CollectorTable" />
           <NavigationProperty Name="FundType_FundName" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_FundType_FundName" FromRole="AccountableForm_Assignment" ToRole="FundType_FundName" />
@@ -1480,6 +1484,8 @@
           <EntitySetMapping Name="AccountableForm_Assignment">
             <EntityTypeMapping TypeName="DB_TOSSModel.AccountableForm_Assignment">
               <MappingFragment StoreEntitySet="AccountableForm_Assignment">
+                <ScalarProperty Name="IsTransferred" ColumnName="IsTransferred" />
+                <ScalarProperty Name="SubCollector" ColumnName="SubCollector" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="AFORID" ColumnName="AFORID" />
                 <ScalarProperty Name="FundID" ColumnName="FundID" />

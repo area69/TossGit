@@ -254,13 +254,13 @@
                                                 </div>
                                             </div>
                                             @* Add Transfer/Return Modal *@
-                                            <div class="col-lg-8 col-md-8 col-sm-12">
+                                            <div class="col-lg-8 col-md-8 col-sm-12 small">
                                                 <div class="form-group">
                                                     <div class="modal animated zoomIn text-left" id="addTransferReturnModal" role="dialog">
-                                                        <div class="modal-dialog" style="max-width:850px" role="document">
+                                                        <div class="modal-dialog" style="max-width:960px" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header bg-headerbc white">
-                                                                    <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Transfer / Return OR Series</h4>
+                                                                    <h6 class="modal-title white"><i class="la la-plus mr-1"></i>Transfer / Return OR Series</h6>
                                                                     <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
                                                                 </div>
                                                                 <div class="modal-body skin skin-square">
@@ -269,8 +269,10 @@
 
                                                                         </div>
                                                                     </div>
-                                                                    <div class="row mt-1" id="_TransferReturnORTableID">
+                                                                    <div class="row mt-1" >
+                                                                        <div class="col-md-12" id="_TransferReturnORTableID">
 
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -718,7 +720,6 @@
             }).then(function (response) {
                 $("#_TransferReturnORID").html(response.data);
                 F.LoadDynamicMainCollector();
-               
             });
         }
         F.LoadDynamicMainCollector = function () {
@@ -727,6 +728,7 @@
             }).then(function (response) {
                 $("#_DynamicMainCollectorID").html(response.data);
                 F.LoadDynamicSubCollector();
+                F.LoadDynamicTCTRORStubNo();
             });
         }
         F.LoadDynamicSubCollector = function () {
@@ -736,6 +738,28 @@
                 params: { CollectorID: CollectorID }
             }).then(function (response) {
                 $("#_DynamicSubCollectorID").html(response.data);
+            });
+        }
+        F.LoadDynamicTCTRORStubNo = function () {
+            var CollectorID = $("#MainCOIDDD").val();
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicTCTRORStubNo',
+                params: { CollectorID: CollectorID }
+            }).then(function (response) {
+                $("#_DynamicStubNoID").html(response.data);
+                F.LoadDynamicDDTRPVOR();
+            });
+        }
+        F.LoadDynamicDDTRPVOR = function () {
+            var StubNo = $("#TRORStubNoIDDDD option:selected").text();
+            if (StubNo == null || StubNo == "") {
+                StubNo = 0;
+            }
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicTCTRORPV',
+                params: { StubNo: StubNo }
+            }).then(function (response) {
+                $("#_TransferReturnORIDPV").html(response.data);
             });
         }
     });

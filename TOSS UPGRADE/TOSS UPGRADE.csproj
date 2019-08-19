@@ -9011,6 +9011,8 @@
     <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_TransferReturnORTable.cshtml" />
     <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_DynamicDDMainCollector.cshtml" />
     <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_DynamicDDSubCollector.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_DynamicDDTransferReturnORStubNo.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_AddTransferReturnPVOR.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
