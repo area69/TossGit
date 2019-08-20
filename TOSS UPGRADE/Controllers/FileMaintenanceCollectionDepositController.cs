@@ -651,6 +651,8 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult Get_AddTransferReturnOR()
         {
             FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
+            AccountableForm_Assignment tblAccountableFormInventory = (from e in TOSSDB.AccountableForm_Assignment select e).FirstOrDefault();
+            model.AccountableTCTRORID = tblAccountableFormInventory.AssignAFID;
             return PartialView("AssignmentofAccountableForm/TreasurerCollector/TransferReturnOR/_AddTransferReturnOR", model);
         }
         public ActionResult Get_TransferReturnORTable()
@@ -681,8 +683,8 @@ namespace TOSS_UPGRADE.Controllers
                             StratingOR = GlobalFunction.ReturnEmptyInt(dr[4]),
                             EndingOR = GlobalFunction.ReturnEmptyInt(dr[5]),
                             Date = GlobalFunction.ReturnEmptyString(dr[2]),
-                            SubCollector = GlobalFunction.ReturnEmptyString(dr[9]),
-                            IsTransferred = GlobalFunction.ReturnEmptyBool(dr[10]),
+                            SubCollector = GlobalFunction.ReturnEmptyString(dr[10]),
+                            IsTransferred = GlobalFunction.ReturnEmptyBool(dr[9]),
                         });
                     }
                 }

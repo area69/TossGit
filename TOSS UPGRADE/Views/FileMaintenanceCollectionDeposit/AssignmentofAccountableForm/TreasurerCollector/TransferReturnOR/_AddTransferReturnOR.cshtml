@@ -7,6 +7,7 @@
 
 @using (Ajax.BeginForm("AddTransferReturnOR", "FileMaintenanceCollectionDeposit", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMCollectionDepositController','Get_TransferReturnORTable','Successfully Saved')", OnFailure = "OnFailure()", }))
 {
+    @Html.HiddenFor(m => m.AccountableTCTRORID, new { })
     <div class="row">
         <div class="col-md-4 form-group" id="_DynamicMainCollectorID">
         </div>

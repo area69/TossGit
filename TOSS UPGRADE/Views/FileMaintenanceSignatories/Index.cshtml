@@ -12,36 +12,58 @@
 </script>
 <div class="content-header row">
     <div class="content-header-left col-md-6 mb-2">
-        <h3 class="content-header"><b>File Maintenance - Signatory</b></h3>
+        <h3 class="content-header-title"><b>File Maintenance - Signatory</b></h3>
     </div>
 </div>
-<div class="row font-weight-bold black" id="FMSignatoriesController" ng-controller="FMSignatoriesController" ng-init="InitAllFunction();">
-    <div class="col-12 col-xl-12 ">
-        <div class="card box-shadow-2">
-            <div class="card-content collapse show">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card box-shadow-2">
-                                <div class="card-header bg-carheadercolor">
-                                    <h4 class="card-title black"><b>Signatory</b></h4>
-                                </div>
-                                <div class="card-body box-shadow-2">
-                                    <div class="content-body" id="SignatoriesIDTemp">
+<div class="content-body">
+    <div class="row" id="FMSignatoriesController" ng-controller="FMSignatoriesController" ng-init="InitAllFunction();">
+        <div class="col-12 col-xl-12 ">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card box-shadow-2">
+                        <div class="card-header bg-carheadercolor">
+                            <h4 class="card-title black"><b>Signatory</b></h4>
+                        </div>
+                        <div class="card-body box-shadow-2">
+                            <div class="content-body" id="SignatoriesIDTemp">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card box-shadow-2">
+                        <div class="card-header bg-carheadercolor">
+                            <h4 class="card-title black"><b>Signatories Details</b></h4>
+                        </div>
+                        <div class="card-body box-shadow-2" id="SignatoriesTableID">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* Add Position Modal *@
+        <div class="col-lg-8 col-md-8 col-sm-12">
+            <div class="form-group">
+                <div class="modal animated zoomIn text-left" id="addPositionModal" role="dialog">
+                    <div class="modal-dialog" style="max-width:600px" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-headerbc white">
+                                <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Position</h4>
+                                <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
+                            </div>
+                            <div class="modal-body skin skin-square">
+                                <div class="row">
+                                    <div class="col-md-12" id="PositionTempID">
 
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card box-shadow-2">
-                                <div class="card-header bg-carheadercolor">
-                                    <h4 class="card-title black"><b>Signatories Details</b></h4>
-                                </div>
-                                <div class="card-body box-shadow-2" id="SignatoriesTableID">
+                                <div class="row mt-1" id="PositionTableID">
 
                                 </div>
                             </div>
@@ -50,63 +72,35 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    @* Add Position Modal *@
-    <div class="col-lg-8 col-md-8 col-sm-12">
-        <div class="form-group">
-            <div class="modal animated zoomIn text-left" id="addPositionModal" role="dialog">
-                <div class="modal-dialog" style="max-width:600px" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header bg-headerbc white">
-                            <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Position</h4>  
-                            <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
-                        </div>
-                        <div class="modal-body skin skin-square">
-                            <div class="row">
-                                <div class="col-md-12" id="PositionTempID">
+        @* Add Department Modal *@
+        <div class="col-lg-8 col-md-8 col-sm-12">
+            <div class="form-group">
+                <div class="modal animated zoomIn text-left" id="addDepartmentModal" role="dialog">
+                    <div class="modal-dialog" style="max-width:600px" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-headerbc white">
+                                <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Department</h4>
+                                <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
+                            </div>
+                            <div class="modal-body skin skin-square">
+                                <div class="row">
+                                    <div class="col-md-12" id="DepartmentxID">
+
+                                    </div>
+                                </div>
+                                <div class="row mt-1" id="DepartmentTableID">
 
                                 </div>
-                            </div>
-                            <div class="row mt-1" id="PositionTableID">
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
-
-
-    @* Add Department Modal *@
-    <div class="col-lg-8 col-md-8 col-sm-12">
-        <div class="form-group">
-            <div class="modal animated zoomIn text-left" id="addDepartmentModal" role="dialog">
-                <div class="modal-dialog" style="max-width:600px" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header bg-headerbc white">
-                            <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Department</h4>
-                            <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
-                        </div>
-                        <div class="modal-body skin skin-square">
-                            <div class="row">
-                                <div class="col-md-12" id="DepartmentxID">
-
-                                </div>
-                            </div>
-                            <div class="row mt-1" id="DepartmentTableID">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
-
 
     <script>
 
@@ -177,7 +171,6 @@
                 F.LoadDynamicDDPositionName();
             });
         }
-
         F.GetListOfSignatories = function () {
             P({
                 url: '/FileMaintenanceSignatories/GetListOfSignatories',
@@ -195,7 +188,6 @@
             F.LoadDynamicDDPositionName();
             F.LoadDynamicDDDepartment();
         }
-
         F.LoadDynamicDDPositionName = function () {
             P({
                 url: '/FileMaintenanceSignatories/GetDynamicSignatories',
@@ -203,8 +195,6 @@
                 $("#_DynamicDDPositionNameID").html(response.data);
             });
         }
-
-
         F.LoadSelectedDynamicDDDepartment = function () {
             var DepartmentIDTempID = $("#DepartmentIDTempID").val();
             P({
@@ -214,7 +204,6 @@
                 $("#_DynamicDDDepartmentID").html(response.data);
             });
         }
-        
         F.LoadSelectedDynamicDDPositionName = function () {
             var PositionIDTempID = $("#PositionIDTempID").val();
             P({

@@ -10,6 +10,33 @@ NOTE:
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
 
+.select2-container--classic .select2-results__options .select2-results__option[aria-selected=true], .select2-container--default .select2-results__options .select2-results__option[aria-selected=true] {
+    background-color: #CD6661 !important;
+    color: white !important;
+}
+/* Style buttons */
+
+.buttonEf {
+    background-color: transparent; /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    font-size: 28px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+}
+.iconhoverDelete {
+    color: #CD6661;
+}
+.iconhoverDelete:hover {
+    color: darkred;
+} 
+
+.iconhoverEdit {
+    color: #1E9FF2;
+}
+.iconhoverEdit:hover {
+    color: blue;
+} 
+
 
 .card-sm .card-header {
     padding: 7px;
@@ -110,7 +137,17 @@ div.dataTables_wrapper div.dataTables_filter label {
     color: #1883AE;
     border: 1px solid #BABFC7;
 }
+.table-smss-hover tbody tr:hover {
+    background: #fff2cc;
+    cursor: pointer;
+    color: black;
+    text-decoration-color: white;
+}
 
+.table-smss-hover tbody tr.active {
+    background: #FFE082;
+    color: black;
+}
 .bordered-div
 {
      border-color:  #B2CDE3 !important;
@@ -171,7 +208,7 @@ footer.footer-dark {
 
 
 table.table {
-    border-color:#000;
+    /*border-color:#000;*/
     color:black;
 }
     table.table thead tr th,
