@@ -62,8 +62,8 @@ namespace TOSS_UPGRADE.Controllers
                         tbl_CheckInventory.Add(new CheckInventoryList()
                         {
                             CheckInvntID = GlobalFunction.ReturnEmptyInt(dr[0]),
-                            Bank = GlobalFunction.ReturnEmptyString(dr[16]),
-                            AccountName = GlobalFunction.ReturnEmptyString(dr[10]),
+                            Bank = GlobalFunction.ReturnEmptyString(dr[17]),
+                            AccountName = GlobalFunction.ReturnEmptyString(dr[11]),
                             Quantity = GlobalFunction.ReturnEmptyInt(dr[3]),
                             StartingChckNo = GlobalFunction.ReturnEmptyInt(dr[4]),
                             EndingChckNo = GlobalFunction.ReturnEmptyInt(dr[5]),
@@ -94,6 +94,7 @@ namespace TOSS_UPGRADE.Controllers
             tblCheckInventory.StartingChckNo = model.getCheckInventorycolumns.StartingChckNo;
             tblCheckInventory.EndingChckNo = model.getCheckInventorycolumns.EndingChckNo;
             tblCheckInventory.Date = model.getCheckInventorycolumns.Date;
+            tblCheckInventory.IsIssued = false;
             TOSSDB.CheckInventoryTables.Add(tblCheckInventory);
             TOSSDB.SaveChanges();
             return Json(tblCheckInventory);
@@ -168,7 +169,7 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult LoadDynamicCheckMaintenanceInventory(int BankID, int AccountNameIDDD2)
         {
             FM_Disbursement_CheckMaintenance model = new FM_Disbursement_CheckMaintenance();
-            model.CheckMaintenanceInventoryList = new SelectList((from s in TOSSDB.CheckInventoryTables.ToList() where s.BankID == BankID && s.BankAccountID == AccountNameIDDD2 select new { CheckInvntID = s.CheckInvntID, StartingChckNo = s.StartingChckNo }), "CheckInvntID", "StartingChckNo");
+            model.CheckMaintenanceInventoryList = new SelectList((from s in TOSSDB.CheckInventoryTables.ToList() where s.IsIssued != true && s.BankID == BankID && s.BankAccountID == AccountNameIDDD2 select new { CheckInvntID = s.CheckInvntID, StartingChckNo = s.StartingChckNo }), "CheckInvntID", "StartingChckNo");
             return PartialView("CheckMaintenance/_DynamicDDStartingCheckNo", model);
         }
         public ActionResult Get_CheckMaintenanceQuantyNEnd(int BankID,int BankAccountID,int StartingChckNo)
@@ -193,7 +194,20 @@ namespace TOSS_UPGRADE.Controllers
             tblCheckMaintenance.CheckInvntID = model.CheckMaintenanceInventoryID;
             TOSSDB.CheckMaintenanceTables.Add(tblCheckMaintenance);
             TOSSDB.SaveChanges();
-            return Json(tblCheckMaintenance);
+
+            CheckInventoryTable tblAccountablechkInventory = (from e in TOSSDB.CheckInventoryTables where e.IsIssued == false select e).FirstOrDefault();
+            if (tblAccountablechkInventory.IsIssued == false)
+            {
+                tblAccountablechkInventory.IsIssued = true;
+            }
+            else
+            {
+                tblAccountablechkInventory.IsIssued = false;
+            }
+            TOSSDB.Entry(tblAccountablechkInventory);
+            TOSSDB.SaveChanges();
+
+            return Json("");
         }
         //Get Table Check Maintenance
         public ActionResult Get_CheckMaintenanceTable()
@@ -245,6 +259,19 @@ namespace TOSS_UPGRADE.Controllers
             CheckMaintenanceTable tblCheckMaintenance = (from e in TOSSDB.CheckMaintenanceTables where e.CheckMainteID == CheckMainteID select e).FirstOrDefault();
             TOSSDB.CheckMaintenanceTables.Remove(tblCheckMaintenance);
             TOSSDB.SaveChanges();
+
+            CheckInventoryTable tblAccountablechkInventory = (from e in TOSSDB.CheckInventoryTables where e.IsIssued == true select e).FirstOrDefault();
+            if (tblAccountablechkInventory.IsIssued == true)
+            {
+                tblAccountablechkInventory.IsIssued = false;
+            }
+            else
+            {
+                tblAccountablechkInventory.IsIssued = true;
+            }
+            TOSSDB.Entry(tblAccountablechkInventory);
+            TOSSDB.SaveChanges();
+
             return RedirectToAction("Index");
         }
         #endregion

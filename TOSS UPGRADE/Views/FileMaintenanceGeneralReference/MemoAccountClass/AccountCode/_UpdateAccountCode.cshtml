@@ -8,24 +8,23 @@
 {
 <div class="row">
     @Html.HiddenFor(m => m.getMMAccountTitleColumns.AccountCodeID, new { })
-    <div class="col-md-8">
-        <label class="mt-1">Account Name</label>
+    <div class="col-md-5 pr-0">
+        <label>Account Name</label>
         @Html.TextBoxFor(m => m.getMMAccountTitleColumns.AccountTitle, new { @class = "form-control", type = "text" })
     </div>
-    <div class="col-md-4">
-        <label class="mt-1">Account Code</label>
+    <div class="col-md-3 pr-0">
+        <label>Account Code</label>
         @Html.TextBoxFor(m => m.getMMAccountTitleColumns.AccountCode, new { @class = "form-control", type = "text" })
     </div>
-</div>
-<div class="row mt-1">
-    <div class="col-md-8"></div>
-    <div class="col-md-2">
+    <div class="col-md-2 pr-0">
+        <label style="visibility:hidden">Account</label>
         <button type="submit" class="btn bg-addbutton form-control black">
             <b>Save</b>
         </button>
     </div>
 
     <div class="col-md-2">
+        <label style="visibility:hidden">Account</label>
         <button type="reset" class="btn bg-headerbc white form-control" onclick="AngularGlobalEdit('FMGeneralReferenceController','Get_AddAccountCode','')"><b>Cancel</b></button>
     </div>
 </div>

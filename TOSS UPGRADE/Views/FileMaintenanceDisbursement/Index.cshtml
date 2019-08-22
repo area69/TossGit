@@ -9,7 +9,7 @@
         <h3 class="content-header"><b>File Maintenance - Disbursement</b></h3>
     </div>
 </div>
-    <div class="card-content font-weight-bold black" id="FMDisbursementController" ng-controller="FMDisbursementController" ng-init="InitAllFunction();">
+    <div class="card-content" id="FMDisbursementController" ng-controller="FMDisbursementController" ng-init="InitAllFunction();">
         <div class="card-body box-shadow-2">
             <div class="card" style="border: 1px solid; border-color: #EABEBB">
                 <ul class="nav nav-tabs bg-headerbc">
@@ -144,6 +144,7 @@
             }).then(function (response) {
                 $("#_CheckInventoryID").html(response.data);
                 F.LoadDynamicDDAccountName();
+                F.LoadDynamicCheckMaintenanceInventory();
                 });
           
         }
@@ -209,7 +210,7 @@
             }
             P({
                 url: '/FileMaintenanceDisbursement/LoadDynamicCheckMaintenanceInventory',
-                params: { BankID: BankID, AccountNameIDDD2: AccountNameIDDD2 }
+                params: { BankID: BankID, AccountNameIDDD2: AccountNameIDDD2}
             }).then(function (response) {
                 $("#_DynamicDDStartingNoID").html(response.data);
                 F.Get_CheckMaintenanceQuantyNEnd();

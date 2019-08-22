@@ -18,8 +18,8 @@
                 @{
                     foreach (var Items in Model)
                     {
-                        //var DeleteConfirmationMess = "Are you sure do you want to delete this Department?";
-                        //var DeleteSuccesMess = "Department Deleted";
+                        var DeleteConfirmationMess = "Are you sure do you want to delete this Department?";
+                        var DeleteSuccesMess = "Department Deleted";
 
                         //var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\" onclick=\"AngularGlobalEdit('FMSignatoriesController','Get_UpdateDepartment','" + @Items.DepartmentID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
                         //var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.Department + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.DepartmentID + ",&quot;Get_DeleteDepartment&quot;,&quot;FMSignatoriesController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete<b></button>";
@@ -29,8 +29,8 @@
                             <td>@Items.DepartmentCode</td>
 
                             <td>
-                                <button class="buttonEf iconhoverEdit"><i class="ft-edit"></i></button>
-                                <button class="buttonEf iconhoverDelete"><i class="ft-delete"></i></button>
+                                <button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMSignatoriesController','Get_UpdateDepartment','@Items.DepartmentID')"><i class="ft-edit"></i></button>
+                                <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','@Items.Department','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.DepartmentID ,&quot;Get_DeleteDepartment&quot;,&quot;FMSignatoriesController&quot;)')"><i class="ft-delete"></i></button>
                             </td>
                         </tr>
                     }

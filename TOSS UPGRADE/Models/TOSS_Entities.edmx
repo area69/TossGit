@@ -103,6 +103,7 @@
           <Property Name="StartingChckNo" Type="int" Nullable="false" />
           <Property Name="EndingChckNo" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="IsIssued" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CheckMaintenanceTable">
           <Key>
@@ -997,6 +998,7 @@
           <Property Name="StartingChckNo" Type="Int32" Nullable="false" />
           <Property Name="EndingChckNo" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsIssued" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="BankAccountTable" Relationship="DB_TOSSModel.FK_CheckInventoryTable_BankAccountTable" FromRole="CheckInventoryTable" ToRole="BankAccountTable" />
           <NavigationProperty Name="BankTable" Relationship="DB_TOSSModel.FK_CheckInventoryTable_BankTable" FromRole="CheckInventoryTable" ToRole="BankTable" />
           <NavigationProperty Name="CheckMaintenanceTables" Relationship="DB_TOSSModel.FK_CheckMaintenanceTable_CheckMaintenanceTable" FromRole="CheckInventoryTable" ToRole="CheckMaintenanceTable" />
@@ -1580,6 +1582,7 @@
           <EntitySetMapping Name="CheckInventoryTables">
             <EntityTypeMapping TypeName="DB_TOSSModel.CheckInventoryTable">
               <MappingFragment StoreEntitySet="CheckInventoryTable">
+                <ScalarProperty Name="IsIssued" ColumnName="IsIssued" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="EndingChckNo" ColumnName="EndingChckNo" />
                 <ScalarProperty Name="StartingChckNo" ColumnName="StartingChckNo" />

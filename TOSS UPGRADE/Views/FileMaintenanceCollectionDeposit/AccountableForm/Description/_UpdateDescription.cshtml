@@ -8,7 +8,7 @@
 {
 <div class="row">
     @Html.HiddenFor(m => m.getDescriptionColumns.DescriptionID, new { })
-    <div class="col-md-7 mr-1">
+    <div class="col-md-7 mr-1 pr-0">
         <label>Description</label>
         @Html.TextBoxFor(m => m.getDescriptionColumns.Description, new { @class = "form-control", type = "text" })
     </div>
@@ -18,7 +18,7 @@
     </div>
     <div class="col-md-2 px-0">
         <label style="visibility:hidden">Department</label>
-        <button class="btn bg-headerbc form-control white" data-dismiss="modal"><b>Cancel</b></button>
+        <button class="btn bg-headerbc form-control white"  type="button" onclick="AngularGlobalEdit('FMCollectionDepositController','Get_AddDescription','')"><b>Cancel</b></button>
     </div>
 </div>
 }

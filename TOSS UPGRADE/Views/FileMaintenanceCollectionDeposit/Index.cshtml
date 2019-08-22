@@ -32,7 +32,7 @@
                 <a class="nav-link text-white" id="base-tab7" data-toggle="tab" aria-controls="tab7" href="#tab7" aria-expanded="false">Collector Account Activation</a>
             </li>*@
     </ul>
-    <div class="tab-content px-1 pt-1 font-weight-bold black">
+    <div class="tab-content px-1 pt-1">
         @* Accountable Form *@
         <div role="tabpanel" class="tab-pane active" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
             <div class="content-body">
@@ -45,7 +45,7 @@
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
                                     <ul class="list-inline mb-0">
-                                        <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
+                                        <li><a data-action="collapse"><i class="ft-plus text-white"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -63,31 +63,31 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                @* Add Description Modal *@
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="form-group">
-                        <div class="modal animated zoomIn text-left" id="addDescriptionModal" role="dialog">
-                            <div class="modal-dialog" style="max-width:500px" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-headerbc white">
-                                        <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Description</h4>
-                                        <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
-                                    </div>
-                                    <div class="modal-body skin skin-square">
-                                        <div class="row">
-                                            <div class="col-md-12" id="_DescriptionxID">
-
+                        @* Add Description Modal *@
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="modal animated zoomIn text-left" id="addDescriptionModal" role="dialog">
+                                    <div class="modal-dialog" style="max-width:600px" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-headerbc white">
+                                                <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Description</h4>
+                                                <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
                                             </div>
-                                        </div>
-                                        <div class="row mt-1" id="_DescriptionTableID">
+                                            <div class="modal-body skin skin-square">
+                                                <div class="row">
+                                                    <div class="col-md-12" id="_DescriptionxID">
 
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-1">
+                                                    <div class="col-md-12" id="_DescriptionTableID">
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -193,11 +193,11 @@
                             <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
-                                    <li><a data-action="collapse"><i class="ft-plus text-white"></i></a></li>
+                                    <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="card-content show">
+                        <div class="card-content collapse show">
                             <div class="content-body">
                                 <div class="card-block">
                                     <div class="card-body box-shadow-2">
@@ -254,10 +254,9 @@
                                                 </div>
                                             </div>
                                             @* Add Transfer/Return Modal *@
-                                            <div class="col-lg-8 col-md-8 col-sm-12 small">
-                                                <div class="form-group">
+                                            <div class="col-lg-8 col-md-8 col-sm-12">
                                                     <div class="modal animated zoomIn text-left" id="addTransferReturnModal" role="dialog">
-                                                        <div class="modal-dialog" style="max-width:960px" role="document">
+                                                        <div class="modal-dialog" style="max-width:1000px" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header bg-headerbc white">
                                                                     <h6 class="modal-title white"><i class="la la-plus mr-1"></i>Transfer / Return OR Series</h6>
@@ -278,7 +277,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                             </div>
                                         </div>
                                         @* Field Collectors *@

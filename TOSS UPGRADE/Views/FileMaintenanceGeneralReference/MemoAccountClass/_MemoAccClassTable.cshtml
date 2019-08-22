@@ -5,16 +5,16 @@
 @using TOSS_UPGRADE.Models;
 
 <div class="table-responsive">
-    <table class="table table-striped table-bordered zero-configuration w-100">
-        <thead class="text-center">
+    <table class="table table-striped zero-configuration text-center dataTable scroll-horizontal table-smss-hover no-footer m-0 w-100">
+        <thead>
             <tr>
             <tr>
                 <th>Account Title</th>
                 <th>Account Code</th>
-                <th width="5px;">Action</th>
+                <th>Action</th>
             </tr>
         </thead>
-        <tbody class="text-center">
+        <tbody>
             @{
                 foreach (var Items in Model)
                 {
@@ -22,21 +22,25 @@
                     var DeleteConfirmationMess = "Are you sure do you want to delete this Memo Account Classification?";
                     var DeleteSuccesMess = "Memo Account Classification Deleted";
 
-                    var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\" onclick=\"AngularGlobalEdit('FMGeneralReferenceController','Get_UpdateMemoAccount','" + @Items.MMAccountID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
-                    var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.AccountTitle + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.MMAccountID + ",&quot;Get_DeleteMemoAccClass&quot;,&quot;FMGeneralReferenceController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete</b></button>";
-                    var ActionContentProgram = ViewEdit + ViewDelete;
+                    //var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\" onclick=\"AngularGlobalEdit('FMGeneralReferenceController','Get_UpdateMemoAccount','" + @Items.MMAccountID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
+                    //var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.AccountTitle + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.MMAccountID + ",&quot;Get_DeleteMemoAccClass&quot;,&quot;FMGeneralReferenceController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete</b></button>";
+                    //var ActionContentProgram = ViewEdit + ViewDelete;
                     <tr>
                         <td>@Items.AccountTitle</td>
                         <td>@Items.AccountCode</td>
                         <td>
+                            <button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMGeneralReferenceController','Get_UpdateMemoAccount','@Items.MMAccountID')"><i class="ft-edit"></i></button>
+                            <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.MMAccountID ,&quot;Get_DeleteMemoAccClass&quot;,&quot;FMGeneralReferenceController&quot;)')"><i class="ft-delete"></i></button>
+                        </td>
+                        @*<td>
                             <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-m btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
                                     data-original-title="" data-html="true" data-placement="right">
                                 <i class="la la-bars"></i>
                             </button>
-                        </td>
-                    </tr>
-                }
-            }
+                        </td>*@
+                        </tr>
+                            }
+                        }
         </tbody>
     </table>
 </div>

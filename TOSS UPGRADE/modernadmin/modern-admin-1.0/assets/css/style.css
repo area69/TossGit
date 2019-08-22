@@ -48,22 +48,37 @@ table thead tr th{
     white-space: normal;
     vertical-align: middle;
 }
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    background-color: #1883AE;
-    color: white;
+.nav.nav-tabs.nav-topline .nav-item a.nav-link.active {
+    background: none;
+    box-shadow: inset 0 3px 0 #FF4961;
+    color: black;
+    border-radius: 0;
+    border-top-color: #FF4961;
+    border-bottom: none;
 }
+.nav.nav-tabs.nav-topline .nav-item a.nav-link {
+    padding: 0.8rem 0.5rem;
+    background: rgba(40, 44, 42, 0.05);
+    color: white;
+    line-height: 1;
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+}
+/*.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: #E49B1F;
+    color: white;
+}*/
 .card-header {
     padding: 8px;
     margin: 1px;
 }
-.nav-tabs .nav-topline .nav-item {
+/*.nav-tabs .nav-topline .nav-item {
     background-color: #E49B1F;
     box-shadow: inset 0 3px 0 #388E3C;
-    color: black;
-    text-decoration-color: black;
+    color: white;
     border-radius: 0;
     border-bottom: none;
-}
+}*/
 
 .select2-container {
     width: 100% !important;
@@ -72,7 +87,7 @@ table thead tr th{
 .nav-link.active {
     background-color: #E49B1F !important;
     border-radius: 0.25rem 0.25rem 0 0;
-   text-decoration-color: black;
+    color: black;
 }
 
 .bg-labelcolor {
