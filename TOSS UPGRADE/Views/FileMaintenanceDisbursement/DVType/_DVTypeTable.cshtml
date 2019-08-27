@@ -21,22 +21,22 @@
                             var DeleteConfirmationMess = "Are you sure do you want to delete this Disbursement Voucher Type Name?";
                             var DeleteSuccesMess = "Disbursement Voucher Type Name Deleted";
 
-                            //  var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\"onclick=\"AngularGlobalEdit('FMDisbursementController','Get_UpdateDVType','" + @Items.DVTypeID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
-                            //  var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.DVTypeName + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.DVTypeID + ",&quot;Get_DeleteDVType&quot;,&quot;FMDisbursementController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete</b></button>";
-                            //  var ActionContentProgram = ViewEdit + ViewDelete;
+                            var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\"onclick=\"AngularGlobalEdit('FMDisbursementController','Get_UpdateDVType','" + @Items.DVTypeID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
+                            var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.DVTypeName + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.DVTypeID + ",&quot;Get_DeleteDVType&quot;,&quot;FMDisbursementController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete</b></button>";
+                            var ActionContentProgram = ViewEdit + ViewDelete;
                             <tr>
                                 <td>@Items.DVTypeName</td>
 
-                                <td>
+                                @*<td>
                                     <button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMDisbursementController','Get_UpdateDVType','@Items.DVTypeID')"><i class="ft-edit"></i></button>
                                     <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.DVTypeID ,&quot;Get_DeleteDVType&quot;,&quot;FMDisbursementController&quot;)')"><i class="ft-delete"></i></button>
+                                </td>*@
+                                <td>
+                                    <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-sm btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
+                                            data-original-title="" data-html="true" data-placement="right">
+                                        <i class="la la-bars"></i>
+                                    </button>
                                 </td>
-                                @*<td>
-                                <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-m btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
-                                        data-original-title="" data-html="true" data-placement="right">
-                                    <i class="la la-bars"></i>
-                                </button>
-                            </td>*@
                             </tr>
                         }
                     }

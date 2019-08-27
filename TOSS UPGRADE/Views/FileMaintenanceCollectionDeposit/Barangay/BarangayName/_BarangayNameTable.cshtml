@@ -1,0 +1,48 @@
+﻿@model IEnumerable<TOSS_UPGRADE.Models.FM_CollectionAndDeposit.BarangayNameList>
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+    <table class="table table-striped zero-configuration text-center dataTable scroll-horizontal table-smss-hover no-footer m-0 w-100">
+        <thead>
+            <tr>
+                <th>Barangay Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var Items in Model)
+                {
+                    var DeleteConfirmationMess = "Are you sure do you want to delete this Barangay Name?";
+                    var DeleteSuccesMess = "Successfully Deleted";
+
+                    var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\"onclick=\"AngularGlobalEdit('FMCollectionDepositController','Get_UpdateBarangayName','" + @Items.BarangayID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
+                    var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.BarangayID + ",&quot;Get_DeleteBarangayName&quot;,&quot;FMCollectionDepositController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete</b></button>";
+                    var ActionContentProgram = ViewEdit + ViewDelete;
+                    <tr>
+                        <td>@Items.BarangayName</td>
+                        @*<td>
+                                <button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMCollectionDepositController','Get_UpdateAccountableForm','@Items.AccountFormID')"><i class="ft-edit"></i></button>
+                                <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.AccountFormID ,&quot;Get_DeleteAccountableForm&quot;,&quot;FMCollectionDepositController&quot;)')"><i class="ft-delete"></i></button>
+                            </td>*@
+                        <td width="10%">
+                            <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-sm btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
+                                    data-original-title="" data-html="true" data-placement="right">
+                                <i class="la la-bars"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+</script>
+
+

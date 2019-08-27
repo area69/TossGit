@@ -9,220 +9,131 @@
         <h3 class="content-header"><b>File Maintenance - General Reference</b></h3>
     </div>
 </div>
-<div class="row" id="FMGeneralReferenceController" ng-controller="FMGeneralReferenceController" ng-init="InitAllFunction();">
-    <div class="col-12 col-xl-12 ">
-        <div class="card box-shadow-2">
-            <div class="card-content collapse show">
-                <div class="card-body">
-                    <ul class="nav nav-tabs bg-headerbc nav-topline">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="base-tab1" data-toggle="pill" aria-controls="tab1" href="#tab1" aria-expanded="true"><b>Fund Type</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" aria-expanded="false"><b>Bank Accounts</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="base-tab4" data-toggle="tab" aria-controls="tab4" href="#tab4" aria-expanded="false"><b>Memo Account Classification</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="base-tab5" data-toggle="tab" aria-controls="tab5" href="#tab5" aria-expanded="false"><b>Internal Revenue Allotment Share</b></a>
-                        </li>
-                    </ul>
-                    <div class="tab-content px-1 pt-1" style="border:1px solid">
-                        @* Fund Type *@
-                        <div role="tabpanel" class="tab-pane active" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
-                            <div class="content-body">
-                                <div class="row mt-1">
-                                    <div class="col-md-12">
-                                        <div class="card box-shadow-2">
-                                            <div class="card-body box-shadow-3" id="FundTypeID">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row ">
-                                    <div class="col-md-12">
-                                        <div class="card box-shadow-2">
-                                            <div class="card-body box-shadow-3" id="FundTypesTableID">
-
-                                            </div>
-                                        </div>
-                                    </div>
+<div class="card-content" id="FMGeneralReferenceController" ng-controller="FMGeneralReferenceController" ng-init="InitAllFunction();">
+    <div class="card">
+        <ul class="nav nav-tabs bg-headerbc nav-underline">
+            <li class="nav-item">
+                <a class="nav-link active" id="base-tab1" data-toggle="pill" aria-controls="tab1" href="#tab1" aria-expanded="true"><b>Fund Type</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" aria-expanded="false"><b>Bank Accounts</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="base-tab4" data-toggle="tab" aria-controls="tab4" href="#tab4" aria-expanded="false"><b>Memo Account Classification</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="base-tab5" data-toggle="tab" aria-controls="tab5" href="#tab5" aria-expanded="false"><b>Internal Revenue Allotment Share</b></a>
+            </li>
+        </ul>
+        <div class="tab-content px-1 pt-1">
+            @* Fund Type *@
+            <div role="tabpanel" class="tab-pane active" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
+                <div class="content-body">
+                    <div class="row mt-1">
+                        <div class="col-md-12">
+                            <div class="card box-shadow-2">
+                                <div class="card-body box-shadow-3" id="FundTypeID">
                                 </div>
                             </div>
                         </div>
-                        @*Bank Account*@
-                        <div class="tab-pane" id="tab3" aria-labelledby="base-tab3">
-                            <div class="content-body">
-                                @* Bank Name *@
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card box-shadow-2">
-                                            <div class="card-header bg-carheadercolor mt-1">
-                                                <h4 class="card-title black"><b>Bank Names</b></h4>
-                                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                                                <div class="heading-elements">
-                                                    <ul class="list-inline mb-0">
-                                                        <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="card-content collapse">
-                                                <div class="row mt-1">
-                                                    <div class="col-md-2"></div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body box-shadow-2" id="BankID">
+                    </div>
 
-                                                        </div>
-                                                    </div>
-                                                </div>
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <div class="card box-shadow-2">
+                                <div class="card-body box-shadow-3" id="FundTypesTableID">
 
-                                                <div class="card-body box-shadow-1" id="BankTableID">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @* Bank Account *@
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card box-shadow-2">
-                                            <div class="card-header bg-carheadercolor mt-1">
-                                                <h4 class="card-title black"><b>Bank Accounts</b></h4>
-                                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                                                <div class="heading-elements">
-                                                    <ul class="list-inline mb-0">
-                                                        <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="card-content collapse show">
-                                                <div class="row mt-1">
-                                                    <div class="col-md-12">
-                                                        <div class="card-body box-shadow-2" id="BankAccountID">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @* Bank Account Table *@
-                                                <div class="row mt-1" id="BankAccountTableID">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @* Add Account Type Modal *@
-                            <div class="col-lg-8 col-md-8 col-sm-12">
-                                <div class="form-group">
-                                    <div class="modal animated zoomIn text-left" id="addAccountTypeModal" role="dialog">
-                                        <div class="modal-dialog" style="max-width:600px" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-headerbc white">
-                                                    <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Account Type</h4><button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
-                                                </div>
-                                                <div class="modal-body skin skin-square">
-                                                    <div class="row">
-                                                        <div class="col-md-1"></div>
-                                                        <div class="col-md-10" id="AccountTypeID">
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mt-1">
-                                                        <div class="col-md-1"></div>
-                                                        <div class="col-md-10">
-                                                            <div class="row" id="AccountTableID">
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        @*Memo Account Classification*@
-                        <div class="tab-pane" id="tab4" aria-labelledby="base-tab4">
-                            <div class="content-body">
-                                <div class="row mt-1">
-                                    <div class="col-md-1">
-
-                                    </div>
-                                    <div class="col-md-10" id="MemoAccClassID">
-
-                                    </div>
-                                </div>
-                                <div class="row mt-1">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-10">
-                                        <div class="card box-shadow-2">
-                                            <div class="card-header bg-carheadercolor">
-                                                <h4 class="card-title black"><b>List of Memorandum Account Classifications</b></h4>
-                                            </div>
-                                            <div class="card-content collapse show">
-                                                <div class="card-body box-shadow-2">
-                                                    <div class="row" id="MemoClassTableID">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            @* Add Account Code Modal *@
-                            <div class="col-lg-8 col-md-8 col-sm-12">
-                                <div class="form-group">
-                                    <div class="modal animated zoomIn text-left" id="addAccountCodeModal" role="dialog">
-                                        <div class="modal-dialog" style="max-width:700px" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-headerbc white">
-                                                    <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Account Code</h4>
-                                                    <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
-                                                </div>
-                                                <div class="modal-body skin skin-square">
-                                                    <div class="row">
-                                                        <div class="col-md-12" id="AccountCodexID">
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mt-1" id="AccountCodeTableID">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @*Internal Revenue Allotment Share*@
-                        <div class="tab-pane" id="tab5" aria-labelledby="base-tab5">
-                            <div class="content-body">
-                                <div class="card-body box-shadow-2">
-                                    <div class="row">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-10" id="_IraID">
-
-                                        </div>
-                                    </div>
-                                </div>
+                    </div>
+                </div>
+            </div>
+            @*Bank Account*@
+            <div class="tab-pane" id="tab3" aria-labelledby="base-tab3">
+                <div class="card box-shadow-2">
+                    <div class="content-body">
+                        @* Bank Name *@
+                        <div class="row px-0">
+                            <div class="col-md-12">
                                 <div class="card box-shadow-2">
-                                    <div class="card-header bg-carheadercolor">
-                                        <h4 class="card-title black"><b>Internal Revenue Allotment Share</b></h4>
+                                    <div class="card-header bg-carheadercolor mt-1">
+                                        <h4 class="card-title black"><b>Bank Names</b></h4>
+                                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                        <div class="heading-elements">
+                                            <ul class="list-inline mb-0">
+                                                <li><a data-action="collapse"><i class="ft-minus black"></i></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="card-content collapse show">
-                                        <div class="card-body box-shadow-2">
+                                    <div class="card-content collapse">
+                                        <div class="row mt-1">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-8">
+                                                <div class="card-body box-shadow-2" id="BankID">
 
-                                            <div class="row">
-                                                <div class="col-md-1"></div>
-                                                <div class="col-md-10" id="_IraTableID">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body box-shadow-1" id="BankTableID">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @* Bank Account *@
+                        <div class="row px-0">
+                            <div class="col-12 col-xl-12 ">
+                                <div class="card box-shadow-2">
+                                    <div class="card-header bg-carheadercolor mt-1">
+                                        <h4 class="card-title black"><b>Bank Accounts</b></h4>
+                                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                        <div class="heading-elements">
+                                            <ul class="list-inline mb-0">
+                                                <li><a data-action="collapse"><i class="ft-minus black"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card-content collapse">
+                                        <div class="row mt-1">
+                                            <div class="col-md-12">
+                                                <div class="card-body box-shadow-2" id="BankAccountID">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @* Bank Account Table *@
+                                        <div class="row mt-1" id="BankAccountTableID">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @* Add Account Type Modal *@
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <div class="form-group">
+                        <div class="modal animated zoomIn text-left" id="addAccountTypeModal" role="dialog">
+                            <div class="modal-dialog" style="max-width:600px" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-headerbc white">
+                                        <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Account Type</h4><button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
+                                    </div>
+                                    <div class="modal-body skin skin-square">
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10" id="AccountTypeID">
+
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10">
+                                                <div class="row" id="AccountTableID">
 
                                                 </div>
                                             </div>
@@ -234,6 +145,96 @@
                     </div>
                 </div>
             </div>
+            @*Memo Account Classification*@
+            <div class="tab-pane" id="tab4" aria-labelledby="base-tab4">
+                <div class="content-body">
+                    <div class="row mt-1">
+                        <div class="col-md-1">
+
+                        </div>
+                        <div class="col-md-10">
+                            <div class="card box-shadow-2">
+                                <div class="card-body box-shadow-3" id="MemoAccClassID">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div class="card box-shadow-3">
+                                <div class="card-header bg-carheadercolor">
+                                    <h4 class="card-title black"><b>List of Memorandum Account Classifications</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div class="row" id="MemoClassTableID">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @* Add Account Code Modal *@
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <div class="form-group">
+                        <div class="modal animated zoomIn text-left" id="addAccountCodeModal" role="dialog">
+                            <div class="modal-dialog" style="max-width:700px" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-headerbc white">
+                                        <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Account Code</h4>
+                                        <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
+                                    </div>
+                                    <div class="modal-body skin skin-square">
+                                        <div class="row">
+                                            <div class="col-md-12" id="AccountCodexID">
+
+                                            </div>
+                                        </div>
+                                        <div class="row mt-1" id="AccountCodeTableID">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*Internal Revenue Allotment Share*@
+            <div class="tab-pane" id="tab5" aria-labelledby="base-tab5">
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div class="card box-shadow-2">
+                                <div class="card-body box-shadow-3" id="_IraID">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card box-shadow-2 mt-1">
+                        <div class="card-header bg-carheadercolor">
+                            <h4 class="card-title black"><b>Internal Revenue Allotment Share</b></h4>
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="card-body box-shadow-2">
+
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-10" id="_IraTableID">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

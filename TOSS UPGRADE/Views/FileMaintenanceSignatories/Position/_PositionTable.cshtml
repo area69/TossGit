@@ -20,14 +20,18 @@
                         var DeleteConfirmationMess = "Are you sure do you want to delete this Position?";
                         var DeleteSuccesMess = "Position Deleted";
 
-                        //var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\" onclick=\"AngularGlobalEdit('FMSignatoriesController','Get_UpdatePosition','" + @Items.PositionID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
-                        //var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.PositionName + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.PositionID + ",&quot;Get_DeletePosition&quot;,&quot;FMSignatoriesController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete<b></button>";
-                        //var ActionContentProgram = ViewEdit + ViewDelete;
+                        var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\" onclick=\"AngularGlobalEdit('FMSignatoriesController','Get_UpdatePosition','" + @Items.PositionID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
+                        var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.PositionName + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.PositionID + ",&quot;Get_DeletePosition&quot;,&quot;FMSignatoriesController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete<b></button>";
+                        var ActionContentProgram = ViewEdit + ViewDelete;
                         <tr>
                             <td>@Items.PositionName</td>
                             <td>
-                                <button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMSignatoriesController','Get_UpdatePosition','@Items.PositionID')"><i class="ft-edit"></i></button>
-                                <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','@Items.PositionName','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.PositionID ,&quot;Get_DeletePosition&quot;,&quot;FMSignatoriesController&quot;)')"><i class="ft-delete"></i></button>
+                                <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-sm btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
+                                        data-original-title="" data-html="true" data-placement="right">
+                                    <i class="la la-bars"></i>
+                                </button>
+                                @*<button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMSignatoriesController','Get_UpdatePosition','@Items.PositionID')"><i class="ft-edit"></i></button>
+        <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','@Items.PositionName','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.PositionID ,&quot;Get_DeletePosition&quot;,&quot;FMSignatoriesController&quot;)')"><i class="ft-delete"></i></button>*@
                             </td>
                         </tr>
                     }

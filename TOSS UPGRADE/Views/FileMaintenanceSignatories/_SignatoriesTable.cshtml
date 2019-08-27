@@ -24,36 +24,40 @@
                         {
                             var DeleteConfirmationMess = "Are you sure do you want to delete this Signatories?";
                             var DeleteSuccesMess = "Signatories Deleted";
-                            //var DeleteFunction = "AngularGlobalDelete(' @Items.SignatoriesID ','Get_DeleteSignatories','FMSignatoriesController')";
-                            //   var ActionEdit = "<i onclick=\"AngularGlobalEdit('FMSignatoriesController','Get_UpdateSignatories','" + @Items.SignatoriesID + "')\"></i>";
-                            //var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.SignatoriesName + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.SignatoriesID + ",&quot;Get_DeleteSignatories&quot;,&quot;FMSignatoriesController&quot;)')\"><i class='ft-delete mr-1'></i><b>Delete<b></button>";
 
-                            // var ActionContentProgram = ActionEdit + ViewDelete;
-                            <tr>
-                                <td>@Items.SignatoriesName</td>
-                                <td>@Items.PositionNames</td>
-                                <td>@Items.Department</td>
-                                <td>@Items.DepartmentCode</td>
-                                <td>
-                                    @{
-                                        var idDeptHead = "";
-                                        if (Items.idDeptHead == true)
-                                        {
-                                            idDeptHead = "Yes";
-                                        }
-                                        else if (Items.idDeptHead == false)
-                                        {
-                                            idDeptHead = "No";
-                                        }
+                            var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\" onclick=\"AngularGlobalEdit('FMSignatoriesController','Get_UpdateSignatories','" + @Items.SignatoriesID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
+                            var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.SignatoriesName + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.SignatoriesID + ",&quot;Get_DeleteSignatories&quot;,&quot;FMSignatoriesController&quot;)')\"><i class='ft-delete mr-1'></i><b>Delete<b></button>";
 
-                                    }
-                                    @idDeptHead
-                                </td>
-                                <td>
-                                    <button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMSignatoriesController','Get_UpdateSignatories','@Items.SignatoriesID')"><i class="ft-edit"></i></button>
-                                    <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','@Items.SignatoriesName','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.SignatoriesID ,&quot;Get_DeleteSignatories&quot;,&quot;FMSignatoriesController&quot;)')"><i class="ft-delete"></i></button>
-                                </td>
-                            </tr>
+                            var ActionContentProgram = ViewEdit + ViewDelete;
+                    <tr>
+                        <td>@Items.SignatoriesName</td>
+                        <td>@Items.PositionNames</td>
+                        <td>@Items.Department</td>
+                        <td>@Items.DepartmentCode</td>
+                        <td>
+                            @{
+                                var idDeptHead = "";
+                                if (Items.idDeptHead == true)
+                                {
+                                    idDeptHead = "Yes";
+                                }
+                                else if (Items.idDeptHead == false)
+                                {
+                                    idDeptHead = "No";
+                                }
+
+                            }
+                            @idDeptHead
+                        </td>
+                        <td>
+                            <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-sm btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
+                                    data-original-title="" data-html="true" data-placement="right">
+                                <i class="la la-bars"></i>
+                            </button>
+                            @*<button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMSignatoriesController','Get_UpdateSignatories','@Items.SignatoriesID')"><i class="ft-edit"></i></button>
+        <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','@Items.SignatoriesName','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.SignatoriesID ,&quot;Get_DeleteSignatories&quot;,&quot;FMSignatoriesController&quot;)')"><i class="ft-delete"></i></button>*@
+                        </td>
+                    </tr>
                         }
                     }
                 </tbody>

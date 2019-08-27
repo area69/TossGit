@@ -651,8 +651,6 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult Get_AddTransferReturnOR()
         {
             FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
-            AccountableForm_Assignment tblAccountableFormInventory = (from e in TOSSDB.AccountableForm_Assignment select e).FirstOrDefault();
-            model.AccountableTCTRORID = tblAccountableFormInventory.AssignAFID;
             return PartialView("AssignmentofAccountableForm/TreasurerCollector/TransferReturnOR/_AddTransferReturnOR", model);
         }
         public ActionResult Get_TransferReturnORTable()
@@ -709,7 +707,7 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult GetDynamicTCTRORStubNo(int CollectorID)
         {
             FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
-            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.AccountableForm_Assignment.ToList() where s.CollectorID == CollectorID && s.IsTransferred == null select new { CollectorID = s.CollectorID, StubNo = s.AccountableForm_Inventory.StubNo }), "CollectorID", "StubNo");
+            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.AccountableForm_Assignment.ToList() where s.CollectorID == CollectorID && s.IsTransferred == null select new { AssignAFID = s.AssignAFID, StubNo = s.AccountableForm_Inventory.StubNo }), "AssignAFID", "StubNo");
             return PartialView("AssignmentofAccountableForm/TreasurerCollector/TransferReturnOR/_DynamicDDTransferReturnORStubNo", model);
         }
         public ActionResult GetDynamicTCTRORPV(int StubNo)
@@ -725,9 +723,10 @@ namespace TOSS_UPGRADE.Controllers
 
             return PartialView("AssignmentofAccountableForm/TreasurerCollector/TransferReturnOR/_AddTransferReturnPVOR", model);
         }
-
         public JsonResult AddTransferReturnOR(FM_CollectionAndDeposit_AssignmentAF model)
         {
+            AccountableForm_Assignment tblAccountableFormInventory1 = (from e in TOSSDB.AccountableForm_Assignment select e).FirstOrDefault();
+            model.AccountableTCTRORID = tblAccountableFormInventory1.AssignAFID;
             AccountableForm_Assignment tblAccountableFormInventory = (from e in TOSSDB.AccountableForm_Assignment where e.AssignAFID == model.AccountableTCTRORID select e).FirstOrDefault();
             tblAccountableFormInventory.SubCollector = model.AccountableTCTRORSubCID;
             tblAccountableFormInventory.IsTransferred = false;
@@ -735,6 +734,81 @@ namespace TOSS_UPGRADE.Controllers
             TOSSDB.SaveChanges();
             return Json("");
         }
+
+
         #endregion
+        //Barangay
+
+        //Table Barangay Name
+        public ActionResult Get_BarangayNameTable()
+        {
+            FM_CollectionAndDeposit_BarangayName model = new FM_CollectionAndDeposit_BarangayName();
+            List<BarangayNameList> tbl_AccountableForm = new List<BarangayNameList>();
+
+            var SQLQuery = "SELECT * FROM DB_TOSS.dbo.Barangay_BarangayName";
+            //SQLQuery += " WHERE (IsActive != 0)";
+            using (SqlConnection Connection = new SqlConnection(GlobalFunction.ReturnConnectionString()))
+            {
+                Connection.Open();
+                using (SqlCommand command = new SqlCommand("[dbo].[SP_BarangayNameList]", Connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@SQLStatement", SQLQuery));
+                    SqlDataReader dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        tbl_AccountableForm.Add(new BarangayNameList()
+                        {
+                            BarangayID = GlobalFunction.ReturnEmptyInt(dr[0]),
+                            BarangayName = GlobalFunction.ReturnEmptyString(dr[1]),
+                        });
+                    }
+                }
+                Connection.Close();
+            }
+            model.getBarangayNameList = tbl_AccountableForm.ToList();
+            return PartialView("Barangay/BarangayName/_BarangayNameTable", model.getBarangayNameList);
+        }
+        //Get Add Barangay Name Partial View
+        public ActionResult Get_AddBarangayName()
+        {
+            FM_CollectionAndDeposit_BarangayName model = new FM_CollectionAndDeposit_BarangayName();
+            return PartialView("Barangay/BarangayName/_AddBarangayName", model);
+        }
+        //Add Barangay Name
+        public JsonResult AddBarangayName(FM_CollectionAndDeposit_BarangayName model)
+        {
+            Barangay_BarangayName tblBarangayName = new Barangay_BarangayName();
+            tblBarangayName.BarangayName = model.getBarangayNamecolumns.BarangayName;
+            TOSSDB.Barangay_BarangayName.Add(tblBarangayName);
+            TOSSDB.SaveChanges();
+            return Json(tblBarangayName);
+        }
+        //Get Barangay Name
+        public ActionResult Get_UpdateBarangayName(FM_CollectionAndDeposit_BarangayName model, int BarangayID)
+        {
+            Barangay_BarangayName tblBarangayName = (from e in TOSSDB.Barangay_BarangayName where e.BarangayID == BarangayID select e).FirstOrDefault();
+            model.getBarangayNamecolumns.BarangayID = tblBarangayName.BarangayID;
+            model.getBarangayNamecolumns.BarangayName = tblBarangayName.BarangayName;
+            return PartialView("Barangay/BarangayName/_UpdateBarangayName", model);
+        }
+        public ActionResult UpdateBarangayName(FM_CollectionAndDeposit_BarangayName model)
+        {
+            Barangay_BarangayName tblBarangayName = (from e in TOSSDB.Barangay_BarangayName where e.BarangayID == model.getBarangayNamecolumns.BarangayID select e).FirstOrDefault();
+            tblBarangayName.BarangayName = model.getBarangayNamecolumns.BarangayName;
+            TOSSDB.Entry(tblBarangayName);
+            TOSSDB.SaveChanges();
+            return PartialView("Barangay/BarangayName/_UpdateBarangayName", model);
+        }
+        //Delete Barangay Name
+        public ActionResult DeleteBarangayName(FM_CollectionAndDeposit_BarangayName model, int BarangayID)
+        {
+            Barangay_BarangayName tblBarangayName = (from e in TOSSDB.Barangay_BarangayName where e.BarangayID == BarangayID select e).FirstOrDefault();
+            TOSSDB.Barangay_BarangayName.Remove(tblBarangayName);
+            TOSSDB.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

@@ -92,6 +92,13 @@
           <Property Name="BankID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BankName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Barangay_BarangayName">
+          <Key>
+            <PropertyRef Name="BarangayID" />
+          </Key>
+          <Property Name="BarangayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BarangayName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="CheckInventoryTable">
           <Key>
             <PropertyRef Name="CheckInvntID" />
@@ -596,6 +603,7 @@
           <EntitySet Name="BankAccount_AccountType" EntityType="Self.BankAccount_AccountType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankAccountTable" EntityType="Self.BankAccountTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankTable" EntityType="Self.BankTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Barangay_BarangayName" EntityType="Self.Barangay_BarangayName" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckInventoryTable" EntityType="Self.CheckInventoryTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckMaintenanceTable" EntityType="Self.CheckMaintenanceTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CollectorTable" EntityType="Self.CollectorTable" Schema="dbo" store:Type="Tables" />
@@ -770,6 +778,7 @@
           <EntitySet Name="BankAccount_AccountType" EntityType="DB_TOSSModel.BankAccount_AccountType" />
           <EntitySet Name="BankAccountTables" EntityType="DB_TOSSModel.BankAccountTable" />
           <EntitySet Name="BankTables" EntityType="DB_TOSSModel.BankTable" />
+          <EntitySet Name="Barangay_BarangayName" EntityType="DB_TOSSModel.Barangay_BarangayName" />
           <EntitySet Name="CheckInventoryTables" EntityType="DB_TOSSModel.CheckInventoryTable" />
           <EntitySet Name="CheckMaintenanceTables" EntityType="DB_TOSSModel.CheckMaintenanceTable" />
           <EntitySet Name="CollectorTables" EntityType="DB_TOSSModel.CollectorTable" />
@@ -986,6 +995,13 @@
           <Property Name="BankName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BankAccountTables" Relationship="DB_TOSSModel.FK_BankAccountTable_BankTable" FromRole="BankTable" ToRole="BankAccountTable" />
           <NavigationProperty Name="CheckInventoryTables" Relationship="DB_TOSSModel.FK_CheckInventoryTable_BankTable" FromRole="BankTable" ToRole="CheckInventoryTable" />
+        </EntityType>
+        <EntityType Name="Barangay_BarangayName">
+          <Key>
+            <PropertyRef Name="BarangayID" />
+          </Key>
+          <Property Name="BarangayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BarangayName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CheckInventoryTable">
           <Key>
@@ -1576,6 +1592,14 @@
               <MappingFragment StoreEntitySet="BankTable">
                 <ScalarProperty Name="BankName" ColumnName="BankName" />
                 <ScalarProperty Name="BankID" ColumnName="BankID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Barangay_BarangayName">
+            <EntityTypeMapping TypeName="DB_TOSSModel.Barangay_BarangayName">
+              <MappingFragment StoreEntitySet="Barangay_BarangayName">
+                <ScalarProperty Name="BarangayName" ColumnName="BarangayName" />
+                <ScalarProperty Name="BarangayID" ColumnName="BarangayID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

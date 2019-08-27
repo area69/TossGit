@@ -13,7 +13,7 @@
                         <th>Bank Account No.</th>
                         <th>Starting Check No.</th>
                         <th>Ending Check No.</th>
-                        <th width="5%;">Remaining Quantity</th>
+                        <th>Remaining Quantity</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -24,25 +24,25 @@
                             var DeleteConfirmationMess = "Are you sure do you want to delete this Check Maintenance?";
                             var DeleteSuccesMess = "Check Maintenance Deleted";
 
-                            //  var ViewEdit = "<button class=\"btn btn-icon btn-block white bg-addbutton border-0\" type=\"button\"onclick=\"AngularGlobalEdit('FMDisbursementController','Get_UpdateCheckMaintenance','" + @Items.CheckMainteID + "')\"><i class='ft-edit'></i> Edit</button>";
-                            // var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.Bank + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.CheckMainteID + ",&quot;Get_DeleteCheckMaintenance&quot;,&quot;FMDisbursementController&quot;)')\"> <i class='ft-delete'></i> Delete</button>";
-                            //  var ActionContentProgram =  ViewDelete;
+                            var ViewEdit = "<button class=\"btn btn-icon btn-block white bg-addbutton border-0\" type=\"button\"onclick=\"AngularGlobalEdit('FMDisbursementController','Get_UpdateCheckMaintenance','" + @Items.CheckMainteID + "')\"><i class='ft-edit'></i> Edit</button>";
+                            var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.CheckMainteID + ",&quot;Get_DeleteCheckMaintenance&quot;,&quot;FMDisbursementController&quot;)')\"> <i class='ft-delete'></i> Delete</button>";
+                            var ActionContentProgram = ViewDelete;
                             <tr>
                                 <td>@Items.Bank</td>
                                 <td>@Items.AccountName</td>
                                 <td>@Items.StartingChckNo</td>
                                 <td>@Items.EndingChckNo</td>
                                 <td>@Items.Quantity</td>
-                                <td>
-                                    @* <button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMDisbursementController','Get_UpdateCheckInventory','@Items.CheckInvntID')"><i class="ft-edit"></i></button>*@
+                                @*<td
+                                    <button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMDisbursementController','Get_UpdateCheckInventory','@Items.CheckInvntID')"><i class="ft-edit"></i></button>
                                     <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.CheckMainteID ,&quot;Get_DeleteCheckMaintenance&quot;,&quot;FMDisbursementController&quot;)')"><i class="ft-delete"></i></button>
+                                </td>*@
+                                <td>
+                                    <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-sm btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
+                                            data-original-title="" data-html="true" data-placement="right">
+                                        <i class="la la-bars"></i>
+                                    </button>
                                 </td>
-                                @*<td>
-                                <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-m btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
-                                        data-original-title="" data-html="true" data-placement="right">
-                                    <i class="la la-bars"></i>
-                                </button>
-                            </td>*@
                             </tr>
                         }
                     }

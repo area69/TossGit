@@ -11,18 +11,15 @@
     </div>
 </div>
 
-<div class="card" style="border: 1px solid; border-color: #EABEBB" id="FMCollectionDepositController" ng-controller="FMCollectionDepositController" ng-init="InitAllFunction();">
-    <ul class="nav nav-tabs font-medium-1 bg-headerbc text-center">
-        <li class="nav-item bg-headerbc">
-            <a class="nav-link active text-white" id="base-tab1" data-toggle="tab" aria-controls="tab1" href="#tab1" aria-expanded="true"><b>Accountable Forms</b></a>
+<div class="card" id="FMCollectionDepositController" ng-controller="FMCollectionDepositController" ng-init="InitAllFunction();">
+    <ul class="nav nav-tabs bg-headerbc nav-underline">
+        <li class="nav-item">
+            <a class="nav-link" id="base-tab1" data-toggle="tab" aria-controls="tab1" href="#tab1" aria-expanded="true"><b>Accountable Forms</b></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false"><b>Barangays</b></a>
         </li>
         @*<li class="nav-item bg-headerbc">
-                <a class="nav-link text-white" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" aria-expanded="false">Accountable Forms Assignment</a>
-            </li>
-            <li class="nav-item bg-headerbc">
-                <a class="nav-link text-white" id="base-tab4" data-toggle="tab" aria-controls="tab4" href="#tab4" aria-expanded="false">Barangays</a>
-            </li>
-            <li class="nav-item bg-headerbc">
                 <a class="nav-link text-white" id="base-tab5" data-toggle="tab" aria-controls="tab5" href="#tab5" aria-expanded="false">Barangay Collectors</a>
             </li>
             <li class="nav-item bg-headerbc">
@@ -34,7 +31,7 @@
     </ul>
     <div class="tab-content px-1 pt-1">
         @* Accountable Form *@
-        <div role="tabpanel" class="tab-pane active" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
+        <div role="tabpanel" class="tab-pane" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
             <div class="content-body">
                 @* AF *@
                 <div class="row mt-1">
@@ -45,7 +42,7 @@
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
                                     <ul class="list-inline mb-0">
-                                        <li><a data-action="collapse"><i class="ft-plus text-white"></i></a></li>
+                                        <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -66,28 +63,28 @@
 
                         @* Add Description Modal *@
                         <div class="col-lg-6 col-md-6 col-sm-12">
-                                <div class="modal animated zoomIn text-left" id="addDescriptionModal" role="dialog">
-                                    <div class="modal-dialog" style="max-width:600px" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-headerbc white">
-                                                <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Description</h4>
-                                                <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
-                                            </div>
-                                            <div class="modal-body skin skin-square">
-                                                <div class="row">
-                                                    <div class="col-md-12" id="_DescriptionxID">
+                            <div class="modal animated zoomIn text-left" id="addDescriptionModal" role="dialog">
+                                <div class="modal-dialog" style="max-width:600px" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-headerbc white">
+                                            <h4 class="modal-title white"><i class="la la-plus mr-1"></i>Description</h4>
+                                            <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
+                                        </div>
+                                        <div class="modal-body skin skin-square">
+                                            <div class="row">
+                                                <div class="col-md-12" id="_DescriptionxID">
 
-                                                    </div>
                                                 </div>
-                                                <div class="row mt-1">
-                                                    <div class="col-md-12" id="_DescriptionTableID">
+                                            </div>
+                                            <div class="row mt-1">
+                                                <div class="col-md-12" id="_DescriptionTableID">
 
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -197,11 +194,11 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="card-content collapse show">
+                        <div class="card-content collapse">
                             <div class="content-body">
                                 <div class="card-block">
                                     <div class="card-body box-shadow-2">
-                                        <div class="card-content collapse show">
+                                        <div class="card-content collapse">
                                             <div class="card-body box-shadow-2">
                                                 <div class="row">
                                                     <div class="col-md-1"></div>
@@ -255,28 +252,28 @@
                                             </div>
                                             @* Add Transfer/Return Modal *@
                                             <div class="col-lg-8 col-md-8 col-sm-12">
-                                                    <div class="modal animated zoomIn text-left" id="addTransferReturnModal" role="dialog">
-                                                        <div class="modal-dialog" style="max-width:1000px" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header bg-headerbc white">
-                                                                    <h6 class="modal-title white"><i class="la la-plus mr-1"></i>Transfer / Return OR Series</h6>
-                                                                    <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
-                                                                </div>
-                                                                <div class="modal-body skin skin-square">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12" id="_TransferReturnORID">
+                                                <div class="modal animated zoomIn text-left" id="addTransferReturnModal" role="dialog">
+                                                    <div class="modal-dialog" style="max-width:1200px" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-headerbc white">
+                                                                <h6 class="modal-title white"><i class="la la-plus mr-1"></i>Transfer / Return OR Series</h6>
+                                                                <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
+                                                            </div>
+                                                            <div class="modal-body skin skin-square">
+                                                                <div class="row">
+                                                                    <div class="col-md-12" id="_TransferReturnORID">
 
-                                                                        </div>
                                                                     </div>
-                                                                    <div class="row mt-1" >
-                                                                        <div class="col-md-12" id="_TransferReturnORTableID">
+                                                                </div>
+                                                                <div class="row mt-1">
+                                                                    <div class="col-md-12" id="_TransferReturnORTableID">
 
-                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
                                             </div>
                                         </div>
                                         @* Field Collectors *@
@@ -303,7 +300,44 @@
                 </div>
             </div>
         </div>
+        <div role="tabpanel" class="tab-pane active" id="tab2" aria-expanded="true" aria-labelledby="base-tab2">
+            <div class="content-body">
+                @* Barangay Name *@
+                <div class="row mt-1">
+                    <div class="col-12 col-xl-12 ">
+                        <div class="card box-shadow-2">
+                            <div class="card-header bg-carheadercolor mt-1">
+                                <h4 class="card-title black"><b>Barangay Name</b></h4>
+                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li><a data-action="collapse"><i class="ft-minus text-white"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content collapse">
+                                <div class="card-body box-shadow-2">
+                                    <div class="card box-shadow-2" id="_BarangayNameID">
 
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-12" id="_BarangayNameTableID">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <style>
@@ -378,13 +412,18 @@
         F.InitAllFunction = function () {
             //Accountable Form Table
             F.Get_AccountableFormTable();
+
             //Inventory of Accountable Forms
             F.Get_InvtAccountableFormTable();
             F.Get_AFDescriptionTable();
             F.Get_InvtAccountableFormTableCT();
             F.Get_InvtAccountableFormTableCTC();
+
             //Assignment of Accountable Forms
             F.Get_AccountableFormAssignmentTable();
+
+            //Barangay Name
+            F.Get_BarangayNameTable();
         }
         //Accountable Form
         F.Get_AccountableFormTable = function () {
@@ -760,5 +799,40 @@
                 $("#_TransferReturnORIDPV").html(response.data);
             });
         }
+        
+        //Barangay
+        //Barangay Name
+        F.Get_BarangayNameTable = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_BarangayNameTable',
+            }).then(function (response) {
+                $("#_BarangayNameTableID").html(response.data);
+            });
+            F.Get_AddBarangayName();
+        }
+        F.Get_AddBarangayName = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_AddBarangayName',
+            }).then(function (response) {
+                $("#_BarangayNameID").html(response.data);
+            });
+        }
+        F.Get_UpdateBarangayName = function (BarangayID) {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_UpdateBarangayName',
+                params: { BarangayID: BarangayID }
+            }).then(function (response) {
+                $("#_BarangayNameID").html(response.data);
+            });
+        }
+        F.Get_DeleteBarangayName = function (BarangayID) {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/DeleteBarangayName',
+                params: { BarangayID: BarangayID }
+            }).then(function (response) {
+                F.Get_BarangayNameTable();
+            });
+        }
+
     });
 </script>

@@ -13,7 +13,7 @@
                 <th>Starting Check No.</th>
                 <th>Ending Check No.</th>
                 <th>Date</th>
-                <th width="30%">Action</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody class="text-center">
@@ -23,9 +23,9 @@
                     var DeleteConfirmationMess = "Are you sure do you want to delete this Check Inventory?";
                     var DeleteSuccesMess = "Check Inventory Deleted";
 
-                    //var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\"onclick=\"AngularGlobalEdit('FMDisbursementController','Get_UpdateCheckInventory','" + @Items.CheckInvntID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
-                    //var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.Bank + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.CheckInvntID + ",&quot;Get_DeleteCheckInventory&quot;,&quot;FMDisbursementController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete</b></button>";
-                    //var ActionContentProgram = ViewEdit + ViewDelete;
+                    var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\"onclick=\"AngularGlobalEdit('FMDisbursementController','Get_UpdateCheckInventory','" + @Items.CheckInvntID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
+                    var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.CheckInvntID + ",&quot;Get_DeleteCheckInventory&quot;,&quot;FMDisbursementController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete</b></button>";
+                    var ActionContentProgram = ViewEdit + ViewDelete;
             <tr>
                 <td>@Items.Bank</td>
                 <td>@Items.AccountName</td>
@@ -36,20 +36,18 @@
                     @{
                         DateTime DateofHearing = Convert.ToDateTime(@Items.Date);
                     }
-
                     @DateofHearing.ToString("MMMM dd, yyyy")
-
-                </td>
-                <td>
-                    <button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMDisbursementController','Get_UpdateCheckInventory','@Items.CheckInvntID')"><i class="ft-edit"></i></button>
-                    <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.CheckInvntID ,&quot;Get_DeleteCheckInventory&quot;,&quot;FMDisbursementController&quot;)')"><i class="ft-delete"></i></button>
                 </td>
                 @*<td>
-            <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-m btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
-                    data-original-title="" data-html="true" data-placement="right">
-                <i class="la la-bars"></i>
-            </button>
-        </td>*@
+                    <button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMDisbursementController','Get_UpdateCheckInventory','@Items.CheckInvntID')"><i class="ft-edit"></i></button>
+                    <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.CheckInvntID ,&quot;Get_DeleteCheckInventory&quot;,&quot;FMDisbursementController&quot;)')"><i class="ft-delete"></i></button>
+                </td>*@
+                <td>
+                    <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-sm btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
+                            data-original-title="" data-html="true" data-placement="right">
+                        <i class="la la-bars"></i>
+                    </button>
+                </td>
             </tr>
                 }
             }

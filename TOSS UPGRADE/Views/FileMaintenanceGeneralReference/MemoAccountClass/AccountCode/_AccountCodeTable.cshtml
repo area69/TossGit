@@ -21,22 +21,22 @@
                         var DeleteConfirmationMess = "Are you sure do you want to delete this Account Code?";
                         var DeleteSuccesMess = "Account Code Deleted";
 
-                        //  var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\" onclick=\"AngularGlobalEdit('FMGeneralReferenceController','Get_UpdateAccountCode','" + @Items.AccountCodeID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
-                        //  var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.AccountTitle + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.AccountCodeID + ",&quot;Get_DeleteAccountCode&quot;,&quot;FMGeneralReferenceController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete<b></button>";
-                        //  var ActionContentProgram = ViewEdit + ViewDelete;
+                        var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\" onclick=\"AngularGlobalEdit('FMGeneralReferenceController','Get_UpdateAccountCode','" + @Items.AccountCodeID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
+                        var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.AccountTitle + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.AccountCodeID + ",&quot;Get_DeleteAccountCode&quot;,&quot;FMGeneralReferenceController&quot;)')\"> <i class='ft-delete mr-1'></i><b>Delete<b></button>";
+                        var ActionContentProgram = ViewEdit + ViewDelete;
                         <tr>
                             <td>@Items.AccountTitle</td>
                             <td>@Items.AccountCode</td>
-                            <td>
+                            @*<td>
                                 <button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMGeneralReferenceController','Get_UpdateAccountCode','@Items.AccountCodeID')"><i class="ft-edit"></i></button>
                                 <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.AccountCodeID ,&quot;Get_DeleteAccountCode&quot;,&quot;FMGeneralReferenceController&quot;)')"><i class="ft-delete"></i></button>
-                            </td>
-                            @*<td>
-                                <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-m btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
+                            </td>*@
+                            <td>
+                                <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-sm btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
                                         data-original-title="" data-html="true" data-placement="right">
                                     <i class="la la-bars"></i>
                                 </button>
-                            </td>*@
+                            </td>
                         </tr>
                     }
                 }

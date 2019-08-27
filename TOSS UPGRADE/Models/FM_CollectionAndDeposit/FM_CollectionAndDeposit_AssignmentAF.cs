@@ -30,6 +30,8 @@ namespace TOSS_UPGRADE.Models.FM_CollectionAndDeposit
         public int AccountableFormAssignmentID { get; set; }
         public int AccountableFormAssignmentAFID { get; set; }
 
+
+        public int AccountableTCTRORAssignAFID { get; set; }
         public int AccountableTCTRORID { get; set; }
         public int AccountableTCTRORMainCID { get; set; }
         public int AccountableTCTRORSubCID { get; set; }

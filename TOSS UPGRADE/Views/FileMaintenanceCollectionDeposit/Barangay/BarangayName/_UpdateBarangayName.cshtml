@@ -1,0 +1,33 @@
+﻿
+@model TOSS_UPGRADE.Models.FM_CollectionAndDeposit.FM_CollectionAndDeposit_BarangayName
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+@using (Ajax.BeginForm("UpdateBarangayName", "FileMaintenanceCollectionDeposit", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMCollectionDepositController','Get_BarangayNameTable','Successfully Saved')", OnFailure = "OnFailure()", }))
+{
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="row">
+                @Html.HiddenFor(m => m.getBarangayNamecolumns.BarangayID, new { })
+                <div class="col-md-9 form-group">
+                    <label>Barangay Name</label>
+                    @Html.TextBoxFor(m => m.getBarangayNamecolumns.BarangayName, new { @class = "form-control", type = "text" })
+                </div>
+                <div class="col-md-3">
+                    <label style="visibility:hidden">Description</label>
+                    <button type="submit" class="btn bg-addbutton black form-control"><b>Save</b></button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+        $(function () {
+            LoadDataTable();
+            LoadPopOver();
+        })
+</script>
+

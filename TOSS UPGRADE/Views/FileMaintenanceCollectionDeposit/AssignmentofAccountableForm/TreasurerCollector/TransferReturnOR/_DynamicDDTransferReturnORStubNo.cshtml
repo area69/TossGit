@@ -7,3 +7,4 @@
 <label class="mt-1">Stub No.</label>
 @Html.DropDownListFor(m => m.AccountableTCTRORStubNoID, Model.AccountableFormAssignmentList, new { @class = "form-control select2", id = "TRORStubNoIDDDD", onchange = "AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc('FMCollectionDepositController','LoadDynamicDDTRPVOR','')" })
 
+@Html.TextBoxFor(m => m.AccountableTCTRORAssignAFID, new { @class = "form-control", type = "text", @disabled = "disabled", id = "TRORAssignAFIDDDD" })
