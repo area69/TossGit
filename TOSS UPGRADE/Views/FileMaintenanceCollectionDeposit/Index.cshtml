@@ -14,10 +14,10 @@
 <div class="card" id="FMCollectionDepositController" ng-controller="FMCollectionDepositController" ng-init="InitAllFunction();">
     <ul class="nav nav-tabs bg-headerbc nav-underline">
         <li class="nav-item">
-            <a class="nav-link" id="base-tab1" data-toggle="tab" aria-controls="tab1" href="#tab1" aria-expanded="true"><b>Accountable Forms</b></a>
+            <a class="nav-link active" id="base-tab1" data-toggle="tab" aria-controls="tab1" href="#tab1" aria-expanded="true"><b>Accountable Forms</b></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false"><b>Barangays</b></a>
+            <a class="nav-link " id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false"><b>Barangays</b></a>
         </li>
         @*<li class="nav-item bg-headerbc">
                 <a class="nav-link text-white" id="base-tab5" data-toggle="tab" aria-controls="tab5" href="#tab5" aria-expanded="false">Barangay Collectors</a>
@@ -31,7 +31,7 @@
     </ul>
     <div class="tab-content px-1 pt-1">
         @* Accountable Form *@
-        <div role="tabpanel" class="tab-pane" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
+        <div role="tabpanel" class="tab-pane active" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
             <div class="content-body">
                 @* AF *@
                 <div class="row mt-1">
@@ -198,7 +198,7 @@
                             <div class="content-body">
                                 <div class="card-block">
                                     <div class="card-body box-shadow-2">
-                                        <div class="card-content collapse">
+                                        <div class="card-content collapse show">
                                             <div class="card-body box-shadow-2">
                                                 <div class="row">
                                                     <div class="col-md-1"></div>
@@ -300,7 +300,7 @@
                 </div>
             </div>
         </div>
-        <div role="tabpanel" class="tab-pane active" id="tab2" aria-expanded="true" aria-labelledby="base-tab2">
+        <div role="tabpanel" class="tab-pane" id="tab2" aria-expanded="true" aria-labelledby="base-tab2">
             <div class="content-body">
                 @* Barangay Name *@
                 <div class="row mt-1">
@@ -757,6 +757,7 @@
             }).then(function (response) {
                 $("#_TransferReturnORID").html(response.data);
                 F.LoadDynamicMainCollector();
+                F.Get_AccountableFormAssignmentTable();
             });
         }
         F.LoadDynamicMainCollector = function () {
@@ -787,19 +788,6 @@
                 F.LoadDynamicDDTRPVOR();
             });
         }
-        F.LoadDynamicDDTRPVOR = function () {
-            var StubNo = $("#TRORStubNoIDDDD option:selected").text();
-            if (StubNo == null || StubNo == "") {
-                StubNo = 0;
-            }
-            P({
-                url: '/FileMaintenanceCollectionDeposit/GetDynamicTCTRORPV',
-                params: { StubNo: StubNo }
-            }).then(function (response) {
-                $("#_TransferReturnORIDPV").html(response.data);
-            });
-        }
-        
         //Barangay
         //Barangay Name
         F.Get_BarangayNameTable = function () {

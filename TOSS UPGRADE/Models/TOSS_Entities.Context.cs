@@ -56,6 +56,7 @@ namespace TOSS_UPGRADE.Models
         public virtual DbSet<SignatoriesTable> SignatoriesTables { get; set; }
         public virtual DbSet<Signatory_DepartmentTable> Signatory_DepartmentTable { get; set; }
         public virtual DbSet<Signatory_PositionTable> Signatory_PositionTable { get; set; }
+        public virtual DbSet<SubCollectorTable> SubCollectorTables { get; set; }
     
         public virtual int SP_AccountableFormInvtList(string sQLStatement)
         {

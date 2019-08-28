@@ -70,7 +70,6 @@ namespace TOSS_UPGRADE.Controllers
             model.DescriptionID = DescriptionIDTempID;
             return PartialView("AccountableForm/_DynamicDDDescription", model);
         }
-
         //Get Add Accountable Form Description Partial View
         public ActionResult Get_AddDescription()
         {
@@ -618,7 +617,7 @@ namespace TOSS_UPGRADE.Controllers
             FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
             List<AccountableFormAssignmentList> tbl_AccountableFormAss = new List<AccountableFormAssignmentList>();
 
-            var SQLQuery = "SELECT AccountableForm_Assignment.AssignAFID,CollectorTable.CollectorName,dbo.AccountableForm_Assignment.Date,AccountableForm_Inventory.StubNo,AccountableForm_Inventory.StartingOR,AccountableForm_Inventory.EndingOR,AccountableForm_Inventory.Quantity, AccountableFormTable.AccountFormName,FundType_FundName.FundTitle FROM DB_TOSS.dbo.AccountableForm_Assignment,dbo.AccountableForm_Inventory,dbo.CollectorTable,dbo.FundType_FundName,AccountableFormTable where AccountableForm_Inventory.AFORID = AccountableForm_Assignment.AFORID AND dbo.CollectorTable.CollectorID = AccountableForm_Assignment.CollectorID AND dbo.FundType_FundName.FundID = dbo.AccountableForm_Assignment.FundID AND dbo.AccountableFormTable.AccountFormID = AccountableForm_Inventory.AccountFormID";
+            var SQLQuery = "SELECT AccountableForm_Assignment.AssignAFID,CollectorTable.CollectorName,dbo.AccountableForm_Assignment.Date,AccountableForm_Inventory.StubNo,AccountableForm_Inventory.StartingOR,AccountableForm_Inventory.EndingOR,AccountableForm_Inventory.Quantity, AccountableFormTable.AccountFormName,FundType_FundName.FundTitle, dbo.AccountableForm_Assignment.IsTransferred FROM DB_TOSS.dbo.AccountableForm_Assignment,dbo.AccountableForm_Inventory,dbo.CollectorTable,dbo.FundType_FundName,AccountableFormTable where AccountableForm_Inventory.AFORID = AccountableForm_Assignment.AFORID AND dbo.CollectorTable.CollectorID = AccountableForm_Assignment.CollectorID AND dbo.FundType_FundName.FundID = dbo.AccountableForm_Assignment.FundID AND dbo.AccountableFormTable.AccountFormID = AccountableForm_Inventory.AccountFormID and AccountableForm_Assignment.IsTransferred IS NULL ";
             //SQLQuery += " WHERE (IsActive != 0)";
             using (SqlConnection Connection = new SqlConnection(GlobalFunction.ReturnConnectionString()))
             {
@@ -658,7 +657,7 @@ namespace TOSS_UPGRADE.Controllers
             FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
             List<AFTransferReturnORList> tbl_AFTransferReturnOR = new List<AFTransferReturnORList>();
 
-            var SQLQuery = "SELECT  AccountableForm_Assignment.AssignAFID,CollectorTable.CollectorName,dbo.AccountableForm_Assignment.Date,AccountableForm_Inventory.StubNo,AccountableForm_Inventory.StartingOR,AccountableForm_Inventory.EndingOR,AccountableForm_Inventory.Quantity, AccountableFormTable.AccountFormName,FundType_FundName.FundTitle, AccountableForm_Assignment.IsTransferred, AccountableForm_Assignment.SubCollector FROM DB_TOSS.dbo.AccountableForm_Assignment,dbo.AccountableForm_Inventory,dbo.CollectorTable,dbo.FundType_FundName,AccountableFormTable where AccountableForm_Assignment.IsTransferred != 0 And AccountableForm_Inventory.AFORID = AccountableForm_Assignment.AFORID AND dbo.CollectorTable.CollectorID = AccountableForm_Assignment.CollectorID AND dbo.FundType_FundName.FundID = dbo.AccountableForm_Assignment.FundID AND dbo.AccountableFormTable.AccountFormID = AccountableForm_Inventory.AccountFormID";
+            var SQLQuery = "SELECT  AccountableForm_Assignment.AssignAFID,CollectorTable.CollectorName,dbo.AccountableForm_Assignment.Date,AccountableForm_Inventory.StubNo,AccountableForm_Inventory.StartingOR,AccountableForm_Inventory.EndingOR,AccountableForm_Inventory.Quantity, AccountableFormTable.AccountFormName,FundType_FundName.FundTitle, SubCollectorTable.SubCollectorName, AccountableForm_Assignment.IsTransferred FROM DB_TOSS.dbo.AccountableForm_Assignment,dbo.AccountableForm_Inventory,dbo.CollectorTable,dbo.FundType_FundName,AccountableFormTable ,dbo.SubCollectorTable where AccountableForm_Assignment.IsTransferred = 0 And AccountableForm_Inventory.AFORID = AccountableForm_Assignment.AFORID AND dbo.CollectorTable.CollectorID = AccountableForm_Assignment.CollectorID AND dbo.FundType_FundName.FundID = dbo.AccountableForm_Assignment.FundID AND dbo.AccountableFormTable.AccountFormID = AccountableForm_Inventory.AccountFormID AND dbo.AccountableForm_Assignment.SubCollectorID = SubCollectorTable.SubCollectorID";
             //SQLQuery += " WHERE (IsActive != 0)";
             using (SqlConnection Connection = new SqlConnection(GlobalFunction.ReturnConnectionString()))
             {
@@ -674,15 +673,15 @@ namespace TOSS_UPGRADE.Controllers
                         {
                             AssignAFID = GlobalFunction.ReturnEmptyInt(dr[0]),
                             CollectorName = GlobalFunction.ReturnEmptyString(dr[1]),
-                            AF = GlobalFunction.ReturnEmptyString(dr[7]),
-                            FundType = GlobalFunction.ReturnEmptyString(dr[8]),
+                            Date = GlobalFunction.ReturnEmptyString(dr[2]),
                             StubNo = GlobalFunction.ReturnEmptyInt(dr[3]),
-                            Quantity = GlobalFunction.ReturnEmptyInt(dr[6]),
                             StratingOR = GlobalFunction.ReturnEmptyInt(dr[4]),
                             EndingOR = GlobalFunction.ReturnEmptyInt(dr[5]),
-                            Date = GlobalFunction.ReturnEmptyString(dr[2]),
-                            SubCollector = GlobalFunction.ReturnEmptyString(dr[10]),
-                            IsTransferred = GlobalFunction.ReturnEmptyBool(dr[9]),
+                            Quantity = GlobalFunction.ReturnEmptyInt(dr[6]),
+                            AF = GlobalFunction.ReturnEmptyString(dr[7]),
+                            FundType = GlobalFunction.ReturnEmptyString(dr[8]),
+                            SubCollector = GlobalFunction.ReturnEmptyString(dr[9]),
+                            IsTransferred = GlobalFunction.ReturnEmptyBool(dr[10]),
                         });
                     }
                 }
@@ -701,7 +700,7 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult GetDynamicSubCollector(int CollectorID)
         {
             FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
-            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.CollectorTables.ToList() where s.CollectorID != CollectorID select new { CollectorID = s.CollectorID, CollectorName = s.CollectorName }), "CollectorID", "CollectorName");
+            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.SubCollectorTables.ToList() where s.SubCollectorID != CollectorID select new { SubCollectorID = s.SubCollectorID, SubCollectorName = s.SubCollectorName }), "SubCollectorID", "SubCollectorName");
             return PartialView("AssignmentofAccountableForm/TreasurerCollector/TransferReturnOR/_DynamicDDSubCollector", model);
         }
         public ActionResult GetDynamicTCTRORStubNo(int CollectorID)
@@ -710,25 +709,12 @@ namespace TOSS_UPGRADE.Controllers
             model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.AccountableForm_Assignment.ToList() where s.CollectorID == CollectorID && s.IsTransferred == null select new { AssignAFID = s.AssignAFID, StubNo = s.AccountableForm_Inventory.StubNo }), "AssignAFID", "StubNo");
             return PartialView("AssignmentofAccountableForm/TreasurerCollector/TransferReturnOR/_DynamicDDTransferReturnORStubNo", model);
         }
-        public ActionResult GetDynamicTCTRORPV(int StubNo)
-        {
-            FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
-            AccountableForm_Inventory tblAFIventory = (from e in TOSSDB.AccountableForm_Inventory where e.StubNo == StubNo select e).FirstOrDefault();
-            if (tblAFIventory != null)
-            {
-                model.AccountableTCTRORStartingORID = tblAFIventory.StartingOR;
-                model.AccountableTCTROREndingORID = tblAFIventory.EndingOR;
-                model.AccountableTCTRORQuantityID = tblAFIventory.Quantity;
-            }
-
-            return PartialView("AssignmentofAccountableForm/TreasurerCollector/TransferReturnOR/_AddTransferReturnPVOR", model);
-        }
         public JsonResult AddTransferReturnOR(FM_CollectionAndDeposit_AssignmentAF model)
         {
             AccountableForm_Assignment tblAccountableFormInventory1 = (from e in TOSSDB.AccountableForm_Assignment select e).FirstOrDefault();
             model.AccountableTCTRORID = tblAccountableFormInventory1.AssignAFID;
             AccountableForm_Assignment tblAccountableFormInventory = (from e in TOSSDB.AccountableForm_Assignment where e.AssignAFID == model.AccountableTCTRORID select e).FirstOrDefault();
-            tblAccountableFormInventory.SubCollector = model.AccountableTCTRORSubCID;
+            tblAccountableFormInventory.SubCollectorID = model.AccountableTCTRORSubCID;
             tblAccountableFormInventory.IsTransferred = false;
             TOSSDB.Entry(tblAccountableFormInventory);
             TOSSDB.SaveChanges();
@@ -737,6 +723,8 @@ namespace TOSS_UPGRADE.Controllers
 
 
         #endregion
+
+        #region Barangay
         //Barangay
 
         //Table Barangay Name
@@ -809,6 +797,8 @@ namespace TOSS_UPGRADE.Controllers
             return RedirectToAction("Index");
         }
 
+
+        #endregion
 
     }
 }

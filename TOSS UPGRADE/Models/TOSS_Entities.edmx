@@ -14,7 +14,7 @@
           <Property Name="FundID" Type="int" Nullable="false" />
           <Property Name="AFORID" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="SubCollector" Type="int" />
+          <Property Name="SubCollectorID" Type="int" />
           <Property Name="IsTransferred" Type="bit" />
         </EntityType>
         <EntityType Name="AccountableForm_Description">
@@ -268,6 +268,13 @@
           </Key>
           <Property Name="PositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PositionName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SubCollectorTable">
+          <Key>
+            <PropertyRef Name="SubCollectorID" />
+          </Key>
+          <Property Name="SubCollectorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubCollectorName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_AccountableForm_Assignment_AccountableForm_Inventory">
           <End Role="AccountableForm_Inventory" Type="Self.AccountableForm_Inventory" Multiplicity="1" />
@@ -623,6 +630,7 @@
           <EntitySet Name="SignatoriesTable" EntityType="Self.SignatoriesTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatory_DepartmentTable" EntityType="Self.Signatory_DepartmentTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatory_PositionTable" EntityType="Self.Signatory_PositionTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubCollectorTable" EntityType="Self.SubCollectorTable" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AccountableForm_Assignment_AccountableForm_Inventory" Association="Self.FK_AccountableForm_Assignment_AccountableForm_Inventory">
             <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
             <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
@@ -798,6 +806,7 @@
           <EntitySet Name="SignatoriesTables" EntityType="DB_TOSSModel.SignatoriesTable" />
           <EntitySet Name="Signatory_DepartmentTable" EntityType="DB_TOSSModel.Signatory_DepartmentTable" />
           <EntitySet Name="Signatory_PositionTable" EntityType="DB_TOSSModel.Signatory_PositionTable" />
+          <EntitySet Name="SubCollectorTables" EntityType="DB_TOSSModel.SubCollectorTable" />
           <AssociationSet Name="FK_AccountableForm_Assignment_AccountableForm_Inventory" Association="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Inventory">
             <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
             <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
@@ -900,7 +909,7 @@
           <Property Name="FundID" Type="Int32" Nullable="false" />
           <Property Name="AFORID" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="SubCollector" Type="Int32" />
+          <Property Name="SubCollectorID" Type="Int32" />
           <Property Name="IsTransferred" Type="Boolean" />
           <NavigationProperty Name="AccountableForm_Inventory" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Inventory" FromRole="AccountableForm_Assignment" ToRole="AccountableForm_Inventory" />
           <NavigationProperty Name="CollectorTable" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_CollectorTable" FromRole="AccountableForm_Assignment" ToRole="CollectorTable" />
@@ -1200,6 +1209,13 @@
           <Property Name="PositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PositionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SignatoriesTables" Relationship="DB_TOSSModel.FK_SignatoriesTable_PositionName" FromRole="Signatory_PositionTable" ToRole="SignatoriesTable" />
+        </EntityType>
+        <EntityType Name="SubCollectorTable">
+          <Key>
+            <PropertyRef Name="SubCollectorID" />
+          </Key>
+          <Property Name="SubCollectorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubCollectorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_AccountableForm_Assignment_AccountableForm_Inventory">
           <End Type="DB_TOSSModel.AccountableForm_Inventory" Role="AccountableForm_Inventory" Multiplicity="1" />
@@ -1503,7 +1519,7 @@
             <EntityTypeMapping TypeName="DB_TOSSModel.AccountableForm_Assignment">
               <MappingFragment StoreEntitySet="AccountableForm_Assignment">
                 <ScalarProperty Name="IsTransferred" ColumnName="IsTransferred" />
-                <ScalarProperty Name="SubCollector" ColumnName="SubCollector" />
+                <ScalarProperty Name="SubCollectorID" ColumnName="SubCollectorID" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="AFORID" ColumnName="AFORID" />
                 <ScalarProperty Name="FundID" ColumnName="FundID" />
@@ -1789,6 +1805,14 @@
               <MappingFragment StoreEntitySet="Signatory_PositionTable">
                 <ScalarProperty Name="PositionName" ColumnName="PositionName" />
                 <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubCollectorTables">
+            <EntityTypeMapping TypeName="DB_TOSSModel.SubCollectorTable">
+              <MappingFragment StoreEntitySet="SubCollectorTable">
+                <ScalarProperty Name="SubCollectorName" ColumnName="SubCollectorName" />
+                <ScalarProperty Name="SubCollectorID" ColumnName="SubCollectorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -32,6 +32,22 @@
                                 <option value="6">Others</option>
                             </select>
                         </div>
+                       <div class="col-md-6" id="RemittancesXID">
+                           <div class="row">
+                               <div class="col-md-5 px-0 mt-3 form-group">
+                                   <label>
+                                       <input type="radio">
+                                       <b>Deduction Withheld</b>
+                                   </label>
+                               </div>
+                               <div class="col-md-6 mt-3 px-0 form-group">
+                                   <label>
+                                       <input type="radio">
+                                       <b>Tax Withheld</b>
+                                   </label>
+                               </div>
+                           </div>
+                       </div>
                     </div>
                     <div class="row mt-1">
                         <div class="col-md-12 col-sm-12 col-12 black">
@@ -73,7 +89,6 @@
                                                             </label>
                                                         </td>
                                                     </tr>
-
                                                 </tbody>
                                             </table>
                                         </td>
@@ -105,34 +120,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div id="RemittancesXID">
-                                                <table>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <label>
-                                                                    <input type="radio">
-                                                                    <b>Deduction Withheld</b>
-                                                                </label>
-                                                            </td>
-                                                            <td>
-                                                                <label>
-                                                                    <input type="radio" disabled="disabled">
-                                                                    <b>Tax Withheld</b>
-                                                                </label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="2">
-                                                                <label>
-                                                                    <b>Transaction Type</b>
-                                                                </label>
-                                                                <select class="form-control"><option></option></select>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                           
                                         </td>
                                 </tr>
                                 @*<tr>

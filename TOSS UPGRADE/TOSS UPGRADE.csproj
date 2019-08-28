@@ -315,6 +315,9 @@
     <Compile Include="Models\Signatory_PositionTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SubCollectorTable.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TOSSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

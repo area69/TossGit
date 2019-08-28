@@ -19,7 +19,7 @@ namespace TOSS_UPGRADE.Models
         public int FundID { get; set; }
         public int AFORID { get; set; }
         public System.DateTime Date { get; set; }
-        public Nullable<int> SubCollector { get; set; }
+        public Nullable<int> SubCollectorID { get; set; }
         public Nullable<bool> IsTransferred { get; set; }
     
         public virtual AccountableForm_Inventory AccountableForm_Inventory { get; set; }
