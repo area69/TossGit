@@ -57,6 +57,13 @@ function AngularGlobalEdit(ControllerName, ActionName, IDParams) {
     })
 }
 
+function AngularGlobalEdit2(ControllerName, ActionName1, IDParams, ActionName2) {
+    var scope = angular.element(document.getElementById(ControllerName)).scope();
+    scope.$apply(function () {
+        eval("scope." + ActionName1 + "(" + IDParams + ");");
+        eval("scope." + ActionName2 + "();");
+    })
+}
 function AngularGlobalView(ControllerName, ActionName, IDParams) {
     var scope = angular.element(document.getElementById(ControllerName)).scope();
     scope.$apply(function () {

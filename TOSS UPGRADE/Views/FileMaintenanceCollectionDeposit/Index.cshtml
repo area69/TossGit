@@ -788,6 +788,26 @@
                 F.LoadDynamicDDTRPVOR();
             });
         }
+        F.LoadDynamicDDTRPVOR = function () {
+            var StubNo = $("#TRORStubNoIDDDD option:selected").text();
+            if (StubNo == null || StubNo == "") {
+                StubNo = 0;
+            }
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicTCTRORPV',
+                params: { StubNo: StubNo }
+            }).then(function (response) {
+                $("#_TransferReturnORIDPV").html(response.data);
+            });
+        }
+        F.Get_UpdateTransferReturnOR = function (AssignAFID) {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_UpdateAFTransferReturnOR',
+                params: { AssignAFID: AssignAFID },
+            }).then(function (response) {
+                F.Get_TransferReturnORTable();
+                });
+        }
         //Barangay
         //Barangay Name
         F.Get_BarangayNameTable = function () {

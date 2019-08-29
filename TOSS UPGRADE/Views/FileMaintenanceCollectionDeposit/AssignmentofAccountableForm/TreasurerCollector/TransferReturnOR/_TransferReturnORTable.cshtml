@@ -13,11 +13,11 @@
                             <tr>
                                 <th>Main Collector</th>
                                 <th>Sub Collector</th>
-                                <th>Stub No.</th>
-                                <th>Quantity</th>
-                                <th>Starting OR</th>
-                                <th>Ending OR</th>
-                                <th>Is Transferred?</th>
+                                <th width="5%">Stub No.</th>
+                                <th width="5%">Quantity</th>
+                                <th width="5%">Starting OR</th>
+                                <th width="5%">Ending OR</th>
+                                <th width="5%">Is Transferred?</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -25,9 +25,9 @@
                             @{
                                 foreach (var Items in Model)
                                 {
-                                    var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
-                                    var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\"> <i class='ft-delete mr-1'></i><b>Delete</b></button>";
-                                    var ActionContentProgram = ViewEdit + ViewDelete;
+                                    //var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
+                                    //var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\"> <i class='ft-delete mr-1'></i><b>Delete</b></button>";
+                                    //var ActionContentProgram = ViewEdit + ViewDelete;
                             <tr>
                                 <td>@Items.CollectorName</td>
                                 <td>@Items.SubCollector</td>
@@ -55,10 +55,7 @@
                                     <button class="buttonEf iconhoverDelete" ><i class="ft-delete"></i></button>
                                 </td>*@
                                 <td>
-                                    <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-m btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
-                                            data-original-title="" data-html="true" data-placement="right">
-                                        <i class="la la-bars"></i>
-                                    </button>
+                                    <button class="btn btn-sm btn-icon btn-block black bg-addbutton border-0 font-medium-1" type="button" onclick="AngularGlobalEdit('FMCollectionDepositController','Get_UpdateTransferReturnOR','@Items.AssignAFID')"><i class="la la-caret-left"></i>Return</button>
                                 </td>
                             </tr>
                                 }
