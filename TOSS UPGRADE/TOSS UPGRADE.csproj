@@ -9023,6 +9023,13 @@
     <Content Include="Views\FileMaintenanceCollectionDeposit\Barangay\BarangayName\_AddBarangayName.cshtml" />
     <Content Include="Views\FileMaintenanceCollectionDeposit\Barangay\BarangayName\_BarangayNameTable.cshtml" />
     <Content Include="Views\FileMaintenanceCollectionDeposit\Barangay\BarangayName\_UpdateBarangayName.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_AddFieldCollector.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_DynamicDDFCFundType.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_DynamicDDCollectorOfficerFC.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_DynamicDDFCAF.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_DynamicDDStartORFC.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_AddFieldCollectorIvnt.cshtml" />
+    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_FieldCollectorTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

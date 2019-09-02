@@ -21,9 +21,12 @@ namespace TOSS_UPGRADE.Models
         public System.DateTime Date { get; set; }
         public Nullable<int> SubCollectorID { get; set; }
         public Nullable<bool> IsTransferred { get; set; }
+        public Nullable<bool> IsConsumed { get; set; }
+        public Nullable<bool> IsDefault { get; set; }
     
         public virtual AccountableForm_Inventory AccountableForm_Inventory { get; set; }
         public virtual CollectorTable CollectorTable { get; set; }
         public virtual FundType_FundName FundType_FundName { get; set; }
+        public virtual SubCollectorTable SubCollectorTable { get; set; }
     }
 }

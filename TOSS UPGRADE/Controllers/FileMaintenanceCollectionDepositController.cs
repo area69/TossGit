@@ -617,7 +617,7 @@ namespace TOSS_UPGRADE.Controllers
             FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
             List<AccountableFormAssignmentList> tbl_AccountableFormAss = new List<AccountableFormAssignmentList>();
 
-            var SQLQuery = "SELECT AccountableForm_Assignment.AssignAFID,CollectorTable.CollectorName,dbo.AccountableForm_Assignment.Date,AccountableForm_Inventory.StubNo,AccountableForm_Inventory.StartingOR,AccountableForm_Inventory.EndingOR,AccountableForm_Inventory.Quantity, AccountableFormTable.AccountFormName,FundType_FundName.FundTitle, dbo.AccountableForm_Assignment.IsTransferred FROM DB_TOSS.dbo.AccountableForm_Assignment,dbo.AccountableForm_Inventory,dbo.CollectorTable,dbo.FundType_FundName,AccountableFormTable where AccountableForm_Inventory.AFORID = AccountableForm_Assignment.AFORID AND dbo.CollectorTable.CollectorID = AccountableForm_Assignment.CollectorID AND dbo.FundType_FundName.FundID = dbo.AccountableForm_Assignment.FundID AND dbo.AccountableFormTable.AccountFormID = AccountableForm_Inventory.AccountFormID and AccountableForm_Assignment.IsTransferred IS NULL ";
+            var SQLQuery = "SELECT AccountableForm_Assignment.AssignAFID,CollectorTable.CollectorName,dbo.AccountableForm_Assignment.Date,AccountableForm_Inventory.StubNo,AccountableForm_Inventory.StartingOR,AccountableForm_Inventory.EndingOR,AccountableForm_Inventory.Quantity, AccountableFormTable.AccountFormName,FundType_FundName.FundTitle, dbo.AccountableForm_Assignment.IsTransferred FROM DB_TOSS.dbo.AccountableForm_Assignment,dbo.AccountableForm_Inventory,dbo.CollectorTable,dbo.FundType_FundName,AccountableFormTable where AccountableForm_Inventory.AFORID = AccountableForm_Assignment.AFORID AND dbo.CollectorTable.CollectorID = AccountableForm_Assignment.CollectorID AND dbo.FundType_FundName.FundID = dbo.AccountableForm_Assignment.FundID AND dbo.AccountableFormTable.AccountFormID = AccountableForm_Inventory.AccountFormID and AccountableForm_Assignment.IsTransferred IS NULL and AccountableForm_Assignment.IsConsumed IS NULL and AccountableForm_Assignment.IsDefault IS NULL";
             //SQLQuery += " WHERE (IsActive != 0)";
             using (SqlConnection Connection = new SqlConnection(GlobalFunction.ReturnConnectionString()))
             {
@@ -743,10 +743,137 @@ namespace TOSS_UPGRADE.Controllers
             TOSSDB.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+
 
         #endregion
+        #region Field Collector
+        public ActionResult Get_AddAssignFieldCollector()
+        {
+            FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
+            return PartialView("AssignmentofAccountableForm/FieldCollector/_AddFieldCollector", model);
+        }
+        public ActionResult GetDynamicASFFundTypeFC()
+        {
+            FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
+            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.FundType_FundName.ToList() select new { FundID = s.FundID, FundTitle = s.FundTitle }), "FundID", "FundTitle");
+            return PartialView("AssignmentofAccountableForm/FieldCollector/_DynamicDDFCFundType", model);
+        }
+        public ActionResult GetDynamicAFASFFC()
+        {
+            FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
+            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.AccountableFormTables.ToList() where s.isCTC == false && s.AccountableForm_Description.Description != "Cash Ticket" select new { AccountFormID = s.AccountFormID, AccountFormName = s.AccountFormName }), "AccountFormID", "AccountFormName");
+            return PartialView("AssignmentofAccountableForm/FieldCollector/_DynamicDDFCAF", model);
+        }
+        public ActionResult GetDynamicAFCollectorFC()
+        {
+            FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
+            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.CollectorTables.ToList() select new { CollectorID = s.CollectorID, CollectorName = s.CollectorName }), "CollectorID", "CollectorName");
+            return PartialView("AssignmentofAccountableForm/FieldCollector/_DynamicDDCollectorOfficerFC", model);
+        }
+        public ActionResult GetDynamicAFStartORFC(int AccountFormID)
+        {
+            FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
+            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.AccountableForm_Inventory.ToList() where s.AccountFormID == AccountFormID && s.isIssued == false select new { AFORID = s.AFORID, StartingOR = s.StartingOR }), "AFORID", "StartingOR");
+            return PartialView("AssignmentofAccountableForm/FieldCollector/_DynamicDDStartORFC", model);
+        }
+        public ActionResult Get_AddAssignAFFC(int AFORID)
+        {
+            FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
+            AccountableForm_Inventory tblAFIventory = (from e in TOSSDB.AccountableForm_Inventory where e.AFORID == AFORID select e).FirstOrDefault();
+            if (tblAFIventory != null)
+            {
+                model.AccountableFormAssignmentEndingORID = tblAFIventory.EndingOR;
+                model.AccountableFormAssignmentQuantityID = tblAFIventory.Quantity;
+                if (tblAFIventory.StubNo != null)
+                {
+                    model.AccountableFormAssignmentStubNoID = Convert.ToInt32(tblAFIventory.StubNo);
+                }
+                else
+                {
+                    model.AccountableFormAssignmentStubNoID = 0;
+                }
 
+            }
+
+            return PartialView("AssignmentofAccountableForm/FieldCollector/_AddFieldCollectorIvnt", model);
+        }
+        public ActionResult Get_AFAssignmentFieldCollectorTable()
+        {
+            FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
+            List<AccountableFormAssignmentList> tbl_AccountableFormAss = new List<AccountableFormAssignmentList>();
+
+            var SQLQuery = "SELECT AccountableForm_Assignment.AssignAFID,CollectorTable.CollectorName,dbo.AccountableForm_Assignment.Date,AccountableForm_Inventory.StubNo,AccountableForm_Inventory.StartingOR,AccountableForm_Inventory.EndingOR,AccountableForm_Inventory.Quantity, AccountableFormTable.AccountFormName,FundType_FundName.FundTitle, dbo.AccountableForm_Assignment.IsConsumed, dbo.AccountableForm_Assignment.IsDefault FROM DB_TOSS.dbo.AccountableForm_Assignment,dbo.AccountableForm_Inventory,dbo.CollectorTable,dbo.FundType_FundName,AccountableFormTable where AccountableForm_Inventory.AFORID = AccountableForm_Assignment.AFORID AND dbo.CollectorTable.CollectorID = AccountableForm_Assignment.CollectorID AND dbo.FundType_FundName.FundID = dbo.AccountableForm_Assignment.FundID AND dbo.AccountableFormTable.AccountFormID = AccountableForm_Inventory.AccountFormID and AccountableForm_Assignment.IsTransferred IS NULL and AccountableForm_Assignment.IsConsumed IS NOT NULL and AccountableForm_Assignment.IsDefault IS NOT NULL";
+            //SQLQuery += " WHERE (IsActive != 0)";
+            using (SqlConnection Connection = new SqlConnection(GlobalFunction.ReturnConnectionString()))
+            {
+                Connection.Open();
+                using (SqlCommand command = new SqlCommand("[dbo].[SP_AccountableFormAssList]", Connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@SQLStatement", SQLQuery));
+                    SqlDataReader dr = command.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        tbl_AccountableFormAss.Add(new AccountableFormAssignmentList()
+                        {
+                            AssignAFID = GlobalFunction.ReturnEmptyInt(dr[0]),
+                            AF = GlobalFunction.ReturnEmptyString(dr[7]),
+                            CollectorName = GlobalFunction.ReturnEmptyString(dr[1]),
+                            FundType = GlobalFunction.ReturnEmptyString(dr[8]),
+                            StubNo = GlobalFunction.ReturnEmptyInt(dr[3]),
+                            Quantity = GlobalFunction.ReturnEmptyInt(dr[6]),
+                            StratingOR = GlobalFunction.ReturnEmptyInt(dr[4]),
+                            EndingOR = GlobalFunction.ReturnEmptyInt(dr[5]),
+                            Date = GlobalFunction.ReturnEmptyString(dr[2]),
+                            isConsumed = GlobalFunction.ReturnEmptyBool(dr[9]),
+                            isDefault = GlobalFunction.ReturnEmptyBool(dr[10]),
+                        });
+                    }
+                }
+                Connection.Close();
+            }
+            model.getAccountableFormAssList = tbl_AccountableFormAss.ToList();
+            return PartialView("AssignmentofAccountableForm/FieldCollector/_FieldCollectorTable", model.getAccountableFormAssList);
+        }
+        public JsonResult AddAccountableFormAssignFieldCollector(FM_CollectionAndDeposit_AssignmentAF model)
+        {
+            AccountableForm_Assignment tblAccountableFormAssignment = new AccountableForm_Assignment();
+            tblAccountableFormAssignment.FundID = model.AccountableFormAssignmentFundID;
+            tblAccountableFormAssignment.AFORID = model.AccountableFormAssignmentID;
+            tblAccountableFormAssignment.CollectorID = model.AccountableFACollectorID;
+            tblAccountableFormAssignment.Date = model.getAccountableFormAssigncolumns.Date;
+            tblAccountableFormAssignment.IsConsumed = false;
+            tblAccountableFormAssignment.IsDefault = false;
+            TOSSDB.AccountableForm_Assignment.Add(tblAccountableFormAssignment);
+            TOSSDB.SaveChanges();
+
+
+            AccountableForm_Inventory tblAccountableFormAssignmentInventory = (from e in TOSSDB.AccountableForm_Inventory where e.AFORID == model.AccountableFormAssignmentID select e).FirstOrDefault();
+            if (tblAccountableFormAssignmentInventory.isIssued == false)
+            {
+                tblAccountableFormAssignmentInventory.isIssued = true;
+            }
+            else
+            {
+                tblAccountableFormAssignmentInventory.isIssued = false;
+            }
+            TOSSDB.Entry(tblAccountableFormAssignmentInventory);
+            TOSSDB.SaveChanges();
+
+            return Json("");
+        }
+        public ActionResult Get_UpdateAFAssignFieldCollector(FM_CollectionAndDeposit_AssignmentAF model, int AssignAFID)
+        {
+            AccountableForm_Assignment tblAccountableFormInventory = (from e in TOSSDB.AccountableForm_Assignment where e.AssignAFID == AssignAFID select e).FirstOrDefault();
+            tblAccountableFormInventory.IsDefault = true;
+            TOSSDB.Entry(tblAccountableFormInventory);
+            TOSSDB.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
+        #endregion
         #region Barangay
         //Barangay
 

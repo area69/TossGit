@@ -14,7 +14,16 @@ namespace TOSS_UPGRADE.Models
     
     public partial class SubCollectorTable
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SubCollectorTable()
+        {
+            this.AccountableForm_Assignment = new HashSet<AccountableForm_Assignment>();
+        }
+    
         public int SubCollectorID { get; set; }
         public string SubCollectorName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AccountableForm_Assignment> AccountableForm_Assignment { get; set; }
     }
 }

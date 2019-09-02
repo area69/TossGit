@@ -59,6 +59,8 @@ namespace TOSS_UPGRADE.Models.FM_CollectionAndDeposit
         public int StratingOR { get; set; }
         public int EndingOR { get; set; }
         public string Date { get; set; }
+        public bool isConsumed { get; set; }
+        public bool isDefault { get; set; }
     }
     public class AFTransferReturnORList
     {

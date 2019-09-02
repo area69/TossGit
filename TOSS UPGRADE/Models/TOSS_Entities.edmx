@@ -16,6 +16,8 @@
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="SubCollectorID" Type="int" />
           <Property Name="IsTransferred" Type="bit" />
+          <Property Name="IsConsumed" Type="bit" />
+          <Property Name="IsDefault" Type="bit" />
         </EntityType>
         <EntityType Name="AccountableForm_Description">
           <Key>
@@ -309,6 +311,18 @@
             </Principal>
             <Dependent Role="AccountableForm_Assignment">
               <PropertyRef Name="FundID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountableForm_Assignment_SubCollectorTable">
+          <End Role="SubCollectorTable" Type="Self.SubCollectorTable" Multiplicity="0..1" />
+          <End Role="AccountableForm_Assignment" Type="Self.AccountableForm_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCollectorTable">
+              <PropertyRef Name="SubCollectorID" />
+            </Principal>
+            <Dependent Role="AccountableForm_Assignment">
+              <PropertyRef Name="SubCollectorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -643,6 +657,10 @@
             <End Role="FundType_FundName" EntitySet="FundType_FundName" />
             <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
           </AssociationSet>
+          <AssociationSet Name="FK_AccountableForm_Assignment_SubCollectorTable" Association="Self.FK_AccountableForm_Assignment_SubCollectorTable">
+            <End Role="SubCollectorTable" EntitySet="SubCollectorTable" />
+            <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
+          </AssociationSet>
           <AssociationSet Name="FK_AccountableForm_Inventory_AccountableFormTable" Association="Self.FK_AccountableForm_Inventory_AccountableFormTable">
             <End Role="AccountableFormTable" EntitySet="AccountableFormTable" />
             <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
@@ -819,6 +837,10 @@
             <End Role="FundType_FundName" EntitySet="FundType_FundName" />
             <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
           </AssociationSet>
+          <AssociationSet Name="FK_AccountableForm_Assignment_SubCollectorTable" Association="DB_TOSSModel.FK_AccountableForm_Assignment_SubCollectorTable">
+            <End Role="SubCollectorTable" EntitySet="SubCollectorTables" />
+            <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
+          </AssociationSet>
           <AssociationSet Name="FK_AccountableFormTable_AccountableForm_Description" Association="DB_TOSSModel.FK_AccountableFormTable_AccountableForm_Description">
             <End Role="AccountableForm_Description" EntitySet="AccountableForm_Description" />
             <End Role="AccountableFormTable" EntitySet="AccountableFormTables" />
@@ -911,9 +933,12 @@
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="SubCollectorID" Type="Int32" />
           <Property Name="IsTransferred" Type="Boolean" />
+          <Property Name="IsConsumed" Type="Boolean" />
+          <Property Name="IsDefault" Type="Boolean" />
           <NavigationProperty Name="AccountableForm_Inventory" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Inventory" FromRole="AccountableForm_Assignment" ToRole="AccountableForm_Inventory" />
           <NavigationProperty Name="CollectorTable" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_CollectorTable" FromRole="AccountableForm_Assignment" ToRole="CollectorTable" />
           <NavigationProperty Name="FundType_FundName" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_FundType_FundName" FromRole="AccountableForm_Assignment" ToRole="FundType_FundName" />
+          <NavigationProperty Name="SubCollectorTable" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_SubCollectorTable" FromRole="AccountableForm_Assignment" ToRole="SubCollectorTable" />
         </EntityType>
         <EntityType Name="AccountableForm_Description">
           <Key>
@@ -1216,6 +1241,7 @@
           </Key>
           <Property Name="SubCollectorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SubCollectorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AccountableForm_Assignment" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_SubCollectorTable" FromRole="SubCollectorTable" ToRole="AccountableForm_Assignment" />
         </EntityType>
         <Association Name="FK_AccountableForm_Assignment_AccountableForm_Inventory">
           <End Type="DB_TOSSModel.AccountableForm_Inventory" Role="AccountableForm_Inventory" Multiplicity="1" />
@@ -1250,6 +1276,18 @@
             </Principal>
             <Dependent Role="AccountableForm_Assignment">
               <PropertyRef Name="FundID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountableForm_Assignment_SubCollectorTable">
+          <End Type="DB_TOSSModel.SubCollectorTable" Role="SubCollectorTable" Multiplicity="0..1" />
+          <End Type="DB_TOSSModel.AccountableForm_Assignment" Role="AccountableForm_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCollectorTable">
+              <PropertyRef Name="SubCollectorID" />
+            </Principal>
+            <Dependent Role="AccountableForm_Assignment">
+              <PropertyRef Name="SubCollectorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1518,6 +1556,8 @@
           <EntitySetMapping Name="AccountableForm_Assignment">
             <EntityTypeMapping TypeName="DB_TOSSModel.AccountableForm_Assignment">
               <MappingFragment StoreEntitySet="AccountableForm_Assignment">
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="IsConsumed" ColumnName="IsConsumed" />
                 <ScalarProperty Name="IsTransferred" ColumnName="IsTransferred" />
                 <ScalarProperty Name="SubCollectorID" ColumnName="SubCollectorID" />
                 <ScalarProperty Name="Date" ColumnName="Date" />

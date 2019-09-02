@@ -278,7 +278,21 @@
                                         </div>
                                         @* Field Collectors *@
                                         <div id="DivFieldCollectorASF">
-                                            <label>Field Collectors</label>
+                                            <div class="card-header bg-carheadercolor mt-1">
+                                                <h4 class="card-title black"><b>Treasurer's OR Details</b></h4>
+                                            </div>
+                                            <div class="card-content collapse show">
+                                                <div class="card-body box-shadow-2">
+                                                    @* Field Collection Partial View *@
+                                                    <div id="_FieldCollectionID">
+                                                   
+                                                    </div>
+                                                    @* Treasurer Collection Partial View Table *@
+                                                    <div id="_FieldCollectionTableID">
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         @* Cash Tickets *@
                                         <div id="DivCashTicketASF">
@@ -422,6 +436,7 @@
             //Assignment of Accountable Forms
             F.Get_AccountableFormAssignmentTable();
 
+            F.Get_AccountableFormAssignmentFCTable();
             //Barangay Name
             F.Get_BarangayNameTable();
         }
@@ -807,6 +822,95 @@
             }).then(function (response) {
                 F.Get_TransferReturnORTable();
                 });
+        }
+
+        //Field Collector
+        F.Get_AddAssignFieldCollector = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_AddAssignFieldCollector',
+            }).then(function (response) {
+                $("#_FieldCollectionID").html(response.data);
+                F.LoadDynamicAFCollectorFC();
+                F.LoadDynamicDDASFFundTypeFC();
+                F.LoadDynamicDDASFAFFC();
+                F.Get_InvtAccountableFormTable();
+                F.Get_AddAssignTreasurerCollector();
+            });
+        }
+        F.LoadDynamicDDASFFundTypeFC = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicASFFundTypeFC',
+            }).then(function (response) {
+                $("#_FCFundID").html(response.data);
+            });
+        }
+        F.LoadDynamicAFCollectorFC = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicAFCollectorFC',
+            }).then(function (response) {
+                $("#_FCCollectorID").html(response.data);
+            });
+        }
+        F.LoadDynamicDDASFAFFC = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicAFASFFC',
+            }).then(function (response) {
+                $("#_FCAFID").html(response.data);
+                F.LoadDynamicASFStartORFC();
+            });
+        }
+        F.LoadDynamicASFStartORFC = function () {
+            //var AFORID = $("#AFIDDDASF").val()
+            //P({
+            //    url: '/FileMaintenanceCollectionDeposit/GetAccountFormID',
+            //    params: { AFORID: AFORID}
+            //}).then(function (response) {
+            //    var AccountFormIDT = response.data.AccountFormID;
+            //    P({
+            //        url: '/FileMaintenanceCollectionDeposit/GetDynamicAFStartOR',
+            //        params: { AccountFormID: AccountFormIDT }
+            //    }).then(function (response) {
+            //        $("#_DynamicAFStartOR").html(response.data);
+            //        F.LoadDynamicDDASFInvt();
+            //    });
+            //});
+            var AccountFormID = $("#AFIDDDASFFC").val();
+
+            P({
+                url: '/FileMaintenanceCollectionDeposit/GetDynamicAFStartORFC',
+                params: { AccountFormID: AccountFormID }
+            }).then(function (response) {
+                $("#_FCStartORID").html(response.data);
+                F.LoadDynamicDDASFInvtFC();
+            });
+        }
+        F.LoadDynamicDDASFInvtFC = function () {
+            var AFORID = $("#StartIDDDDFC option:selected").val();
+            if (AFORID == null || AFORID == "") {
+                AFORID = 0;
+            }
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_AddAssignAFFC',
+                params: { AFORID: AFORID }
+            }).then(function (response) {
+                $("#_DynamicASFFC").html(response.data);
+            });
+        }
+        F.Get_AccountableFormAssignmentFCTable = function () {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_AFAssignmentFieldCollectorTable',
+            }).then(function (response) {
+                $("#_FieldCollectionTableID").html(response.data);
+            });
+            F.Get_AddAssignFieldCollector();
+        }
+        F.Get_UpdateAFSetAsDefault = function (AssignAFID) {
+            P({
+                url: '/FileMaintenanceCollectionDeposit/Get_UpdateAFAssignFieldCollector',
+                params: { AssignAFID: AssignAFID },
+            }).then(function (response) {
+                F.Get_AccountableFormAssignmentFCTable();
+            });
         }
         //Barangay
         //Barangay Name
