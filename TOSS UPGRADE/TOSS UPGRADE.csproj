@@ -189,9 +189,12 @@
     <Compile Include="Controllers\DisbursementDisbursingOfficerController.cs" />
     <Compile Include="Controllers\DisbursementDVCashAvailabilityController.cs" />
     <Compile Include="Controllers\DisbursementVoucherController.cs" />
+    <Compile Include="Controllers\FileMaintenanceChartofAccountController.cs" />
     <Compile Include="Controllers\FileMaintenanceCollectionDepositController.cs" />
     <Compile Include="Controllers\FileMaintenanceDisbursementController.cs" />
     <Compile Include="Controllers\FileMaintenanceGeneralReferenceController.cs" />
+    <Compile Include="Controllers\FileMaintenancePositionController.cs" />
+    <Compile Include="Controllers\FileMaintenanceResponsibilityCenterController.cs" />
     <Compile Include="Controllers\FileMaintenanceSignatoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -9030,6 +9033,9 @@
     <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_DynamicDDStartORFC.cshtml" />
     <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_AddFieldCollectorIvnt.cshtml" />
     <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_FieldCollectorTable.cshtml" />
+    <Content Include="Views\FileMaintenancePosition\Index.cshtml" />
+    <Content Include="Views\FileMaintenanceResponsibilityCenter\Index.cshtml" />
+    <Content Include="Views\FileMaintenanceChartofAccount\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

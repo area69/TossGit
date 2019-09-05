@@ -15,13 +15,17 @@
     <div class="col-md-3 form-group" id="FundTypeDivID">
 
     </div>
-    <div class="col-md-4 pl-0 form-group">
+    <div class="col-md-3 mr-4 p-0 form-group">
         <label>Particulars</label>
         @Html.TextBoxFor(m => m.getFundColumns.FundParticulars, new { @class = "form-control", type = "text" })
     </div>
-    <div class="col-md-2">
+    <div class="col-md-1 mr-1 p-0">
         <label style="visibility:hidden">Particulars</label>
-        <button type="submit" class="btn bg-addbutton black form-control"><b>Save</b></button>
+        <button type="submit" class="btn bg-addbutton black form-control"><b>Add</b></button>
+    </div>
+    <div class="col-md-1 p-0">
+        <label style="visibility:hidden">Particulars</label>
+        <button type="reset" class="btn bg-headerbc form-control white"><b>Cancel</b></button>
     </div>
 </div>
 }

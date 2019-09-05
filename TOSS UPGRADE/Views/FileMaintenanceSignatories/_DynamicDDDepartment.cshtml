@@ -5,11 +5,11 @@
 @using TOSS_UPGRADE.Models;
 
 
-<label>Department</label>
-<span class="input-group-append" id="button-addon2">
+<label><b>Department</b></label>
+@*<span class="input-group-append" id="button-addon2">*@
     @Html.DropDownListFor(m => m.DepartmentID, Model.DepartmentList, new { @class = "form-control select2", id = "DepartmentIDD" })
-    <button class="btn bg-addbutton" type="button" data-toggle="modal" data-target="#addDepartmentModal" ng-click="Get_PositionTable()"><strong>+</strong></button>
-</span>
+    @*<button class="btn bg-addbutton" type="button" data-toggle="modal" data-target="#addDepartmentModal" ng-click="Get_PositionTable()"><strong>+</strong></button>
+</span>*@
 <script>
     $(function () {
         $("#DepartmentIDD").select2();

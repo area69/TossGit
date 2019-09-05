@@ -8,7 +8,7 @@
 @using (Ajax.BeginForm("UpdateInternalRevenueAllotment", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc('FMGeneralReferenceController','Get_InternalRevenueAllotmentTable','SuccessSaveira')", OnFailure = "OnFailure()", }))
 {
     <div class="row">
-        <div class="col-md-3 form-group">
+        <div class="col-md-4 form-group">
             @Html.HiddenFor(m => m.getIRAcolumns.IRAID, new { })
             <label>IRA Percentage Share</label>
             @Html.TextBoxFor(m => m.getIRAcolumns.IRAPercentageShare, new { @class = "form-control", type = "text", id = "tb1", onkeyup = "AddComma(this)" })
@@ -21,14 +21,13 @@
             <label>Base</label>
             @Html.TextBoxFor(m => m.getIRAcolumns.IRABase, new { @class = "form-control", type = "text", id = "base1" })
         </div>
-        <div class="col-md-1"></div>
         <div class="col-md-2">
             <label style="visibility:hidden">%</label>
-            <button type="submit" class="btn form-control black bg-addbutton"><b>Save</b></button>
+            <button type="submit" class="btn form-control black bg-addbutton"><b>Update</b></button>
         </div>
         <div class="col-md-2">
             <label style="visibility:hidden">%</label>
-            <button type="button" class="btn form-control white bg-headerbc" onclick="AngularGlobalEdit('FMGeneralReferenceController','Get_AddInternalRevenueAllotment','')"><b>Cancel</b></button>
+            <button type="reset" class="btn form-control white bg-headerbc" onclick="AngularGlobalEdit('FMGeneralReferenceController','Get_AddInternalRevenueAllotment','')"><b>Cancel</b></button>
         </div>
     </div>
 }

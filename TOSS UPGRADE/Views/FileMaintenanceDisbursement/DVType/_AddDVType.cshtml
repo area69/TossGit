@@ -11,13 +11,18 @@
 {
 <div class="row">
     <div class="col-md-2"></div>
-    <div class="col-md-6 form-group">
+    <div class="col-md-4 form-group">
         <label>Type</label>
         @Html.TextBoxFor(m => m.getDVTypecolumns.DVTypeName, new { @class = "form-control", type = "text" })
     </div>
-    <div class="col-md-2 ">
+    <div class="col-md-2">
         <label style="visibility:hidden">Hide</label><br />
-        <button type="submit" class="btn black bg-addbutton form-control"><b>Save</b></button>
+        <button type="submit" class="btn black bg-addbutton form-control"><b>Add</b></button>
+    </div>
+
+    <div class="col-md-2">
+        <label style="visibility:hidden">Hide</label>
+        <button type="reset" class="btn white bg-headerbc form-control"><b>Cancel</b></button>
     </div>
 </div>
 }

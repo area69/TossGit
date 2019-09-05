@@ -8,15 +8,19 @@
 @using (Ajax.BeginForm("AddMemoAccClassTable", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMGeneralReferenceController','Get_MemoAccountClassTable','Successfully Saved')", OnFailure = "OnFailure()", }))
 {
 <div class="row">
-    <div class="col-md-3 form-group" id="MemoAccClass_RevisionYrID">
+    <div class="col-md-2 form-group" id="MemoAccClass_RevisionYrID">
 
     </div>
-    <div class="col-md-7 form-group" id="MemoAccClass_AccountTitleDD">
+    <div class="col-md-6 form-group" id="MemoAccClass_AccountTitleDD">
 
     </div>
-    <div class="col-md-2 ">
-        <label style="visibility:hidden">Hide</label><br />
-        <button type="submit" class="btn black bg-addbutton form-control"><b>Save</b></button>
+    <div class="col-md-2">
+        <label style="visibility:hidden">Particulars</label>
+        <button type="submit" class="btn bg-addbutton black form-control"><b>Add</b></button>
+    </div>
+    <div class="col-md-2">
+        <label style="visibility:hidden">Particulars</label>
+        <button type="reset" class="btn bg-headerbc form-control white"><b>Cancel</b></button>
     </div>
 </div>
 }

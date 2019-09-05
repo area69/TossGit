@@ -1,0 +1,280 @@
+﻿
+@{
+    ViewBag.Title = "Responsibility Center";
+}
+<script>
+    $("#fmReposibilityCenter").addClass("active");
+</script>
+
+<div class="content-header row">
+    <div class="content-header-left col-md-6 mb-2">
+        <h3 class="content-header-title"><b>File Maintenance - Responsibility Center</b></h3>
+    </div>
+</div>
+<div class="card-content">
+    <div class="card">
+        <ul class="nav nav-tabs bg-headerbc nav-underline">
+            <li class="nav-item">
+                <a class="nav-link active" id="base-tab1" data-toggle="pill" aria-controls="tab1" href="#tab1" aria-expanded="true"><b>Department</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false"><b>Function</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" aria-expanded="false"><b>Section</b></a>
+            </li>
+        </ul>
+        <div class="tab-content px-1 pt-1">
+            @* Department *@
+            <div role="tabpanel" class="tab-pane active" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
+                <div class="content-body">
+                    <div class="row black">
+                        <div class="col-md-12" @*id="DepartmentxID"*@>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="mt-1"><b>Department</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="mt-1"><b>Department Abbreviation</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="mt-1"><b>Department / Office Code</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="mt-1"><b>Sector</b></label>
+                                    <select class="form-control">
+                                        <option>Social Services</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="mt-1"><b>Sub Sector</b></label>
+                                    <select class="form-control">
+                                        <option>Health, Nutrition and Population Control</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="mt-1"><b>Fund</b></label>
+                                    <select class="form-control">
+                                        <option>Special Education Fund</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-md-8"></div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn bg-addbutton form-control black">
+                                        <b>Add</b>
+                                    </button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="reset" class="btn bg-headerbc form-control white">
+                                        <b>Cancel</b>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-1" @*id="DepartmentTableID"*@>
+                        <div class="col-md-12">
+                            <table class="table table-striped table-responsive zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>Department</th>
+                                        <th>Department Abbreviation</th>
+                                        <th>Department Code</th>
+                                        <th>Sector</th>
+                                        <th>Sub<br />Sector</th>
+                                        <th>Fund</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr>
+                                        <td>Office of the Local Chief Executive</td>
+                                        <td>OLCE</td>
+                                        <td>1011</td>
+                                        <td>Social Services</td>
+                                        <td>Health, Nutrition and Population Control</td>
+                                        <td>General Fund</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* Function *@
+            <div role="tabpanel" class="tab-pane" id="tab2" aria-expanded="true" aria-labelledby="base-tab2">
+                <div class="content-body">
+                    <div class="row black">
+                        <div class="col-md-12" @*id="DepartmentxID"*@>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="mt-1"><b>Department</b></label>
+                                    <select class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="mt-1"><b>Function</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="mt-1"><b>Function Abbreviation</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row black">
+                                <div class="col-md-2">
+                                    <label class="mt-1"><b>Function Code</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="mt-1"><b>Sector</b></label>
+                                    <select class="form-control">
+                                        <option>General Public Services</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="mt-1"><b>Sub Sector</b></label>
+                                    <select class="form-control">
+                                        <option>N/A</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="mt-1"><b>Fund</b></label>
+                                    <select class="form-control">
+                                        <option>Special Education Fund</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-md-8"></div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn bg-addbutton form-control black">
+                                        <b>Add</b>
+                                    </button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="reset" class="btn bg-headerbc form-control white">
+                                        <b>Cancel</b>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-1" @*id="DepartmentTableID"*@>
+                        <div class="col-md-12">
+                            <table class="table table-striped table-responsive zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>Department</th>
+                                        <th>Function</th>
+                                        <th>Function Abbreviation</th>
+                                        <th>Function Code</th>
+                                        <th>Sector</th>
+                                        <th>Sub<br />Sector</th>
+                                        <th>Fund</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr>
+                                        <td>Office of the Local Chief Executive</td>
+                                        <td>General Administration</td>
+                                        <td>GA</td>
+                                        <td>01</td>
+                                        <td>General Public Services</td>
+                                        <td>N/A</td>
+                                        <td>General Fund</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* Section *@
+            <div role="tabpanel" class="tab-pane" id="tab3" aria-expanded="true" aria-labelledby="base-tab3">
+                <div class="content-body">
+
+                    <div class="row black">
+                        <div class="col-md-12" @*id="DepartmentxID"*@>
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-5">
+                                    <label class="mt-1"><b>Department</b></label>
+                                    <select class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="mt-1"><b>Function</b></label>
+                                    <select class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-5">
+                                    <label class="mt-1"><b>Sector</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-1"></div>
+                                <div class="col-md-2">
+                                    <label class="mt-1" style="visibility:hidden">Function Code</label>
+                                    <button type="submit" class="btn bg-addbutton form-control black">
+                                        <b>Add</b>
+                                    </button>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1" style="visibility:hidden">Function Code</label>
+                                    <button type="reset" class="btn bg-headerbc form-control white">
+                                        <b>Cancel</b>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-1" @*id="DepartmentTableID"*@>
+                        <div class="col-md-12">
+                            <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>Department</th>
+                                        <th>Function</th>
+                                        <th>Section</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr>
+                                        <td>Office of the Local Chief Executive</td>
+                                        <td>General Administration</td>
+                                        <td>Record Section</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>General Services Office</td>
+                                        <td>General Administration</td>
+                                        <td>Supply Section</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

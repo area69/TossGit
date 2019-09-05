@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Position";
+}
+<script>
+    $("#fposition").addClass("active");
+</script>
+
+<div class="content-header row">
+    <div class="content-header-left col-md-6 mb-2">
+        <h3 class="content-header-title"><b>File Maintenance - Position</b></h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="card box-shadow-2">
+            <div class="card-header bg-carheadercolor">
+                <h4 class="card-title black"><b>Position</b></h4>
+            </div>
+            <div class="card-body box-shadow-2">
+                <div class="row black">
+                    <div class="col-md-4 form-group">
+                        <label><b>Position Name</b></label>
+                        <input type="text" class="form-control" value="" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label><b>Position Code</b></label>
+                        <input type="text" class="form-control" value="" />
+                    </div>
+
+                    <div class="col-md-2 form-group">
+                        <label class="white">Position</label>
+                        <button class="btn bg-addbutton black form-control"><b>Add</b></button>
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="white">Position</label>
+                        <button class="btn bg-headerbc white form-control"><b>Cancel</b></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="card box-shadow-2">
+            <div class="card-header bg-carheadercolor">
+                <h4 class="card-title black"><b>Position Details</b></h4>
+            </div>
+            <div class="card-body box-shadow-2">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                            <thead>
+                                <tr>
+                                    <th>Position Name</th>
+                                    <th>Position Code</th>
+                                    <th width="5px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Local Chief Executive</td>
+                                    <td>LCE</td>
+                                    <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>Budget Officer I</td>
+                                    <td>BO I</td>
+                                    <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

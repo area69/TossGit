@@ -6,16 +6,20 @@
 
 @using (Ajax.BeginForm("AddDescription", "FileMaintenanceCollectionDeposit", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingTwoActionNoModal('FMCollectionDepositController','Get_AFDescriptionTable','LoadDynamicDDDescription','Description Successfully Saved')", OnFailure = "OnFailure()", }))
 {
-    <div class="row">
-        <div class="col-md-9 mr-1">
-            <label>Description</label>
-            @Html.TextBoxFor(m => m.getDescriptionColumns.Description, new { @class = "form-control", type = "text" })
-        </div>
-        <div class="col-md-2 px-0 mr-1">
-            <label style="visibility:hidden">Department</label>
-            <button type="submit" class="btn bg-addbutton form-control black"><b>Save</b></button>
-        </div>
+<div class="row">
+    <div class="col-md-7 mr-1 pr-0">
+        <label>Description</label>
+        @Html.TextBoxFor(m => m.getDescriptionColumns.Description, new { @class = "form-control", type = "text" })
     </div>
+    <div class="col-md-2 px-0 mr-1">
+        <label style="visibility:hidden">Department</label>
+        <button type="submit" class="btn bg-addbutton form-control black"><b>Add</b></button>
+    </div>
+    <div class="col-md-2 px-0">
+        <label style="visibility:hidden">Department</label>
+        <button type="reset" class="btn bg-headerbc form-control white"><b>Cancel</b></button>
+    </div>
+</div>
 }
 <script>
     $(function () {

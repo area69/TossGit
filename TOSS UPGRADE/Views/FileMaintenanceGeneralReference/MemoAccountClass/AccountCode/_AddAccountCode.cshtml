@@ -7,19 +7,21 @@
 @using (Ajax.BeginForm("AddAccountCode", "FileMaintenanceGeneralReference", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithTripleFunc('FMGeneralReferenceController', 'Get_AccountCodeTable',  'LoadDynamicDDMemoAccClass','SuccessSave1')", OnFailure = "OnFailure()", }))
 {
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-5 pr-0">
         <label>Account Name</label>
         @Html.TextBoxFor(m => m.getMMAccountTitleColumns.AccountTitle, new { @class = "form-control", type = "text" })
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3 pr-0">
         <label>Account Code</label>
         @Html.TextBoxFor(m => m.getMMAccountTitleColumns.AccountCode, new { @class = "form-control", type = "text" })
     </div>
+    <div class="col-md-2 pr-0">
+        <label style="visibility:hidden">Particulars</label>
+        <button type="submit" class="btn bg-addbutton black form-control"><b>Add</b></button>
+    </div>
     <div class="col-md-2">
-        <label style="visibility:hidden">Account</label>
-        <button type="submit" class="btn bg-addbutton form-control black">
-            <b>Save</b>
-        </button>
+        <label style="visibility:hidden">Particulars</label>
+        <button type="reset" class="btn bg-headerbc form-control white"><b>Cancel</b></button>
     </div>
 </div>
 }

@@ -31,21 +31,21 @@
                                     <i class="la la-bars"></i>
                                 </button>
                                 @*<button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMSignatoriesController','Get_UpdatePosition','@Items.PositionID')"><i class="ft-edit"></i></button>
-        <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','@Items.PositionName','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.PositionID ,&quot;Get_DeletePosition&quot;,&quot;FMSignatoriesController&quot;)')"><i class="ft-delete"></i></button>*@
+                                    <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','@Items.PositionName','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.PositionID ,&quot;Get_DeletePosition&quot;,&quot;FMSignatoriesController&quot;)')"><i class="ft-delete"></i></button>*@
                             </td>
                         </tr>
                     }
                 }
             </tbody>
         </table>
-        <script>   
-            $(function () {
-                LoadDataTable();
-                LoadPopOver();
-            })
-        </script>
     </div>
 </div>
 
 
 
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+</script>
