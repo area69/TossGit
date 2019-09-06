@@ -192,9 +192,11 @@
     <Compile Include="Controllers\FileMaintenanceChartofAccountController.cs" />
     <Compile Include="Controllers\FileMaintenanceCollectionDepositController.cs" />
     <Compile Include="Controllers\FileMaintenanceDisbursementController.cs" />
+    <Compile Include="Controllers\FileMaintenanceFundController.cs" />
     <Compile Include="Controllers\FileMaintenanceGeneralReferenceController.cs" />
     <Compile Include="Controllers\FileMaintenancePositionController.cs" />
     <Compile Include="Controllers\FileMaintenanceResponsibilityCenterController.cs" />
+    <Compile Include="Controllers\FileMaintenanceSectorController.cs" />
     <Compile Include="Controllers\FileMaintenanceSignatoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -9036,6 +9038,8 @@
     <Content Include="Views\FileMaintenancePosition\Index.cshtml" />
     <Content Include="Views\FileMaintenanceResponsibilityCenter\Index.cshtml" />
     <Content Include="Views\FileMaintenanceChartofAccount\Index.cshtml" />
+    <Content Include="Views\FileMaintenanceFund\Index.cshtml" />
+    <Content Include="Views\FileMaintenanceSector\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

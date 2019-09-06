@@ -1,0 +1,176 @@
+﻿
+@{
+    ViewBag.Title = "Fund";
+}
+<script>
+    $("#fmFund").addClass("active");
+</script>
+
+<div class="content-header row">
+    <div class="content-header-left col-md-6 mb-2">
+        <h3 class="content-header-title"><b>File Maintenance - Fund</b></h3>
+    </div>
+</div>
+
+<div class="card-content">
+    <div class="card">
+        <ul class="nav nav-tabs bg-headerbc nav-underline">
+            <li class="nav-item">
+                <a class="nav-link active" id="base-tab1" data-toggle="pill" aria-controls="tab1" href="#tab1" aria-expanded="true"><b>Fund</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false"><b>Sub Fund</b></a>
+            </li>
+        </ul>
+        <div class="tab-content px-1 pt-1">
+            @* Fund *@
+            <div role="tabpanel" class="tab-pane active" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
+                <div class="content-body">
+                    <div class="row black">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8" @*id="DepartmentxID"*@>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="mt-1"><b>Fund</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1"><b>Fund Code</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
+                                    <button type="submit" class="btn bg-addbutton form-control black">
+                                        <b>Add</b>
+                                    </button>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
+                                    <button type="reset" class="btn bg-headerbc form-control white">
+                                        <b>Cancel</b>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-1" @*id="DepartmentTableID"*@>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                                <thead>
+                                    <tr>
+                                        <th>Fund</th>
+                                        <th>Fund Code</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Calamity Fund</td>
+                                        <td>400</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Development Fund</td>
+                                        <td>500</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>General Fund</td>
+                                        <td>100</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Special Education Fund</td>
+                                        <td>200</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trust Fund</td>
+                                        <td>300</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* Sub Fund *@
+            <div role="tabpanel" class="tab-pane" id="tab2" aria-expanded="true" aria-labelledby="base-tab2">
+                <div class="content-body">
+                    <div class="row black">
+                        <div class="col-md-12" @*id="DepartmentxID"*@>
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-3">
+                                    <label class="mt-1"><b>Fund</b></label>
+                                    <select class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="mt-1"><b>Sub Fund</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
+                                    <button type="submit" class="btn bg-addbutton form-control black">
+                                        <b>Add</b>
+                                    </button>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
+                                    <button type="reset" class="btn bg-headerbc form-control white">
+                                        <b>Cancel</b>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-1" @*id="DepartmentTableID"*@>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>Fund</th>
+                                        <th>Sub Fund</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr>
+                                        <td>General Fund</td>
+                                        <td>Bus Terminal</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>General Fund</td>
+                                        <td>Hospital</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>General Fund</td>
+                                        <td>Market</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>General Fund</td>
+                                        <td>Proper</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>General Fund</td>
+                                        <td>Slaugtherhouse</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

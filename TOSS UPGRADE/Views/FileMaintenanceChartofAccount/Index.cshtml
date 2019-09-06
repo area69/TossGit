@@ -528,7 +528,182 @@
             @* General Account*@
             <div role="tabpanel" class="tab-pane" id="tab6" aria-expanded="true" aria-labelledby="base-tab6">
                 <div class="content-body">
-
+                    <div class="row">
+                        <div class="col-md-12" @*id="DepartmentxID"*@>
+                            <div class="row black">
+                                <div class="col-md-2">
+                                    <label class="mt-1"><b>Revision Year</b></label>
+                                    <select class="form-control">
+                                        <option>2015</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="mt-1"><b>Allotment Class</b></label>
+                                    <select class="form-control">
+                                        <option>N / A</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1"><b>Accounts</b></label>
+                                    <select class="form-control">
+                                        <option>Asset</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="mt-1"><b>Major Account Group</b></label>
+                                    <select class="form-control">
+                                        <option>Property, Plant and Equipment</option>
+                                        <option>Financial Liabilities</option>
+                                        <option>Government Equity</option>
+                                        <option>Tax Revenue</option>
+                                        <option>Personnel Services</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row black">
+                                <div class="col-md-4 pr-0">
+                                    <label class="mt-1"><b>Sub Major Account Group</b></label>
+                                    <select class="form-control">
+                                        <option>Land</option>
+                                        <option>Payables</option>
+                                        <option>Government Equity</option>
+                                        <option>Tax Revenue - Individual and Corporation</option>
+                                        <option>Salaries and Wages</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 pr-0">
+                                    <label class="mt-1"><b>General Ledger / Contra Account</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-2 px-0 text-center mt-4">
+                                    <fieldset>
+                                        <input type="checkbox" class="form-control icheckbox_square-red" />
+                                        <label><b>Contra Account?</b></label>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="mt-1"><b>General Ledger Account</b></label>
+                                    <select class="form-control">
+                                        <option>Land</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row black">
+                                <div class="col-md-2 pr-0 mt-1">
+                                    <label><b>Account Code</b></label>
+                                    <div class="input-group mt-0">
+                                        <span class="input-group-addon" id="basic-addon1"><b>1 - 07 - 01 - </b></span>
+                                        <input type="text" class="form-control" name="name" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="mt-1"><b>With Reserve?</b></label>
+                                    <select class="form-control">
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1"><b>Reserve %?</b></label>
+                                    <input type="text" class="form-control" disabled />
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1"><b>For Continuing?</b></label>
+                                    <select class="form-control">
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="mt-1"><b>OBR Cash Advance?</b></label>
+                                    <select class="form-control">
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-md-8"></div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn bg-addbutton form-control black" onclick="reload">
+                                        <b>Add</b>
+                                    </button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="reset" class="btn bg-headerbc form-control white">
+                                        <b>Cancel</b>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-1" @*id="DepartmentTableID"*@>
+                        <div class="col-md-12">
+                            <table class="table table-striped zero-configuration table-bordered table-responsive text-center table-smss-hover no-footer m-0 w-100">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>Revision Year</th>
+                                        <th>Allotment Class</th>
+                                        <th>Accounts</th>
+                                        <th>Major Account Group</th>
+                                        <th>Sub Major Account Group</th>
+                                        <th>General Account</th>
+                                        <th>Account Code</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr>
+                                        <td>2015</td>
+                                        <td>N / A</td>
+                                        <td>Asset</td>
+                                        <td>Property, Plant and Equipment</td>
+                                        <td>Land</td>
+                                        <td>Land</td>
+                                        <td>1-07-01-010</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2015</td>
+                                        <td>N / A</td>
+                                        <td>Liabilities</td>
+                                        <td>Financial Liabilities</td>
+                                        <td>Payables</td>
+                                        <td>Accounts Payables</td>
+                                        <td>2-01-01-10</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2015</td>
+                                        <td>N / A</td>
+                                        <td>Equity</td>
+                                        <td>Government Equity</td>
+                                        <td>Government Equity</td>
+                                        <td>Prior Period Adjustment</td>
+                                        <td>3-01-01-020</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2015</td>
+                                        <td>N / A</td>
+                                        <td>Income</td>
+                                        <td>Tax Revenue</td>
+                                        <td>Tax Revenue - Individual and Corporation</td>
+                                        <td>Professinal Tax</td>
+                                        <td>4-01-01-020</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2015</td>
+                                        <td>Personal Service</td>
+                                        <td>Expenses</td>
+                                        <td>Personnel Services</td>
+                                        <td>Salaries and Wages</td>
+                                        <td>Salaries and Wages - Regular</td>
+                                        <td>5-01-01-10</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

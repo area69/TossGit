@@ -1,0 +1,183 @@
+﻿
+@{
+    ViewBag.Title = "Sector";
+}
+<script>
+    $("#fmSector").addClass("active");
+</script>
+
+<div class="content-header row">
+    <div class="content-header-left col-md-6 mb-2">
+        <h3 class="content-header-title"><b>File Maintenance - Sector</b></h3>
+    </div>
+</div>
+
+<div class="card-content">
+    <div class="card">
+        <ul class="nav nav-tabs bg-headerbc nav-underline">
+            <li class="nav-item">
+                <a class="nav-link active" id="base-tab1" data-toggle="pill" aria-controls="tab1" href="#tab1" aria-expanded="true"><b>Sector</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false"><b>Sub Sector</b></a>
+            </li>
+        </ul>
+        <div class="tab-content px-1 pt-1">
+            @* Sector *@
+            <div role="tabpanel" class="tab-pane active" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
+                <div class="content-body">
+                    <div class="row black">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8" @*id="DepartmentxID"*@>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="mt-1"><b>Sector</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1"><b>Sector Code</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
+                                    <button type="submit" class="btn bg-addbutton form-control black">
+                                        <b>Add</b>
+                                    </button>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
+                                    <button type="reset" class="btn bg-headerbc form-control white">
+                                        <b>Cancel</b>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-1" @*id="DepartmentTableID"*@>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                                <thead>
+                                    <tr>
+                                        <th>Sector</th>
+                                        <th>Sector Code</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Economic Services</td>
+                                        <td>8000</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>General Public Services</td>
+                                        <td>1000</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Other Services</td>
+                                        <td>9000</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Social Services</td>
+                                        <td>3000</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* Sub Sector *@
+            <div role="tabpanel" class="tab-pane" id="tab2" aria-expanded="true" aria-labelledby="base-tab2">
+                <div class="content-body">
+                    <div class="row black">
+                        <div class="col-md-12" @*id="DepartmentxID"*@>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="mt-1"><b>Sector</b></label>
+                                    <select class="form-control">
+                                        <option>General Public Services</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="mt-1"><b>Sub Sector</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-2 mt-1">
+                                    <label><b>Sector Code</b></label>
+                                    <div class="input-group mt-0">
+                                        <span class="input-group-addon" id="basic-addon1"><b>1000 -</b></span>
+                                        <input type="text" class="form-control" name="name" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
+                                    <button type="submit" class="btn bg-addbutton form-control black">
+                                        <b>Add</b>
+                                    </button>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
+                                    <button type="reset" class="btn bg-headerbc form-control white">
+                                        <b>Cancel</b>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-1" @*id="DepartmentTableID"*@>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>Sector</th>
+                                        <th>Sub Sector</th>
+                                        <th>Sub Code</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr>
+                                        <td>Economic Services</td>
+                                        <td>N / A</td>
+                                        <td>8000 - 000</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>General Public Services</td>
+                                        <td>N / A</td>
+                                        <td>1000 - 000</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Other Services</td>
+                                        <td>N / A</td>
+                                        <td>9000-000</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Social Services</td>
+                                        <td>Health And Nutrition</td>
+                                        <td>3000-100</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Social Services</td>
+                                        <td>Social Security, Social Services and Welfare</td>
+                                        <td>3000-200</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
