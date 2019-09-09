@@ -1,9 +1,0 @@
-﻿@model TOSS_UPGRADE.Models.FM_GeneralReference_FundTypes
-@{
-    DB_TOSSEntities TOSSDB = new DB_TOSSEntities();
-}
-@using TOSS_UPGRADE.Models;
-
-
-<label>Fund Type</label>
-@Html.DropDownListFor(m => m.getFundColumns.FundTypeID, Model.FundTypeList, new { @class = "form-control select2", id = "FundTypeIDDD" })

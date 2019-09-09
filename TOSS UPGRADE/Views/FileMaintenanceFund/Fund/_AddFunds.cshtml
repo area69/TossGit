@@ -1,0 +1,41 @@
+﻿@model TOSS_UPGRADE.Models.FM_Funds.FM_Fund
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+@Html.AntiForgeryToken()
+
+@using (Ajax.BeginForm("AddFunds", "FileMaintenanceFund", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc('FMFundController','Get_FundTables','SuccessMessageBox')", OnFailure = "OnFailure()", }))
+{
+
+
+<div class="row">
+    <div class="col-md-5">
+        <label class="mt-1"><b>Fund</b></label>
+        @Html.TextBoxFor(m => m.getFundcolumns.FundName, new { @class = "form-control", type = "text", placeholder = "Enter Fund Name" })
+    </div>
+    <div class="col-md-3">
+        <label class="mt-1"><b>Fund Code</b></label>
+        @Html.TextBoxFor(m => m.getFundcolumns.FundCode, new { @class = "form-control", type = "text", placeholder = "Enter Fund Code" })
+    </div>
+    <div class="col-md-2">
+        <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
+        <button type="submit" class="btn bg-addbutton form-control black">
+            <b>Add</b>
+        </button>
+    </div>
+    <div class="col-md-2">
+        <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
+        <button type="reset" class="btn bg-headerbc form-control white">
+            <b>Cancel</b>
+        </button>
+    </div>
+</div>
+}
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+</script>

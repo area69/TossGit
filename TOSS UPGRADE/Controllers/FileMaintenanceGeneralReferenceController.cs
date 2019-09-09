@@ -19,106 +19,8 @@ namespace TOSS_UPGRADE.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            FM_GeneralReference_FundTypes model = new FM_GeneralReference_FundTypes();
-            return View(model);
+            return View();
         }
-        #region Fund Type
-        //Dropdown FundType
-        public ActionResult GetDynamicFundType(FM_GeneralReference_FundTypes model, int FundID)
-        {
-            model.FundTypeList = new SelectList((from s in TOSSDB.FundType_FundType.Where(a => a.FundID == FundID).ToList() select new { FundTypeID = s.FundTypeID, FundTypeTitle = s.FundTypeTitle }), "FundTypeID", "FundTypeTitle");
-
-            return PartialView("FundTypes/_DynamicDDFundType", model);
-        }
-        //Dropdown FundType
-        public ActionResult GetDynamicFundType2(FM_GeneralReference_FundTypes model, int FundID)
-        {
-            model.FundTypeList = new SelectList((from s in TOSSDB.FundType_FundType.Where(a => a.FundID == FundID).ToList() select new { FundTypeID = s.FundTypeID, FundTypeTitle = s.FundTypeTitle }), "FundTypeID", "FundTypeTitle");
-
-            return PartialView("FundTypes/_DynamicDDFundType", model);
-        }
-        //Get Add Fund Type Partial View
-        public ActionResult Get_AddFundTypes(FM_GeneralReference_FundTypes model)
-        {
-            return PartialView("FundTypes/_AddFundTypes", model);
-        }
-        //Add Fund Type
-        public JsonResult AddFundTypes(FM_GeneralReference_FundTypes model)
-        {
-            FundType_FundTypeTable tblFundType = new FundType_FundTypeTable();
-            tblFundType.FundID = GlobalFunction.ReturnEmptyInt(model.getFundColumns.FundID);
-            tblFundType.FundTypeID = GlobalFunction.ReturnEmptyInt(model.getFundColumns.FundTypeID);
-            tblFundType.FundParticulars = GlobalFunction.ReturnEmptyString(model.getFundColumns.FundParticulars);
-            TOSSDB.FundType_FundTypeTable.Add(tblFundType);
-            TOSSDB.SaveChanges();
-            return Json(tblFundType);
-        }
-        //Fund Type Table Partial View
-        public ActionResult Get_FundTypeTables()
-        {
-            FM_GeneralReference_FundTypes model = new FM_GeneralReference_FundTypes();
-            List<FundList> tbl_FundType = new List<FundList>();
-
-            var SQLQuery = "SELECT * FROM DB_TOSS.dbo.FundType_FundTypeTable,DB_TOSS.dbo.FundType_FundName,DB_TOSS.dbo.FundType_FundType WHERE (DB_TOSS.dbo.FundType_FundTypeTable.FundID = DB_TOSS.dbo.FundType_FundName.FundID AND DB_TOSS.dbo.FundType_FundTypeTable.FundTypeID = DB_TOSS.dbo.FundType_FundType.FundTypeID) order by FundParticulars asc";
-            //SQLQuery += " WHERE (IsActive != 0)";
-            using (SqlConnection Connection = new SqlConnection(GlobalFunction.ReturnConnectionString()))
-            {
-                Connection.Open();
-                using (SqlCommand command = new SqlCommand("[dbo].[SP_FundTypesList]", Connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add(new SqlParameter("@SQLStatement", SQLQuery));
-                    SqlDataReader dr = command.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        tbl_FundType.Add(new FundList()
-                        {
-                            ListFundTypeID = GlobalFunction.ReturnEmptyInt(dr[0]),
-                            FundTitle = GlobalFunction.ReturnEmptyString(dr[5]),
-                            FundTypeTitle = GlobalFunction.ReturnEmptyString(dr[7]),
-                            Particulars = GlobalFunction.ReturnEmptyString(dr[3])
-                        });
-                    }
-                }
-                Connection.Close();
-            }
-
-            model.getFundList = tbl_FundType.ToList();
-
-            return PartialView("FundTypes/_FundTypesTable", model.getFundList);
-
-        }
-        //Get Fund Type Update
-        public ActionResult Get_UpdateFundTypes(FM_GeneralReference_FundTypes model, int ListFundTypeID)
-        {
-            FundType_FundTypeTable tblFundTypes = (from e in TOSSDB.FundType_FundTypeTable where e.ListFundTypeID == ListFundTypeID select e).FirstOrDefault();
-            model.getFundColumns.FundID = tblFundTypes.FundID;
-            model.getFundColumns.FundTypeID = tblFundTypes.FundTypeID;
-            model.getFundColumns.FundParticulars = tblFundTypes.FundParticulars;
-            return PartialView("FundTypes/_UpdateFundTypes", model);
-        }
-        //Update Fund Type
-        public ActionResult UpdateFundTypes(FM_GeneralReference_FundTypes model)
-        {
-            FundType_FundTypeTable tblFundType = (from e in TOSSDB.FundType_FundTypeTable where e.ListFundTypeID == model.ListFundTypeID select e).FirstOrDefault();
-            tblFundType.FundID = model.getFundColumns.FundID;
-            tblFundType.FundTypeID = model.getFundColumns.FundTypeID;
-            tblFundType.FundParticulars = model.getFundColumns.FundParticulars;
-            TOSSDB.Entry(tblFundType);
-            TOSSDB.SaveChanges();
-            return PartialView("FundTypes/_UpdateFundTypes", model);
-        }
-        //Delete Fund Type
-        public ActionResult DeleteFundTypes(FM_GeneralReference_FundTypes model, int ListFundTypeID)
-        {
-            FundType_FundTypeTable tblFundTypes = (from e in TOSSDB.FundType_FundTypeTable where e.ListFundTypeID == ListFundTypeID select e).FirstOrDefault();
-            TOSSDB.FundType_FundTypeTable.Remove(tblFundTypes);
-            TOSSDB.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        #endregion
-
         #region Bank & Bank Account
         //Bank Table Partial View
         public ActionResult Get_BankTables()
@@ -368,7 +270,7 @@ namespace TOSS_UPGRADE.Controllers
             tblBankAccount.BankID = model.BankAccountBankID;
             tblBankAccount.AccountName = model.getBankAccountColumns.AccountName;
             tblBankAccount.AccountNo = model.getBankAccountColumns.AccountNo;
-            tblBankAccount.FundID = model.FundID;
+           // tblBankAccount.FundID = model.FundID;
             tblBankAccount.CurrentAccount = model.getBankAccountColumns.CurrentAccount;
             tblBankAccount.AccountCodeID = model.AccountCodeID;
             tblBankAccount.AccountTypeID = model.AccountTypeID;
@@ -385,7 +287,7 @@ namespace TOSS_UPGRADE.Controllers
             model.BankNameIDTemp = tblBankAccount.BankID;
             model.getBankAccountColumns.AccountName = tblBankAccount.AccountName;
             model.getBankAccountColumns.AccountNo = tblBankAccount.AccountNo;
-            model.FundID = tblBankAccount.FundID;
+           // model.FundID = tblBankAccount.FundID;
             model.getBankAccountColumns.CurrentAccount = tblBankAccount.CurrentAccount;
             model.AccountCodeIDTemp = tblBankAccount.AccountCodeID;
             model.AccountTypeIDTemp = tblBankAccount.AccountTypeID;
@@ -399,7 +301,7 @@ namespace TOSS_UPGRADE.Controllers
             tblBankAccount.BankID = model.BankAccountBankID;
             tblBankAccount.AccountName = model.getBankAccountColumns.AccountName;
             tblBankAccount.AccountNo = model.getBankAccountColumns.AccountNo;
-            tblBankAccount.FundID = model.FundID;
+           // tblBankAccount.FundID = model.FundID;
             tblBankAccount.CurrentAccount = model.getBankAccountColumns.CurrentAccount;
             tblBankAccount.AccountCodeID = model.AccountCodeID;
             tblBankAccount.AccountTypeID = model.AccountTypeID;
@@ -698,6 +600,5 @@ namespace TOSS_UPGRADE.Controllers
         }
 
         #endregion
-
     }
 }

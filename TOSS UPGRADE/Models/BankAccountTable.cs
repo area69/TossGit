@@ -32,7 +32,6 @@ namespace TOSS_UPGRADE.Models
         public virtual BankAccount_AccountCode BankAccount_AccountCode { get; set; }
         public virtual BankAccount_AccountType BankAccount_AccountType { get; set; }
         public virtual BankTable BankTable { get; set; }
-        public virtual FundType_FundName FundType_FundName { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CheckInventoryTable> CheckInventoryTables { get; set; }
     }

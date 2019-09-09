@@ -31,13 +31,13 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult GetDynamicAccountName(int BankAccountID)
         {
             FM_Disbursement_CheckInventory model = new FM_Disbursement_CheckInventory();
-            model.CheckInventoryAccountNameList = new SelectList((from s in TOSSDB.BankAccountTables.ToList() where s.BankID == BankAccountID select new { BankAccountID = s.BankAccountID, AccountNo = s.AccountNo + "- ("+ s.FundType_FundName.FundTitle +")" }), "BankAccountID", "AccountNo");
+            model.CheckInventoryAccountNameList = new SelectList((from s in TOSSDB.BankAccountTables.ToList() where s.BankID == BankAccountID select new { BankAccountID = s.BankAccountID, AccountNo = s.AccountNo /*+ "- ("+ s.FundType_FundName.FundTitle +")"*/ }), "BankAccountID", "AccountNo");
             return PartialView("CheckInventory/_DynamicDDAccountName", model);
         }
         public ActionResult GetSelectedDynamicAccountName(int CheckInventoryAccountNameIDTempID)
         {
             FM_Disbursement_CheckInventory model = new FM_Disbursement_CheckInventory();
-            model.CheckInventoryAccountNameList = new SelectList((from s in TOSSDB.BankAccountTables.ToList() where s.BankAccountID == CheckInventoryAccountNameIDTempID select new { BankAccountID = s.BankAccountID, AccountNo = s.AccountNo + "- (" + s.FundType_FundName.FundTitle + ")" }), "BankAccountID", "AccountNo");
+            model.CheckInventoryAccountNameList = new SelectList((from s in TOSSDB.BankAccountTables.ToList() where s.BankAccountID == CheckInventoryAccountNameIDTempID select new { BankAccountID = s.BankAccountID, AccountNo = s.AccountNo /*+ "- (" + s.FundType_FundName.FundTitle + ")"*/ }), "BankAccountID", "AccountNo");
             model.CheckInventoryAccountNameID = CheckInventoryAccountNameIDTempID;
             return PartialView("CheckInventory/_DynamicDDAccountName", model);
         }
@@ -145,13 +145,13 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult GetDynamicMaitenance(int BankAccountID)
         {
             FM_Disbursement_CheckMaintenance model = new FM_Disbursement_CheckMaintenance();
-            model.CheckMaintenanceAccountNameList = new SelectList((from s in TOSSDB.BankAccountTables.ToList() where s.BankID == BankAccountID select new { BankAccountID = s.BankAccountID, AccountNo = s.AccountNo + "- (" + s.FundType_FundName.FundTitle + ")" }), "BankAccountID", "AccountNo");
+            model.CheckMaintenanceAccountNameList = new SelectList((from s in TOSSDB.BankAccountTables.ToList() where s.BankID == BankAccountID select new { BankAccountID = s.BankAccountID, AccountNo = s.AccountNo /*+ "- (" + s.FundType_FundName.FundTitle + ")"*/ }), "BankAccountID", "AccountNo");
             return PartialView("CheckMaintenance/_DynamicDDAccountName2", model);
         }
         public ActionResult GetSelectedDynamicMaitenance(int CheckMaintenanceBankIDTempID)
         {
             FM_Disbursement_CheckMaintenance model = new FM_Disbursement_CheckMaintenance();
-            model.CheckMaintenanceAccountNameList = new SelectList((from s in TOSSDB.CheckInventoryTables.ToList() where s.CheckInvntID == CheckMaintenanceBankIDTempID select new { CheckInvntID = s.CheckInvntID, AccountNo = s.BankAccountTable.AccountNo + "- (" + s.BankAccountTable.FundType_FundName.FundTitle + ")" }), "CheckInvntID", "AccountNo");
+            model.CheckMaintenanceAccountNameList = new SelectList((from s in TOSSDB.CheckInventoryTables.ToList() where s.CheckInvntID == CheckMaintenanceBankIDTempID select new { CheckInvntID = s.CheckInvntID, AccountNo = s.BankAccountTable.AccountNo /*+ "- (" + s.BankAccountTable.FundType_FundName.FundTitle + ")"*/ }), "CheckInvntID", "AccountNo");
             model.CheckMaintenanceAccountNameID = CheckMaintenanceBankIDTempID;
             return PartialView("CheckMaintenance/_DynamicDDAccountName2", model);
         }

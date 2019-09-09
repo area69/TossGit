@@ -11,8 +11,8 @@
         <h3 class="content-header-title"><b>File Maintenance - Fund</b></h3>
     </div>
 </div>
+<div class="card-content" id="FMFundController" ng-controller="FMFundController" ng-init="InitAllFunction();">
 
-<div class="card-content">
     <div class="card">
         <ul class="nav nav-tabs bg-headerbc nav-underline">
             <li class="nav-item">
@@ -28,70 +28,13 @@
                 <div class="content-body">
                     <div class="row black">
                         <div class="col-md-2"></div>
-                        <div class="col-md-8" @*id="DepartmentxID"*@>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label class="mt-1"><b>Fund</b></label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="mt-1"><b>Fund Code</b></label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
-                                    <button type="submit" class="btn bg-addbutton form-control black">
-                                        <b>Add</b>
-                                    </button>
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
-                                    <button type="reset" class="btn bg-headerbc form-control white">
-                                        <b>Cancel</b>
-                                    </button>
-                                </div>
-                            </div>
+                        <div class="col-md-8" id="FundID">
+
                         </div>
                     </div>
-                    <div class="row mt-1" @*id="DepartmentTableID"*@>
+                    <div class="row mt-1">
                         <div class="col-md-2"></div>
-                        <div class="col-md-8">
-                            <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
-                                <thead>
-                                    <tr>
-                                        <th>Fund</th>
-                                        <th>Fund Code</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Calamity Fund</td>
-                                        <td>400</td>
-                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Development Fund</td>
-                                        <td>500</td>
-                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>General Fund</td>
-                                        <td>100</td>
-                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Special Education Fund</td>
-                                        <td>200</td>
-                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trust Fund</td>
-                                        <td>300</td>
-                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="col-md-8" id="FundTableID">
                         </div>
                     </div>
                 </div>
@@ -100,73 +43,13 @@
             <div role="tabpanel" class="tab-pane" id="tab2" aria-expanded="true" aria-labelledby="base-tab2">
                 <div class="content-body">
                     <div class="row black">
-                        <div class="col-md-12" @*id="DepartmentxID"*@>
-                            <div class="row">
-                                <div class="col-md-1"></div>
-                                <div class="col-md-3">
-                                    <label class="mt-1"><b>Fund</b></label>
-                                    <select class="form-control">
-                                        <option></option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="mt-1"><b>Sub Fund</b></label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
-                                    <button type="submit" class="btn bg-addbutton form-control black">
-                                        <b>Add</b>
-                                    </button>
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
-                                    <button type="reset" class="btn bg-headerbc form-control white">
-                                        <b>Cancel</b>
-                                    </button>
-                                </div>
-                            </div>
+                        <div class="col-md-12" id="SubFundID">
                         </div>
                     </div>
-                    <div class="row mt-1" @*id="DepartmentTableID"*@>
+                    <div class="row mt-1">
                         <div class="col-md-1"></div>
-                        <div class="col-md-10">
-                            <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th>Fund</th>
-                                        <th>Sub Fund</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-center">
-                                    <tr>
-                                        <td>General Fund</td>
-                                        <td>Bus Terminal</td>
-                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>General Fund</td>
-                                        <td>Hospital</td>
-                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>General Fund</td>
-                                        <td>Market</td>
-                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>General Fund</td>
-                                        <td>Proper</td>
-                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>General Fund</td>
-                                        <td>Slaugtherhouse</td>
-                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="col-md-10" id="SubFundTableID">
+                          
                         </div>
                     </div>
                 </div>
@@ -174,3 +57,115 @@
         </div>
     </div>
 </div>
+<script>
+
+
+@*Angular Function*@
+    app.controller('FMFundController', function ($scope, $http, $sce) {
+        var F = $scope, P = $http, D = $sce.trustAsHtml;
+        F.InitAllFunction = function () {
+            //Fund
+            F.Get_FundTables();
+            //Sub Fund
+            F.Get_SubFundTables();
+            
+        }
+        @* Message Box *@
+        F.SuccessMessageBox = function () {
+            var SuccessMess = F.P;
+            swalSuccess("Successfully Added", SuccessMess);
+        }
+        F.UpdateMessageBox = function () {
+            var SuccessMess = F.P;
+            swalSuccess("Successfully Update", SuccessMess);
+        }
+        F.DeleteMessageBox = function () {
+            var SuccessMess = F.P;
+            swalSuccess("Successfully Deleted", SuccessMess);
+        }
+        @*Fund*@
+        F.Get_FundTables = function () {
+            P({
+                url: '/FileMaintenanceFund/Get_FundTable',
+            }).then(function (response) {
+                $("#FundTableID").html(response.data);
+                });
+            F.Get_AddFunds();
+        }
+        F.Get_AddFunds = function () {
+            P({
+                url: '/FileMaintenanceFund/Get_AddFund',
+            }).then(function (response) {
+                $("#FundID").html(response.data);
+                F.LoadDynamicDDFund();
+            });
+        }
+        F.Get_UpdateFunds = function (FundID) {
+            P({
+                url: '/FileMaintenanceFund/Get_UpdateFund',
+                params: { FundID: FundID }
+            }).then(function (response) {
+                $("#FundID").html(response.data);
+            });
+        }
+        F.Get_DeleteFunds = function (FundID) {
+            P({
+                url: '/FileMaintenanceFund/DeleteFunds',
+                params: { FundID: FundID }
+            }).then(function (response) {
+                F.Get_FundTables();
+            });
+        }
+        @* Sub Fund *@
+
+        F.LoadDynamicDDFund = function () {
+            P({
+                url: '/FileMaintenanceFund/GetDynamicFund',
+            }).then(function (response) {
+                $("#_DynamicFund").html(response.data);
+            });
+        }
+        F.Get_SubFundTables = function () {
+            P({
+                url: '/FileMaintenanceFund/Get_SubFundTable',
+            }).then(function (response) {
+                $("#SubFundTableID").html(response.data);
+            });
+            F.Get_AddSubFunds();
+        }
+        F.Get_AddSubFunds = function () {
+            P({
+                url: '/FileMaintenanceFund/Get_AddSubFund',
+            }).then(function (response) {
+                $("#SubFundID").html(response.data);
+                F.LoadDynamicDDFund();
+            });
+        }
+        F.Get_DeleteSubFunds = function (SubFundID) {
+            P({
+                url: '/FileMaintenanceFund/DeleteSubFunds',
+                params: { SubFundID: SubFundID }
+            }).then(function (response) {
+                F.Get_SubFundTables();
+            });
+        }
+        F.Get_UpdateSubFunds = function (SubFundID) {
+            P({
+                url: '/FileMaintenanceFund/Get_UpdateSubFund',
+                params: { SubFundID: SubFundID }
+            }).then(function (response) {
+                $("#SubFundID").html(response.data);
+                F.LoadSelectedDynamicDDFund();
+            });
+        }
+        F.LoadSelectedDynamicDDFund = function () {
+            var FundIDTempID = $("#FundIDTempID").val();
+            P({
+                url: '/FileMaintenanceFund/GetSelectedDynamicFund',
+                params: { FundIDTempID: FundIDTempID }
+            }).then(function (response) {
+                $("#_DynamicFund").html(response.data);
+            });
+        }
+    });
+</script>

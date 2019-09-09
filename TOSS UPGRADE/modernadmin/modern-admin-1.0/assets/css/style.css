@@ -162,7 +162,7 @@ div.dataTables_wrapper div.dataTables_filter label {
 }
 
 .table-smss-hover tbody tr.active {
-    background: #FFE082;
+    background: #FFE0B2;
     color: black;
 }
 .bordered-div
@@ -353,4 +353,9 @@ table.table-ledger thead tr:nth-child(2) th:nth-child(12) {
 .input-group-addon {
     background-color: transparent;
     border-color: #BABFC7;
+}
+
+.table-striped tbody tr.odd.selected, .table-striped tbody tr.even.selected {
+    background-color: #f9f9ac;
+    color: #121719;
 }

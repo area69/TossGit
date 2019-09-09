@@ -26,7 +26,6 @@ namespace TOSS_UPGRADE.Models
     
         public virtual AccountableForm_Inventory AccountableForm_Inventory { get; set; }
         public virtual CollectorTable CollectorTable { get; set; }
-        public virtual FundType_FundName FundType_FundName { get; set; }
         public virtual SubCollectorTable SubCollectorTable { get; set; }
     }
 }

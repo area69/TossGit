@@ -268,19 +268,13 @@
     <Compile Include="Models\FM_Disbursement\FM_Disbursement_CheckInventory.cs" />
     <Compile Include="Models\FM_Disbursement\FM_Disbursement_CheckMaintenance.cs" />
     <Compile Include="Models\FM_Disbursement\FM_Disbursement_DVType.cs" />
+    <Compile Include="Models\FM_Funds\FM_Fund.cs" />
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_Bank.cs" />
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_BankAccount.cs" />
-    <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_FundTypes.cs" />
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_IRA.cs" />
     <Compile Include="Models\FM_GeneralReference\FM_GeneralReference_MemoAccountClass.cs" />
     <Compile Include="Models\FM_SignatoriesModel.cs" />
-    <Compile Include="Models\FundType_FundName.cs">
-      <DependentUpon>TOSS_Entities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FundType_FundType.cs">
-      <DependentUpon>TOSS_Entities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FundType_FundTypeTable.cs">
+    <Compile Include="Models\Fund.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IRA_Table.cs">
@@ -321,6 +315,9 @@
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubCollectorTable.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubFund.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TOSSDataSet.Designer.cs">
@@ -8941,10 +8938,6 @@
     <Content Include="Views\FileMaintenanceSignatories\_SignatoriesUpdate.cshtml" />
     <Content Include="Views\FileMaintenanceSignatories\Position\_PositionAdd.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\FundTypes\_DynamicDDFundType.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\FundTypes\_FundTypesTable.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\FundTypes\_AddFundTypes.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\FundTypes\_UpdateFundTypes.cshtml" />
     <Content Include="Views\FileMaintenanceGeneralReference\Index.cshtml" />
     <Content Include="Views\FileMaintenanceGeneralReference\Banks\_BankTable.cshtml" />
     <Content Include="Views\FileMaintenanceGeneralReference\Banks\_AddBankTable.cshtml" />
@@ -9040,6 +9033,13 @@
     <Content Include="Views\FileMaintenanceChartofAccount\Index.cshtml" />
     <Content Include="Views\FileMaintenanceFund\Index.cshtml" />
     <Content Include="Views\FileMaintenanceSector\Index.cshtml" />
+    <Content Include="Views\FileMaintenanceFund\Fund\_AddFunds.cshtml" />
+    <Content Include="Views\FileMaintenanceFund\Fund\_UpdateFunds.cshtml" />
+    <Content Include="Views\FileMaintenanceFund\Fund\_FundTable.cshtml" />
+    <Content Include="Views\FileMaintenanceFund\SubFund\_AddSubFund.cshtml" />
+    <Content Include="Views\FileMaintenanceFund\SubFund\_SubFundTable.cshtml" />
+    <Content Include="Views\FileMaintenanceFund\SubFund\_DynamiccDDFundName.cshtml" />
+    <Content Include="Views\FileMaintenanceFund\SubFund\_UpdateSubFund.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

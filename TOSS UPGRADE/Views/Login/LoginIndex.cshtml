@@ -106,7 +106,7 @@
                                             <form class="form-horizontal" action="index.html" novalidate>
                                                 <fieldset class="form-group position-relative has-icon-left">
                                                     @Html.TextBoxFor(m => m.username, new { type = "text", @class = "form-control input-lg", id = "user-name", placeholder = "Your Username" })
-                                                    @Html.ValidationMessageFor(m => m.password, "", new { @class = "text-danger" })
+                                                    @Html.ValidationMessageFor(m => m.username, "", new { @class = "text-danger" })
                                                     <div class="form-control-position">
                                                         <i class="la la-user"></i>
                                                     </div>

@@ -533,7 +533,7 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult GetDynamicASFFundType()
         {
             FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
-            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.FundType_FundName.ToList() select new { FundID = s.FundID, FundTitle = s.FundTitle }), "FundID", "FundTitle");
+            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.Funds.ToList() select new { FundID = s.FundID, FundTitle = s.FundName }), "FundID", "FundTitle");
             return PartialView("AssignmentofAccountableForm/TreasurerCollector/_DynamicDDTCFundType", model);
         }
         //public ActionResult GetDynamicAFASF()
@@ -755,7 +755,7 @@ namespace TOSS_UPGRADE.Controllers
         public ActionResult GetDynamicASFFundTypeFC()
         {
             FM_CollectionAndDeposit_AssignmentAF model = new FM_CollectionAndDeposit_AssignmentAF();
-            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.FundType_FundName.ToList() select new { FundID = s.FundID, FundTitle = s.FundTitle }), "FundID", "FundTitle");
+            model.AccountableFormAssignmentList = new SelectList((from s in TOSSDB.Funds.ToList() select new { FundID = s.FundID, FundTitle = s.FundName }), "FundID", "FundName");
             return PartialView("AssignmentofAccountableForm/FieldCollector/_DynamicDDFCFundType", model);
         }
         public ActionResult GetDynamicAFASFFC()

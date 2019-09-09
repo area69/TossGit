@@ -12,13 +12,19 @@ namespace TOSS_UPGRADE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class FundType_FundTypeTable
+    public partial class Fund
     {
-        public int ListFundTypeID { get; set; }
-        public int FundID { get; set; }
-        public int FundTypeID { get; set; }
-        public string FundParticulars { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Fund()
+        {
+            this.SubFunds = new HashSet<SubFund>();
+        }
     
-        public virtual FundType_FundType FundType_FundType { get; set; }
+        public int FundID { get; set; }
+        public string FundName { get; set; }
+        public string FundCode { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SubFund> SubFunds { get; set; }
     }
 }

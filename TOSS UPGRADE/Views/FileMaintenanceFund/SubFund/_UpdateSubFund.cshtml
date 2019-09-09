@@ -1,0 +1,37 @@
+﻿@model TOSS_UPGRADE.Models.FM_Funds.FM_Fund
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+@using (Ajax.BeginForm("UpdateSubFunds", "FileMaintenanceFund", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc('FMFundController','Get_SubFundTables','UpdateMessageBox')", OnFailure = "OnFailure()", }))
+{
+    @Html.HiddenFor(m => m.getSubFundcolumns.SubFundID, new { })
+    @Html.HiddenFor(m => m.SubFundNameTempID, new { id = "FundIDTempID" })
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3" id="_DynamicFund">
+
+        </div>
+        <div class="col-md-3">
+            <label class="mt-1"><b>Sub Fund</b></label>
+            @Html.TextBoxFor(m => m.getSubFundcolumns.SubFundName, new { @class = "form-control", type = "text", placeholder = "Enter Sub Fund Name" })
+        </div>
+        <div class="col-md-2">
+            <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
+            <button type="submit" class="btn bg-addbutton form-control black">
+                <b>Update</b>
+            </button>
+        </div>
+        <div class="col-md-2">
+            <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
+            <button type="reset"  onclick="AngularGlobalEdit('FMFundController','Get_AddSubFunds','')" class="btn bg-headerbc white form-control"><b>Cancel</b></button>
+        </div>
+    </div>
+}
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+</script>

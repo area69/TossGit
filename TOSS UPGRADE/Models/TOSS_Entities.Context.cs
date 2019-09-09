@@ -41,9 +41,7 @@ namespace TOSS_UPGRADE.Models
         public virtual DbSet<CheckMaintenanceTable> CheckMaintenanceTables { get; set; }
         public virtual DbSet<CollectorTable> CollectorTables { get; set; }
         public virtual DbSet<DVTypeTable> DVTypeTables { get; set; }
-        public virtual DbSet<FundType_FundName> FundType_FundName { get; set; }
-        public virtual DbSet<FundType_FundType> FundType_FundType { get; set; }
-        public virtual DbSet<FundType_FundTypeTable> FundType_FundTypeTable { get; set; }
+        public virtual DbSet<Fund> Funds { get; set; }
         public virtual DbSet<IRA_Table> IRA_Table { get; set; }
         public virtual DbSet<Level1Modules> Level1Modules { get; set; }
         public virtual DbSet<Level2Modules> Level2Modules { get; set; }
@@ -57,6 +55,7 @@ namespace TOSS_UPGRADE.Models
         public virtual DbSet<Signatory_DepartmentTable> Signatory_DepartmentTable { get; set; }
         public virtual DbSet<Signatory_PositionTable> Signatory_PositionTable { get; set; }
         public virtual DbSet<SubCollectorTable> SubCollectorTables { get; set; }
+        public virtual DbSet<SubFund> SubFunds { get; set; }
     
         public virtual int SP_AccountableFormInvtList(string sQLStatement)
         {

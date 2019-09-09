@@ -135,29 +135,13 @@
           <Property Name="DVTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DVTypeName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="FundType_FundName">
+        <EntityType Name="Fund">
           <Key>
             <PropertyRef Name="FundID" />
           </Key>
           <Property Name="FundID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FundTitle" Type="varchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="FundType_FundType">
-          <Key>
-            <PropertyRef Name="FundTypeID" />
-          </Key>
-          <Property Name="FundTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FundTypeTitle" Type="varchar" MaxLength="100" />
-          <Property Name="FundID" Type="int" />
-        </EntityType>
-        <EntityType Name="FundType_FundTypeTable">
-          <Key>
-            <PropertyRef Name="ListFundTypeID" />
-          </Key>
-          <Property Name="ListFundTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FundID" Type="int" Nullable="false" />
-          <Property Name="FundTypeID" Type="int" Nullable="false" />
-          <Property Name="FundParticulars" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FundName" Type="varchar" MaxLength="50" />
+          <Property Name="FundCode" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="IRA_Table">
           <Key>
@@ -278,6 +262,14 @@
           <Property Name="SubCollectorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubCollectorName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="SubFund">
+          <Key>
+            <PropertyRef Name="SubFundID" />
+          </Key>
+          <Property Name="SubFundID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FundID" Type="int" />
+          <Property Name="SubFundName" Type="varchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK_AccountableForm_Assignment_AccountableForm_Inventory">
           <End Role="AccountableForm_Inventory" Type="Self.AccountableForm_Inventory" Multiplicity="1" />
           <End Role="AccountableForm_Assignment" Type="Self.AccountableForm_Assignment" Multiplicity="*" />
@@ -299,18 +291,6 @@
             </Principal>
             <Dependent Role="AccountableForm_Assignment">
               <PropertyRef Name="CollectorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AccountableForm_Assignment_FundType_FundName">
-          <End Role="FundType_FundName" Type="Self.FundType_FundName" Multiplicity="1" />
-          <End Role="AccountableForm_Assignment" Type="Self.AccountableForm_Assignment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FundType_FundName">
-              <PropertyRef Name="FundID" />
-            </Principal>
-            <Dependent Role="AccountableForm_Assignment">
-              <PropertyRef Name="FundID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -398,18 +378,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BankAccountTable_FundType_FundName">
-          <End Role="FundType_FundName" Type="Self.FundType_FundName" Multiplicity="1" />
-          <End Role="BankAccountTable" Type="Self.BankAccountTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FundType_FundName">
-              <PropertyRef Name="FundID" />
-            </Principal>
-            <Dependent Role="BankAccountTable">
-              <PropertyRef Name="FundID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CheckInventoryTable_BankAccountTable">
           <End Role="BankAccountTable" Type="Self.BankAccountTable" Multiplicity="1" />
           <End Role="CheckInventoryTable" Type="Self.CheckInventoryTable" Multiplicity="*" />
@@ -443,18 +411,6 @@
             </Principal>
             <Dependent Role="CheckMaintenanceTable">
               <PropertyRef Name="CheckInvntID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FundType_FundName">
-          <End Role="FundType_FundName" Type="Self.FundType_FundName" Multiplicity="0..1" />
-          <End Role="FundType_FundType" Type="Self.FundType_FundType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FundType_FundName">
-              <PropertyRef Name="FundID" />
-            </Principal>
-            <Dependent Role="FundType_FundType">
-              <PropertyRef Name="FundID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -554,15 +510,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tbl_listoffundtypes_tbl_listoffundtypes">
-          <End Role="FundType_FundType" Type="Self.FundType_FundType" Multiplicity="1" />
-          <End Role="FundType_FundTypeTable" Type="Self.FundType_FundTypeTable" Multiplicity="*" />
+        <Association Name="FK_SubFund_Fund">
+          <End Role="Fund" Type="Self.Fund" Multiplicity="0..1" />
+          <End Role="SubFund" Type="Self.SubFund" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="FundType_FundType">
-              <PropertyRef Name="FundTypeID" />
+            <Principal Role="Fund">
+              <PropertyRef Name="FundID" />
             </Principal>
-            <Dependent Role="FundType_FundTypeTable">
-              <PropertyRef Name="FundTypeID" />
+            <Dependent Role="SubFund">
+              <PropertyRef Name="FundID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -591,9 +547,6 @@
           <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="SP_DVTypeList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
-        </Function>
-        <Function Name="SP_FundTypesList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="SP_IRAList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -629,9 +582,7 @@
           <EntitySet Name="CheckMaintenanceTable" EntityType="Self.CheckMaintenanceTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CollectorTable" EntityType="Self.CollectorTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DVTypeTable" EntityType="Self.DVTypeTable" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FundType_FundName" EntityType="Self.FundType_FundName" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FundType_FundType" EntityType="Self.FundType_FundType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FundType_FundTypeTable" EntityType="Self.FundType_FundTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fund" EntityType="Self.Fund" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IRA_Table" EntityType="Self.IRA_Table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Level1Modules" EntityType="Self.Level1Modules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Level2Modules" EntityType="Self.Level2Modules" Schema="dbo" store:Type="Tables" />
@@ -645,16 +596,13 @@
           <EntitySet Name="Signatory_DepartmentTable" EntityType="Self.Signatory_DepartmentTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatory_PositionTable" EntityType="Self.Signatory_PositionTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCollectorTable" EntityType="Self.SubCollectorTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubFund" EntityType="Self.SubFund" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AccountableForm_Assignment_AccountableForm_Inventory" Association="Self.FK_AccountableForm_Assignment_AccountableForm_Inventory">
             <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
             <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
           </AssociationSet>
           <AssociationSet Name="FK_AccountableForm_Assignment_CollectorTable" Association="Self.FK_AccountableForm_Assignment_CollectorTable">
             <End Role="CollectorTable" EntitySet="CollectorTable" />
-            <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AccountableForm_Assignment_FundType_FundName" Association="Self.FK_AccountableForm_Assignment_FundType_FundName">
-            <End Role="FundType_FundName" EntitySet="FundType_FundName" />
             <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
           </AssociationSet>
           <AssociationSet Name="FK_AccountableForm_Assignment_SubCollectorTable" Association="Self.FK_AccountableForm_Assignment_SubCollectorTable">
@@ -685,10 +633,6 @@
             <End Role="BankTable" EntitySet="BankTable" />
             <End Role="BankAccountTable" EntitySet="BankAccountTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_BankAccountTable_FundType_FundName" Association="Self.FK_BankAccountTable_FundType_FundName">
-            <End Role="FundType_FundName" EntitySet="FundType_FundName" />
-            <End Role="BankAccountTable" EntitySet="BankAccountTable" />
-          </AssociationSet>
           <AssociationSet Name="FK_CheckInventoryTable_BankAccountTable" Association="Self.FK_CheckInventoryTable_BankAccountTable">
             <End Role="BankAccountTable" EntitySet="BankAccountTable" />
             <End Role="CheckInventoryTable" EntitySet="CheckInventoryTable" />
@@ -700,10 +644,6 @@
           <AssociationSet Name="FK_CheckMaintenanceTable_CheckMaintenanceTable" Association="Self.FK_CheckMaintenanceTable_CheckMaintenanceTable">
             <End Role="CheckInventoryTable" EntitySet="CheckInventoryTable" />
             <End Role="CheckMaintenanceTable" EntitySet="CheckMaintenanceTable" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FundType_FundName" Association="Self.FK_FundType_FundName">
-            <End Role="FundType_FundName" EntitySet="FundType_FundName" />
-            <End Role="FundType_FundType" EntitySet="FundType_FundType" />
           </AssociationSet>
           <AssociationSet Name="FK_Level1Modules_ParentModules" Association="Self.FK_Level1Modules_ParentModules">
             <End Role="ParentModules" EntitySet="ParentModules" />
@@ -737,9 +677,9 @@
             <End Role="Signatory_DepartmentTable" EntitySet="Signatory_DepartmentTable" />
             <End Role="SignatoriesTable" EntitySet="SignatoriesTable" />
           </AssociationSet>
-          <AssociationSet Name="FK_tbl_listoffundtypes_tbl_listoffundtypes" Association="Self.FK_tbl_listoffundtypes_tbl_listoffundtypes">
-            <End Role="FundType_FundType" EntitySet="FundType_FundType" />
-            <End Role="FundType_FundTypeTable" EntitySet="FundType_FundTypeTable" />
+          <AssociationSet Name="FK_SubFund_Fund" Association="Self.FK_SubFund_Fund">
+            <End Role="Fund" EntitySet="Fund" />
+            <End Role="SubFund" EntitySet="SubFund" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -809,9 +749,7 @@
           <EntitySet Name="CheckMaintenanceTables" EntityType="DB_TOSSModel.CheckMaintenanceTable" />
           <EntitySet Name="CollectorTables" EntityType="DB_TOSSModel.CollectorTable" />
           <EntitySet Name="DVTypeTables" EntityType="DB_TOSSModel.DVTypeTable" />
-          <EntitySet Name="FundType_FundName" EntityType="DB_TOSSModel.FundType_FundName" />
-          <EntitySet Name="FundType_FundType" EntityType="DB_TOSSModel.FundType_FundType" />
-          <EntitySet Name="FundType_FundTypeTable" EntityType="DB_TOSSModel.FundType_FundTypeTable" />
+          <EntitySet Name="Funds" EntityType="DB_TOSSModel.Fund" />
           <EntitySet Name="IRA_Table" EntityType="DB_TOSSModel.IRA_Table" />
           <EntitySet Name="Level1Modules" EntityType="DB_TOSSModel.Level1Modules" />
           <EntitySet Name="Level2Modules" EntityType="DB_TOSSModel.Level2Modules" />
@@ -825,16 +763,13 @@
           <EntitySet Name="Signatory_DepartmentTable" EntityType="DB_TOSSModel.Signatory_DepartmentTable" />
           <EntitySet Name="Signatory_PositionTable" EntityType="DB_TOSSModel.Signatory_PositionTable" />
           <EntitySet Name="SubCollectorTables" EntityType="DB_TOSSModel.SubCollectorTable" />
+          <EntitySet Name="SubFunds" EntityType="DB_TOSSModel.SubFund" />
           <AssociationSet Name="FK_AccountableForm_Assignment_AccountableForm_Inventory" Association="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Inventory">
             <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
             <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
           </AssociationSet>
           <AssociationSet Name="FK_AccountableForm_Assignment_CollectorTable" Association="DB_TOSSModel.FK_AccountableForm_Assignment_CollectorTable">
             <End Role="CollectorTable" EntitySet="CollectorTables" />
-            <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AccountableForm_Assignment_FundType_FundName" Association="DB_TOSSModel.FK_AccountableForm_Assignment_FundType_FundName">
-            <End Role="FundType_FundName" EntitySet="FundType_FundName" />
             <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
           </AssociationSet>
           <AssociationSet Name="FK_AccountableForm_Assignment_SubCollectorTable" Association="DB_TOSSModel.FK_AccountableForm_Assignment_SubCollectorTable">
@@ -865,10 +800,6 @@
             <End Role="BankTable" EntitySet="BankTables" />
             <End Role="BankAccountTable" EntitySet="BankAccountTables" />
           </AssociationSet>
-          <AssociationSet Name="FK_BankAccountTable_FundType_FundName" Association="DB_TOSSModel.FK_BankAccountTable_FundType_FundName">
-            <End Role="FundType_FundName" EntitySet="FundType_FundName" />
-            <End Role="BankAccountTable" EntitySet="BankAccountTables" />
-          </AssociationSet>
           <AssociationSet Name="FK_CheckInventoryTable_BankAccountTable" Association="DB_TOSSModel.FK_CheckInventoryTable_BankAccountTable">
             <End Role="BankAccountTable" EntitySet="BankAccountTables" />
             <End Role="CheckInventoryTable" EntitySet="CheckInventoryTables" />
@@ -881,13 +812,9 @@
             <End Role="CheckInventoryTable" EntitySet="CheckInventoryTables" />
             <End Role="CheckMaintenanceTable" EntitySet="CheckMaintenanceTables" />
           </AssociationSet>
-          <AssociationSet Name="FK_FundType_FundName" Association="DB_TOSSModel.FK_FundType_FundName">
-            <End Role="FundType_FundName" EntitySet="FundType_FundName" />
-            <End Role="FundType_FundType" EntitySet="FundType_FundType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_listoffundtypes_tbl_listoffundtypes" Association="DB_TOSSModel.FK_tbl_listoffundtypes_tbl_listoffundtypes">
-            <End Role="FundType_FundType" EntitySet="FundType_FundType" />
-            <End Role="FundType_FundTypeTable" EntitySet="FundType_FundTypeTable" />
+          <AssociationSet Name="FK_SubFund_Fund" Association="DB_TOSSModel.FK_SubFund_Fund">
+            <End Role="Fund" EntitySet="Funds" />
+            <End Role="SubFund" EntitySet="SubFunds" />
           </AssociationSet>
           <AssociationSet Name="FK_Level1Modules_ParentModules" Association="DB_TOSSModel.FK_Level1Modules_ParentModules">
             <End Role="ParentModule" EntitySet="ParentModules" />
@@ -937,7 +864,6 @@
           <Property Name="IsDefault" Type="Boolean" />
           <NavigationProperty Name="AccountableForm_Inventory" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Inventory" FromRole="AccountableForm_Assignment" ToRole="AccountableForm_Inventory" />
           <NavigationProperty Name="CollectorTable" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_CollectorTable" FromRole="AccountableForm_Assignment" ToRole="CollectorTable" />
-          <NavigationProperty Name="FundType_FundName" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_FundType_FundName" FromRole="AccountableForm_Assignment" ToRole="FundType_FundName" />
           <NavigationProperty Name="SubCollectorTable" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_SubCollectorTable" FromRole="AccountableForm_Assignment" ToRole="SubCollectorTable" />
         </EntityType>
         <EntityType Name="AccountableForm_Description">
@@ -1018,7 +944,6 @@
           <NavigationProperty Name="BankAccount_AccountCode" Relationship="DB_TOSSModel.FK_BankAccountTable_BankAccount_AccountCode" FromRole="BankAccountTable" ToRole="BankAccount_AccountCode" />
           <NavigationProperty Name="BankAccount_AccountType" Relationship="DB_TOSSModel.FK_BankAccountTable_BankAccountTable" FromRole="BankAccountTable" ToRole="BankAccount_AccountType" />
           <NavigationProperty Name="BankTable" Relationship="DB_TOSSModel.FK_BankAccountTable_BankTable" FromRole="BankAccountTable" ToRole="BankTable" />
-          <NavigationProperty Name="FundType_FundName" Relationship="DB_TOSSModel.FK_BankAccountTable_FundType_FundName" FromRole="BankAccountTable" ToRole="FundType_FundName" />
           <NavigationProperty Name="CheckInventoryTables" Relationship="DB_TOSSModel.FK_CheckInventoryTable_BankAccountTable" FromRole="BankAccountTable" ToRole="CheckInventoryTable" />
         </EntityType>
         <EntityType Name="BankTable">
@@ -1076,35 +1001,14 @@
           <Property Name="DVTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DVTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="FundType_FundName">
+        <EntityType Name="Fund">
           <Key>
             <PropertyRef Name="FundID" />
           </Key>
           <Property Name="FundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FundTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AccountableForm_Assignment" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_FundType_FundName" FromRole="FundType_FundName" ToRole="AccountableForm_Assignment" />
-          <NavigationProperty Name="BankAccountTables" Relationship="DB_TOSSModel.FK_BankAccountTable_FundType_FundName" FromRole="FundType_FundName" ToRole="BankAccountTable" />
-          <NavigationProperty Name="FundType_FundType" Relationship="DB_TOSSModel.FK_FundType_FundName" FromRole="FundType_FundName" ToRole="FundType_FundType" />
-        </EntityType>
-        <EntityType Name="FundType_FundType">
-          <Key>
-            <PropertyRef Name="FundTypeID" />
-          </Key>
-          <Property Name="FundTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FundTypeTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="FundID" Type="Int32" />
-          <NavigationProperty Name="FundType_FundName" Relationship="DB_TOSSModel.FK_FundType_FundName" FromRole="FundType_FundType" ToRole="FundType_FundName" />
-          <NavigationProperty Name="FundType_FundTypeTable" Relationship="DB_TOSSModel.FK_tbl_listoffundtypes_tbl_listoffundtypes" FromRole="FundType_FundType" ToRole="FundType_FundTypeTable" />
-        </EntityType>
-        <EntityType Name="FundType_FundTypeTable">
-          <Key>
-            <PropertyRef Name="ListFundTypeID" />
-          </Key>
-          <Property Name="ListFundTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FundID" Type="Int32" Nullable="false" />
-          <Property Name="FundTypeID" Type="Int32" Nullable="false" />
-          <Property Name="FundParticulars" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="FundType_FundType" Relationship="DB_TOSSModel.FK_tbl_listoffundtypes_tbl_listoffundtypes" FromRole="FundType_FundTypeTable" ToRole="FundType_FundType" />
+          <Property Name="FundName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FundCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SubFunds" Relationship="DB_TOSSModel.FK_SubFund_Fund" FromRole="Fund" ToRole="SubFund" />
         </EntityType>
         <EntityType Name="IRA_Table">
           <Key>
@@ -1243,6 +1147,15 @@
           <Property Name="SubCollectorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AccountableForm_Assignment" Relationship="DB_TOSSModel.FK_AccountableForm_Assignment_SubCollectorTable" FromRole="SubCollectorTable" ToRole="AccountableForm_Assignment" />
         </EntityType>
+        <EntityType Name="SubFund">
+          <Key>
+            <PropertyRef Name="SubFundID" />
+          </Key>
+          <Property Name="SubFundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FundID" Type="Int32" />
+          <Property Name="SubFundName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Fund" Relationship="DB_TOSSModel.FK_SubFund_Fund" FromRole="SubFund" ToRole="Fund" />
+        </EntityType>
         <Association Name="FK_AccountableForm_Assignment_AccountableForm_Inventory">
           <End Type="DB_TOSSModel.AccountableForm_Inventory" Role="AccountableForm_Inventory" Multiplicity="1" />
           <End Type="DB_TOSSModel.AccountableForm_Assignment" Role="AccountableForm_Assignment" Multiplicity="*" />
@@ -1264,18 +1177,6 @@
             </Principal>
             <Dependent Role="AccountableForm_Assignment">
               <PropertyRef Name="CollectorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AccountableForm_Assignment_FundType_FundName">
-          <End Type="DB_TOSSModel.FundType_FundName" Role="FundType_FundName" Multiplicity="1" />
-          <End Type="DB_TOSSModel.AccountableForm_Assignment" Role="AccountableForm_Assignment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FundType_FundName">
-              <PropertyRef Name="FundID" />
-            </Principal>
-            <Dependent Role="AccountableForm_Assignment">
-              <PropertyRef Name="FundID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1363,18 +1264,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BankAccountTable_FundType_FundName">
-          <End Type="DB_TOSSModel.FundType_FundName" Role="FundType_FundName" Multiplicity="1" />
-          <End Type="DB_TOSSModel.BankAccountTable" Role="BankAccountTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FundType_FundName">
-              <PropertyRef Name="FundID" />
-            </Principal>
-            <Dependent Role="BankAccountTable">
-              <PropertyRef Name="FundID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CheckInventoryTable_BankAccountTable">
           <End Type="DB_TOSSModel.BankAccountTable" Role="BankAccountTable" Multiplicity="1" />
           <End Type="DB_TOSSModel.CheckInventoryTable" Role="CheckInventoryTable" Multiplicity="*" />
@@ -1411,27 +1300,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_FundType_FundName">
-          <End Type="DB_TOSSModel.FundType_FundName" Role="FundType_FundName" Multiplicity="0..1" />
-          <End Type="DB_TOSSModel.FundType_FundType" Role="FundType_FundType" Multiplicity="*" />
+        <Association Name="FK_SubFund_Fund">
+          <End Type="DB_TOSSModel.Fund" Role="Fund" Multiplicity="0..1" />
+          <End Type="DB_TOSSModel.SubFund" Role="SubFund" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="FundType_FundName">
+            <Principal Role="Fund">
               <PropertyRef Name="FundID" />
             </Principal>
-            <Dependent Role="FundType_FundType">
+            <Dependent Role="SubFund">
               <PropertyRef Name="FundID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tbl_listoffundtypes_tbl_listoffundtypes">
-          <End Type="DB_TOSSModel.FundType_FundType" Role="FundType_FundType" Multiplicity="1" />
-          <End Type="DB_TOSSModel.FundType_FundTypeTable" Role="FundType_FundTypeTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FundType_FundType">
-              <PropertyRef Name="FundTypeID" />
-            </Principal>
-            <Dependent Role="FundType_FundTypeTable">
-              <PropertyRef Name="FundTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1546,7 +1423,6 @@
           <FunctionImportMapping FunctionImportName="SP_CheckInventoryList" FunctionName="DB_TOSSModel.Store.SP_CheckInventoryList" />
           <FunctionImportMapping FunctionImportName="SP_CheckMaintenanceList" FunctionName="DB_TOSSModel.Store.SP_CheckMaintenanceList" />
           <FunctionImportMapping FunctionImportName="SP_DVTypeList" FunctionName="DB_TOSSModel.Store.SP_DVTypeList" />
-          <FunctionImportMapping FunctionImportName="SP_FundTypesList" FunctionName="DB_TOSSModel.Store.SP_FundTypesList" />
           <FunctionImportMapping FunctionImportName="SP_IRAList" FunctionName="DB_TOSSModel.Store.SP_IRAList" />
           <FunctionImportMapping FunctionImportName="SP_MemoAccountClassList" FunctionName="DB_TOSSModel.Store.SP_MemoAccountClassList" />
           <FunctionImportMapping FunctionImportName="SP_MMAccountCodeList" FunctionName="DB_TOSSModel.Store.SP_MMAccountCodeList" />
@@ -1697,30 +1573,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FundType_FundName">
-            <EntityTypeMapping TypeName="DB_TOSSModel.FundType_FundName">
-              <MappingFragment StoreEntitySet="FundType_FundName">
-                <ScalarProperty Name="FundTitle" ColumnName="FundTitle" />
+          <EntitySetMapping Name="Funds">
+            <EntityTypeMapping TypeName="DB_TOSSModel.Fund">
+              <MappingFragment StoreEntitySet="Fund">
+                <ScalarProperty Name="FundCode" ColumnName="FundCode" />
+                <ScalarProperty Name="FundName" ColumnName="FundName" />
                 <ScalarProperty Name="FundID" ColumnName="FundID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FundType_FundType">
-            <EntityTypeMapping TypeName="DB_TOSSModel.FundType_FundType">
-              <MappingFragment StoreEntitySet="FundType_FundType">
-                <ScalarProperty Name="FundID" ColumnName="FundID" />
-                <ScalarProperty Name="FundTypeTitle" ColumnName="FundTypeTitle" />
-                <ScalarProperty Name="FundTypeID" ColumnName="FundTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FundType_FundTypeTable">
-            <EntityTypeMapping TypeName="DB_TOSSModel.FundType_FundTypeTable">
-              <MappingFragment StoreEntitySet="FundType_FundTypeTable">
-                <ScalarProperty Name="FundParticulars" ColumnName="FundParticulars" />
-                <ScalarProperty Name="FundTypeID" ColumnName="FundTypeID" />
-                <ScalarProperty Name="FundID" ColumnName="FundID" />
-                <ScalarProperty Name="ListFundTypeID" ColumnName="ListFundTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1853,6 +1711,15 @@
               <MappingFragment StoreEntitySet="SubCollectorTable">
                 <ScalarProperty Name="SubCollectorName" ColumnName="SubCollectorName" />
                 <ScalarProperty Name="SubCollectorID" ColumnName="SubCollectorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubFunds">
+            <EntityTypeMapping TypeName="DB_TOSSModel.SubFund">
+              <MappingFragment StoreEntitySet="SubFund">
+                <ScalarProperty Name="SubFundName" ColumnName="SubFundName" />
+                <ScalarProperty Name="FundID" ColumnName="FundID" />
+                <ScalarProperty Name="SubFundID" ColumnName="SubFundID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

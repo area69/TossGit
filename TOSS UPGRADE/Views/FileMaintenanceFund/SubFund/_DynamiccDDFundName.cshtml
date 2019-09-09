@@ -1,0 +1,14 @@
+﻿@model TOSS_UPGRADE.Models.FM_Funds.FM_Fund
+    @{
+        DB_TOSSEntities TOSSDB = new DB_TOSSEntities();
+    }
+    @using TOSS_UPGRADE.Models;
+
+
+    <label class="mt-1"><b>Fund</b></label>
+    @Html.DropDownListFor(m => m.SubFundNameID, Model.SubFundList, new { @class = "form-control select2", id = "FundNameIDD" })
+    <script>
+        $(function () {
+            $("#FundNameIDD").select2();
+        })
+    </script>

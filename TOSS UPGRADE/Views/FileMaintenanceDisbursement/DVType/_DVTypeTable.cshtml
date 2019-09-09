@@ -7,7 +7,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <div class="table-responsive">
-            <table class="table table-striped zero-configuration table-bordered text-center dataTable scroll-horizontal table-smss-hover no-footer m-0 w-100">
+            <table id="table" class="table table-striped zero-configuration table-bordered text-center dataTable scroll-horizontal table-smss-hover no-footer m-0 w-100">
                 <thead class="text-center">
                     <tr>
                         <th>Type Name</th>
@@ -28,9 +28,9 @@
                                 <td>@Items.DVTypeName</td>
 
                                 @*<td>
-                                    <button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMDisbursementController','Get_UpdateDVType','@Items.DVTypeID')"><i class="ft-edit"></i></button>
-                                    <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.DVTypeID ,&quot;Get_DeleteDVType&quot;,&quot;FMDisbursementController&quot;)')"><i class="ft-delete"></i></button>
-                                </td>*@
+                                        <button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMDisbursementController','Get_UpdateDVType','@Items.DVTypeID')"><i class="ft-edit"></i></button>
+                                        <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.DVTypeID ,&quot;Get_DeleteDVType&quot;,&quot;FMDisbursementController&quot;)')"><i class="ft-delete"></i></button>
+                                    </td>*@
                                 <td>
                                     <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-sm btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
                                             data-original-title="" data-html="true" data-placement="right">
@@ -50,6 +50,9 @@
         LoadDataTable();
         LoadPopOver();
     })
+
+    $("#table tr").click(function () {
+        $(this).addClass('selected').siblings().removeClass('selected');
+        var value = $(this).find('td:first').html();
+    });
 </script>
-
-

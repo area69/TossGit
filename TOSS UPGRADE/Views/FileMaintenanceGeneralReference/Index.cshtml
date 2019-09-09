@@ -13,10 +13,7 @@
     <div class="card">
         <ul class="nav nav-tabs bg-headerbc nav-underline">
             <li class="nav-item">
-                <a class="nav-link active" id="base-tab1" data-toggle="pill" aria-controls="tab1" href="#tab1" aria-expanded="true"><b>Fund Type</b></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" aria-expanded="false"><b>Bank Accounts</b></a>
+                <a class="nav-link active" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" aria-expanded="false"><b>Bank Accounts</b></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="base-tab4" data-toggle="tab" aria-controls="tab4" href="#tab4" aria-expanded="false"><b>Memo Account Classification</b></a>
@@ -26,29 +23,6 @@
             </li>
         </ul>
         <div class="tab-content px-1 pt-1">
-            @* Fund Type *@
-            <div role="tabpanel" class="tab-pane active" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
-                <div class="content-body">
-                    <div class="row mt-1">
-                        <div class="col-md-12">
-                            <div class="card box-shadow-2">
-                                <div class="card-body box-shadow-3" id="FundTypeID">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <div class="card box-shadow-2">
-                                <div class="card-body box-shadow-3" id="FundTypesTableID">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             @*Bank Account*@
             <div class="tab-pane" id="tab3" aria-labelledby="base-tab3">
                 <div class="card box-shadow-2">
@@ -246,9 +220,6 @@
         var F = $scope, P = $http, D = $sce.trustAsHtml;
 
         F.InitAllFunction = function () {
-
-            //Fund Type
-            F.Get_FundTypeTables();
             //Bank Name
             F.Get_BankTables();
             //Account Type
@@ -267,11 +238,9 @@
             F.LoadDynamicDDMemoAccRevisionYr();
             //Memo Account Classification Table
             F.Get_MemoAccountClassTable();
-
             F.Get_AccountCodeTable();
             //Internal Revenue Allotment Table
             F.Get_InternalRevenueAllotmentTable();
-
         }
         @* Fund Type *@
         F.SuccessSave1 = function () {
@@ -285,57 +254,6 @@
         F.SuccessSaveira = function () {
             var SuccessMess = F.P;
             swalSuccess("Internal Revenue Allotment Successfully Added", SuccessMess);
-        }
-        F.Get_FundTypeTables = function () {
-            P({
-                url: '/FileMaintenanceGeneralReference/Get_FundTypeTables',
-            }).then(function (response) {
-                $("#FundTypesTableID").html(response.data);
-                });
-            F.Get_AddFundTypes();
-        }
-        F.LoadDynamicDDFundType = function () {
-            var FundID = $("#FundNameListID").val();
-            P({
-                url: '/FileMaintenanceGeneralReference/GetDynamicFundType',
-                params: { FundID: FundID }
-            }).then(function (response) {
-                $("#FundTypeDivID").html(response.data);
-            });
-        }
-        F.LoadDynamicDDFundType2 = function (FundID) {
-            var FundID = $("#FundNameListID2").val();
-            P({
-                url: '/FileMaintenanceGeneralReference/GetDynamicFundType',
-                params: { FundID: FundID }
-            }).then(function (response) {
-                $("#FundTypeDivID2").html(response.data);
-            });
-        }
-        F.Get_AddFundTypes = function () {
-            P({
-                url: '/FileMaintenanceGeneralReference/Get_AddFundTypes',
-            }).then(function (response) {
-                $("#FundTypeID").html(response.data);
-                F.LoadDynamicDDFundType();
-            });
-        }
-        F.Get_UpdateFundTypes = function (ListFundTypeID) {
-            P({
-                url: '/FileMaintenanceGeneralReference/Get_UpdateFundTypes',
-                params: { ListFundTypeID: ListFundTypeID }
-            }).then(function (response) {
-                $("#FundTypeID").html(response.data);
-                F.LoadDynamicDDFundType2();
-            });
-        }
-        F.Get_DeleteFundTypes = function (ListFundTypeID) {
-            P({
-                url: '/FileMaintenanceGeneralReference/DeleteFundTypes',
-                params: { ListFundTypeID: ListFundTypeID }
-            }).then(function (response) {
-                F.Get_FundTypeTables();
-            });
         }
 
         @*Bank*@
@@ -516,7 +434,6 @@
                 });
         }
 
-
         //Memo Account Classification  MemoAccClassID
         F.LoadDynamicDDMemoAccClass = function () {
             P({
@@ -585,7 +502,6 @@
                 F.Get_MemoAccountClassTable();
             });
         }
-
         F.Get_AccountCodeTable = function () {
             P({
                 url: '/FileMaintenanceGeneralReference/Get_AccountCodeTable',
@@ -611,7 +527,6 @@
                 F.LoadDynamicDDMemoAccClass();
             });
         }
-
         F.Get_DeleteAccountCode = function (AccountCodeID) {
             P({
                 url: '/FileMaintenanceGeneralReference/DeleteAccountCode',

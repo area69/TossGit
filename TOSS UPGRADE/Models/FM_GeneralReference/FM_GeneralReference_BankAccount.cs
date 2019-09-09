@@ -15,9 +15,7 @@ namespace TOSS_UPGRADE.Models
             getBankAccountBank = new List<BankTable>();
             getBankAccountBankColumns = new BankTable();
             getBankAccountBankList = new List<BankAccountBankList>();
-            //Fund Type
-            getFundType = new List<FundType_FundName>();
-            getFundTypeColumns = new FundType_FundName();
+            
             //Account Code
             getAccountCode = new List<BankAccount_AccountCode>();
             getAccountCodeColumns = new BankAccount_AccountCode();
@@ -39,19 +37,7 @@ namespace TOSS_UPGRADE.Models
         public IEnumerable<System.Web.Mvc.SelectListItem> BankAccountBankList { get; set; }
         public int BankAccountBankID { get; set; }
         //Fund Type
-        public FundType_FundName getFundTypeColumns { get; set; }
-        public IEnumerable<TOSS_UPGRADE.Models.FundType_FundName> getFundType { get; set; }
         public IEnumerable<System.Web.Mvc.SelectListItem> BankAccountFundTypeList { get; set; }
-        public int FundID { get; set; }
-        public IEnumerable<System.Web.Mvc.SelectListItem> FundNameList
-        {
-            get
-            {
-                List<FundType_FundName> FundNameLists = db.FundType_FundName.ToList();
-                return new System.Web.Mvc.SelectList(FundNameLists, "FundID", "FundTitle");
-            }
-        }
-
         //Bank Account Account Code
         public BankAccount_AccountCode getAccountCodeColumns { get; set; }
         public IEnumerable<TOSS_UPGRADE.Models.BankAccount_AccountCode> getAccountCode { get; set; }

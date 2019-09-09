@@ -1,0 +1,50 @@
+﻿@model IEnumerable<TOSS_UPGRADE.Models.FM_Funds.FundList>
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+<table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+    <thead>
+        <tr>
+            <th>Fund</th>
+            <th>Fund Code</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var Items in Model)
+            {
+                var DeleteConfirmationMess = "Are you sure do you want to delete this?";
+                var DeleteSuccesMess = "Deleted Successfully";
+
+                var ViewEdit = "<button class=\"btn btn-icon btn-block black bg-addbutton border-0\" type=\"button\"onclick=\"AngularGlobalEdit('FMFundController','Get_UpdateFunds','" + @Items.FundID + "')\"><i class='ft-edit mr-1'></i><b>Edit</b></button>";
+                var ViewDelete = "<button class=\"btn btn-icon white btn-block bg-headerbc  border-0\" type=\"button\" onclick=\"swalConfirmation('" + @DeleteConfirmationMess + "', '" + @Items.FundName + "','" + @DeleteSuccesMess + "','AngularGlobalDelete(" + @Items.FundID + ",&quot;Get_DeleteFunds&quot;,&quot;FMFundController&quot;)')\"><i class='ft-delete mr-1'></i><b>Delete<b></button>";
+                var ActionContentProgram = ViewEdit + ViewDelete;
+                <tr>
+                    <td>@Items.FundName</td>
+                    <td>@Items.FundCode</td>
+                    @*<td>
+                            <button class="buttonEf iconhoverEdit" onclick="AngularGlobalEdit('FMGeneralReferenceController','Get_UpdateInternalRevenueAllotment','@Items.IRAID')"><i class="ft-edit"></i></button>
+                            <button class="buttonEf iconhoverDelete" onclick="swalConfirmation('@DeleteConfirmationMess','','@DeleteSuccesMess', 'AngularGlobalDelete(@Items.IRAID ,&quot;Get_DeleteInternalRevenueAllotment&quot;,&quot;FMGeneralReferenceController&quot;)')"><i class="ft-delete"></i></button>
+                        </td>*@
+                    <td>
+                        <button type="button" onfocusout="PopoveLostFocus()" class="btn btn-sm btn-warning popover-trigger" data-toggle="popover" data-content="@ActionContentProgram"
+                                data-original-title="" data-html="true" data-placement="right">
+                            <i class="la la-bars"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+</script>
+
