@@ -1,0 +1,15 @@
+﻿@model TOSS_UPGRADE.Models.FM_Sectors.FM_Sector
+@{
+    DB_TOSSEntities TOSSDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+
+<label class="mt-1"><b>Sector</b></label>
+@Html.DropDownListFor(m => m.SubSectorNameID, Model.SubSectorList, new { @class = "form-control select2", id = "SectorNameIDD" })
+<script>
+    $(function () {
+        $("#SectorNameIDD").select2();
+    })
+</script>
+

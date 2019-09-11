@@ -58,8 +58,6 @@
     </div>
 </div>
 <script>
-
-
 @*Angular Function*@
     app.controller('FMFundController', function ($scope, $http, $sce) {
         var F = $scope, P = $http, D = $sce.trustAsHtml;
@@ -117,7 +115,6 @@
             });
         }
         @* Sub Fund *@
-
         F.LoadDynamicDDFund = function () {
             P({
                 url: '/FileMaintenanceFund/GetDynamicFund',

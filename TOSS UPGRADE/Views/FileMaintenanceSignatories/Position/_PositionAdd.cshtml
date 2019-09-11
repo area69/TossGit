@@ -6,18 +6,25 @@
 
 @using (Ajax.BeginForm("AddPosition", "FileMaintenanceSignatories", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithTripleFunc('FMSignatoriesController', 'Get_PositionTable',  'LoadDynamicDDPositionName','SuccessSave2')", OnFailure = "OnFailure()", }))
 {
-        <div class="row">
-            <div class="col-md-2">
-                <label class="mt-1">Position</label>
-                </div>
-            <div class="col-md-7">
-                @Html.TextBoxFor(m => m.getPositionColumns.PositionName, new { @class = "form-control", type = "text", ng_model = "PositionNameID" })
-                @Html.ValidationMessageFor(model => model.getPositionColumns.PositionName)
-            </div>
-            <div class="col-md-2 px-0">
-                <button type="submit" class="btn bg-addbutton form-control black"><b>Save</b></button>
-            </div>
-        </div>
+<div class="row">
+    <div class="col-md-5">
+        <label>Position Name</label>
+        @Html.TextBoxFor(m => m.getPositionColumns.PositionName, new { @class = "form-control", type = "text", ng_model = "PositionNameID" })
+        @Html.ValidationMessageFor(model => model.getPositionColumns.PositionName)
+    </div>
+    <div class="col-md-3 pl-0">
+        <label>Position Code</label>
+        <input type="text" class="form-control" />
+    </div>
+    <div class="col-md-2 pl-0">
+        <label style="visibility:hidden">Position</label>
+        <button type="submit" class="btn bg-addbutton form-control black"><b>Add</b></button>
+    </div>
+    <div class="col-md-2 pl-0">
+        <label style="visibility:hidden">Position</label>
+        <button type="reset" class="btn bg-headerbc form-control white"><b>Cancel</b></button>
+    </div>
+</div>
 }
 <script>
 

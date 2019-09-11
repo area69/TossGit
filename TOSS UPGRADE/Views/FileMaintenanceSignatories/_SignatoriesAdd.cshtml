@@ -8,34 +8,34 @@
 {
 
 <div class="row black">
-    <div class="col-md-4 form-group">
+    <div class="col-md-5 form-group">
         <label><b>Employee Name</b></label>
         @Html.TextBoxFor(m => m.getSignatoriesColumns.SignatoriesName, new { @class = "form-control", type = "text", ng_model = "SignatoriesNameID" })
         @Html.ValidationMessageFor(model => model.getSignatoriesColumns.SignatoriesName)
 
     </div>
-    <div class="col-md-5 form-group" id="_DynamicDDDepartmentID">
-
+    <div class="col-md-5 form-group">
+        <label><b>Preferred Name</b></label>
+        <input type="text" class="form-control" value="" />
     </div>
-    @Html.HiddenFor(m => m.isDeptHeads, new { id="isDeptHeadID"})
-    <div class="col-md-3">
-        <label><b>If Department Head?</b></label>
+    <div class="col-md-2">
+        <label><b>Department Head?</b></label>
         <select class="form-control" id="isDeptHeadDD" onchange="IsDeptHeadOnChange()">
             <option value="true">Yes</option>
             <option value="false">No</option>
         </select>
     </div>
+    @Html.HiddenFor(m => m.isDeptHeads, new { id = "isDeptHeadID" })
+   
 </div>
 <div class="row black">
-    <div class="col-md-4 form-group" id="_DynamicDDPositionNameID">
+    <div class="col-md-5 form-group" id="_DynamicDDPositionNameID">
 
     </div>
+    <div class="col-md-5 form-group" id="_DynamicDDDepartmentID">
 
-    <div class="col-md-5 form-group">
-        <label><b>Division</b></label>
-        <input type="text" class="form-control" value="" />
     </div>
-    <div class="col-md-3 form-group">
+    <div class="col-md-2">
         <label><b>Is Active</b></label>
         <select class="form-control">
             <option>Yes</option>
@@ -49,17 +49,30 @@
                 <label><b>Is Active</b></label>
             </fieldset>
         </div>*@
- 
 </div>
-<div class="row black">
-    <div class="col-md-8"></div>
-    <div class="col-md-2 form-group">
-        <button type="submit" class="btn bg-addbutton form-control black"><b>Add</b></button>
-    </div>
-    <div class="col-md-2 form-group">
-        <button type="reset" class="btn bg-headerbc form-control white"><b>Cancel</b></button>
-    </div>
-</div>
+    
+                                    <div class="row">
+                                        <div class="col-md-4 form-group">
+                                            <label><b>Function</b></label>
+                                            <select class="form-control">
+                                                <option>General Administration</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 form-group">
+                                            <label><b>Division</b></label>
+                                            <input type="text" class="form-control" value="Division 1" />
+                                        </div>
+
+                                     
+                                        <div class="col-md-2 form-group">
+                                            <label class="white">Position</label>
+                                            <button class="btn bg-addbutton black form-control"><b>Add</b></button>
+                                        </div>
+                                        <div class="col-md-2 form-group">
+                                            <label class="white">Position</label>
+                                            <button class="btn bg-headerbc white form-control"><b>Cancel</b></button>
+                                        </div>
+                                    </div>
 }
 
     <script>

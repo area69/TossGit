@@ -4,12 +4,8 @@
 }
 @using TOSS_UPGRADE.Models;
 
-@Html.AntiForgeryToken()
-
 @using (Ajax.BeginForm("AddFunds", "FileMaintenanceFund", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc('FMFundController','Get_FundTables','SuccessMessageBox')", OnFailure = "OnFailure()", }))
 {
-
-
 <div class="row">
     <div class="col-md-5">
         <label class="mt-1"><b>Fund</b></label>

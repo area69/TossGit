@@ -189,14 +189,13 @@
     <Compile Include="Controllers\DisbursementDisbursingOfficerController.cs" />
     <Compile Include="Controllers\DisbursementDVCashAvailabilityController.cs" />
     <Compile Include="Controllers\DisbursementVoucherController.cs" />
+    <Compile Include="Controllers\FileMaintenanceAccountableFormController.cs" />
     <Compile Include="Controllers\FileMaintenanceChartofAccountController.cs" />
-    <Compile Include="Controllers\FileMaintenanceCollectionDepositController.cs" />
     <Compile Include="Controllers\FileMaintenanceDisbursementController.cs" />
     <Compile Include="Controllers\FileMaintenanceFundController.cs" />
-    <Compile Include="Controllers\FileMaintenanceGeneralReferenceController.cs" />
+    <Compile Include="Controllers\FileMaintenanceIRAShareController.cs" />
     <Compile Include="Controllers\FileMaintenancePositionController.cs" />
     <Compile Include="Controllers\FileMaintenanceResponsibilityCenterController.cs" />
-    <Compile Include="Controllers\FileMaintenanceSectorController.cs" />
     <Compile Include="Controllers\FileMaintenanceSignatoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -305,6 +304,9 @@
     <Compile Include="Models\PersonalInformation.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Sector.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SignatoriesTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
@@ -318,6 +320,9 @@
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubFund.cs">
+      <DependentUpon>TOSS_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubSector.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TOSSDataSet.Designer.cs">
@@ -8914,7 +8919,6 @@
     <Content Include="Views\ReportRCD\Index.cshtml" />
     <Content Include="Views\ReportReportofCancelledCheck\Index.cshtml" />
     <Content Include="Views\ReportOther\Index.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\Index.cshtml" />
     <Content Include="Views\FileMaintenanceDisbursement\Index.cshtml" />
     <Content Include="Views\FileMaintenanceSignatories\Index.cshtml" />
     <Content Include="Views\CollectionBarangayCTCCollection\Index.cshtml" />
@@ -8938,37 +8942,16 @@
     <Content Include="Views\FileMaintenanceSignatories\_SignatoriesUpdate.cshtml" />
     <Content Include="Views\FileMaintenanceSignatories\Position\_PositionAdd.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\Index.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\Banks\_BankTable.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\Banks\_AddBankTable.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\Banks\_UpdateBankTable.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_BankAccountTable.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_DynamicDDBankName.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_DynamicDDAccountCode.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_DynamicDDAccountType.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_AddBankAccount.cshtml" />
     <Content Include="Views\CollectionDisplayOR\Index.cshtml" />
     <Content Include="Views\BankTransactionAFTransfer\Index.cshtml" />
     <Content Include="Views\BankTransactionAFTransferBrgy\Index.cshtml" />
     <Content Include="Views\AuthoritytoDebitCredit\Index.cshtml" />
     <Content Include="Views\BankTransactionInvestment\Index.cshtml" />
     <Content Include="Views\BankTransactionADebitAgencyBankAccount\Index.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_AddAccountType.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_AccountTypeTable.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_UpdateAccountType.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\BankAccounts\_UpdateBankAccount.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_DynamicDDAccountTitle.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_DynamicDDRevisionYear.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_MemoAccClassTable.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_AddMemoAccClass.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\_UpdateMemoAccClass.cshtml" />
     <Content Include="Views\FileMaintenanceSignatories\_DynamicDDDepartment.cshtml" />
     <Content Include="Views\FileMaintenanceSignatories\Department\_DepartmentAdd.cshtml" />
     <Content Include="Views\FileMaintenanceSignatories\Department\_DepartmentTable.cshtml" />
     <Content Include="Views\FileMaintenanceSignatories\Department\_DepartmentUpdate.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\IRAShares\_InternalRevenueAllotmentTable.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\IRAShares\_AddInternalRevenueAllotment.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\IRAShares\_UpdateInternalRevenueAllotment.cshtml" />
     <Content Include="Views\FileMaintenanceDisbursement\DVType\_AddDVType.cshtml" />
     <Content Include="Views\FileMaintenanceDisbursement\DVType\_UpdateDVType.cshtml" />
     <Content Include="Views\FileMaintenanceDisbursement\DVType\_DVTypeTable.cshtml" />
@@ -8983,56 +8966,10 @@
     <Content Include="Views\FileMaintenanceDisbursement\CheckMaintenance\_DynamicDDStartingCheckNo.cshtml" />
     <Content Include="Views\FileMaintenanceDisbursement\CheckMaintenance\_DynamicTBQuantyNEndNo.cshtml" />
     <Content Include="Views\FileMaintenanceDisbursement\CheckMaintenance\_UpdateCheckMaintenance.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\_AccountableFormTable.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\_AddAccountableForm.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\_UpdateAccountableForm.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\OR\_AddORDetails.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\OR\_ORDetailsTable.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\OR\_DynamicDDAccountableForm.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\_DynamicDDDescription.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\Description\_AddDescription.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\Description\_DescriptionTable.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AccountableForm\Description\_UpdateDescription.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\OR\_UpdateORDetails.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CT\_AddCTDetails.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CT\_DynamicDDAFCT.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\AccountCode\_AddAccountCode.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\AccountCode\_AccountCodeTable.cshtml" />
-    <Content Include="Views\FileMaintenanceGeneralReference\MemoAccountClass\AccountCode\_UpdateAccountCode.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CT\_CTDetailsTable.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CT\_UpdateCTDetails.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CTC\_AddCTCDetails.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CTC\_CTCDetailsTable.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CTC\_UpdateCTCDetails.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\InventoryofAccountableForm\CTC\_DynamicDDAccountableFormCTC.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_AddTreasurerCollector.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_TreasurerCollectorTable.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_DynamicDDTCFundType.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_DynamicDDTCAF.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_DynamicDDCollectorOfficer.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_DynamicDDStartOR.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\_AddTreasurerCollectorInvt.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_AddTransferReturnOR.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_TransferReturnORTable.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_DynamicDDMainCollector.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_DynamicDDSubCollector.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_DynamicDDTransferReturnORStubNo.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_AddTransferReturnPVOR.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\Barangay\BarangayName\_AddBarangayName.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\Barangay\BarangayName\_BarangayNameTable.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\Barangay\BarangayName\_UpdateBarangayName.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_AddFieldCollector.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_DynamicDDFCFundType.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_DynamicDDCollectorOfficerFC.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_DynamicDDFCAF.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_DynamicDDStartORFC.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_AddFieldCollectorIvnt.cshtml" />
-    <Content Include="Views\FileMaintenanceCollectionDeposit\AssignmentofAccountableForm\FieldCollector\_FieldCollectorTable.cshtml" />
     <Content Include="Views\FileMaintenancePosition\Index.cshtml" />
     <Content Include="Views\FileMaintenanceResponsibilityCenter\Index.cshtml" />
     <Content Include="Views\FileMaintenanceChartofAccount\Index.cshtml" />
     <Content Include="Views\FileMaintenanceFund\Index.cshtml" />
-    <Content Include="Views\FileMaintenanceSector\Index.cshtml" />
     <Content Include="Views\FileMaintenanceFund\Fund\_AddFunds.cshtml" />
     <Content Include="Views\FileMaintenanceFund\Fund\_UpdateFunds.cshtml" />
     <Content Include="Views\FileMaintenanceFund\Fund\_FundTable.cshtml" />
@@ -9040,6 +8977,8 @@
     <Content Include="Views\FileMaintenanceFund\SubFund\_SubFundTable.cshtml" />
     <Content Include="Views\FileMaintenanceFund\SubFund\_DynamiccDDFundName.cshtml" />
     <Content Include="Views\FileMaintenanceFund\SubFund\_UpdateSubFund.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\Index.cshtml" />
+    <Content Include="Views\FileMaintenanceIRAShare\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -9054,8 +8993,6 @@
     <Folder Include="modernadmin\__MACOSX\modern-admin-1.0\src\template-builder\pages\" />
     <Folder Include="modernadmin\__MACOSX\modern-admin-1.0\starter-kit\" />
     <Folder Include="Resources\PDF\" />
-    <Folder Include="Views\FileMaintenanceCollectionDeposit\Barangay\BarangayBankAccount\" />
-    <Folder Include="Views\FileMaintenanceCollectionDeposit\Barangay\BarangayCollector\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

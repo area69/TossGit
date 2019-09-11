@@ -6,28 +6,56 @@
 
 @using (Ajax.BeginForm("AddDepartment", "FileMaintenanceSignatories", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModalNoSuccessWithTripleFunc('FMSignatoriesController', 'Get_DepartmentTable',  'LoadDynamicDDDepartment','SuccessSave4')", OnFailure = "OnFailure()", }))
 {
-<div class="row">
-    <div class="col-md-8">
-        <label class="mt-1">Department</label>
-        @Html.TextBoxFor(m => m.getDepartmentColumns.Department, new { @class = "form-control", type = "text" })
-        @Html.ValidationMessageFor(model => model.getDepartmentColumns.Department)
+    <div class="row">
+        <div class="col-md-6">
+            <label class="mt-1">Department</label>
+            @Html.TextBoxFor(m => m.getDepartmentColumns.Department, new { @class = "form-control", type = "text" })
+            @Html.ValidationMessageFor(model => model.getDepartmentColumns.Department)
+        </div>
+        <div class="col-md-3">
+            <label class="mt-1">Department Abbreviation</label>
+            <input type="text" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <label class="mt-1">Department / Office Code</label>
+            @Html.TextBoxFor(m => m.getDepartmentColumns.DepartmentCode, new { @class = "form-control", type = "text" })
+            @Html.ValidationMessageFor(model => model.getDepartmentColumns.DepartmentCode)
+        </div>
     </div>
-    <div class="col-md-4">
-        <label class="mt-1">Department Code</label>
-        @Html.TextBoxFor(m => m.getDepartmentColumns.DepartmentCode, new { @class = "form-control", type = "text" })
-        @Html.ValidationMessageFor(model => model.getDepartmentColumns.DepartmentCode)
+
+    <div class="row">
+        <div class="col-md-4">
+            <label class="mt-1">Sector</label>
+            <select class="form-control">
+                <option>Social Services</option>
+            </select>
+        </div>
+        <div class="col-md-5">
+            <label class="mt-1">Sub Sector</label>
+            <select class="form-control">
+                <option>Health, Nutrition and Population Control</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="mt-1">Fund</label>
+            <select class="form-control">
+                <option>Special Education Fund</option>
+            </select>
+        </div>
     </div>
-</div>
-<div class="row mt-1">
-    <div class="col-md-8"></div>
-    <div class="col-md-2">
+    <div class="row mt-1">
+        <div class="col-md-8"></div>
+        <div class="col-md-2">
+            <button type="submit" class="btn bg-addbutton form-control black">
+                <b>Add</b>
+            </button>
+        </div> 
+        <div class="col-md-2">
+            <button type="submit" class="btn bg-headerbc form-control white">
+                <b>Cancel</b>
+            </button>
+        </div>
     </div>
-    <div class="col-md-2">
-        <button type="submit" class="btn bg-addbutton form-control black">
-            <b>Save</b>
-        </button>
-    </div>
-</div>
 }
 <script>
     $(function () {

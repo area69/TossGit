@@ -230,6 +230,14 @@
           <Property Name="Birthday" Type="date" />
           <Property Name="FullName" Type="varchar" MaxLength="108" StoreGeneratedPattern="Computed" />
         </EntityType>
+        <EntityType Name="Sector">
+          <Key>
+            <PropertyRef Name="SectorID" />
+          </Key>
+          <Property Name="SectorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectorName" Type="varchar" MaxLength="50" />
+          <Property Name="SectorCode" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="SignatoriesTable">
           <Key>
             <PropertyRef Name="SignatoriesID" />
@@ -269,6 +277,15 @@
           <Property Name="SubFundID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FundID" Type="int" />
           <Property Name="SubFundName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SubSector">
+          <Key>
+            <PropertyRef Name="SubSectorID" />
+          </Key>
+          <Property Name="SubSectorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectorID" Type="int" />
+          <Property Name="SubSectorName" Type="varchar" MaxLength="50" />
+          <Property Name="SubSectorCode" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_AccountableForm_Assignment_AccountableForm_Inventory">
           <End Role="AccountableForm_Inventory" Type="Self.AccountableForm_Inventory" Multiplicity="1" />
@@ -522,6 +539,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SubSector_Sector">
+          <End Role="Sector" Type="Self.Sector" Multiplicity="0..1" />
+          <End Role="SubSector" Type="Self.SubSector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sector">
+              <PropertyRef Name="SectorID" />
+            </Principal>
+            <Dependent Role="SubSector">
+              <PropertyRef Name="SectorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="SP_AccountableFormInvtList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SQLStatement" Type="nvarchar(max)" Mode="In" />
         </Function>
@@ -592,11 +621,13 @@
           <EntitySet Name="MemoAccClassTable" EntityType="Self.MemoAccClassTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParentModules" EntityType="Self.ParentModules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonalInformation" EntityType="Self.PersonalInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sector" EntityType="Self.Sector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SignatoriesTable" EntityType="Self.SignatoriesTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatory_DepartmentTable" EntityType="Self.Signatory_DepartmentTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Signatory_PositionTable" EntityType="Self.Signatory_PositionTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCollectorTable" EntityType="Self.SubCollectorTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubFund" EntityType="Self.SubFund" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubSector" EntityType="Self.SubSector" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AccountableForm_Assignment_AccountableForm_Inventory" Association="Self.FK_AccountableForm_Assignment_AccountableForm_Inventory">
             <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
             <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
@@ -681,6 +712,10 @@
             <End Role="Fund" EntitySet="Fund" />
             <End Role="SubFund" EntitySet="SubFund" />
           </AssociationSet>
+          <AssociationSet Name="FK_SubSector_Sector" Association="Self.FK_SubSector_Sector">
+            <End Role="Sector" EntitySet="Sector" />
+            <End Role="SubSector" EntitySet="SubSector" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -759,11 +794,13 @@
           <EntitySet Name="MemoAccClassTables" EntityType="DB_TOSSModel.MemoAccClassTable" />
           <EntitySet Name="ParentModules" EntityType="DB_TOSSModel.ParentModule" />
           <EntitySet Name="PersonalInformations" EntityType="DB_TOSSModel.PersonalInformation" />
+          <EntitySet Name="Sectors" EntityType="DB_TOSSModel.Sector" />
           <EntitySet Name="SignatoriesTables" EntityType="DB_TOSSModel.SignatoriesTable" />
           <EntitySet Name="Signatory_DepartmentTable" EntityType="DB_TOSSModel.Signatory_DepartmentTable" />
           <EntitySet Name="Signatory_PositionTable" EntityType="DB_TOSSModel.Signatory_PositionTable" />
           <EntitySet Name="SubCollectorTables" EntityType="DB_TOSSModel.SubCollectorTable" />
           <EntitySet Name="SubFunds" EntityType="DB_TOSSModel.SubFund" />
+          <EntitySet Name="SubSectors" EntityType="DB_TOSSModel.SubSector" />
           <AssociationSet Name="FK_AccountableForm_Assignment_AccountableForm_Inventory" Association="DB_TOSSModel.FK_AccountableForm_Assignment_AccountableForm_Inventory">
             <End Role="AccountableForm_Inventory" EntitySet="AccountableForm_Inventory" />
             <End Role="AccountableForm_Assignment" EntitySet="AccountableForm_Assignment" />
@@ -839,6 +876,10 @@
           <AssociationSet Name="FK_ParentModules_ParentModules" Association="DB_TOSSModel.FK_ParentModules_ParentModules">
             <End Role="ParentModule" EntitySet="ParentModules" />
             <End Role="ParentModule1" EntitySet="ParentModules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubSector_Sector" Association="DB_TOSSModel.FK_SubSector_Sector">
+            <End Role="Sector" EntitySet="Sectors" />
+            <End Role="SubSector" EntitySet="SubSectors" />
           </AssociationSet>
           <AssociationSet Name="FK_SignatoriesTable_PositionName" Association="DB_TOSSModel.FK_SignatoriesTable_PositionName">
             <End Role="Signatory_PositionTable" EntitySet="Signatory_PositionTable" />
@@ -1110,6 +1151,15 @@
           <Property Name="FullName" Type="String" MaxLength="108" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Accounts" Relationship="DB_TOSSModel.FK_Accounts_PersonalInformation" FromRole="PersonalInformation" ToRole="Account" />
         </EntityType>
+        <EntityType Name="Sector">
+          <Key>
+            <PropertyRef Name="SectorID" />
+          </Key>
+          <Property Name="SectorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SectorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SubSectors" Relationship="DB_TOSSModel.FK_SubSector_Sector" FromRole="Sector" ToRole="SubSector" />
+        </EntityType>
         <EntityType Name="SignatoriesTable">
           <Key>
             <PropertyRef Name="SignatoriesID" />
@@ -1155,6 +1205,16 @@
           <Property Name="FundID" Type="Int32" />
           <Property Name="SubFundName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Fund" Relationship="DB_TOSSModel.FK_SubFund_Fund" FromRole="SubFund" ToRole="Fund" />
+        </EntityType>
+        <EntityType Name="SubSector">
+          <Key>
+            <PropertyRef Name="SubSectorID" />
+          </Key>
+          <Property Name="SubSectorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectorID" Type="Int32" />
+          <Property Name="SubSectorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubSectorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Sector" Relationship="DB_TOSSModel.FK_SubSector_Sector" FromRole="SubSector" ToRole="Sector" />
         </EntityType>
         <Association Name="FK_AccountableForm_Assignment_AccountableForm_Inventory">
           <End Type="DB_TOSSModel.AccountableForm_Inventory" Role="AccountableForm_Inventory" Multiplicity="1" />
@@ -1381,6 +1441,18 @@
             </Principal>
             <Dependent Role="ParentModule1">
               <PropertyRef Name="ModuleParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubSector_Sector">
+          <End Type="DB_TOSSModel.Sector" Role="Sector" Multiplicity="0..1" />
+          <End Type="DB_TOSSModel.SubSector" Role="SubSector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sector">
+              <PropertyRef Name="SectorID" />
+            </Principal>
+            <Dependent Role="SubSector">
+              <PropertyRef Name="SectorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1678,6 +1750,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Sectors">
+            <EntityTypeMapping TypeName="DB_TOSSModel.Sector">
+              <MappingFragment StoreEntitySet="Sector">
+                <ScalarProperty Name="SectorCode" ColumnName="SectorCode" />
+                <ScalarProperty Name="SectorName" ColumnName="SectorName" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SignatoriesTables">
             <EntityTypeMapping TypeName="DB_TOSSModel.SignatoriesTable">
               <MappingFragment StoreEntitySet="SignatoriesTable">
@@ -1720,6 +1801,16 @@
                 <ScalarProperty Name="SubFundName" ColumnName="SubFundName" />
                 <ScalarProperty Name="FundID" ColumnName="FundID" />
                 <ScalarProperty Name="SubFundID" ColumnName="SubFundID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubSectors">
+            <EntityTypeMapping TypeName="DB_TOSSModel.SubSector">
+              <MappingFragment StoreEntitySet="SubSector">
+                <ScalarProperty Name="SubSectorCode" ColumnName="SubSectorCode" />
+                <ScalarProperty Name="SubSectorName" ColumnName="SubSectorName" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="SubSectorID" ColumnName="SubSectorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

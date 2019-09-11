@@ -1,0 +1,29 @@
+﻿@model TOSS_UPGRADE.Models.FM_Sectors.FM_Sector
+    @{
+        DB_TOSSEntities SISDB = new DB_TOSSEntities();
+    }
+    @using TOSS_UPGRADE.Models;
+
+    <div class="row">
+        <div class="col-md-3" id="_DynamicSector">
+        </div>
+        <div class="col-md-3">
+            <label class="mt-1"><b>Sub Sector</b></label>
+            <input type="text" class="form-control" />
+        </div>
+        <div class="col-md-2 mt-1" id="_DynamicSectorCode">
+    
+        </div>
+        <div class="col-md-2">
+            <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
+            <button type="submit" class="btn bg-addbutton form-control black">
+                <b>Add</b>
+            </button>
+        </div>
+        <div class="col-md-2">
+            <label class="mt-1" style="visibility:hidden"><b>Fund</b></label>
+            <button type="reset" class="btn bg-headerbc form-control white">
+                <b>Cancel</b>
+            </button>
+        </div>
+    </div>

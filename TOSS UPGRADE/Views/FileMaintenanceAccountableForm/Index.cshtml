@@ -1,0 +1,457 @@
+﻿
+@{
+    ViewBag.Title = "Accountable Form";
+}
+<script>
+    $("#faccountableform").addClass("active");
+</script>
+
+<div class="content-header row">
+    <div class="content-header-left col-md-6 mb-2">
+        <h3 class="content-header-title black"><b>File Maintenance - Accountable Form</b></h3>
+    </div>
+</div>
+<div class="card-content">
+    <div class="card">
+        <ul class="nav nav-tabs bg-headerbc nav-underline">
+            <li class="nav-item">
+                <a class="nav-link active" id="base-tab1" data-toggle="pill" aria-controls="tab1" href="#tab1" aria-expanded="true"><b>Accountable Form Details</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false"><b>Inventory of Accountable Form</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" aria-expanded="false"><b>Assignment of Accountable Form</b></a>
+            </li>
+        </ul>
+        <div class="tab-content px-1 pt-1">
+            @* Accountable Form Details *@
+            <div role="tabpanel" class="tab-pane active black" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-md-12" @*id="DepartmentxID"*@>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="mt-1"><b>Accountable Form</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="mt-1"><b>For CTC</b></label>
+                                    <select class="form-control">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="mt-1"><b>Description</b></label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-md-1 pl-0">
+                                    <label class="mt-1" style="visibility:hidden"> Code</label>
+                                    <button type="submit" class="btn bg-addbutton form-control black" onclick="reload">
+                                        <b>Add</b>
+                                    </button>
+                                </div>
+                                <div class="col-md-1 pl-0">
+                                    <label class="mt-1" style="visibility:hidden"> Code</label>
+                                    <button type="reset" class="btn bg-headerbc form-control white">
+                                        <b>Cancel</b>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-1" @*id="DepartmentTableID"*@>
+                        <div class="col-md-12">
+                            <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>Accountable Form</th>
+                                        <th>Description</th>
+                                        <th>For CTC?</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr>
+                                        <td>AF - 55C</td>
+                                        <td>Cash Ticket</td>
+                                        <td>Yes</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>AF - 55D</td>
+                                        <td>Cash Ticket</td>
+                                        <td>No</td>
+                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* Inventory of Accountable Form *@
+            <div role="tabpanel" class="tab-pane black" id="tab2" aria-expanded="true" aria-labelledby="base-tab2">
+                <div class="content-body">
+                    <div class="card-block">
+                        <div class="card-body box-shadow-2">
+                            <div class="card-header bg-carheadercolor">
+                                <h4 class="card-title black"><b>Official Receipt/Cash Ticket Inventory</b></h4>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body box-shadow-2">
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-10">
+                                            <div class="row">
+                                                <div class="col-md-3 mt-1 form-group">
+                                                    <label><input type="radio" name="optradio" checked><b>Official Receipt</b></label>
+                                                </div>
+                                                <div class="col-md-3 mt-1 form-group">
+                                                    <label><input type="radio" name="optradio"><b>Cash Tickets</b></label>
+                                                </div>
+                                                <div class="col-md-4 mt-1 form-group">
+                                                    <label><input type="radio" name="optradio"><b>Community Tax Certificate</b></label>
+                                                </div>
+                                                <div class="col-md-2 form-group">
+                                                    <button class="btn bg-addbutton black"><b>View AF Details</b></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @* Official Receipt *@
+                            <div class="card-header bg-carheadercolor mt-1">
+                                <h4 class="card-title black"><b>Official Receipt Details</b></h4>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body box-shadow-2">
+                                    <div class="row">
+                                        <div class="col-md-4 form-group">
+                                            <label><b>Accountable Form</b></label>
+                                            <select class="form-control">
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 form-group">
+                                            <label><b>Starting Stub No.</b></label>
+                                            <input type="text" class="form-control" value="" />
+                                        </div>
+                                        <div class="col-md-4 form-group">
+                                            <label><b>Quantity</b></label>
+                                            <input type="text" class="form-control" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 form-group">
+                                            <label><b>Starting OR</b></label>
+                                            <select class="form-control">
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 form-group">
+                                            <label><b>Ending OR</b></label>
+                                            <input type="text" class="form-control" value="" />
+                                        </div>
+                                        <div class="col-md-4 form-group">
+                                            <label><b>OR Date</b></label>
+                                            <input value="" class="form-control pickadate ui-datepicker" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8"></div>
+                                        <div class="col-md-2"><button class="btn black bg-addbutton form-control"><b>Add</b></button></div>
+                                        <div class="col-md-2"><button class="btn white bg-headerbc form-control"><b>Cancel</b></button></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                                                    <thead class="text-center">
+                                                        <tr>
+                                                            <th>Accountable Forms</th>
+                                                            <th>Stub No.</th>
+                                                            <th>Starting OR</th>
+                                                            <th>Ending OR</th>
+                                                            <th>Quantity</th>
+                                                            <th>Date Issued</th>
+                                                            <th>Is Issued</th>
+                                                            <th width="5px;">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* Assignment of Accountable Form *@
+            <div role="tabpanel" class="tab-pane black" id="tab3" aria-expanded="true" aria-labelledby="base-tab3">
+                <div class="content-body">
+                    <div class="card-block">
+                        <div class="card-body box-shadow-2">
+                            <div class="card-header bg-carheadercolor">
+                                <h4 class="card-title black"><b>Official Receipt/Cash Ticket Assignment</b></h4>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body box-shadow-2">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-3 pr-0 form-group">
+                                                    <label><input type="radio" name="optradio" checked><b>Treasurer's Collection</b></label>
+                                                </div>
+                                                <div class="col-md-2 px-0 form-group">
+                                                    <label><input type="radio" name="optradio"><b>Field Collectors</b></label>
+                                                </div>
+                                                <div class="col-md-2 px-0 form-group">
+                                                    <label><input type="radio" name="optradio"><b>Cash Tickets</b></label>
+                                                </div>
+                                                <div class="col-md-4 px-0 form-group">
+                                                    <label><input type="radio" name="optradio"><b>Community Tax Certificate Collectors</b></label>
+                                                </div>
+                                                <div class="col-md-1 px-0 form-group">
+                                                    <label><input type="radio" name="optradio"><b>PATAS</b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-header bg-carheadercolor mt-1">
+                                <h4 class="card-title black"><b>Treasurer's OR Details</b></h4>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body box-shadow-2">
+                                    <div class="row">
+                                        <div class="col-md-3 form-group">
+                                            <label><b>Collecting Officer</b></label>
+                                            <select class="form-control">
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label><b>Fund Type</b></label>
+                                            <select class="form-control">
+                                                <option>General Fund</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label><b>Accountable Form</b></label>
+                                            <select class="form-control">
+                                                <option>AF-51</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label><b>Stub No.</b></label>
+                                            <select class="form-control">
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3 form-group">
+                                            <label><b>Starting OR</b></label>
+                                            <select class="form-control">
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label><b>Ending OR</b></label>
+                                            <input type="text" class="form-control" value="" />
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label><b>Quantity</b></label>
+                                            <input type="text" class="form-control" value="" />
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label><b>Date Issued</b></label>
+                                            <input name="name" value="" class="form-control pickadate ui-datepicker" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-9"></div>
+                                        <div class="col-md-3">
+                                            <div class="row">
+                                                <div class="col-md-6"><button class="btn black form-control bg-addbutton"><b>Add</b></button></div>
+                                                <div class="col-md-6"><button class="btn white form-control bg-headerbc"><b>Cancel</b></button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Collector Name</th>
+                                                            <th>Date Issued</th>
+                                                            <th>Date Transferred</th>
+                                                            <th>OR Description</th>
+                                                            <th>Stub No.</th>
+                                                            <th>Starting OR</th>
+                                                            <th>Ending OR</th>
+                                                            <th>Quantity</th>
+                                                            <th width="5px;">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>A</td>
+                                                            <td>09/11/2019</td>
+                                                            <td>N/A</td>
+                                                            <td>General Fund ( AF-51 )</td>
+                                                            <td>100</td>
+                                                            <td>100</td>
+                                                            <td>149</td>
+                                                            <td>50</td>
+                                                            <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="right" data-conztainer="body" data-original-title=""><i class="la la-reorder"></i></button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @* Transfer / Return Modal *@
+                                <div class="col-lg-8 col-md-8 col-sm-12">
+                                    <div class="modal animated zoomIn text-left" id="addTransferReturnModal" role="dialog">
+                                        <div class="modal-dialog" style="max-width:1200px" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-headerbc white">
+                                                    <h6 class="modal-title white"><i class="la la-plus mr-1"></i><b>Transfer / Return OR Series</b></h6>
+                                                    <button class="btn bg-headerbc pull-right p-0 white" data-dismiss="modal"><i class="la la-close"></i></button>
+                                                </div>
+                                                <div class="modal-body skin skin-square">
+                                                    <div class="row">
+                                                        <div class="col-md-3 form-group">
+                                                            <label><b>Old Collector</b></label>
+                                                            <select class="form-control">
+                                                                <option>A</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-3 form-group">
+                                                            <label><b>New Collector</b></label>
+                                                            <select class="form-control">
+                                                                <option>Juan Dela Cruz</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-3 form-group">
+                                                            <label><b>Stub No.</b></label>
+                                                            <select class="form-control">
+                                                                <option>100</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-3 form-group">
+                                                            <label><b>Date Transferred</b></label>
+                                                            <input name="name" value="" class="form-control pickadate ui-datepicker" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-1">
+                                                        <div class="col-md-3 form-group">
+                                                            <label><b>OR Description</b></label>
+                                                            <input type="text" class="form-control" value="General Fund ( AF-51 )" disabled />
+                                                        </div>
+                                                        <div class="col-md-3 form-group">
+                                                            <label><b>Quantity</b></label>
+                                                            <input type="text" class="form-control" value="50" disabled />
+                                                        </div>
+                                                        <div class="col-md-3 form-group">
+                                                            <label><b>Starting OR</b></label>
+                                                            <input type="text" class="form-control" value="100" disabled />
+                                                        </div>
+                                                        <div class="col-md-3 form-group">
+                                                            <label><b>Ending OR</b></label>
+                                                            <input type="text" class="form-control" value="149" disabled />
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-9"></div>
+                                                        <div class="col-md-3">
+                                                            <div class="row">
+                                                                <div class="col-md-6"></div>
+                                                                <div class="col-md-6"><button class="btn black form-control bg-addbutton"><b>Transfer</b></button></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Old Collector</th>
+                                                                            <th>New Collector</th>
+                                                                            <th>Date Issued</th>
+                                                                            <th>Date Transferred</th>
+                                                                            <th>OR Description</th>
+                                                                            <th>Stub No.</th>
+                                                                            <th>Quantity</th>
+                                                                            <th>Starting OR</th>
+                                                                            <th>Ending OR</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @*<tr>
+                                                                            <td>A</td>
+                                                                            <td>Juan Dela Cruz</td>
+                                                                            <td>09/11/2019</td>
+                                                                            <td>09/12/2019</td>
+                                                                            <td>General Fund ( AF-51 )</td>
+                                                                            <td>100</td>
+                                                                            <td>50</td>
+                                                                            <td>100</td>
+                                                                            <td>149</td>
+                                                                        </tr>*@
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        var popupElement =
+            '<div class="row m-0"><button class="btn btn-icon bg-addbutton black form-control target-desc t-has-destination2" destination="table-project" style="border-color: white" data-toggle="modal" data-target="#addTransferReturnModal" onclick="OpenConsolidationButtonModal()"><i class="la la-clipboard"></i><b>Transfer</b></button></div>' +
+            '<div class="row m-0"><button class="btn btn-icon bg-headerbc white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i><b>Return</b></button></div>';
+        $('[data-toggle="popoverSignatories"]').popover({
+            animation: true,
+            content: popupElement,
+            html: true
+        });
+    });
+</script>
+<script>
+    function OpenConsolidationButtonModal() {
+        //var ID = $("#SupplyAccountCodeList").val();
+        var IDTemp = "1";
+        $.ajax({
+            url: '/FileMaintenanceAccountableForm/GetTransfer',
+            data: { ID: IDTemp },
+            success: function (result) {
+                $('#_ButtonModal').html(result);
+            }
+        })
+        $('[data-toggle="popoverSignatories"]').popover('hide');
+    }
+</script>
