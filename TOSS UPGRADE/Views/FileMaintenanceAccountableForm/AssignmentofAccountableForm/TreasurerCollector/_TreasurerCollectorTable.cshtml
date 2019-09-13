@@ -1,0 +1,50 @@
+﻿@model IEnumerable<TOSS_UPGRADE.Models.FM_CollectionAndDeposit.AccountableFormAssignmentList>
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-striped zero-configuration table-bordered text-center dataTable scroll-horizontal table-smss-hover no-footer m-0 w-100">
+                <thead>
+                    <tr>
+                        <th>Collector<br />Name</th>
+                        <th>Date<br />Issued</th>
+                        <th>Date<br />Transferred</th>
+                        <th>OR<br />Description</th>
+                        <th>Stub<br />No.</th>
+                        <th>Starting<br />OR</th>
+                        <th>Ending<br />OR</th>
+                        <th>Qty</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var Items in Model)
+                        {
+                            <tr>
+                                <td>@Items.CollectorName</td>
+                                <td>@Items.Date</td>
+                                <td>@Items.Date</td>
+                                <td>@Items.FundType - ( @Items.AF )</td>
+                                <td>@Items.StubNo</td>
+                                <td>@Items.StratingOR</td>
+                                <td>@Items.EndingOR</td>
+                                <td>@Items.Quantity</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+    })
+</script>

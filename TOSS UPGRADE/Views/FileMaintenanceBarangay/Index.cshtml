@@ -1,0 +1,204 @@
+﻿@{
+    ViewBag.Title = "Barangay";
+}
+<script>
+    $("#fmBarangay").addClass("active");
+</script>
+
+<div class="content-header row">
+    <div class="content-header-left col-md-6 mb-2">
+        <h3 class="content-header-title black"><b>File Maintenance - Barangay</b></h3>
+    </div>
+</div>
+<div class="card-content black">
+    <div class="card">
+        <ul class="nav nav-tabs bg-headerbc nav-underline">
+            <li class="nav-item">
+                <a class="nav-link active" id="base-tab1" data-toggle="pill" aria-controls="tab1" href="#tab1" aria-expanded="true"><b>Barangay Name</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false"><b>Barangay Collector</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="base-tab3" data-toggle="tab" aria-controls="tab3" href="#tab3" aria-expanded="false"><b>Barangay Bank Account</b></a>
+            </li>
+        </ul>
+        <div class="tab-content px-1 pt-1">
+            @* Barangay Name *@
+            <div role="tabpanel" class="tab-pane active black" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
+                <div class="content-body">
+                    <div class="card-block">
+                        <div class="row black">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5 form-group">
+                                <label><b>Barangay Name</b></label>
+                                <input type="text" class="form-control" value="" />
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label style="visibility:hidden">Position</label>
+                                        <button class="btn bg-addbutton black form-control"><b>Add</b></button>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label style="visibility:hidden">Position</label>
+                                        <button class="btn bg-headerbc white form-control"><b>Cancel</b></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Barangay Name</th>
+                                            <th width="5px;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Barangay 1</td>
+                                            <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Barangay 10</td>
+                                            <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* Barangay Collector *@
+            <div role="tabpanel" class="tab-pane black" id="tab2" aria-expanded="true" aria-labelledby="base-tab2">
+                <div class="content-body">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="row black">
+                                    <div class="col-md-3 pr-0 form-group">
+                                        <label><b>First Name</b></label>
+                                        <input type="text" class="form-control" value="" />
+                                    </div>
+                                    <div class="col-md-3 pr-0 form-group">
+                                        <label><b>Middle Name</b></label>
+                                        <input type="text" class="form-control" value="" />
+                                    </div>
+                                    <div class="col-md-3 pr-0">
+                                        <label><b>Last Name</b></label>
+                                        <input type="text" class="form-control" value="" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="row">
+                                            <div class="col-md-6 pr-0 form-group">
+                                                <label style="visibility:hidden">Position</label>
+                                                <button class="btn bg-addbutton black form-control"><b>Add</b></button>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label style="visibility:hidden">Position</label>
+                                                <button class="btn bg-headerbc white form-control"><b>Cancel</b></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Collector Name</th>
+                                            <th width="5px;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Juan Dela Cruz</td>
+                                            <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Marco Mendez Enumerables</td>
+                                            <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* Barangay Bank Account *@
+            <div role="tabpanel" class="tab-pane black" id="tab3" aria-expanded="true" aria-labelledby="base-tab3">
+                <div class="content-body">
+                    <div class="card-block">
+                        <div class="row black">
+                            <div class="col-md-3 form-group">
+                                <label><b>Barangay</b></label>
+                                <select class="form-control">
+                                    <option>Barangay 1</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label><b>Bank Name</b></label>
+                                <select class="form-control">
+                                    <option>Land Bank of the Philippines</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label><b>Account No.</b></label>
+                                <input type="text" class="form-control" value="" />
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label style="visibility:hidden">Position</label>
+                                        <button class="btn bg-addbutton black form-control"><b>Add</b></button>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label style="visibility:hidden">Position</label>
+                                        <button class="btn bg-headerbc white form-control"><b>Cancel</b></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Barangay</th>
+                                            <th>Bank</th>
+                                            <th>Bank Account No</th>
+                                            <th width="5px;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Barangay 1</td>
+                                            <td>Land Bank of the Philippines</td>
+                                            <td>0442-1046-38</td>
+                                            <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Barangay 2</td>
+                                            <td>Land Bank of the Philippines</td>
+                                            <td>0442-1046-97</td>
+                                            <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

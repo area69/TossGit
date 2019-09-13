@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Payee";
+}
+<script>
+    $("#fmPayee").addClass("active");
+</script>
+
+<div class="content-header row">
+    <div class="content-header-left col-md-6 mb-2">
+        <h3 class="content-header-title black"><b>File Maintenance - Payee</b></h3>
+    </div>
+</div>
+<div class="row black">
+    <div class="col-md-12">
+        <div class="card box-shadow-2">
+            <div class="card-body box-shadow-2">
+                <div class="row black">
+                    <div class="col-md-3 form-group">
+                        <label><b>Payee Name</b></label>
+                        <input type="text" class="form-control" value="" />
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label><b>Address</b></label>
+                        <input type="text" class="form-control" value="" />
+                    </div>
+                    <div class="col-md-3">
+                        <label><b>Department</b></label>
+                        <select class="form-control">
+                            <option>General Services Office</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label style="visibility:hidden">Position</label>
+                                <button class="btn bg-addbutton black form-control"><b>Add</b></button>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label style="visibility:hidden">Position</label>
+                                <button class="btn bg-headerbc white form-control"><b>Cancel</b></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
+                            <thead>
+                                <tr>
+                                    <th>Payee Name</th>
+                                    <th>Address</th>
+                                    <th>Department</th>
+                                    <th width="5px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Juan Dela Cruz</td>
+                                    <td>Brgy, San Antonio, Pasig City</td>
+                                    <td>Office of the Local Chief Executive</td>
+                                    <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>Abegail M. Santos</td>
+                                    <td>Concepcion I, Marikina City</td>
+                                    <td>Office of the Local Administration</td>
+                                    <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

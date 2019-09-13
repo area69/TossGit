@@ -22,10 +22,9 @@ namespace TOSS_UPGRADE.Models
     
         public int AccountFormID { get; set; }
         public string AccountFormName { get; set; }
-        public int DescriptionID { get; set; }
+        public string Description { get; set; }
         public bool isCTC { get; set; }
     
-        public virtual AccountableForm_Description AccountableForm_Description { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AccountableForm_Inventory> AccountableForm_Inventory { get; set; }
     }

@@ -190,10 +190,12 @@
     <Compile Include="Controllers\DisbursementDVCashAvailabilityController.cs" />
     <Compile Include="Controllers\DisbursementVoucherController.cs" />
     <Compile Include="Controllers\FileMaintenanceAccountableFormController.cs" />
+    <Compile Include="Controllers\FileMaintenanceBarangayController.cs" />
     <Compile Include="Controllers\FileMaintenanceChartofAccountController.cs" />
     <Compile Include="Controllers\FileMaintenanceDisbursementController.cs" />
     <Compile Include="Controllers\FileMaintenanceFundController.cs" />
     <Compile Include="Controllers\FileMaintenanceIRAShareController.cs" />
+    <Compile Include="Controllers\FileMaintenancePayeeController.cs" />
     <Compile Include="Controllers\FileMaintenancePositionController.cs" />
     <Compile Include="Controllers\FileMaintenanceResponsibilityCenterController.cs" />
     <Compile Include="Controllers\FileMaintenanceSignatoriesController.cs" />
@@ -224,9 +226,6 @@
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountableForm_Assignment.cs">
-      <DependentUpon>TOSS_Entities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AccountableForm_Description.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountableForm_Inventory.cs">
@@ -260,10 +259,8 @@
     <Compile Include="Models\DVTypeTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FM_CollectionAndDeposit\FM_CollectionAndDeposit_AccountableForm.cs" />
-    <Compile Include="Models\FM_CollectionAndDeposit\FM_CollectionAndDeposit_AssignmentAF.cs" />
-    <Compile Include="Models\FM_CollectionAndDeposit\FM_CollectionAndDeposit_BarangayName.cs" />
-    <Compile Include="Models\FM_CollectionAndDeposit\FM_CollectionAndDeposit_InventoryAF.cs" />
+    <Compile Include="Models\FM_AccountableForm\FM_AccountableForm.cs" />
+    <Compile Include="Models\FM_AccountableForm\FM_AccountableFormInventory.cs" />
     <Compile Include="Models\FM_Disbursement\FM_Disbursement_CheckInventory.cs" />
     <Compile Include="Models\FM_Disbursement\FM_Disbursement_CheckMaintenance.cs" />
     <Compile Include="Models\FM_Disbursement\FM_Disbursement_DVType.cs" />
@@ -304,9 +301,6 @@
     <Compile Include="Models\PersonalInformation.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Sector.cs">
-      <DependentUpon>TOSS_Entities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SignatoriesTable.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
@@ -320,9 +314,6 @@
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubFund.cs">
-      <DependentUpon>TOSS_Entities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SubSector.cs">
       <DependentUpon>TOSS_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TOSSDataSet.Designer.cs">
@@ -8979,6 +8970,43 @@
     <Content Include="Views\FileMaintenanceFund\SubFund\_UpdateSubFund.cshtml" />
     <Content Include="Views\FileMaintenanceAccountableForm\Index.cshtml" />
     <Content Include="Views\FileMaintenanceIRAShare\Index.cshtml" />
+    <Content Include="Views\FileMaintenancePayee\Index.cshtml" />
+    <Content Include="Views\FileMaintenanceBarangay\Index.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AccountableForm\_AccountableFormTable.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AccountableForm\_AddAccountableForm.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AccountableForm\_UpdateAccountableForm.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\FieldCollector\_AddFieldCollector.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\FieldCollector\_AddFieldCollectorIvnt.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\FieldCollector\_DynamicDDCollectorOfficerFC.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\FieldCollector\_DynamicDDFCAF.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\FieldCollector\_DynamicDDFCFundType.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\FieldCollector\_DynamicDDStartORFC.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\FieldCollector\_FieldCollectorTable.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_AddTransferReturnOR.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_AddTransferReturnPVOR.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_DynamicDDMainCollector.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_DynamicDDSubCollector.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_DynamicDDTransferReturnORStubNo.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\TreasurerCollector\TransferReturnOR\_TransferReturnORTable.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\TreasurerCollector\_AddTreasurerCollector.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\TreasurerCollector\_AddTreasurerCollectorInvt.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\TreasurerCollector\_DynamicDDCollectorOfficer.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\TreasurerCollector\_DynamicDDStartOR.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\TreasurerCollector\_DynamicDDTCAF.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\TreasurerCollector\_DynamicDDTCFundType.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\AssignmentofAccountableForm\TreasurerCollector\_TreasurerCollectorTable.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\InventoryofAccountableForm\CTC\_AddCTCDetails.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\InventoryofAccountableForm\CTC\_CTCDetailsTable.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\InventoryofAccountableForm\CTC\_DynamicDDAccountableFormCTC.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\InventoryofAccountableForm\CTC\_UpdateCTCDetails.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\InventoryofAccountableForm\CT\_AddCTDetails.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\InventoryofAccountableForm\CT\_CTDetailsTable.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\InventoryofAccountableForm\CT\_DynamicDDAFCT.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\InventoryofAccountableForm\CT\_UpdateCTDetails.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\InventoryofAccountableForm\OR\_AddORDetails.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\InventoryofAccountableForm\OR\_DynamicDDAccountableForm.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\InventoryofAccountableForm\OR\_ORDetailsTable.cshtml" />
+    <Content Include="Views\FileMaintenanceAccountableForm\InventoryofAccountableForm\OR\_UpdateORDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

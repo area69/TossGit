@@ -1,0 +1,43 @@
+﻿@model TOSS_UPGRADE.Models.FM_CollectionAndDeposit.FM_CollectionAndDeposit_AssignmentAF
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+@using (Ajax.BeginForm("AddAccountableFormAssign", "FileMaintenanceCollectionDeposit", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMCollectionDepositController','Get_AccountableFormAssignmentTable','Accountable Form Assignment Successfully Saved')", OnFailure = "OnFailure()", }))
+{
+    <div class="row">
+        <div class="col-md-3 form-group" id="_DynamicCollectorTable">
+        </div>
+        <div class="col-md-3 form-group" id="_DynamicFundTypeASF">
+        </div>
+        <div class="col-md-3 form-group" id="_DynamicAFASF">
+        </div>
+        <div class="col-md-3 form-group">
+            <label>Date Issued</label>
+            @Html.TextBoxFor(m => m.getAccountableFormAssigncolumns.Date, new { @class = "form-control pickadate", type = "text" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 form-group" id="_DynamicAFStartOR">
+        </div>
+        <div class="col-md-9">
+            <div id="_DynamicASF">
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2"><button class="btn black bg-addbutton form-control" type="submit"><b>Add</b></button></div>
+        </div>
+
+
+}
+<script>
+    $(function () {
+        LoadDataTable();
+        LoadPopOver();
+        LoadPickDatetime();
+    })
+</script>

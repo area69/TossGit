@@ -1,0 +1,8 @@
+﻿@model TOSS_UPGRADE.Models.FM_CollectionAndDeposit.FM_CollectionAndDeposit_AssignmentAF
+@{
+    DB_TOSSEntities TOSSDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+<label class="mt-1">Stub No.</label>
+@Html.DropDownListFor(m => m.AccountableTCTRORStubNoID, Model.AccountableFormAssignmentList, new { @class = "form-control select2", id = "TRORStubNoIDDDD", onchange = "AngularGlobalAlertsCallingNoModalNoSuccessWithDoubleFunc('FMCollectionDepositController','LoadDynamicDDTRPVOR','')" })

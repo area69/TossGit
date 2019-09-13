@@ -1,4 +1,8 @@
-﻿
+﻿@model TOSS_UPGRADE.Models.FM_AccountableForm.FM_AccountableForm
+@using TOSS_UPGRADE.Models;
+@{
+    DB_TOSSEntities CEE = new DB_TOSSEntities();
+}
 @{
     ViewBag.Title = "Accountable Form";
 }
@@ -11,7 +15,7 @@
         <h3 class="content-header-title black"><b>File Maintenance - Accountable Form</b></h3>
     </div>
 </div>
-<div class="card-content">
+<div class="card-content" id="FMAccountableFormController" ng-controller="FMAccountableFormController" ng-init="InitAllFunction();">
     <div class="card">
         <ul class="nav nav-tabs bg-headerbc nav-underline">
             <li class="nav-item">
@@ -28,65 +32,12 @@
             @* Accountable Form Details *@
             <div role="tabpanel" class="tab-pane active black" id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
                 <div class="content-body">
-                    <div class="row">
-                        <div class="col-md-12" @*id="DepartmentxID"*@>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label class="mt-1"><b>Accountable Form</b></label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="mt-1"><b>For CTC</b></label>
-                                    <select class="form-control">
-                                        <option>Yes</option>
-                                        <option>No</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="mt-1"><b>Description</b></label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                                <div class="col-md-1 pl-0">
-                                    <label class="mt-1" style="visibility:hidden"> Code</label>
-                                    <button type="submit" class="btn bg-addbutton form-control black" onclick="reload">
-                                        <b>Add</b>
-                                    </button>
-                                </div>
-                                <div class="col-md-1 pl-0">
-                                    <label class="mt-1" style="visibility:hidden"> Code</label>
-                                    <button type="reset" class="btn bg-headerbc form-control white">
-                                        <b>Cancel</b>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="card box-shadow-2" id="_AccountableFormID">
+
                     </div>
-                    <div class="row mt-1" @*id="DepartmentTableID"*@>
-                        <div class="col-md-12">
-                            <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th>Accountable Form</th>
-                                        <th>Description</th>
-                                        <th>For CTC?</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-center">
-                                    <tr>
-                                        <td>AF - 55C</td>
-                                        <td>Cash Ticket</td>
-                                        <td>Yes</td>
-                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>AF - 55D</td>
-                                        <td>Cash Ticket</td>
-                                        <td>No</td>
-                                        <td><button type="button" class="btn btn-sm btn-icon center bg-headerbc" onfocusout="ClosePopOver1()" data-toggle="popoverSignatories" data-placement="left" data-conztainer="body" data-original-title=""> <i class="la la-reorder"></i></button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <div class="row">
+                        <div class="col-md-12" id="_AccountableFormTableID">
+
                         </div>
                     </div>
                 </div>
@@ -106,13 +57,19 @@
                                         <div class="col-md-10">
                                             <div class="row">
                                                 <div class="col-md-3 mt-1 form-group">
-                                                    <label><input type="radio" name="optradio" checked><b>Official Receipt</b></label>
+                                                    <fieldset class="radio">
+                                                        <label><input type="radio" name="radio" id="radioOR">Official Receipt</label>
+                                                    </fieldset>
                                                 </div>
                                                 <div class="col-md-3 mt-1 form-group">
-                                                    <label><input type="radio" name="optradio"><b>Cash Tickets</b></label>
+                                                    <fieldset class="radio">
+                                                        <label><input type="radio" name="radio" id="radioTickets">Cash Tickets</label>
+                                                    </fieldset>
                                                 </div>
                                                 <div class="col-md-4 mt-1 form-group">
-                                                    <label><input type="radio" name="optradio"><b>Community Tax Certificate</b></label>
+                                                    <fieldset class="radio">
+                                                        <label><input type="radio" name="radio" id="radioCTC">Community Tax Certificate</label>
+                                                    </fieldset>
                                                 </div>
                                                 <div class="col-md-2 form-group">
                                                     <button class="btn bg-addbutton black"><b>View AF Details</b></button>
@@ -123,67 +80,49 @@
                                 </div>
                             </div>
                             @* Official Receipt *@
-                            <div class="card-header bg-carheadercolor mt-1">
-                                <h4 class="card-title black"><b>Official Receipt Details</b></h4>
+                            <div id="DivOfficalReceipt">
+                                <div class="card-header bg-carheadercolor mt-1">
+                                    <h4 class="card-title black"><b>Official Receipt Details</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div id="_ORDetailsID">
+
+                                        </div>
+                                        <div id="_ORDetailsTableID">
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-content collapse show">
-                                <div class="card-body box-shadow-2">
-                                    <div class="row">
-                                        <div class="col-md-4 form-group">
-                                            <label><b>Accountable Form</b></label>
-                                            <select class="form-control">
-                                                <option></option>
-                                            </select>
+                            @* Cash Ticket *@
+                            <div id="DivCashTickets">
+                                <div class="card-header bg-carheadercolor mt-1">
+                                    <h4 class="card-title black"><b>Cash Ticket Details</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div id="_CTDetailsID">
+
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label><b>Starting Stub No.</b></label>
-                                            <input type="text" class="form-control" value="" />
-                                        </div>
-                                        <div class="col-md-4 form-group">
-                                            <label><b>Quantity</b></label>
-                                            <input type="text" class="form-control" value="" />
+                                        <div id="_CTDetailsTableID">
+
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-4 form-group">
-                                            <label><b>Starting OR</b></label>
-                                            <select class="form-control">
-                                                <option></option>
-                                            </select>
+                                </div>
+                            </div>
+                            @* Community Tax Certificate *@
+                            <div id="DivCommunityTaxCertificate">
+                                <div class="card-header bg-carheadercolor mt-1">
+                                    <h4 class="card-title black"><b>Community Tax Certificate Details</b></h4>
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body box-shadow-2">
+                                        <div id="_CTCDetailsID">
+
                                         </div>
-                                        <div class="col-md-4 form-group">
-                                            <label><b>Ending OR</b></label>
-                                            <input type="text" class="form-control" value="" />
-                                        </div>
-                                        <div class="col-md-4 form-group">
-                                            <label><b>OR Date</b></label>
-                                            <input value="" class="form-control pickadate ui-datepicker" />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-8"></div>
-                                        <div class="col-md-2"><button class="btn black bg-addbutton form-control"><b>Add</b></button></div>
-                                        <div class="col-md-2"><button class="btn white bg-headerbc form-control"><b>Cancel</b></button></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="table-responsive">
-                                                <table class="table table-striped zero-configuration table-bordered text-center table-smss-hover no-footer m-0 w-100">
-                                                    <thead class="text-center">
-                                                        <tr>
-                                                            <th>Accountable Forms</th>
-                                                            <th>Stub No.</th>
-                                                            <th>Starting OR</th>
-                                                            <th>Ending OR</th>
-                                                            <th>Quantity</th>
-                                                            <th>Date Issued</th>
-                                                            <th>Is Issued</th>
-                                                            <th width="5px;">Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody></tbody>
-                                                </table>
-                                            </div>
+                                        <div id="_CTCDetailsTableID">
+
                                         </div>
                                     </div>
                                 </div>
@@ -401,16 +340,16 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         @*<tr>
-                                                                            <td>A</td>
-                                                                            <td>Juan Dela Cruz</td>
-                                                                            <td>09/11/2019</td>
-                                                                            <td>09/12/2019</td>
-                                                                            <td>General Fund ( AF-51 )</td>
-                                                                            <td>100</td>
-                                                                            <td>50</td>
-                                                                            <td>100</td>
-                                                                            <td>149</td>
-                                                                        </tr>*@
+                                                                                <td>A</td>
+                                                                                <td>Juan Dela Cruz</td>
+                                                                                <td>09/11/2019</td>
+                                                                                <td>09/12/2019</td>
+                                                                                <td>General Fund ( AF-51 )</td>
+                                                                                <td>100</td>
+                                                                                <td>50</td>
+                                                                                <td>100</td>
+                                                                                <td>149</td>
+                                                                            </tr>*@
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -429,29 +368,511 @@
         </div>
     </div>
 </div>
+<style>
+    #DivCashTickets, #DivCommunityTaxCertificate, #DivFieldCollectorASF, #DivCashTicketASF, #DivCTCCollectorASF, #DivPATAS {
+        display: none;
+    }
+</style>
+
 <script>
-    $(document).ready(function () {
-        var popupElement =
-            '<div class="row m-0"><button class="btn btn-icon bg-addbutton black form-control target-desc t-has-destination2" destination="table-project" style="border-color: white" data-toggle="modal" data-target="#addTransferReturnModal" onclick="OpenConsolidationButtonModal()"><i class="la la-clipboard"></i><b>Transfer</b></button></div>' +
-            '<div class="row m-0"><button class="btn btn-icon bg-headerbc white form-control target-desc t-has-destination2" destination="table-project" style="border-color: white"><i class="la la-clipboard"></i><b>Return</b></button></div>';
-        $('[data-toggle="popoverSignatories"]').popover({
-            animation: true,
-            content: popupElement,
-            html: true
-        });
+    //Inventory of Accountable Form
+    $("#radioOR").attr("checked", true);
+    $("input[id='radioOR']").click(function () {
+        $("#DivOfficalReceipt").show();
+        $("#DivCashTickets").hide();
+        $("#DivCommunityTaxCertificate").hide();
+    });
+    $("input[id='radioTickets']").click(function () {
+        $("#DivOfficalReceipt").hide();
+        $("#DivCashTickets").show();
+        $("#DivCommunityTaxCertificate").hide();
+    });
+    $("input[id='radioCTC']").click(function () {
+        $("#DivOfficalReceipt").hide();
+        $("#DivCashTickets").hide();
+        $("#DivCommunityTaxCertificate").show();
+    });
+
+    //Assignment of Accountable Form
+    $("#radioTCAssignAF").attr("checked", true);
+    $("input[id='radioTCAssignAF']").click(function () {
+        $("#DivTreasurerORASF").show();
+        $("#DivFieldCollectorASF").hide();
+        $("#DivCashTicketASF").hide();
+        $("#DivCTCCollectorASF").hide();
+        $("#DivPATAS").hide();
+    });
+    $("input[id='radioFCAssignAF']").click(function () {
+        $("#DivTreasurerORASF").hide();
+        $("#DivFieldCollectorASF").show();
+        $("#DivCashTicketASF").hide();
+        $("#DivCTCCollectorASF").hide();
+        $("#DivPATAS").hide();
+    });
+    $("input[id='radioCTAssignAF']").click(function () {
+        $("#DivTreasurerORASF").hide();
+        $("#DivFieldCollectorASF").hide();
+        $("#DivCashTicketASF").show();
+        $("#DivCTCCollectorASF").hide();
+        $("#DivPATAS").hide();
+    });
+    $("input[id='radioCTCAssignAF']").click(function () {
+        $("#DivTreasurerORASF").hide();
+        $("#DivFieldCollectorASF").hide();
+        $("#DivCashTicketASF").hide();
+        $("#DivCTCCollectorASF").show();
+        $("#DivPATAS").hide();
+    });
+    $("input[id='radioPATASAssignAF']").click(function () {
+        $("#DivTreasurerORASF").hide();
+        $("#DivFieldCollectorASF").hide();
+        $("#DivCashTicketASF").hide();
+        $("#DivCTCCollectorASF").hide();
+        $("#DivPATAS").show();
     });
 </script>
+
 <script>
-    function OpenConsolidationButtonModal() {
-        //var ID = $("#SupplyAccountCodeList").val();
-        var IDTemp = "1";
-        $.ajax({
-            url: '/FileMaintenanceAccountableForm/GetTransfer',
-            data: { ID: IDTemp },
-            success: function (result) {
-                $('#_ButtonModal').html(result);
-            }
-        })
-        $('[data-toggle="popoverSignatories"]').popover('hide');
-    }
+    @* Angular Function *@
+    app.controller('FMAccountableFormController', function ($scope, $http, $sce) {
+        var F = $scope, P = $http, D = $sce.trustAsHtml;
+
+        F.InitAllFunction = function () {
+            //Accountable Form Table
+            F.Get_AccountableFormTable();
+            //Inventory of Accountable Forms
+            //OR
+            F.Get_InvtAccountableFormTable();
+            //CT
+            F.Get_InvtAccountableFormTableCT();
+            //CTC
+            F.Get_InvtAccountableFormTableCTC();
+
+            ////Assignment of Accountable Forms
+            //F.Get_AccountableFormAssignmentTable();
+            //F.Get_AccountableFormAssignmentFCTable();
+        }
+        //Accountable Form
+        F.Get_AccountableFormTable = function () {
+            P({
+                url: '/FileMaintenanceAccountableForm/Get_AccountableFormTable',
+            }).then(function (response) {
+                $("#_AccountableFormTableID").html(response.data);
+            });
+            F.Get_AddAccountableForm();
+            F.LoadDynamicDDAccountableForm();
+            F.LoadDynamicDDAccountableFormCT();
+        }
+        F.Get_AddAccountableForm = function () {
+            P({
+                url: '/FileMaintenanceAccountableForm/Get_AddAccountableForm',
+            }).then(function (response) {
+                $("#_AccountableFormID").html(response.data);
+            });
+        }
+        F.Get_UpdateAccountableForm = function (AccountFormID) {
+            P({
+                url: '/FileMaintenanceAccountableForm/Get_UpdateAccountableForm',
+                params: { AccountFormID: AccountFormID }
+            }).then(function (response) {
+                $("#_AccountableFormID").html(response.data);
+                });
+        }
+        F.Get_DeleteAccountableForm = function (AccountFormID) {
+            P({
+                url: '/FileMaintenanceAccountableForm/DeleteAccountableForm',
+                params: { AccountFormID: AccountFormID }
+            }).then(function (response) {
+                F.Get_AccountableFormTable();
+            });
+        }
+
+        //Inventory of Accountable Forms
+        //OR
+        F.Get_InvtAccountableFormTable = function () {
+            P({
+                url: '/FileMaintenanceAccountableForm/Get_AccountableFormInvtTable',
+            }).then(function (response) {
+                $("#_ORDetailsTableID").html(response.data);
+            });
+            F.Get_AddInvtAccountableForm();
+        }
+        F.Get_AddInvtAccountableForm = function () {
+            P({
+                url: '/FileMaintenanceAccountableForm/Get_AddInvntAccountableForm',
+            }).then(function (response) {
+                $("#_ORDetailsID").html(response.data);
+                F.LoadDynamicDDAccountableForm();
+            });
+        }
+        F.LoadDynamicDDAccountableForm = function () {
+            P({
+                url: '/FileMaintenanceAccountableForm/GetDynamicAccountableform',
+            }).then(function (response) {
+                $("#_ORAFID").html(response.data);
+            });
+        }
+        F.Get_UpdateAccountableFormInventory = function (AFORID) {
+            P({
+                url: '/FileMaintenanceAccountableForm/Get_UpdateAccountableFormInventory',
+                params: { AFORID: AFORID }
+            }).then(function (response) {
+                $("#_ORDetailsID").html(response.data);
+                F.LoadSelectedDynamicDDAF();
+            });
+        }
+        F.LoadSelectedDynamicDDAF = function () {
+            var AFIDTempID = $("#AFIDTempID").val();
+            P({
+                url: '/FileMaintenanceAccountableForm/GetSelectedDynamicAccountableform',
+                params: { AFIDTempID: AFIDTempID }
+            }).then(function (response) {
+                $("#_ORAFID").html(response.data);
+            });
+        }
+        F.Get_DeleteAccountableFormInventory = function (AFORID) {
+            P({
+                url: '/FileMaintenanceAccountableForm/DeleteAccountableFormInventory',
+                params: { AFORID: AFORID }
+            }).then(function (response) {
+                F.Get_InvtAccountableFormTable();
+            });
+        }
+        //CT
+        F.Get_AddInvtAccountableFormCT = function () {
+            P({
+                url: '/FileMaintenanceAccountableForm/Get_AddInvntAccountableFormCT',
+            }).then(function (response) {
+                $("#_CTDetailsID").html(response.data);
+                F.LoadDynamicDDAccountableFormCT();
+                //F.LoadDynamicDDASFAF();
+            });
+        }
+        F.LoadDynamicDDAccountableFormCT = function () {
+            P({
+                url: '/FileMaintenanceAccountableForm/GetDynamicAccountableformCT',
+            }).then(function (response) {
+                $("#_CTAFID").html(response.data);
+            });
+        }
+        F.Get_InvtAccountableFormTableCT = function () {
+            P({
+                url: '/FileMaintenanceAccountableForm/Get_AccountableFormInvtTableCT',
+            }).then(function (response) {
+                $("#_CTDetailsTableID").html(response.data);
+            });
+            F.Get_AddInvtAccountableFormCT();
+        }
+        F.LoadSelectedDynamicDDAFCT = function () {
+            var AFIDTempIDCT = $("#AFIDTempIDCT").val();
+            P({
+                url: '/FileMaintenanceAccountableForm/GetSelectedDynamicAccountableformCT',
+                params: { AFIDTempIDCT: AFIDTempIDCT }
+            }).then(function (response) {
+                $("#_CTAFID").html(response.data);
+            });
+        }
+        F.Get_UpdateAccountableFormInventoryCT = function (AFORID) {
+            P({
+                url: '/FileMaintenanceAccountableForm/Get_UpdateAccountableFormInventoryCT',
+                params: { AFORID: AFORID }
+            }).then(function (response) {
+                $("#_CTDetailsID").html(response.data);
+                F.LoadSelectedDynamicDDAFCT();
+            });
+        }
+        F.Get_DeleteAccountableFormInventoryCT = function (AFORID) {
+            P({
+                url: '/FileMaintenanceAccountableForm/DeleteAccountableFormInventoryCT',
+                params: { AFORID: AFORID }
+            }).then(function (response) {
+                F.Get_InvtAccountableFormTableCT();
+            });
+        }
+        //CTC
+        F.Get_InvtAccountableFormTableCTC = function () {
+            P({
+                url: '/FileMaintenanceAccountableForm/Get_AccountableFormInvtTableCTC',
+            }).then(function (response) {
+                $("#_CTCDetailsTableID").html(response.data);
+            });
+            F.Get_AddInvtAccountableFormCTC();
+        }
+        F.Get_AddInvtAccountableFormCTC = function () {
+            P({
+                url: '/FileMaintenanceAccountableForm/Get_AddInvntAccountableFormCTC',
+            }).then(function (response) {
+                $("#_CTCDetailsID").html(response.data);
+                F.LoadDynamicDDAccountableFormCTC();
+            });
+        }
+        F.LoadDynamicDDAccountableFormCTC = function () {
+            P({
+                url: '/FileMaintenanceAccountableForm/GetDynamicAccountableformCTC',
+            }).then(function (response) {
+                $("#_CTCAFID").html(response.data);
+            });
+        }
+        F.Get_UpdateAccountableFormInventoryCTC = function (AFORID) {
+            P({
+                url: '/FileMaintenanceAccountableForm/Get_UpdateAccountableFormInventoryCTC',
+                params: { AFORID: AFORID }
+            }).then(function (response) {
+                $("#_CTCDetailsID").html(response.data);
+                F.LoadSelectedDynamicDDAFCTC();
+            });
+        }
+        F.LoadSelectedDynamicDDAFCTC = function () {
+            var AFIDTempIDCTC = $("#AFIDTempIDCTC").val();
+            P({
+                url: '/FileMaintenanceAccountableForm/GetSelectedDynamicAccountableformCTC',
+                params: { AFIDTempIDCTC: AFIDTempIDCTC }
+            }).then(function (response) {
+                $("#_CTCAFID").html(response.data);
+            });
+        }
+        F.Get_DeleteAccountableFormInventoryCTC = function (AFORID) {
+            P({
+                url: '/FileMaintenanceAccountableForm/DeleteAccountableFormInventoryCTC',
+                params: { AFORID: AFORID }
+            }).then(function (response) {
+                F.Get_InvtAccountableFormTableCTC();
+            });
+        }
+
+        ////Assignment of Accountable Forms
+        ////Treasurer Collector
+        //F.Get_AddAssignTreasurerCollector = function () {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/Get_AddAssignTreasurerCollector',
+        //    }).then(function (response) {
+        //        $("#_TreasurerCollectionID").html(response.data);
+        //        F.LoadDynamicAFCollector();
+        //        F.LoadDynamicDDASFFundType();
+        //        F.LoadDynamicDDASFAF();
+        //        F.Get_InvtAccountableFormTable();
+        //    });
+        //}
+        //F.LoadDynamicDDASFFundType = function () {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/GetDynamicASFFundType',
+        //    }).then(function (response) {
+        //        $("#_DynamicFundTypeASF").html(response.data);
+        //    });
+        //}
+        //F.LoadDynamicAFCollector = function () {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/GetDynamicAFCollector',
+        //    }).then(function (response) {
+        //        $("#_DynamicCollectorTable").html(response.data);
+        //    });
+        //}
+        //F.LoadDynamicDDASFAF = function () {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/GetDynamicAFASF',
+        //    }).then(function (response) {
+        //        $("#_DynamicAFASF").html(response.data);
+        //        F.LoadDynamicASFStartOR();
+        //    });
+        //}
+        //F.LoadDynamicASFStartOR = function () {
+        //    //var AFORID = $("#AFIDDDASF").val()
+        //    //P({
+        //    //    url: '/FileMaintenanceAccountableForm/GetAccountFormID',
+        //    //    params: { AFORID: AFORID}
+        //    //}).then(function (response) {
+        //    //    var AccountFormIDT = response.data.AccountFormID;
+        //    //    P({
+        //    //        url: '/FileMaintenanceAccountableForm/GetDynamicAFStartOR',
+        //    //        params: { AccountFormID: AccountFormIDT }
+        //    //    }).then(function (response) {
+        //    //        $("#_DynamicAFStartOR").html(response.data);
+        //    //        F.LoadDynamicDDASFInvt();
+        //    //    });
+        //    //});
+        //    var AccountFormID = $("#AFIDDDASF").val();
+
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/GetDynamicAFStartOR',
+        //        params: { AccountFormID: AccountFormID }
+        //    }).then(function (response) {
+        //        $("#_DynamicAFStartOR").html(response.data);
+        //        F.LoadDynamicDDASFInvt();
+        //    });
+        //}
+        //F.LoadDynamicDDASFInvt = function () {
+        //    var AFORID = $("#StartIDDDD option:selected").val();
+        //    if (AFORID == null || AFORID == "") {
+        //        AFORID = 0;
+        //    }
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/Get_AddAssignTC',
+        //        params: { AFORID: AFORID }
+        //    }).then(function (response) {
+        //        $("#_DynamicASF").html(response.data);
+        //    });
+        //}
+        //F.Get_AccountableFormAssignmentTable = function () {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/Get_AccountableFormAssignmentTable',
+        //    }).then(function (response) {
+        //        $("#_TreasurerCollectionTableID").html(response.data);
+        //    });
+        //    F.Get_AddAssignTreasurerCollector();
+        //}
+        //F.Get_TransferReturnORTable = function () {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/Get_TransferReturnORTable',
+        //    }).then(function (response) {
+        //        $("#_TransferReturnORTableID").html(response.data);
+        //        });
+        //    F.Get_AddTransferReturnOR();
+        //}
+        //F.Get_AddTransferReturnOR = function () {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/Get_AddTransferReturnOR',
+        //    }).then(function (response) {
+        //        $("#_TransferReturnORID").html(response.data);
+        //        F.LoadDynamicMainCollector();
+        //        F.Get_AccountableFormAssignmentTable();
+        //    });
+        //}
+        //F.LoadDynamicMainCollector = function () {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/GetDynamicMainCollector',
+        //    }).then(function (response) {
+        //        $("#_DynamicMainCollectorID").html(response.data);
+        //        F.LoadDynamicSubCollector();
+        //        F.LoadDynamicTCTRORStubNo();
+        //    });
+        //}
+        //F.LoadDynamicSubCollector = function () {
+        //    var CollectorID = $("#MainCOIDDD").val();
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/GetDynamicSubCollector',
+        //        params: { CollectorID: CollectorID }
+        //    }).then(function (response) {
+        //        $("#_DynamicSubCollectorID").html(response.data);
+        //    });
+        //}
+        //F.LoadDynamicTCTRORStubNo = function () {
+        //    var CollectorID = $("#MainCOIDDD").val();
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/GetDynamicTCTRORStubNo',
+        //        params: { CollectorID: CollectorID }
+        //    }).then(function (response) {
+        //        $("#_DynamicStubNoID").html(response.data);
+        //        F.LoadDynamicDDTRPVOR();
+        //    });
+        //}
+        //F.LoadDynamicDDTRPVOR = function () {
+        //    var StubNo = $("#TRORStubNoIDDDD option:selected").text();
+        //    if (StubNo == null || StubNo == "") {
+        //        StubNo = 0;
+        //    }
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/GetDynamicTCTRORPV',
+        //        params: { StubNo: StubNo }
+        //    }).then(function (response) {
+        //        $("#_TransferReturnORIDPV").html(response.data);
+        //    });
+        //}
+        //F.Get_UpdateTransferReturnOR = function (AssignAFID) {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/Get_UpdateAFTransferReturnOR',
+        //        params: { AssignAFID: AssignAFID },
+        //    }).then(function (response) {
+        //        F.Get_TransferReturnORTable();
+        //        });
+        //}
+
+        ////Field Collector
+        //F.Get_AddAssignFieldCollector = function () {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/Get_AddAssignFieldCollector',
+        //    }).then(function (response) {
+        //        $("#_FieldCollectionID").html(response.data);
+        //        F.LoadDynamicAFCollectorFC();
+        //        F.LoadDynamicDDASFFundTypeFC();
+        //        F.LoadDynamicDDASFAFFC();
+        //        F.Get_InvtAccountableFormTable();
+        //        F.Get_AddAssignTreasurerCollector();
+        //    });
+        //}
+        //F.LoadDynamicDDASFFundTypeFC = function () {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/GetDynamicASFFundTypeFC',
+        //    }).then(function (response) {
+        //        $("#_FCFundID").html(response.data);
+        //    });
+        //}
+        //F.LoadDynamicAFCollectorFC = function () {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/GetDynamicAFCollectorFC',
+        //    }).then(function (response) {
+        //        $("#_FCCollectorID").html(response.data);
+        //    });
+        //}
+        //F.LoadDynamicDDASFAFFC = function () {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/GetDynamicAFASFFC',
+        //    }).then(function (response) {
+        //        $("#_FCAFID").html(response.data);
+        //        F.LoadDynamicASFStartORFC();
+        //    });
+        //}
+        //F.LoadDynamicASFStartORFC = function () {
+        //    //var AFORID = $("#AFIDDDASF").val()
+        //    //P({
+        //    //    url: '/FileMaintenanceAccountableForm/GetAccountFormID',
+        //    //    params: { AFORID: AFORID}
+        //    //}).then(function (response) {
+        //    //    var AccountFormIDT = response.data.AccountFormID;
+        //    //    P({
+        //    //        url: '/FileMaintenanceAccountableForm/GetDynamicAFStartOR',
+        //    //        params: { AccountFormID: AccountFormIDT }
+        //    //    }).then(function (response) {
+        //    //        $("#_DynamicAFStartOR").html(response.data);
+        //    //        F.LoadDynamicDDASFInvt();
+        //    //    });
+        //    //});
+        //    var AccountFormID = $("#AFIDDDASFFC").val();
+
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/GetDynamicAFStartORFC',
+        //        params: { AccountFormID: AccountFormID }
+        //    }).then(function (response) {
+        //        $("#_FCStartORID").html(response.data);
+        //        F.LoadDynamicDDASFInvtFC();
+        //    });
+        //}
+        //F.LoadDynamicDDASFInvtFC = function () {
+        //    var AFORID = $("#StartIDDDDFC option:selected").val();
+        //    if (AFORID == null || AFORID == "") {
+        //        AFORID = 0;
+        //    }
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/Get_AddAssignAFFC',
+        //        params: { AFORID: AFORID }
+        //    }).then(function (response) {
+        //        $("#_DynamicASFFC").html(response.data);
+        //    });
+        //}
+        //F.Get_AccountableFormAssignmentFCTable = function () {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/Get_AFAssignmentFieldCollectorTable',
+        //    }).then(function (response) {
+        //        $("#_FieldCollectionTableID").html(response.data);
+        //    });
+        //    F.Get_AddAssignFieldCollector();
+        //}
+        //F.Get_UpdateAFSetAsDefault = function (AssignAFID) {
+        //    P({
+        //        url: '/FileMaintenanceAccountableForm/Get_UpdateAFAssignFieldCollector',
+        //        params: { AssignAFID: AssignAFID },
+        //    }).then(function (response) {
+        //        F.Get_AccountableFormAssignmentFCTable();
+        //    });
+        //}
+    });
 </script>

@@ -8,7 +8,7 @@
 
 <div class="content-header row">
     <div class="content-header-left col-md-6 mb-2">
-        <h3 class="content-header-title"><b>File Maintenance - Chart of Accounts</b></h3>
+        <h3 class="content-header-title black"><b>File Maintenance - Chart of Accounts</b></h3>
     </div>
 </div>
 <div class="card-content">
@@ -531,19 +531,19 @@
                     <div class="row">
                         <div class="col-md-12" @*id="DepartmentxID"*@>
                             <div class="row black">
-                                <div class="col-md-2">
+                                <div class="col-md-2 pr-0">
                                     <label class="mt-1"><b>Revision Year</b></label>
                                     <select class="form-control">
                                         <option>2015</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 pr-0">
                                     <label class="mt-1"><b>Allotment Class</b></label>
                                     <select class="form-control">
                                         <option>N / A</option>
                                     </select>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 pr-0">
                                     <label class="mt-1"><b>Accounts</b></label>
                                     <select class="form-control">
                                         <option>Asset</option>
@@ -571,32 +571,45 @@
                                         <option>Salaries and Wages</option>
                                     </select>
                                 </div>
-                                <div class="col-md-3 pr-0">
-                                    <label class="mt-1"><b>General Ledger / Contra Account</b></label>
+                                <div class="col-md-4 pr-0">
+                                    <label class="mt-1"><b>General Ledger / Contra Account / Sub Account</b></label>
                                     <input type="text" class="form-control" />
                                 </div>
+                                @*<div class="col-md-2 pr-0">
+                                    <label class="mt-1"><b>Contra Account?</b></label>
+                                    <select class="form-control">
+                                        <option>No</option>
+                                    </select>
+                                </div>*@
                                 <div class="col-md-2 px-0 text-center mt-4">
                                     <fieldset>
                                         <input type="checkbox" class="form-control icheckbox_square-red" />
                                         <label><b>Contra Account?</b></label>
                                     </fieldset>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="mt-1"><b>General Ledger Account</b></label>
-                                    <select class="form-control">
-                                        <option>Land</option>
-                                    </select>
+                                <div class="col-md-2 px-0 text-center mt-4">
+                                    <fieldset>
+                                        <input type="checkbox" class="form-control icheckbox_square-red" />
+                                        <label><b>Sub Account?</b></label>
+                                    </fieldset>
                                 </div>
+                      
                             </div>
                             <div class="row black">
-                                <div class="col-md-2 pr-0 mt-1">
+                                <div class="col-md-5 pr-0">
+                                    <label class="mt-1"><b>General Ledger Account</b></label>
+                                    <select class="form-control">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 pr-0 mt-1">
                                     <label><b>Account Code</b></label>
                                     <div class="input-group mt-0">
                                         <span class="input-group-addon" id="basic-addon1"><b>1 - 07 - 01 - </b></span>
                                         <input type="text" class="form-control" name="name" value="" />
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label class="mt-1"><b>With Reserve?</b></label>
                                     <select class="form-control">
                                         <option>No</option>
@@ -606,27 +619,35 @@
                                     <label class="mt-1"><b>Reserve %?</b></label>
                                     <input type="text" class="form-control" disabled />
                                 </div>
-                                <div class="col-md-2">
+                             
+                            </div>
+                            <div class="row black">
+                                <div class="col-md-3 pr-0">
+                                    <label class="mt-1"><b>For Release?</b></label>
+                                    <select class="form-control">
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 pr-0">
                                     <label class="mt-1"><b>For Continuing?</b></label>
                                     <select class="form-control">
                                         <option>No</option>
                                     </select>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 pr-0">
                                     <label class="mt-1"><b>OBR Cash Advance?</b></label>
                                     <select class="form-control">
                                         <option>No</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="row mt-1">
-                                <div class="col-md-8"></div>
                                 <div class="col-md-2">
+                                    <label style="visibility:hidden" class="mt-1">Hide</label>
                                     <button type="submit" class="btn bg-addbutton form-control black" onclick="reload">
                                         <b>Add</b>
                                     </button>
                                 </div>
                                 <div class="col-md-2">
+                                    <label style="visibility:hidden" class="mt-1">Hide</label>
                                     <button type="reset" class="btn bg-headerbc form-control white">
                                         <b>Cancel</b>
                                     </button>

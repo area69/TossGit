@@ -1,0 +1,9 @@
+﻿@model TOSS_UPGRADE.Models.FM_CollectionAndDeposit.FM_CollectionAndDeposit_AssignmentAF
+@{
+    DB_TOSSEntities TOSSDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+
+<label>Fund Type</label>
+@Html.DropDownListFor(m => m.AccountableFormAssignmentFundID, Model.AccountableFormAssignmentList, new { @class = "form-control select2", id = "FundTypeIDDD" })

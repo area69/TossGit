@@ -1,0 +1,41 @@
+﻿@model TOSS_UPGRADE.Models.FM_AccountableForm.FM_AccountableForm
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+@using (Ajax.BeginForm("AddAccountableForm", "FileMaintenanceAccountableForm", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMAccountableFormController','Get_AccountableFormTable','Accountable Form Successfully Saved')", OnFailure = "OnFailure()", }))
+{
+<div class="row">
+    <div class="col-md-3 form-group">
+        <label>Accountable Form</label>
+        @Html.TextBoxFor(m => m.getAccountableFormcolumns.AccountFormName, new { @class = "form-control", type = "text" })
+    </div>
+    <div class="col-md-2 form-group row skin skin-square">
+        <label style="visibility:hidden">Accountable Form</label>
+        <fieldset>
+            @Html.CheckBoxFor(m => m.getAccountableFormcolumns.isCTC, new { @class = "form-control icheckbox_square-red", type = "checkbox" })
+            <label>For CTC</label>
+        </fieldset>
+    </div>
+    <div class="col-md-5 form-group">
+        <label>Description</label>
+        @Html.TextBoxFor(m => m.getAccountableFormcolumns.Description, new { @class = "form-control", type = "text" })
+    </div>   
+    <div class="col-md-1 px-0 mr-1">
+        <label style="visibility:hidden">Description</label>
+        <button type="submit" class="btn bg-addbutton black form-control"><b>Add</b></button>
+    </div>
+    <div class="col-md-1 px-0">
+        <label style="visibility:hidden">Description</label>
+        <button type="reset" class="btn bg-headerbc white form-control"><b>Cancel</b></button>
+    </div>
+</div>
+    }
+
+    <script>
+        $(function () {
+            LoadDataTable();
+            LoadPopOver();
+        })
+    </script>

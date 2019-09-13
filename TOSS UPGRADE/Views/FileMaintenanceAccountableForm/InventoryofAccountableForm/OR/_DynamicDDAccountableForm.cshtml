@@ -1,0 +1,11 @@
+﻿@model TOSS_UPGRADE.Models.FM_AccountableForm.FM_AccountableFormInventory
+@{
+    DB_TOSSEntities TOSSDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+<label>Accountable Form</label>
+@Html.DropDownListFor(m => m.AccountableFormInvtID, Model.AccountableFormInvtList, new { @class = "form-control select2", id = "AFIDDD" })
+
+
+

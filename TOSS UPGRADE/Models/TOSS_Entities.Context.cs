@@ -28,7 +28,6 @@ namespace TOSS_UPGRADE.Models
         }
     
         public virtual DbSet<AccountableForm_Assignment> AccountableForm_Assignment { get; set; }
-        public virtual DbSet<AccountableForm_Description> AccountableForm_Description { get; set; }
         public virtual DbSet<AccountableForm_Inventory> AccountableForm_Inventory { get; set; }
         public virtual DbSet<AccountableFormTable> AccountableFormTables { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
@@ -51,13 +50,11 @@ namespace TOSS_UPGRADE.Models
         public virtual DbSet<MemoAccClassTable> MemoAccClassTables { get; set; }
         public virtual DbSet<ParentModule> ParentModules { get; set; }
         public virtual DbSet<PersonalInformation> PersonalInformations { get; set; }
-        public virtual DbSet<Sector> Sectors { get; set; }
         public virtual DbSet<SignatoriesTable> SignatoriesTables { get; set; }
         public virtual DbSet<Signatory_DepartmentTable> Signatory_DepartmentTable { get; set; }
         public virtual DbSet<Signatory_PositionTable> Signatory_PositionTable { get; set; }
         public virtual DbSet<SubCollectorTable> SubCollectorTables { get; set; }
         public virtual DbSet<SubFund> SubFunds { get; set; }
-        public virtual DbSet<SubSector> SubSectors { get; set; }
     
         public virtual int SP_AccountableFormInvtList(string sQLStatement)
         {

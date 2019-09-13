@@ -1,0 +1,68 @@
+﻿@model TOSS_UPGRADE.Models.FM_AccountableForm.FM_AccountableFormInventory
+@{
+    DB_TOSSEntities SISDB = new DB_TOSSEntities();
+}
+@using TOSS_UPGRADE.Models;
+
+@using (Ajax.BeginForm("AddAccountableFormInventoryCTC", "FileMaintenanceAccountableForm", new AjaxOptions { OnSuccess = "AngularGlobalAlertsCallingNoModal('FMAccountableFormController','Get_InvtAccountableFormTableCTC','Accountable Form Inventory Successfully Saved')", OnFailure = "OnFailure()", }))
+{
+    <div class="row">
+        <div class="col-md-4 form-group" id="_CTCAFID">
+        </div>
+        <div class="col-md-4 form-group">
+            <label>Starting Stub No.</label>
+            @Html.TextBoxFor(m => m.getAccountableFormInvtcolumns.StubNo, new { @class = "form-control", type = "text" })
+        </div>
+        <div class="col-md-4 form-group">
+            <label>Quantity</label>
+            @Html.TextBoxFor(m => m.getAccountableFormInvtcolumns.Quantity, new { @class = "form-control", type = "text", id = "txtCTCInvQty" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 form-group">
+            <label>Starting OR</label>
+            @Html.TextBoxFor(m => m.getAccountableFormInvtcolumns.StartingOR, new { @class = "form-control", type = "text", id = "txtStrtCTCNo" })
+        </div>
+        <div class="col-md-4 form-group">
+            <label>Ending OR</label>
+            @Html.TextBoxFor(m => m.getAccountableFormInvtcolumns.EndingOR, new { @class = "form-control", type = "text", id = "txtEndCTCNo" })
+        </div>
+        <div class="col-md-4 form-group">
+            <label>OR Date</label>
+            @Html.TextBoxFor(m => m.getAccountableFormInvtcolumns.Date, new { @class = "form-control pickadate", type = "text" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-2"><button type="submit" class="btn black bg-addbutton form-control"><b>Add</b></button></div>
+        <div class="col-md-2"><button type="reset" class="btn white bg-headerbc form-control"><b>Cancel</b></button></div>
+    </div>
+}
+    <script>
+        $(function () {
+            LoadDataTable();
+            LoadPopOver();
+            LoadPickDatetime();
+        })
+
+        $("#txtStrtCTCNo").change(function () {
+            var startNo = $("#txtStrtCTCNo").val();
+            var countStartNo = startNo.toString().length;
+            var startNoQty = parseFloat($("#txtStrtCTCNo").val()) + parseFloat($("#txtCTCInvQty").val() - parseFloat(1));
+            var countEndNo = startNoQty.toString().length;
+            var number = "";
+
+            for (i = 0; i < countStartNo; i++) {
+                number += "0";
+            }
+
+            var countZero = number.toString().length;
+            var res = number.toString().substring(0, countZero - countEndNo) + startNoQty;
+
+            if ($("#txtStrtCTCNo").val() == "") {
+                $("#txtEndCTCNo").val("");
+            } else {
+                $("#txtEndCTCNo").val(res);
+            }
+        });
+    </script>
